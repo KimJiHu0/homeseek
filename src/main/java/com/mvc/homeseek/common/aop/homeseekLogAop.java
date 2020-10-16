@@ -18,7 +18,7 @@ public class homeseekLogAop {
 		
 		Object[] args = join.getArgs();
 		if(args != null) {
-			logger.info("\n *Method : " + join.getSignature().getName());
+			logger.info("\n *Method : " + join.getSignature().getName()); 
 			for(int i = 0; i < args.length; i++) {
 				logger.info("\n" + i + "번째" + args[i]);
 			}
