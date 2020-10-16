@@ -1,0 +1,69 @@
+	[ _SpringMVC03 ]
+
+1. pom.xml : 
+ojdbc6.jar : 붙여 넣을거야. 오라클에서 얘를 막아서 붙일때마다 좀 고생해야돼.
+			 SearchMaven에 들어가서 ojdbc6.jar를 찾아서 pom.xml에 추가해줘.
+mybatis : 마이바티스 추가해야돼.
+mybatis-spring : 얘도 추가해줘야돼
+DBCP : DB랑 SERVLET를 연결해주는 Connection객체.
+	   datasources를 가지고 db랑 프로젝트 연결해주는 connection 객체가 만들어질건데 이 객체들을 관리해주는 애들
+spring-orm : db와 객체를 연결해줄거야.
+
+
+2. web.xml : encodingFilter를 해줘야돼
+
+3. test.sql파일 : /web-inf/ spring / sqls(folder) / test.sql 밑에다 만들거야.
+
+4. DTO, DAO , BIZ, CONTROLLER 만들어
+BoardDto, BoardDao(BoardDaoImpl), BoardBiz(BoardBizImpl), HomeController
+
+5. mapper.xml만들거야~ (src/main/resources/mybatis/mapper.xml)
+
+6. db.properties (src/main/resources/mybatis/db.properties) 만들거야.
+
+7. config.xml (/WEB-INF/spring/sqls/config.xml)
+
+8. applicationContext.xml 작성.
+
+
+	[ _Filter ]
+9. LogFilter Class add (com.mvc.upgrade.common.filter.LogFilter impl javax.servlet.Filter)
+
+10. web.xml
+
+	[ _AOP ]
+
+11. pom.xml (org.aspectj)에 aspectj, aspectjweaver
+
+12. LogAop add (com.mvc.spring.common.aop.LogAop)
+
+13. aop-context.xml만들어서 aspect 설정 (WEB-INF/spring/appServlet/aop-context.xml) 
+
+14. web.xml
+
+15. log4j.xml (src/main/resources/log4j.xml)
+
+	[ _Login ]
+	
+16. pom.xml에 추가 : jackson-core-asl, jackson-mapper-asl (spring 4.x 부터는 jack-core-als / jackson-databind 사용해아한다.)
+17. mymember.sql : WEB-INF/spring/sqls/mymember.sql
+18. MemberDto, MemberDao, MemberBiz, MemberController
+19. member-mapper.xml (src/main/resources/mybatis/member-mapper.xml)
+20. config.xml : WEB-INF/spring/sqls/config.xml
+
+	[ _interceptor ]
+21. LoginInterceptor (com.mvc.upgrade.common.interceptor.LoginInterceptor) impl HandlerInterceptor
+
+22. servlet-context.xml에서 적용시키기
+
+	[ _Transaction ]
+23. (board)dao, biz, controller에 간단하게 추가.
+24. transaction을 걸어주려고한다. : servlet-context.xml에 (namespace="tx" 를 걸어줄거다.)
+25. applicationContext.xml에서 transactionManager 만들어준다.
+
+	[ _Security ]
+26. pom.xml에 spring-security-web 추가하기.
+27. security-context.xml 추가하기 appServlet에
+28. web.xml에서 설정 적용시키기
+29. (member)dao,biz,controller 만들기
+30. member-mapper.xml

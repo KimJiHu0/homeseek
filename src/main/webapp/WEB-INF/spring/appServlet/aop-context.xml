@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- dao만들면 주석 풀어주시고 이거 지워주세요. -->
+
+	<!-- <bean id="homeseekLogAop"
+		class="com.mvc.homeseek.common.aop.homeseekLogAop" />
+
+	<aop:config>
+		<aop:aspect id="homeseekLogAop" ref="homeseekLogAop">
+			<aop:pointcut expression="excution(public * com.mvc.homeseek.model.dao.*Dao*.*(..))" id="daopoint" />
+			<aop:before method="beforeLog" pointcut-ref="daopoint" />
+			<aop:after method="afterLog" pointcut-ref="daopoint" />
+			<aop:after-throwing method="afterThrowingLog" pointcut-ref="daopoint" />
+		</aop:aspect>
+	</aop:config> -->
+
+
+</beans>
