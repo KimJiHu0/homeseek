@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- header -->
-	<%@ include file="./WEB-INF/views/form/header.jsp" %>
-	
-	<h1>index</h1>
+	<header></header>
 </body>
 </html>

@@ -20,9 +20,6 @@ public class homeseekInterceptor implements HandlerInterceptor {
 		logger.info(" \n [ preHandle ]");
 		
 		// 여기 밑으로 작성하세요.
-		if(request.getRequestURI().contains("home.do")) {
-			return true;
-		}
 		
 		return false;
 	}
