@@ -18,5 +18,7 @@
 	<%@ include file="./WEB-INF/views/form/header.jsp" %>
 	
 	<h1>index</h1>
+	
+	<%@ include file="./WEB-INF/views/form/footer.jsp" %>
 </body>
 </html>
