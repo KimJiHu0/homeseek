@@ -17,8 +17,10 @@
 	<!-- header.jsp include -->
 	<%@ include file="./WEB-INF/views/form/header.jsp" %>
 	
-	<h1>index</h1>
-	
-	<%@ include file="./WEB-INF/views/form/footer.jsp" %>
+	<section>
+		<div class="background">
+		
+		</div>
+	</section>
 </body>
 </html>
