@@ -2,3 +2,13 @@
 h1{
 	color : red;
 }
+/* .backgroundimg{
+	width : 100%;
+	height : 100%;
+	opacity : 0.5;
+	z-index : -1;
+} */
+body{
+	background-image : url(../img/backgroundimg.jpg);
+	background-size : 100%;
+}

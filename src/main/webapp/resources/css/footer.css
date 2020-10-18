@@ -1,4 +1,23 @@
 @charset "UTF-8";
-footer{
-	background-color : red;
+
+/* footer css */
+footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	padding: 0px !important;
+	background-color: rgba( 255, 255, 255, 0.2) !important;
+	height: 30px;
+	z-index: 5;
+	text-align : center;
+	margin-bottom : 10px;
+}
+
+/* a태그 밑줄 없애기 */
+a{
+	text-decoration : none;
+}
+/* 방문한 적 있는 a 태그의 색 바꾸기 */
+a:visited{
+	color : black;
 }
