@@ -1,1 +1,57 @@
 @charset "UTF-8";
+
+.header{
+	margin-left : 35px;
+	margin-right : 35px;
+}
+
+a{
+	text-decoration : none;
+}
+
+.logo > a{
+	color:black;
+	font-style: italic;
+}
+.logo > a > span{
+	color:green;
+	font-style : italic;
+}
+
+.nav{
+	float: right;
+}
+
+.nav > a{
+	color:#6A6868;
+	margin-left : 10px;
+}
+
+.nav > a:hover{
+	font-weight:bold;
+}
+
+.login > a{
+	color:black;
+	margin-left : 10px;
+	font-style : italic;
+}
+
+.login > a:hover{
+	font-weight:bold;
+}
+
+.dropdown{
+	position : relative;
+}
+
+.dropdown:hover{
+	font-weight:bold;
+}
+
+.dropdown-content{
+	display : none;
+	position : absolute;
+}
+
+
