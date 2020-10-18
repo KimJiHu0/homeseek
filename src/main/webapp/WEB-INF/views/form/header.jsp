@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
 </head>
 <body>
-	<header>
+	<header> 
 		<div class="header">
 			<span class="logo">
 				<a href="#">HOME<span>SEE</span>K</a>
@@ -16,7 +16,7 @@
 			
 			<span class="nav">
 				<a href="#">전체 방 조회</a> 
-				<a href="#">방 올리기</a>
+				<a href="#">방 올리기</a> 
 				<span class="dropdown"><span class="list">게시판</span>
 					<span class="dropdown-content">
 						<a href="#">공지사항</a>
