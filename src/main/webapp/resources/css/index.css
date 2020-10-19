@@ -16,7 +16,8 @@ h1{
 body{
 	width : 100%;
 	height : 100%;
-	/* background-image : url(../img/backgroundimg.jpg); */
+	overflow-x: hidden; /*Hide horizontal scrollbar*/
+	overflow-y: scroll; /* add vertical scrollbar */
 }
 
 .test{
