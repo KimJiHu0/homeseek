@@ -16,9 +16,10 @@
 <body>
 	<!-- header.jsp include -->
 	<%@ include file="./WEB-INF/views/form/header.jsp" %>
-	<img id="backgroundimg" alt="메인사진" src="resources/img/backgroundimg.jpg">
+	
 	<section>
-    
+		<div class="test"></div>
+    	<img id="backgroundimg" alt="메인사진" src="resources/img/backgroundimg.jpg">
 	</section>
 </body>
 </html>
