@@ -15,14 +15,18 @@
 			</span>
 			
 			<span class="nav">
+
 				<a href="#">전체 방 조회</a> 
 				<a href="#">방 올리기</a> 
-				<span class="dropdown"><span class="list">게시판</span>
-					<span class="dropdown-content">
-						<a href="#">공지사항</a>
-						<a href="#">Q&A</a>
-					</span>
-				</span> 
+				
+				<div class="dropdown">
+ 					 <button class="dropbtn">게시판</button>
+  						<div class="dropdown-content">
+    						<a href="#">공지사항</a>
+    						<a href="#">Q & A</a>
+  						</div>
+				</div>
+								
 				<a href="#">채팅</a> 
 				<a href="#">후원하기</a> 
 				<a href="#">Kr | En</a> 
