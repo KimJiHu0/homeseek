@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>homeseek : 공인중개사 없는 깔끔한 거래</title>
 
 <!-- 아래처럼 써주시면 됩니다. -->
 <!-- css 파일 만들어서 아래와 같이 href 경로 지정해주세요. -->
@@ -16,13 +16,9 @@
 <body>
 	<!-- header.jsp include -->
 	<%@ include file="./WEB-INF/views/form/header.jsp" %>
-	
+	<img id="backgroundimg" alt="메인사진" src="resources/img/backgroundimg.jpg">
 	<section>
-		<div class="background">
-		
-		</div>
-		
-		
+    
 	</section>
 </body>
 </html>
