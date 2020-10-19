@@ -17,6 +17,9 @@ CREATE TABLE MEMBER(
 	CONSTRAINT MEMBER_ROLE_CHK CHECK(MEMBER_ROLE IN('A','N'))
 );
 
+-- member 만들어주기
+INSERT INTO MEMBER VALUES('member', 'member1234', '회원', 'homeseek@co.kr', '010-0000-0000', 'N', 'N');
+
 -- 공지사항 테이블
 DROP TABLE NOTICE;
 DROP SEQUENCE NOTICE_NO_SEQ;
