@@ -43,8 +43,8 @@ a{
 
 /* Dropdown 버튼 */
 .dropbtn {
-  background-color: #4CAF50;
-  color: white;
+  background-color: transparent;
+  color: #6A6868;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -85,5 +85,6 @@ a{
 
 /*  dropdown시 보여주고싶은 색 설정  */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: transparent;
+  color: black;
 }
