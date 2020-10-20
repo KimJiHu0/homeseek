@@ -15,7 +15,7 @@
 </head>
 <body>
 	<!-- header.jsp include -->
-	<%@ include file="/WEB-INF/views/form/loginheader.jsp" %>
+	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 	
 	
 	<section>
