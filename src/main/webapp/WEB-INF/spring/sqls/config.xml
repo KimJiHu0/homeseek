@@ -5,6 +5,7 @@
 <!-- 사용할 Dto를 설정해주기 -->
 <!-- [ex] <typeAlias type="com.mvc.spring.model.dto.BoardDto" alias="BoardDto"/> -->
 <typeAliases>
+	<typeAlias type="com.mvc.homeseek.model.dto.RoomDto" alias="RoomDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.CommentDto" alias="CommentDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.DonationDto" alias="DonationDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.MessageDto" alias="MessageDto"/>
