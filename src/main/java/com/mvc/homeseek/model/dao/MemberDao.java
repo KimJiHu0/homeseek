@@ -1,5 +1,10 @@
 package com.mvc.homeseek.model.dao;
 
-public interface MemberDao {
+import com.mvc.homeseek.model.dto.MemberDto;
 
+public interface MemberDao {
+	
+	String NAMESPACE = "member.";
+	
+	public MemberDto login(MemberDto dto);
 }
