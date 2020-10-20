@@ -17,7 +17,7 @@
 			<span class="nav">
 
 				<a href="#">전체 방 조회</a> 
-				<a href="#">방 올리기</a> 
+				<a href="insertRoom.do">방 올리기</a> 
 				
 				<div class="dropdown">
  					 <button class="dropbtn">게시판</button>
