@@ -11,7 +11,7 @@
 	<typeAlias type="com.mvc.homeseek.model.dto.MessageDto" alias="MessageDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.NoticeDto" alias="NoticeDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.QnaDto" alias="QnaDto"/>
-	<typeAlias type="com.mvc.homeseek.model.dto.ReportDto" alias="ReportDto"/>
+	<typeAlias type="com.mvc.homeseek.model.dto.ReportDto" alias="ReportDto"/> 
 </typeAliases>
 
 
