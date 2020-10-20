@@ -1,12 +1,32 @@
 @charset "UTF-8";
 
+*{
+	margin:0;
+	padding:0;
+}
+ul,li,ol{
+	list-style: none;
+}
+
 .header{
+	position : fixed;
 	margin-left : 35px;
 	margin-right : 35px;
+	width : 100%;
+	line-height: 50px;
+	
+	
 }
 
 a{
 	text-decoration : none;
+	color:#6A6868;
+	
+}
+
+.logo{
+	width: 10%;
+	float : left;
 }
 
 .logo > a{
@@ -18,8 +38,10 @@ a{
 	font-style : italic;
 }
 
-.nav{
+ul.nav{
 	float: right;
+	width: 650px;
+	
 }
 
 .nav > a{
@@ -31,10 +53,24 @@ a{
 	font-weight:bold;
 }
 
+
+
+ul.nav li{
+	float : left;
+	/*width : 100px;*/
+	text-align: center;
+	margin-right: 20px;
+}
+
+li:nth-last-child{
+	margin-right: 0px;
+}
+
 .login > a{
 	color:black;
-	margin-left : 10px;
+	/* margin-left : 10px; */
 	font-style : italic;
+	font-size: 14px;
 }
 
 .login > a:hover{
@@ -45,7 +81,6 @@ a{
 .dropbtn {
   background-color: transparent;
   color: #6A6868;
-  padding: 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -86,5 +121,5 @@ a{
 /*  dropdown시 보여주고싶은 색 설정  */
 .dropdown:hover .dropbtn {
   background-color: transparent;
-  color: black;
+  color:#6A6868;
 }
