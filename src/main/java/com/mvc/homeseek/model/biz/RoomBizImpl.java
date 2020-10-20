@@ -11,35 +11,30 @@ import com.mvc.homeseek.model.dto.RoomDto;
 public class RoomBizImpl implements RoomBiz {
 	
 	private RoomDao roomDao;
-	
+
 	@Override
-	public List<RoomDto> selectList() {
-		
-		return roomDao.selectList();
+	public List<RoomDto> selectRoomList() {
+		return roomDao.selectRoomList();
 	}
 
 	@Override
-	public RoomDto selectOne(int room_no) {
-		
-		return roomDao.selectOne(room_no);
+	public RoomDto selectRoomOne(int room_no) {
+		return roomDao.selectRoomOne(room_no);
 	}
 
 	@Override
-	public int insert(RoomDto room_dto) {
-		
-		return roomDao.insert(room_dto);
+	public int selectRoomInsert(RoomDto room_dto) {
+		return roomDao.selectRoomInsert(room_dto);
 	}
 
 	@Override
-	public int update(RoomDto room_dto) {
-		
-		return roomDao.update(room_dto);
+	public int selectRoomUpdate(RoomDto room_dto) {
+		return roomDao.selectRoomUpdate(room_dto);
 	}
 
 	@Override
-	public int delete(int room_no) {
-		
-		return roomDao.delete(room_no);
+	public int selectRoomDelete(int room_no) {
+		return roomDao.selectRoomDelete(room_no);
 	}
 
 }

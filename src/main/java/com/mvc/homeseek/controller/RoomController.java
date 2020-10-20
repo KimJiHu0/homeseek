@@ -13,24 +13,24 @@ public class RoomController {
 	
 	private Logger logger = LoggerFactory.getLogger(RoomController.class);
 	
-	public String selectList(Model model) {
+	public String selectRoomList(Model model) {
 		logger.info("[list.do]");
 		
 		return "";
 	}
 	
-	@RequestMapping("insertRoom.do")
-	public String insertRoom(RoomDto roomDto, Model model) {
+	@RequestMapping("insertroom.do")
+	public String selectRoomInsertForm(RoomDto roomDto, Model model) {
 		logger.info("[insert.do] jsp로이동");
 		
-		return "RoomInsert";
+		return "roomInsert";
 	}
 	
-	@RequestMapping("insertRes.do")
-	public String insertRes(RoomDto roomDto, Model model) {
+	@RequestMapping("insertres.do")
+	public String selectRoomInsert(RoomDto roomDto, Model model) {
 		logger.info("[inertres.do]");
 		
-		return "RoomInsertRes";
+		return "roomInsertRes";
 	}
 
 //	public String detail(Model model, @RequestParam("room_no") int room_no) {
@@ -40,21 +40,21 @@ public class RoomController {
 //		return "";
 //	}
 	
-	public String delete(int room_no) {
+	public String selectRoomDelete(int room_no) {
 		
 		logger.info("[delete.do]");
 		
 		return "";
 	}
 	
-	public String updateForm(Model model, int room_no) {
+	public String selectRoomUpdateForm(Model model, int room_no) {
 		logger.info("[update.do] jsp로 이동");
 		
 		return "";
 	}
 	
 	//@RequestMapping(value="/updateres.do", method=RequestMethod.POST)
-	public String updateRes(RoomDto roodDto) {
+	public String selectRoomUpdate(RoomDto roodDto) {
 		logger.info("[updateres.do]");
 		
 		return "";
