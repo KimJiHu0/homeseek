@@ -20,11 +20,11 @@ public class homeseekInterceptor implements HandlerInterceptor {
 		logger.info(" \n [ preHandle ]");
 		
 		// 여기 밑으로 작성하세요.
-		if(request.getRequestURI().contains("loginform.do")|| 
+		if(request.getRequestURI().contains("main.do") || 
+				request.getRequestURI().contains("loginform.do")|| 
 				request.getRequestURI().contains("/ajaxlogin.do")|| 
 				request.getSession().getAttribute("login") != null ||
-				request.getRequestURI().contains("listroom.do") ||
-				request.getRequestURI().contains("main.do")){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getRequestURI().contains("listroom.do")){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 		
 			return true;
 		}

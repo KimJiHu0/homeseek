@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>homeseek</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 </head>
 <body>
 	<!-- header.jsp include -->
@@ -15,7 +16,7 @@
 		<div class="test">
 			<!-- 메인페이지에서 작성할 부분 여기에 작성 -->
 		</div>
-    	<img id="backgroundimg" alt="메인사진" src="resources/img/backgroundimg.jpg">
+    	<img id="backgroundimg" alt="메인사진" src="${pageContext.request.contextPath}/resources/img/backgroundimg.jpg">
 	</section>
 </body>
 </html>
