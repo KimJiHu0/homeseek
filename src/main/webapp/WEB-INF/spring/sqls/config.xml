@@ -12,18 +12,15 @@
 	<typeAlias type="com.mvc.homeseek.model.dto.NoticeDto" alias="NoticeDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.QnaDto" alias="QnaDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.ReportDto" alias="ReportDto"/> 
+	<typeAlias type="com.mvc.homeseek.model.dto.MemberDto" alias="MemberDto"/>
 </typeAliases>
-
-	<typeAliases>
-			<typeAlias type="com.mvc.homeseek.model.dto.MemberDto" alias="MemberDto"/>
-	</typeAliases>
 	
-	<mappers>
-		<mapper resource="/mybatis/member-mapper.xml"/>
-	</mappers>
 
 <!-- 사용할 mapper를 설정해주기 -->
 <!-- [ex] <mapper resource="/mybatis/board-mapper.xml"/> -->
+<mappers>
+	<mapper resource="/mybatis/member-mapper.xml"/>
+</mappers>
 
 
 </configuration>
