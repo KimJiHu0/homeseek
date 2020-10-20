@@ -9,7 +9,7 @@
 <body>
 	<%@ include file="./form/header.jsp" %>
 	<section>
-		<a href="roomdetail.do">detailRoom</a>
+		<a href="detailroom.do">detailRoom</a>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>

@@ -10,10 +10,10 @@ public class RoomListController {
 	
 	private Logger logger = LoggerFactory.getLogger(RoomListController.class);
 	
-	@RequestMapping("roomdetail.do")
+	@RequestMapping("listroom.do")
 	public String detailRoom() {
-		logger.info("[ Room Detail ]");
-		return "roomDetail";
+		logger.info("[ Room List ]");
+		return "roomList";
 	}
 
 }
