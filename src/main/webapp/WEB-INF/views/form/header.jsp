@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
 </head>
 <body>
-
    <header> 
       <div class="header">
          <div class="logo">
@@ -20,7 +19,7 @@
          <ul class="nav">
    
             <li><a href="#">전체 방 조회</a></li>
-            <li><a href="#">방 올리기</a></li> 
+            <li><a href="insertRoom.do">방 올리기</a></li> 
             
             <li><div class="dropdown">
                  <button class="dropbtn">게시판</button>
