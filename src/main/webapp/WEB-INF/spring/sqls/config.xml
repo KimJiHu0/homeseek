@@ -5,7 +5,13 @@
 <!-- 사용할 Dto를 설정해주기 -->
 <!-- [ex] <typeAlias type="com.mvc.spring.model.dto.BoardDto" alias="BoardDto"/> -->
 
-
+	<typeAliases>
+			<typeAlias type="com.mvc.homeseek.model.dto.MemberDto" alias="MemberDto"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="/mybatis/member-mapper.xml"/>
+	</mappers>
 
 <!-- 사용할 mapper를 설정해주기 -->
 <!-- [ex] <mapper resource="/mybatis/board-mapper.xml"/> -->
