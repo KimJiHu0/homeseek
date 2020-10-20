@@ -22,10 +22,13 @@ public class homeseekInterceptor implements HandlerInterceptor {
 		// 여기 밑으로 작성하세요.
 		if(request.getRequestURI().contains("loginform.do")|| 
 				request.getRequestURI().contains("/ajaxlogin.do")|| 
-				request.getSession().getAttribute("login") != null){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getSession().getAttribute("login") != null ||
+				request.getRequestURI().contains("listroom.do") ||
+				request.getRequestURI().contains("main.do")){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 		
 			return true;
 		}
+		// 로그인이 안되어 있을 때 loginform.do 요청으로 바로 보내줘서 로그인페이지 보여지게한다.
 		if(request.getSession().getAttribute("login") == null) {
 			response.sendRedirect("loginform.do");
 			return false;

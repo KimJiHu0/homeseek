@@ -17,9 +17,9 @@ function loginPrc(){
 			dataType : "json",
 			success : function(msg){
 				if(msg.check == true){
-					location.href="loginsuccess.do";
-					<!--$("#loginchk").show();-->
-					<!--$("#loginchk").html("ID ,PW가 입력되었습니다");-->
+					location.href="main.do";
+					//$("#loginchk").show();-->
+					//$("#loginchk").html("ID ,PW가 입력되었습니다");
 				}else{
 					$("#loginchk").show();
 					$("#loginchk").html("ID 혹은 PW가 잘못 입력되었습니다");
