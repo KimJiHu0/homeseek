@@ -28,7 +28,22 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return res;
 	}
-
+	
+	@Override
+	public int insert(MemberDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "insert", dto);
+		} catch (Exception e) {
+			logger.info("error insert");
+			e.printStackTrace();
+		}
+    
+		return res;
+  }
+  
+  // 방 상세보기에서 유저 정보 뽑는 dao
 	@Override
 	public MemberDto selectMemberById(String id) {
 		
