@@ -7,5 +7,12 @@
 		WHERE MEMBER_ID = #{member_id}
 		AND MEMBER_PW = #{member_pw}
 	</select>
+	
+	<insert id="insert" parameterType="MemberDto">
+		INSERT INTO MEMBER
+		VALUES(#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_phone}, 'N', 'N')
+
+	</insert>
+
 
 </mapper>

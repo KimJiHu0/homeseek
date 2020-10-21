@@ -22,7 +22,9 @@ public class homeseekInterceptor implements HandlerInterceptor {
 		// 여기 밑으로 작성하세요.
 		if(request.getRequestURI().contains("main.do") || 
 				request.getRequestURI().contains("loginform.do")|| 
-				request.getRequestURI().contains("/ajaxlogin.do")|| 
+				request.getRequestURI().contains("/ajaxlogin.do")||
+				request.getRequestURI().contains("registform.do")||
+				request.getRequestURI().contains("registres.do")||
 				request.getSession().getAttribute("login") != null ||
 				request.getRequestURI().contains("listroom.do")){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 		

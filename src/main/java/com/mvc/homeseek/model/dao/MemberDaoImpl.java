@@ -28,4 +28,18 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return res;
 	}
+	
+	@Override
+	public int insert(MemberDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "insert", dto);
+		} catch (Exception e) {
+			logger.info("error insert");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 }

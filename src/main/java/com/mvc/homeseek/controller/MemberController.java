@@ -58,5 +58,25 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main.do";
 	}
+	@RequestMapping("registform.do")
+	public String registForm() {
+		logger.info("registform.do");
+		
+		return "regist";
+	}
+	@RequestMapping("registres.do")
+	public String registRes(MemberDto dto) {
+		logger.info("registres.do");
+		System.out.println("memberBiz.insert:" + memberBiz.insert(dto));
+		
+		
+		if(memberBiz.insert(dto) > 0) {
+			return "redirect:/main.do";
+		}
+		
+		
+		return "redirect:registform.do";
+		
+	}
 
 }

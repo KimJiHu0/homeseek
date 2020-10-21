@@ -16,6 +16,11 @@ public class MemberBizImpl implements MemberBiz {
 	@Override
 	public MemberDto login(MemberDto dto) {
 		return memberDao.login(dto);
-	};
+	}
+	
+	@Override
+	public int insert(MemberDto dto) {
+		return memberDao.insert(dto);
+	}
 }
 
