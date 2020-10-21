@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="roomInsert">
+	
+	<insert id="selectRoomInsert" parameterType="RoomDto">
+		INSERT INTO ROOM
+		VALUES(ROOM_NO_SEQ.NEXTVAL, #{room_name}, #{room_photo}, #{room_type}, #{room_deposit},
+		#{room_price}, #{room_extent}, #{room_addr}, #{room_kind}, #{room_structure}, #{room_floor},
+		SYSDATE, #{room_cpdate}, #{room_avdate}, #{room_longi}, #{room_lati}, #{room_detail}, #{room_id})
+	</insert>
+	
+	
+	
+ 
+</mapper>

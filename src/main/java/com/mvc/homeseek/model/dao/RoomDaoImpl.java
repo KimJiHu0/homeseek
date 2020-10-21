@@ -1,8 +1,9 @@
 package com.mvc.homeseek.model.dao;
 
-import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,33 +12,62 @@ import com.mvc.homeseek.model.dto.RoomDto;
 @Repository
 public class RoomDaoImpl implements RoomDao {
 	
-	//@Autowired
-	//private SqlSessionTemplate sqlSession;
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 	
-
-	@Override
-	public List<RoomDto> selectRoomList() {
-		return null;
-	}
-
-	@Override
-	public RoomDto selectRoomOne(int room_no) {
-		return null;
-	}
-
+	private Logger logger = LoggerFactory.getLogger(RoomDao.class);
+	
 	@Override
 	public int selectRoomInsert(RoomDto room_dto) {
-		return 0;
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE+"selectRoomInsert");
+		} catch (Exception e) {
+			logger.info("[ERROR] : selectRoomInsert");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	@Override
 	public int selectRoomUpdate(RoomDto room_dto) {
-		return 0;
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"selectRoomUpdate");
+		} catch (Exception e) {
+			logger.info("[ERROR] : selectRoomUpdate");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 	@Override
 	public int selectRoomDelete(int room_no) {
-		return 0;
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE+"selectRoomDelete");
+		} catch (Exception e) {
+			logger.info("[ERROR] : selectRoomDelete");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 }
+
+
+
+
+
+
+
+
