@@ -19,52 +19,44 @@ import com.mvc.homeseek.model.dto.MemberDto;
 
 @Controller
 public class MemberController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
-	
+
 	@Autowired
 	private MemberBiz memberBiz;
-	
+
 	@RequestMapping("loginform.do")
 	public String loginForm() {
 		logger.info("login.do");
 		return "login";
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/ajaxlogin.do", method=RequestMethod.POST)
-	public Map<String, Boolean> login(@RequestBody MemberDto dto, HttpSession session){
+	@RequestMapping(value = "/ajaxlogin.do", method = RequestMethod.POST)
+	public Map<String, Boolean> login(@RequestBody MemberDto dto, HttpSession session) {
 		logger.info("ajaxlogin.do");
-		
+
 		MemberDto res = memberBiz.login(dto);
-		
+
 		boolean check = false;
-		
-		if(res != null) {
+
+		if (res != null) {
 			session.setAttribute("login", res);
 			check = true;
 		}
-		
+
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("check", check);
-		
+
 		return map;
-		
-		}
-	@RequestMapping("loginsuccess.do")
-	public String loginSuccess() {
-		logger.info("loginsuccess.do");
-		return "indexx";
+
 	}
-	
-	/*@RequestMapping("loginsuccess.do")
-	public String loginsSuccess(Model model) {
-		
-		model.addAttribute("list",memberBiz.());
-		
-		return "mvclist";
-	}*/
-	
-		
+
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		logger.info("logout.do");
+		session.invalidate();
+		return "redirect:/main.do";
+	}
+
 }

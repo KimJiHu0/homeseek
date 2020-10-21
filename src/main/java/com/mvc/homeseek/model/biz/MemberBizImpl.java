@@ -16,6 +16,12 @@ public class MemberBizImpl implements MemberBiz {
 	@Override
 	public MemberDto login(MemberDto dto) {
 		return memberDao.login(dto);
+	}
+
+
+	@Override
+	public MemberDto selectMemberById(String id) {
+		return memberDao.selectMemberById(id);
 	};
 }
 
