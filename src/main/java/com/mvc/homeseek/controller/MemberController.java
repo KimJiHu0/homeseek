@@ -55,7 +55,7 @@ public class MemberController {
 	@RequestMapping("loginsuccess.do")
 	public String loginSuccess() {
 		logger.info("loginsuccess.do");
-		return "indexx";
+		return "index";
 	}
 	
 	/*@RequestMapping("loginsuccess.do")
@@ -65,6 +65,10 @@ public class MemberController {
 		
 		return "mvclist";
 	}*/
-	
+	@RequestMapping("logout.do")
+	public String logout() {
+		logger.info("logout.do");
+		return "logout";
+	}
 		
 }
