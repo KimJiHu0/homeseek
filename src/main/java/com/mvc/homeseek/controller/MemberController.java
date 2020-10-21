@@ -53,9 +53,10 @@ public class MemberController {
 	}
 
 	@RequestMapping("logout.do")
-	public String logout() {
+	public String logout(HttpSession session) {
 		logger.info("logout.do");
-		return "logout";
+		session.invalidate();
+		return "redirect:/main.do";
 	}
 
 }
