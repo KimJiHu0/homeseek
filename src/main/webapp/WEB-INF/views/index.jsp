@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek</title>
+<title>homeseek : 공인중개사 없는 깔끔한 거래</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 </head>
 <body>

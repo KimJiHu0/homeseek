@@ -1,22 +1,60 @@
+/* section을 header로 부터 떨어트리는 거리 */
+section{
+	padding-top : 100px;
+}
+/* 첫번째 container css */
+#firstcontainer{
+	display : flex;
+	justify-content: space-between;
+	border: 1px purple solid;
+}
+/* 방 사진 큰 틀 */
+#imgcontainer{
+	width : 70%;
+	height : 500px;
+	display : flex;
+	border : 1px red solid;
+}
+/* 왼쪽 화살표 */
+#leftarrow{
+	margin-top : 175px;
+}
+
+/* 방 사진 */
+#roomimg{
+	width : 90%;
+	height : 90%;
+	border : 1px black solid;
+	margin-left : 50px;
+}
+
+/* 오른쪽 화살표 */
+#rightarrow{
+	margin-top : 175px;
+}
+/* 양쪽 화살표의 크기 지정 */
 a>img {
 	width: 50px;
 	height: 50px;
 }
 
-#gallery {
-	width: 200px;
-	height: 200px;
-}
-
-p {
-	width: 350px;
-	height: 250px;
-}
-
-img {
-	vertical-align: middle;
-}
-
+/* a태그의 밑줄 없애기 */
 a {
 	text-decoration: none;
+}
+
+/* 유정보를 담고있는 container */
+#userinfocontainer{
+	width : 30%;
+	height : 500px;
+	display : flex;
+	border: 1px blue solid;
+}
+
+/* 유저 상세보기 정보 css */
+#userinfodetail{
+	border : 1px black solid;
+	width : 300px;
+	height : 500px;
+	position: fixed;
 }
