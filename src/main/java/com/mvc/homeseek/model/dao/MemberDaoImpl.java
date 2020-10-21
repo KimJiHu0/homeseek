@@ -39,7 +39,22 @@ public class MemberDaoImpl implements MemberDao {
 			logger.info("error insert");
 			e.printStackTrace();
 		}
-		
+    
 		return res;
+  }
+  
+  // 방 상세보기에서 유저 정보 뽑는 dao
+	@Override
+	public MemberDto selectMemberById(String id) {
+		
+		MemberDto dto = null;
+		
+		try {
+			dto = sqlSession.selectOne(NAMESPACE + "selectMemberById", id);
+		} catch (Exception e) {
+			logger.info("[ Error ] selectMemberById");
+			e.printStackTrace();
+		}
+		return dto;
 	}
 }

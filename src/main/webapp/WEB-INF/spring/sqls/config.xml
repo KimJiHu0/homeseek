@@ -20,6 +20,8 @@
 <!-- [ex] <mapper resource="/mybatis/board-mapper.xml"/> -->
 <mappers>
 	<mapper resource="/mybatis/member-mapper.xml"/>
+	<mapper resource="/mybatis/room-detail-mapper.xml"/>
+	<mapper resource="/mybatis/room-list-mapper.xml"/>
 </mappers>
 
 

@@ -6,14 +6,12 @@ section{
 #firstcontainer{
 	display : flex;
 	justify-content: space-between;
-	border: 1px purple solid;
 }
 /* 방 사진 큰 틀 */
 #imgcontainer{
 	width : 70%;
 	height : 500px;
 	display : flex;
-	border : 1px red solid;
 }
 /* 왼쪽 화살표 */
 #leftarrow{
@@ -24,8 +22,8 @@ section{
 #roomimg{
 	width : 90%;
 	height : 90%;
-	border : 1px black solid;
 	margin-left : 50px;
+	background-color : blue;
 }
 
 /* 오른쪽 화살표 */
@@ -41,6 +39,7 @@ a>img {
 /* a태그의 밑줄 없애기 */
 a {
 	text-decoration: none;
+	color : red;
 }
 
 /* 유정보를 담고있는 container */
@@ -48,13 +47,54 @@ a {
 	width : 30%;
 	height : 500px;
 	display : flex;
-	border: 1px blue solid;
 }
 
 /* 유저 상세보기 정보 css */
 #userinfodetail{
-	border : 1px black solid;
+	background-color : gray;
 	width : 300px;
-	height : 500px;
+	height : 450px;
 	position: fixed;
+}
+
+/* 공지사항 정보 css */
+#noticeinfo{
+	width : 100%;
+	height : 30px;
+	padding-left : 50px;
+}
+
+/* 방정보 담는 큰 container */
+#thirdcontainer{
+	display:flex;
+	margin-bottom : 50px;
+	margin-left : 50px;
+	margin-top : 40px;
+}
+
+/* 방상세정보컨테이너 */
+#roominfo{
+	float : center;
+}
+
+/* 사용자 정보 제목 큰 틀 */
+#userinfotitle{
+	height : 70px;
+	border-bottom : 1px white solid;	
+}
+
+/* 사용자정보 제목 (매물정보, 찜하기)*/
+#leftb{
+	float : left;
+	font-size : 13pt;
+	margin-top : 25px;
+	margin-left : 25px;
+	font-weight : bold;
+}
+#rightb{
+	float : right;
+	font-size : 13pt;
+	margin-top : 25px;
+	margin-right : 25px;
+	font-weight : bold;
 }

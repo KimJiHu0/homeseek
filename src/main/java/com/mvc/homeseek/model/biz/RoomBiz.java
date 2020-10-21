@@ -7,8 +7,7 @@ import com.mvc.homeseek.model.dto.RoomDto;
 //매물 페이지 Biz
 public interface RoomBiz {
 	
-	public List<RoomDto> selectRoomList();
-	public RoomDto selectRoomOne(int room_no);
+
 	public int selectRoomInsert(RoomDto room_dto);
 	public int selectRoomUpdate(RoomDto room_dto);
 	public int selectRoomDelete(int room_no);

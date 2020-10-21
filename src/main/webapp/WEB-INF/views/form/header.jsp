@@ -18,9 +18,12 @@
          <div class="logo">
             <a href="#">HOME<span>SEE</span>K</a>
          </div>
-         
+
+<% if(dto == null) { %>         
          <ul class="nav">
-   
+<% }else{ %>
+ 		 <ul class="nav2">
+<% } %> 		 	  
             <li><a href="listroom.do">전체 방 조회</a></li>
             <li><a href="insertroom.do">방 올리기</a></li> 
             
@@ -70,9 +73,7 @@
             	</span>
             </li>
              <% } %>
-
-           
-            
+ 
          </ul>
       </div>
    </header>

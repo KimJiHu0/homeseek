@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="room-detail-mapper">
+	<select id="selectRoomOne" parameterType="int" resultType="RoomDto">
+		SELECT ROOM_NO, ROOM_NAME, ROOM_PHOTO, ROOM_TYPE, ROOM_DEPOSIT, ROOM_PRICE, ROOM_EXTENT, ROOM_ADDR, ROOM_KIND, ROOM_STRUCTURE, ROOM_FLOOR, ROOM_REGDATE, ROOM_CPDATE, ROOM_AVDATE, ROOM_LONGI, ROOM_LATI, ROOM_DETAIL, ROOM_ID
+		FROM ROOM
+		WHERE ROOM_NO = #{room_no}
+	</select>
+</mapper>

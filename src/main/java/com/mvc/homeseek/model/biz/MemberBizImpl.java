@@ -22,5 +22,10 @@ public class MemberBizImpl implements MemberBiz {
 	public int insert(MemberDto dto) {
 		return memberDao.insert(dto);
 	}
+
+	@Override
+	public MemberDto selectMemberById(String id) {
+		return memberDao.selectMemberById(id);
+	};
 }
 
