@@ -28,4 +28,18 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return res;
 	}
+
+	@Override
+	public MemberDto selectMemberById(String id) {
+		
+		MemberDto dto = null;
+		
+		try {
+			dto = sqlSession.selectOne(NAMESPACE + "selectMemberById", id);
+		} catch (Exception e) {
+			logger.info("[ Error ] selectMemberById");
+			e.printStackTrace();
+		}
+		return dto;
+	}
 }
