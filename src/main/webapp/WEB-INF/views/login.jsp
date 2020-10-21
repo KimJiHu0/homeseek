@@ -19,6 +19,7 @@
 
 <body>
 
+
    <section>
    
       <!--  <button type='button' id="modal_btn">로그인</button>-->
@@ -61,7 +62,6 @@
             
    
    </section>
-
 
 </body>
 </html>

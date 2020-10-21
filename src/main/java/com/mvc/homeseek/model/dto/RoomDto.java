@@ -29,9 +29,6 @@ public class RoomDto {
 	public RoomDto() {
 		
 	}
-
-
-
 	public RoomDto(int room_no, String room_name, String room_photo, char room_type, int room_deposit, int room_price,
 			int room_extent, String room_addr, char room_kind, char room_structure, String room_floor,
 			Date room_regdate, Date room_cpdate, Date room_avdate, int room_longi, int room_lati, String room_detail,
@@ -93,13 +90,9 @@ public class RoomDto {
 		this.room_photo = room_photo;
 	}
 
-
-
 	public char getRoom_type() {
 		return room_type;
 	}
-
-
 
 	public void setRoom_type(char room_type) {
 		this.room_type = room_type;
@@ -153,25 +146,17 @@ public class RoomDto {
 		this.room_addr = room_addr;
 	}
 
-
-
 	public char getRoom_kind() {
 		return room_kind;
 	}
-
-
 
 	public void setRoom_kind(char room_kind) {
 		this.room_kind = room_kind;
 	}
 
-
-
 	public char getRoom_structure() {
 		return room_structure;
 	}
-
-
 
 	public void setRoom_structure(char room_structure) {
 		this.room_structure = room_structure;
