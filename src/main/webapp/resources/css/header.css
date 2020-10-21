@@ -40,7 +40,7 @@ a{
 
 ul.nav{
 	float: right;
-	width: 800px;
+	width: 650px;
 	
 }
 
@@ -56,6 +56,30 @@ ul.nav{
 
 
 ul.nav li{
+	float : left;
+	/*width : 100px;*/
+	text-align: center;
+	margin-right: 20px;
+}
+
+ul.nav2{
+	float: right;
+	width: 800px;
+	
+}
+
+.nav2 > a{
+	color:#6A6868;
+	margin-left : 10px;
+}
+
+.nav2 > a:hover{
+	font-weight:bold;
+}
+
+
+
+ul.nav2 li{
 	float : left;
 	/*width : 100px;*/
 	text-align: center;
@@ -99,7 +123,7 @@ li:nth-last-child{
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 10;
 }
 
 /* dropdown 내부 a */
