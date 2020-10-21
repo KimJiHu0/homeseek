@@ -11,7 +11,7 @@
 </head>
 <body>
 <%
-   MemberDto dto = (MemberDto)request.getSession().getAttribute("login");
+	MemberDto dto = (MemberDto)request.getSession().getAttribute("login"); 
 %>
    <header> 
       <div class="header">
@@ -51,6 +51,11 @@
                       <a href="#">전체 후원 내역</a>
                     </div>
             </div></li>
+            <li>
+            	<span class="logout">
+                <a href="logout.do"><strong>| LOGOUT</strong></a>
+            	</span>
+            </li>
             <% } else if(dto.getMember_role() == 'N'){ %>
               <li><div class="dropdown">
                  <button class="dropbtn"><strong><%= dto.getMember_name()%>님 환영합니다</strong></button>
@@ -59,6 +64,11 @@
                       <a href="#">나의 후원 내역</a>
                     </div>
             </div></li>
+            <li>
+            	<span class="logout">
+                <a href="logout.do"><strong>| LOGOUT</strong></a>
+            	</span>
+            </li>
              <% } %>
 
            
