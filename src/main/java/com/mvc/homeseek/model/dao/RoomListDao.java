@@ -10,6 +10,15 @@ public interface RoomListDao {
 	String NAMESPACE = "room-list-mapper.";
 	
 	// 방 전체 조회하는 메소드
-	public List<RoomDto> selectRoomList();
-
+	public List<RoomDto> selectRoomlist(int beginItemNo, int endItemNo);
+	// 전체 방 갯수
+	public int totalCountRoomList();
+ 
+	
+	
+	
+	
+	// 지워야돼
+	public List<RoomDto> selectRoomlist();
+	
 }
