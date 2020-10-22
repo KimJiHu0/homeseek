@@ -145,6 +145,8 @@ CREATE TABLE ROOM(
 -- Room 테이블에 더미데이터 넣어주기
 INSERT INTO ROOM VALUES(ROOM_NO_SEQ.NEXTVAL, 'homeseek 사무소', '사진', '1', '100', '1000', '900', '서울특별시 강남구',
 '5', '3', '10층', SYSDATE, SYSDATE, SYSDATE, '127.032888','37.499172', 'homeseek korea', 'admin');
+INSERT INTO ROOM VALUES(ROOM_NO_SEQ.NEXTVAL, 'homeseek 사무소', '사진', '3', '100', '1000', '900', '서울특별시 강남구',
+'5', '3', '10층', SYSDATE, SYSDATE, SYSDATE, '127.032888','37.499172', 'homeseek korea', 'admin');
 
 --쪽지
 DROP SEQUENCE MESSAGE_NO_SEQ;

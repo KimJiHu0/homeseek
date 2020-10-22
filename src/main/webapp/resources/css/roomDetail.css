@@ -52,7 +52,7 @@ a {
 /* 유저 상세보기 정보 css */
 #userinfodetail{
 	background-color : gray;
-	width : 300px;
+	width : 400px;
 	height : 450px;
 	position: fixed;
 }
@@ -73,8 +73,8 @@ a {
 }
 
 /* 방상세정보컨테이너 */
-#roominfo{
-	float : center;
+#roominfdetail{
+	text-align : center;
 }
 
 /* 사용자 정보 제목 큰 틀 */
@@ -97,4 +97,18 @@ a {
 	margin-top : 25px;
 	margin-right : 25px;
 	font-weight : bold;
+}
+
+/* 사용자 / 매물정보 내용css */
+.userinfocontent{
+	margin-top : 35px;
+	margin-left : 20px;
+}
+
+/* content안의 내용 */
+.leftb{
+	
+}
+.rightb{
+	
 }

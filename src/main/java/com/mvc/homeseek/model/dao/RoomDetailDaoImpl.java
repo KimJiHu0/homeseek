@@ -34,4 +34,34 @@ public class RoomDetailDaoImpl implements RoomDetailDao {
 		return dto;
 	}
 
+	// 방 수정하기
+	@Override
+	public int updateRoomOne(RoomDto dto) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "updateRoomOne", dto);
+		} catch (Exception e) {
+			logger.info("[ Error ] updateRoomOne");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	// 방 삭제하기
+	@Override
+	public int deleteRoomOne(int room_no) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "deleteRoomOne", room_no);
+		} catch (Exception e) {
+			logger.info("[ Error ] deleteRoomOne");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

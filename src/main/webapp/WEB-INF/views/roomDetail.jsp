@@ -1,5 +1,7 @@
+<%@page import="com.mvc.homeseek.model.dto.RoomDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,27 +35,97 @@
 			<div id="userinfocontainer">
 				<div id="userinfodetail">
 					<div id="userinfotitle">
-						<p id="leftb">사용자 정보</p><p id="rightb">찜하기♥</p>
+						<span id="leftb">사용자 / 매물 정보</span><span id="rightb">찜하기♥</span>
 					</div>
-					<div id="userinfo">
-						<table>
-							<tr>
-								<th>아이디 : </th>
-								<td>${member.member_id }</td>
-							</tr>
-							<tr>
-								<th>이름 : </th>
-								<td>${member.member_name }</td>
-							</tr>
-							<tr>
-								<th>이메일 : </th>
-								<td>${member.member_email }</td>
-							</tr>
-							<tr>
-								<th>전화번호 : </th>
-								<td>${member.member_phone }</td>
-							</tr>
-						</table>
+					<!-- 매물 종류가 매매일 때(3) ROOM_PRICE만 보여주기 -->
+					<%
+						RoomDto room = (RoomDto)request.getAttribute("room");
+					
+						// ROOM_TYPE가 매매일 경우에는 매매이기 때문에 ROOM_PRICE만 보여주고
+						if(room.getRoom_type().equals("3")){
+					%>
+						<div class="userinfocontent">
+							<span class="leftb">매물 종류 : </span>
+							<span class="rightb">매매</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">매매가 : </span>
+							<span class="rightb">${room.room_price }만원</span>
+						</div>
+					<%
+						// 그게 아니라 전세일 경우에는 ROOM_PRICE와 젠세가로 ROOM_DEPOSIT를 보여준다.
+						} else if(room.getRoom_type().equals("2")){
+					%>
+						<div class="userinfocontent">
+							<span class="leftb">매물 : </span>
+							<span class="rightb">전세</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">전세가 : </span>
+							<span class="rightb">${room.room_price }만원</span>
+						</div>
+					<%
+						// 월세,4,5일 경우에는 둘 다 보여준다.
+						} else if(room.getRoom_type().equals("1")){
+					%>
+						<div class="userinfocontent">
+							<span class="leftb">매물 : </span>
+							<span class="rightb">월세</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">보증금 : </span>
+							<span class="rightb">${room.room_deposit }만원</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">월세가 : </span>
+							<span class="rightb">${room.room_price }만원</span>
+						</div>
+					<%
+						// 반전세인 경우(월세인데 보증금을 더 내고 월세를 줄인다.)
+						} else if(room.getRoom_type().equals("4")){
+					%>
+						<div class="userinfocontent">
+							<span class="leftb">매물 : </span>
+							<span class="rightb">반전세</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">보증금 : </span>
+							<span class="rightb">${room.room_deposit }만원</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">월세가 : </span>
+							<span class="rightb">${room.room_price }만원</span>
+						</div>
+					<%
+						} else {
+					%>
+						<div class="userinfocontent">
+							<span class="leftb">매물 : </span>
+							<span class="rightb">단기임대</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">보증금 : </span>
+							<span class="rightb">${room.room_deposit }만원</span>
+						</div>
+						<div class="userinfocontent">
+							<span class="leftb">월세가 : </span>
+							<span class="rightb">${room.room_price }만원</span>
+						</div>
+					<%
+						}
+					%>
+					
+					<div class="userinfocontent">
+						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb">쪽지하기</span> | <span>신고하기</span>
+					</div>
+					<div class="userinfocontent">
+						<span class="leftb">E-Mail : </span><span class="rightb">${member.member_email }</span>
+					</div>
+					<div class="userinfocontent">
+						<span class="leftb">Phone : </span><span class="rightb">${member.member_phone }</span>
+					</div>
+					<div class="userinfocontent">
+						<span class="leftb"></span><span class="rightb"></span>
 					</div>
 				</div>
 			</div>
@@ -72,11 +144,7 @@
 		<div id="thirdcontainer">
 			<div id="roominfocontainer">
 				<div id="roominfodetail">
-					<table id="roominfo" border="1">
-						<tr>
-							<th>방 번호</th>
-							<td>${room.room_no }</td>
-						</tr>
+					<table border="1">
 						<tr>
 							<th>방 이름</th>
 							<td>${room.room_name }</td>
@@ -84,18 +152,6 @@
 						<tr>
 							<th>방 사진</th>
 							<td>${room.room_photo }</td>
-						</tr>
-						<tr>
-							<th>방 종류</th>
-							<td>${room.room_type }</td>
-						</tr>
-						<tr>
-							<th>방 보증금</th>
-							<td>${room.room_deposit }</td>
-						</tr>
-						<tr>
-							<th>방 가격</th>
-							<td>${room.room_price }</td>
 						</tr>
 						<tr>
 							<th>방 면적</th>
@@ -142,8 +198,10 @@
 							<td>${room.room_detail }</td>
 						</tr>
 						<tr>
-							<th>아이디</th>
-							<td>${room.room_id }</td>
+							<td colspan="2">
+								<input type="button" value="수정" onclick="location.href='updateroom.do?room_no=${room.room_no}'"/>
+								<input type="button" value="삭제" onclick="location.href='deleteroom.do?room_no=${room.room_no}'"/>
+							</td>
 						</tr>
 					</table>
 				</div>

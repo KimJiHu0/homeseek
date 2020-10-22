@@ -21,4 +21,14 @@ public class RoomDetailBizImpl implements RoomDetailBiz {
 		return roomdetaildao.selectRoomOne(room_no);
 	}
 
+	@Override
+	public int updateRoomOne(RoomDto dto) {
+		return roomdetaildao.updateRoomOne(dto);
+	}
+
+	@Override
+	public int deleteRoomOne(int room_no) {
+		return roomdetaildao.deleteRoomOne(room_no);
+	}
+
 }

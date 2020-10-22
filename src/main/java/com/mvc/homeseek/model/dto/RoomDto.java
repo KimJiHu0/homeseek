@@ -8,13 +8,13 @@ public class RoomDto {
 	private int room_no;
 	private String room_name;
 	private String room_photo;
-	private char room_type;
+	private String room_type;
 	private int room_deposit;
 	private int room_price;
 	private int room_extent;
 	private String room_addr;
-	private char room_kind;
-	private char room_structure;
+	private String room_kind;
+	private String room_structure;
 	private String room_floor;
 	private Date room_regdate;
 	private Date room_cpdate;
@@ -29,8 +29,8 @@ public class RoomDto {
 	public RoomDto() {
 		
 	}
-	public RoomDto(int room_no, String room_name, String room_photo, char room_type, int room_deposit, int room_price,
-			int room_extent, String room_addr, char room_kind, char room_structure, String room_floor,
+	public RoomDto(int room_no, String room_name, String room_photo, String room_type, int room_deposit, int room_price,
+			int room_extent, String room_addr, String room_kind, String room_structure, String room_floor,
 			Date room_regdate, Date room_cpdate, Date room_avdate, int room_longi, int room_lati, String room_detail,
 			String room_id) {
 		super();
@@ -90,11 +90,11 @@ public class RoomDto {
 		this.room_photo = room_photo;
 	}
 
-	public char getRoom_type() {
+	public String getRoom_type() {
 		return room_type;
 	}
 
-	public void setRoom_type(char room_type) {
+	public void setRoom_type(String room_type) {
 		this.room_type = room_type;
 	}
 
@@ -146,19 +146,19 @@ public class RoomDto {
 		this.room_addr = room_addr;
 	}
 
-	public char getRoom_kind() {
+	public String getRoom_kind() {
 		return room_kind;
 	}
 
-	public void setRoom_kind(char room_kind) {
+	public void setRoom_kind(String room_kind) {
 		this.room_kind = room_kind;
 	}
 
-	public char getRoom_structure() {
+	public String getRoom_structure() {
 		return room_structure;
 	}
 
-	public void setRoom_structure(char room_structure) {
+	public void setRoom_structure(String room_structure) {
 		this.room_structure = room_structure;
 	}
 

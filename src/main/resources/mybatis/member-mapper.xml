@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
   
-  <!-- 로그인 -- >
+  <!-- 로그인 -->
 	<select id="login" parameterType="MemberDto" resultType="MemberDto">
 		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_ENABLED, MEMBER_ROLE
 		FROM MEMBER
