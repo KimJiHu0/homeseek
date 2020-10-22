@@ -89,24 +89,22 @@ $(function(){
 	
 	// 컨트롤러에서 regdate에 대한 year, month, day를 받아온다.
 	// Map으로 보냈기 때문에 room_regdate에 regdate의 인덱스들을(이름 지정하고 Map에 넣었음) 뽑아서 담아준다.
-	var regdate_year="${room_date.regdate_year}";
-	var regdate_month="${room_date.regdate_month}";
-	var regdate_day="${room_date.regdate_day}";
+	var room_regdate="${room_regdate}";
+	//var regdate_month="${room_date.regdate_month}";
+	//var regdate_day="${room_date.regdate_day}";
 	// cpdate에 대한 year, month, day를 담아준다.
-	var cpdate_year = "${room_date.cpdate_year}";
-	var cpdate_month = "${room_date.cpdate_month}";
-	var cpdate_day = "${room_date.cpdate_day}";
+	var room_cpdate = "${room_cpdate}";
+	//var cpdate_month = "${room_date.cpdate_month}";
+	//var cpdate_day = "${room_date.cpdate_day}";
 	// avdate에 대한 year, month, day를 받아준다.
-	var avdate_year = "${room_date.avdate_year}";
-	var avdate_month = "${room_date.avdate_month}";
-	var avdate_day = "${room_date.avdate_day}";
+	var room_avdate = "${room_avdate}";
+	//var avdate_month = "${room_date.avdate_month}";
+	//var avdate_day = "${room_date.avdate_day}";
 	
-	
-	// input type이 date의 value값을 변경해준다. 2020-10-22
-	$("#room_regdate[type=date]").val(regdate_year + "-" + regdate_month + "-" + regdate_day);
-	var room_regdate = 
-	$("#room_cpdate[type=date]").val(cpdate_year + "-" + cpdate_month + "-" + cpdate_day);
-	$("#room_avdate[type=date]").val(avdate_year + "-" + avdate_month + "-" + avdate_day);
+	$("#typechange").submit(function(){
+		alert($("#room_cpdate[type=date]").val());
+		alert(typeof($("#room_cpdate[type=date]").val()));
+	})
 })
 </script>
 
@@ -183,15 +181,15 @@ $(function(){
 			</tr>
 			<tr>
 				<th>매물 등록날짜</th>
-				<td><input type="date" id="room_regdate" name="room_regdate"></td>
+				<td><input type="date" value="${room_regdate}" id="room_regdate"readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>준공 날짜</th>
-				<td><input type="date" id="room_cpdate" name="room_cpdate"></td>
+				<td><input type="date" value="${room_cpdate}" id="room_cpdate" name="room_cpdate"></td>
 			</tr>
 			<tr>
 				<th>입주 가능일</th>
-				<td><input type="date" id="room_avdate" name="room_avdate"></td>
+				<td><input type="date" value="${room_avdate}" id="room_avdate" name="room_avdate"></td>
 			</tr>
 			<tr>
 				<th>방 상세설명</th>

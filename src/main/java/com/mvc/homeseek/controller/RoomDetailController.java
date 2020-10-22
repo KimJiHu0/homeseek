@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mvc.homeseek.model.biz.MemberBiz;
@@ -68,41 +69,45 @@ public class RoomDetailController {
 		// regdate[0] = 2020
 		// regdate[1] = 10
 		// regdate[2] = 22
-		String[] regdate = regdatetime.split("-");
-		String[] cpdate = cpdatetime.split("-");
-		String[] avdate = avdatetime.split("-");
+		//String[] regdate = regdatetime.split("-");
+		//String[] cpdate = cpdatetime.split("-");
+		//String[] avdate = avdatetime.split("-");
 		
 		
 		// room_regdate라는 Map객체를 생성해준다.
-		Map<String, String> room_date = new HashMap<String, String>();
+		//Map<String, String> room_date = new HashMap<String, String>();
 		// room_regdate에 put해주는데 regdate_year이라는 이름으로 regdate에 0번지에 있는거 담아준다.
-		room_date.put("regdate_year", regdate[0]);
-		room_date.put("regdate_month", regdate[1]);
-		room_date.put("regdate_day", regdate[2]);
+		//room_date.put("regdate_year", regdate[0]);
+		//room_date.put("regdate_month", regdate[1]);
+		//room_date.put("regdate_day", regdate[2]);
 		// cpdate에 대한 year, month, day를 담아준다.
-		room_date.put("cpdate_year", cpdate[0]);
-		room_date.put("cpdate_month", cpdate[1]);
-		room_date.put("cpdate_day", cpdate[2]);
+		//room_date.put("cpdate_year", cpdate[0]);
+		//room_date.put("cpdate_month", cpdate[1]);
+		//room_date.put("cpdate_day", cpdate[2]);
 		// avdate에 대한 year, month, day를 담아준다.
-		room_date.put("avdate_year", avdate[0]);
-		room_date.put("avdate_month", avdate[1]);
-		room_date.put("avdate_day", avdate[2]);
+		//room_date.put("avdate_year", avdate[0]);
+		//room_date.put("avdate_month", avdate[1]);
+		//room_date.put("avdate_day", avdate[2]);
 		
 		// model로 보내준다.
-		model.addAttribute("room_date", room_date);
+		model.addAttribute("room_regdate", regdatetime);
+		model.addAttribute("room_cpdate", cpdatetime);
+		model.addAttribute("room_avdate", avdatetime);
 		
 		return "roomDetailUpdateForm";
 	}
 	
 	// 방 수정
 	@RequestMapping(value="updateroomres.do", method = RequestMethod.POST)
-	public String updateUpdateRes(RoomDto dto, Model model, RedirectAttributes msg) {
+	public String roomUpdateRes(@RequestParam("room_cpdate") String room_cpdate, @RequestParam("room_avdate") String room_avdate, RoomDto dto, Model model, RedirectAttributes msg) {
 		
-		int res = roomdetailbiz.updateRoomOne(dto);
+		logger.info("roomUpdateRes");
+		System.out.println(room_cpdate);
+		System.out.println(room_avdate);
+		System.out.println(dto);
 		
-		System.out.println();
 		
-		return "listroom.do";
+		return "roomList";
 	}
 	
 	// 방 삭제

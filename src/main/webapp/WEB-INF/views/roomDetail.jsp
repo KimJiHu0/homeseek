@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -223,15 +224,15 @@
 						</tr>
 						<tr>
 							<th>매물 등록 날짜</th>
-							<td>${room.room_regdate }</td>
+							<td><fmt:formatDate value="${room.room_regdate }" pattern="yyyy-MM-dd"/></td>
 						</tr>
 						<tr>
 							<th>매물 준공 날짜</th>
-							<td>${room.room_cpdate }</td>
+							<td><fmt:formatDate value="${room.room_cpdate }" pattern="yyyy-MM-dd"/></td>
 						</tr>
 						<tr>
 							<th>입주 가능일</th>
-							<td>${room.room_avdate }</td>
+							<td><fmt:formatDate value="${room.room_avdate }" pattern="yyyy-MM-dd"/></td>
 						</tr>
 						<tr>
 							<th>경도</th>

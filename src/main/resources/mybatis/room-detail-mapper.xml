@@ -10,7 +10,8 @@
 	
 	<!-- 방 수정하기 -->
 	<update id="updateRoomOne" parameterType="RoomDto">
-		UPDATE SET
+		UPDATE ROOM 
+		SET
 		ROOM ROOM_NAME = #{room_name},
 		ROOM_TYPE = #{room_type},
 		ROOM_DEPOSIT = #{room_deposit},
@@ -20,13 +21,12 @@
 		ROOM_KIND = #{room_kind},
 		ROOM_STRUCTURE = #{room_structure},
 		ROOM_FLOOR = #{room_floor},
-		ROOM_REGDATE = #{room_regdate},
-		ROOM_CPDATE = #{room_cpdate},
-		ROOM_AVDATE = #{room_adate},
+		ROOM_CPDATE = TO_DATE(#{room_cpdate}, 'yyyyMMdd'),
+		ROOM_AVDATE = TO_DATE(#{room_avdate}, 'yyyyMMdd'),
 		ROOM_LONGI = #{room_longi},
 		ROOM_LATI = #{room_lati},
 		ROOM_DETAIL = #{room_detail}
-		FROM ROOM
+		WHERE ROOM_NO = #{room_no}
 	</update>
 	
 	<!-- 방 삭제하기 -->
