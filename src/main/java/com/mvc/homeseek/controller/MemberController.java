@@ -42,12 +42,18 @@ public class MemberController {
 
 		if (res != null) {
 			session.setAttribute("login", res);
+			session.setAttribute("member_id", dto.getMember_id());
+			logger.info("---------------------------------");
+			logger.info("| 현재 로그인한 사용자 : " + dto.getMember_id() + " |");
+			logger.info("---------------------------------");
+			
+		
 			check = true;
 		}
 
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("check", check);
-
+		
 		return map;
 
 	}
