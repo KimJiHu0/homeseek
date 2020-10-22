@@ -8,18 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- <%
-   MemberDto dto = (MemberDto)request.getSession().getAttribute("login");
-%>
- --%>
-<%
-	MemberDto login = (MemberDto) session.getAttribute("login");
-	session.getAttribute("member_id");
-if ( login == null) {
-	pageContext.forward("loginform.do");
-}
-%>
-
 
 	<h1> [insertRoom.do] 방올리기 페이지 </h1>
 	
@@ -32,7 +20,9 @@ if ( login == null) {
 			</tr>
 			<tr>
 				<th>매물사진</th>
-				<td><input type="file" name="room_photo"></td>
+				<td>
+					<input type="button" value="사진업로드" onclick="window.open('fileupload.do','new','scrollbars=yes,resizable=no width=500 height=500, left=0,top=0');return false">
+				</td>
 			</tr>
 			<tr>
 				<th>매물종류</th>
