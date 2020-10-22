@@ -19,30 +19,6 @@
 <body>
 	<%@ include file="./form/header.jsp" %>
 	<section>
-		<table>
-			<tr>
-				<th>방 번호</th>
-				<th>방 이름</th>
-				<th>방 층수</th>
-			</tr>
-			<c:choose>
-				<c:when test="${empty list }">
-					<tr>
-						<td>작성된 글이 없습니다.</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${list }" var="list">
-						<tr>
-							<td><a href="detailroom.do?room_no=${list.room_no }">${list.room_no }</a></td>
-							<td>${list.room_name }</td>
-							<td>${list.room_floor }</td>
-						</tr>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</table>
-		
 		
 		<div class="list">
 			<div class="imgs">
@@ -116,6 +92,7 @@
 		</p>
 		
 	</section>
+	
 	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>
