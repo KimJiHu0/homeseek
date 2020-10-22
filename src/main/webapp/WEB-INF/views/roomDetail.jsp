@@ -13,6 +13,14 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/roomDetail.js"
 	type="text/javascript"></script>
+	
+<!-- alert띄우기 위한 스크립트 -->
+<script type="text/javascript">
+	var msg = '${msg}';
+	if(msg != ''){
+		alert(msg);
+	}
+</script>
 </head>
 <body>
 	<!-- header.jsp -->
@@ -27,7 +35,11 @@
 			<div id="imgcontainer">
 
 				<!-- 방 사진 정보 -->
-				<div id="roomimg">사진</div>
+				<div id="roomimg">
+					<img alt="d" src="resources/img/arrowleft.png" id="leftarrow">
+					사진
+					<img alt="d" src="resources/img/arrowright.png" id="rightarrow">
+				</div>
 				
 			</div>
 
@@ -163,11 +175,47 @@
 						</tr>
 						<tr>
 							<th>건물 종류</th>
-							<td>${room.room_kind }</td>
+							<%
+								if(room.getRoom_kind().equals("1")){
+							%>
+								<td>아파트</td>
+							<%
+								} else if(room.getRoom_kind().equals("2")){
+							%>
+								<td>빌라</td>
+							<%
+								} else if(room.getRoom_kind().equals("3")){
+							%>
+								<td>주택</td>
+							<%
+								} else if(room.getRoom_kind().equals("4")){
+							%>
+								<td>오피스텔</td>
+							<%
+								} else {
+							%>
+								<td>상가사무실</td>
+							<%
+								}
+							%>
 						</tr>
 						<tr>
 							<th>방 구조</th>
-							<td>${room.room_structure }</td>
+							<%
+								if(room.getRoom_structure().equals("1")){
+							%>
+								<td>방 1개</td>
+							<%
+								} else if(room.getRoom_structure().equals("2")){
+							%>
+								<td>방 2개</td>
+							<%
+								} else {
+							%>
+								<td>방 3개 이상</td>
+							<%
+								}
+							%>
 						</tr>
 						<tr>
 							<th>방 층수</th>
@@ -195,7 +243,9 @@
 						</tr>
 						<tr>
 							<th>방 상세설명</th>
-							<td>${room.room_detail }</td>
+							<td>
+								<textarea rows="10" cols="60" readonly="readonly">${room.room_detail }</textarea>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2">

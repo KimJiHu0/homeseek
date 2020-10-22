@@ -15,7 +15,8 @@ section{
 }
 /* 왼쪽 화살표 */
 #leftarrow{
-	margin-top : 175px;
+	position : absolute;
+	top : 50%;
 }
 
 /* 방 사진 */
@@ -24,11 +25,13 @@ section{
 	height : 90%;
 	margin-left : 50px;
 	background-color : blue;
+	position: relative;
 }
 
 /* 오른쪽 화살표 */
 #rightarrow{
-	margin-top : 175px;
+	position : absolute;
+	top : 50%;
 }
 /* 양쪽 화살표의 크기 지정 */
 a>img {

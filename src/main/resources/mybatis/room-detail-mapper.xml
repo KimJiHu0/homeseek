@@ -31,6 +31,6 @@
 	
 	<!-- 방 삭제하기 -->
 	<delete id="deleteRoomOne" parameterType="int">
-		DELETE FROM ROOM WHERE ROOM_NO - #{room_no}
+		DELETE FROM ROOM WHERE ROOM_NO = #{room_no}
 	</delete>
 </mapper>

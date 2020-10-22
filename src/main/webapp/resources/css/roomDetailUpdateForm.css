@@ -1,0 +1,4 @@
+/* roomDetailUpdateForm의 section을 header로부터 떨어트리는 css */
+section{
+	padding-top : 100px;
+}

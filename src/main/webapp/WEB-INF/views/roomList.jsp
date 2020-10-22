@@ -6,9 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/roomList.css"
-	type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomList.css" type="text/css" />
+
+<!-- alert띄우기 위한 스크립트 -->
+<script type="text/javascript">
+	var msg = '${msg}';
+	if(msg != ''){
+		alert(msg);
+	}
+</script>
 </head>
 <body>
 	<%@ include file="./form/header.jsp" %>

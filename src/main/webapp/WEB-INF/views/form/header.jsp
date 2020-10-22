@@ -16,7 +16,7 @@
    <header> 
       <div class="header">
          <div class="logo">
-            <a href="#">HOME<span>SEE</span>K</a>
+            <a href="main.do">HOME<span>SEE</span>K</a>
          </div>
 
 <% if(dto == null) { %>         
