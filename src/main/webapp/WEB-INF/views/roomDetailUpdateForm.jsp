@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +11,37 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css" type="text/css" />
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<!-- include summernote css/js-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="/resources/js/summernote-ko-KR.js"></script>
+<script>
+$(document).ready(function() {
+     $('#summernote').summernote({
+           placeholder: 'content',
+           minHeight: 370,
+           maxHeight: 370,
+           focus: true, 
+           lang : 'ko-KR'
+     });              
+     
+     $("#chk").click(function(){
+          if($("#chk").prop("checked")){
+             $("#chk1").val("Y");
+             console.log($("#chk1").val());
+          } else {
+             $("#chk1").val("N");
+             console.log($("#chk1").val());
+          }
+       });
+   });
+</script>
+
 <script type="text/javascript">
 // 매물 거래 종류를 선언 => 전세,월세,매매,반전세,단기임대
 var room_type = "${room.room_type}";
@@ -53,12 +87,26 @@ $(function(){
 		$("#room_structure option[value=3]").prop('selected', 'selected').change();
 	}
 	
-	// 컨트롤러에서 regdate에 대한 year, month, day
-	var regdate_year="${regdate_year}";
-	var regdate_month="${regdate_month}";
-	var regdate_day="${regdate_day}";
+	// 컨트롤러에서 regdate에 대한 year, month, day를 받아온다.
+	// Map으로 보냈기 때문에 room_regdate에 regdate의 인덱스들을(이름 지정하고 Map에 넣었음) 뽑아서 담아준다.
+	var regdate_year="${room_date.regdate_year}";
+	var regdate_month="${room_date.regdate_month}";
+	var regdate_day="${room_date.regdate_day}";
+	// cpdate에 대한 year, month, day를 담아준다.
+	var cpdate_year = "${room_date.cpdate_year}";
+	var cpdate_month = "${room_date.cpdate_month}";
+	var cpdate_day = "${room_date.cpdate_day}";
+	// avdate에 대한 year, month, day를 받아준다.
+	var avdate_year = "${room_date.avdate_year}";
+	var avdate_month = "${room_date.avdate_month}";
+	var avdate_day = "${room_date.avdate_day}";
 	
+	
+	// input type이 date의 value값을 변경해준다. 2020-10-22
 	$("#room_regdate[type=date]").val(regdate_year + "-" + regdate_month + "-" + regdate_day);
+	var room_regdate = 
+	$("#room_cpdate[type=date]").val(cpdate_year + "-" + cpdate_month + "-" + cpdate_day);
+	$("#room_avdate[type=date]").val(avdate_year + "-" + avdate_month + "-" + avdate_day);
 })
 </script>
 
@@ -69,9 +117,8 @@ $(function(){
 	
 	<section>
 		<h1>수정</h1>
-		<form action="insertRes.do" method="POST">
+		<form action="updateroomres.do" method="POST" id="typechange">
 		<table border="1">
-	
 			<tr>
 				<th>매물이름</th>
 				<td><input type="text" value="${room.room_name }" name="room_name"></td>
@@ -148,12 +195,12 @@ $(function(){
 			</tr>
 			<tr>
 				<th>방 상세설명</th>
-				<td><textarea rows="10" cols="60" name="room_datail">${romm.room_detail }</textarea></td>
+				<td><textarea rows="10" cols="60" id="summernote" name="room_detail">${room.room_detail }</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					<input type="submit" value="작성">
-					<input type="button" value="취소" onclick="location.href='main.do'">
+					<input type="submit" value="수정">
+					<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
 				</td>
 			</tr>
 		</table>
