@@ -13,8 +13,9 @@
 %>
  --%>
 <%
-	MemberDto dto = (MemberDto) session.getAttribute("dto");
-if ( dto == null) {
+	MemberDto login = (MemberDto) session.getAttribute("login");
+	session.getAttribute("member_id");
+if ( login == null) {
 	pageContext.forward("loginform.do");
 }
 %>
@@ -106,7 +107,7 @@ if ( dto == null) {
 			<tr>
 				<td colspan="2" align="right">
 					<input type="submit" value="작성">
-					<input type="button" value="취소" onclick="location.href='index.jsp'">
+					<input type="button" value="취소" onclick="location.href='main.do'">
 				</td>
 			</tr>
 		</table>
