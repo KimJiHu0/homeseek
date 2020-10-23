@@ -26,7 +26,7 @@
       
          <div class="black_bg"></div>
             <div class="modal_wrap">
-             <div class="modal_close"><a href="#">close</a></div>
+             <div class="modal_close"><a href="main.do">close</a></div>
                 <div>
             
             <div class="logo">

@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.biz;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,12 @@ public class MemberBizImpl implements MemberBiz {
 	public MemberDto selectMemberById(String id) {
 		return memberDao.selectMemberById(id);
 	};
+	
+	@Override
+	public int checkId(String member_id){
+		
+		return memberDao.checkId(member_id);
+		
+	}
 }
 
