@@ -155,10 +155,6 @@ $(document).ready(function() {
 				<td><input type="text" name="room_floor"></td>
 			</tr>
 			<tr>
-				<th>매물 등록날짜</th>
-				<td><input type="date" name="room_regdate"></td>
-			</tr>
-			<tr>
 				<th>준공 날짜</th>
 				<td><input type="date" name="room_cpdate"></td>
 			</tr>

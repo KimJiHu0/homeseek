@@ -5,7 +5,7 @@ import com.mvc.homeseek.model.dto.RoomDto;
 //매물페이지 Dao
 public interface RoomDao {
 	
-	String NAMESPACE = "com.mvc.homeseek.room.";
+	String NAMESPACE = "roomInsert.";
 
 	public int selectRoomInsert(RoomDto room_dto);
 	public int selectRoomUpdate(RoomDto room_dto);
