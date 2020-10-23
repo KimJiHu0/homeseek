@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 *{
 	margin:0;
 	padding:0;
@@ -14,14 +13,12 @@ ul,li,ol{
 	margin-right : 35px;
 	width : 100%;
 	line-height: 50px;
-	
-	
+	z-index : 9999;
 }
 
-a{
+.headeratag{
 	text-decoration : none;
 	color:#6A6868;
-	
 }
 
 .logo{

@@ -41,6 +41,16 @@ public class RoomDetailController {
 		RoomDto room = roomdetailbiz.selectRoomOne(room_no);
 		String id = room.getRoom_id();
 		
+		// 2020-10-23 ??:??:??:? 식으로 나온거 물음표 부분 잘라주기
+		String sub_room_regdate = room.getRoom_regdate().substring(0,10);
+		String sub_room_cpdate = room.getRoom_cpdate().substring(0,10);
+		String sub_room_avdate = room.getRoom_avdate().substring(0,10);
+		
+		// 자른거 RoomDto에 담아주기
+		room.setRoom_regdate(sub_room_regdate);
+		room.setRoom_cpdate(sub_room_cpdate);
+		room.setRoom_avdate(sub_room_avdate);
+		
 		MemberDto member = memberbiz.selectMemberById(id);
 		model.addAttribute("room", room);
 		// roomDetail.jsp에서 room을 가져와 쓰기 위한 코드
@@ -54,16 +64,25 @@ public class RoomDetailController {
 	public String roomUpdate(int room_no, Model model) {
 		
 		RoomDto room = roomdetailbiz.selectRoomOne(room_no);
+		String sub_room_regdate = room.getRoom_regdate().substring(0,10);
+		String sub_room_cpdate = room.getRoom_cpdate().substring(0,10);
+		String sub_room_avdate = room.getRoom_avdate().substring(0,10);
+		
+		room.setRoom_regdate(sub_room_regdate);
+		room.setRoom_cpdate(sub_room_cpdate);
+		room.setRoom_avdate(sub_room_avdate);
+		
 		model.addAttribute("room", room);
 		
 		// yyyy-MM-dd형식으로 format해주겠다는 객체
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		//SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
 		// time이라는 변수에 ROOM테이블에 있는 room_regdate를 가져와서 format해준 후 담아준다.
-		String regdatetime = format.format(room.getRoom_regdate());
-		String cpdatetime = format.format(room.getRoom_cpdate());
-		String avdatetime = format.format(room.getRoom_avdate());
+		//String regdatetime = format.format(room.getRoom_regdate());
+		//String cpdatetime = format.format(room.getRoom_cpdate());
+		//String avdatetime = format.format(room.getRoom_avdate());
 		// 2020-10-22
+		//System.out.println("controller에서 format" + regdatetime);
 		
 		// regdatetime에 담긴 값을 -를 기준으로 짤라서 regdate라는 배열에 하나씩 넣어준다.
 		// regdate[0] = 2020
@@ -90,24 +109,39 @@ public class RoomDetailController {
 		//room_date.put("avdate_day", avdate[2]);
 		
 		// model로 보내준다.
-		model.addAttribute("room_regdate", regdatetime);
-		model.addAttribute("room_cpdate", cpdatetime);
-		model.addAttribute("room_avdate", avdatetime);
+		//model.addAttribute("room_regdate", regdatetime);
+		//model.addAttribute("room_cpdate", cpdatetime);
+		//model.addAttribute("room_avdate", avdatetime);
 		
 		return "roomDetailUpdateForm";
 	}
 	
 	// 방 수정
 	@RequestMapping(value="updateroomres.do", method = RequestMethod.POST)
-	public String roomUpdateRes(@RequestParam("room_cpdate") String room_cpdate, @RequestParam("room_avdate") String room_avdate, RoomDto dto, Model model, RedirectAttributes msg) {
+	public String roomUpdateRes(RoomDto dto, Model model, RedirectAttributes msg) {
 		
 		logger.info("roomUpdateRes");
-		System.out.println(room_cpdate);
-		System.out.println(room_avdate);
-		System.out.println(dto);
 		
+		String[] cpdate = dto.getRoom_cpdate().split("-");
+		String[] avdate = dto.getRoom_avdate().split("-");
 		
-		return "roomList";
+		String cpdatetime = cpdate[0] + cpdate[1] + cpdate[2];
+		String avdatetime = avdate[0] + avdate[1] + avdate[2];
+		
+		dto.setRoom_cpdate(cpdatetime);
+		dto.setRoom_avdate(avdatetime);
+		
+		int res = 0;
+		
+		res = roomdetailbiz.updateRoomOne(dto);
+		
+		if(res > 0) {
+			msg.addFlashAttribute("room", roomdetailbiz.selectRoomOne(dto.getRoom_no()));
+			return "redirect:/detailroom.do?room_no=" + dto.getRoom_no();
+		} else {
+			msg.addFlashAttribute("room", roomdetailbiz.selectRoomOne(dto.getRoom_no()));
+			return "redirect:/updateroom.do?room_no=" + dto.getRoom_no();
+		}
 	}
 	
 	// 방 삭제

@@ -3,7 +3,24 @@
 <mapper namespace="room-detail-mapper">
 	<!-- 방 상세보기 -->
 	<select id="selectRoomOne" parameterType="int" resultType="RoomDto">
-		SELECT ROOM_NO, ROOM_NAME, ROOM_PHOTO, ROOM_TYPE, ROOM_DEPOSIT, ROOM_PRICE, ROOM_EXTENT, ROOM_ADDR, ROOM_KIND, ROOM_STRUCTURE, ROOM_FLOOR, ROOM_REGDATE, ROOM_CPDATE, ROOM_AVDATE, ROOM_LONGI, ROOM_LATI, ROOM_DETAIL, ROOM_ID
+		SELECT ROOM_NO,
+		ROOM_NAME,
+		ROOM_PHOTO,
+		ROOM_TYPE,
+		ROOM_DEPOSIT,
+		ROOM_PRICE,
+		ROOM_EXTENT,
+		ROOM_ADDR,
+		ROOM_KIND,
+		ROOM_STRUCTURE,
+		ROOM_FLOOR,
+		ROOM_REGDATE,
+		ROOM_CPDATE,
+		ROOM_AVDATE,
+		ROOM_LONGI,
+		ROOM_LATI,
+		ROOM_DETAIL,
+		ROOM_ID
 		FROM ROOM
 		WHERE ROOM_NO = #{room_no}
 	</select>
@@ -12,23 +29,22 @@
 	<update id="updateRoomOne" parameterType="RoomDto">
 		UPDATE ROOM 
 		SET
-		ROOM ROOM_NAME = #{room_name},
+		ROOM_NAME = #{room_name},
 		ROOM_TYPE = #{room_type},
 		ROOM_DEPOSIT = #{room_deposit},
 		ROOM_PRICE = #{room_price},
-		ROOM_EXTENT =  #{room_extent},
+		ROOM_EXTENT = #{room_extent},
 		ROOM_ADDR = #{room_addr},
 		ROOM_KIND = #{room_kind},
 		ROOM_STRUCTURE = #{room_structure},
 		ROOM_FLOOR = #{room_floor},
-		ROOM_CPDATE = TO_DATE(#{room_cpdate}, 'yyyyMMdd'),
-		ROOM_AVDATE = TO_DATE(#{room_avdate}, 'yyyyMMdd'),
+		ROOM_CPDATE = TO_DATE(#{room_cpdate}, 'yyyy/MM/dd'),
+		ROOM_AVDATE = TO_DATE(#{room_avdate}, 'yyyy/MM/dd'),
 		ROOM_LONGI = #{room_longi},
 		ROOM_LATI = #{room_lati},
 		ROOM_DETAIL = #{room_detail}
 		WHERE ROOM_NO = #{room_no}
 	</update>
-	
 	<!-- 방 삭제하기 -->
 	<delete id="deleteRoomOne" parameterType="int">
 		DELETE FROM ROOM WHERE ROOM_NO = #{room_no}

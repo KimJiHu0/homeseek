@@ -10,12 +10,3 @@ footer {
 	text-align : center;
 	margin-top:100px;
 }
-
-/* a태그 밑줄 없애기 */
-a{
-	text-decoration : none;
-}
-/* 방문한 적 있는 a 태그의 색 바꾸기 */
-a:visited{
-	color : black;
-}

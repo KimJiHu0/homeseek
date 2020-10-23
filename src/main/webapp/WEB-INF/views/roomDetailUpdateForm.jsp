@@ -86,25 +86,6 @@ $(function(){
 	} else if(room_structure == 3){
 		$("#room_structure option[value=3]").prop('selected', 'selected').change();
 	}
-	
-	// 컨트롤러에서 regdate에 대한 year, month, day를 받아온다.
-	// Map으로 보냈기 때문에 room_regdate에 regdate의 인덱스들을(이름 지정하고 Map에 넣었음) 뽑아서 담아준다.
-	var room_regdate="${room_regdate}";
-	//var regdate_month="${room_date.regdate_month}";
-	//var regdate_day="${room_date.regdate_day}";
-	// cpdate에 대한 year, month, day를 담아준다.
-	var room_cpdate = "${room_cpdate}";
-	//var cpdate_month = "${room_date.cpdate_month}";
-	//var cpdate_day = "${room_date.cpdate_day}";
-	// avdate에 대한 year, month, day를 받아준다.
-	var room_avdate = "${room_avdate}";
-	//var avdate_month = "${room_date.avdate_month}";
-	//var avdate_day = "${room_date.avdate_day}";
-	
-	$("#typechange").submit(function(){
-		alert($("#room_cpdate[type=date]").val());
-		alert(typeof($("#room_cpdate[type=date]").val()));
-	})
 })
 </script>
 
@@ -116,6 +97,7 @@ $(function(){
 	<section>
 		<h1>수정</h1>
 		<form action="updateroomres.do" method="POST" id="typechange">
+		<input type="hidden" value="${room.room_no }" name="room_no"/>
 		<table border="1">
 			<tr>
 				<th>매물이름</th>
@@ -181,15 +163,23 @@ $(function(){
 			</tr>
 			<tr>
 				<th>매물 등록날짜</th>
-				<td><input type="date" value="${room_regdate}" id="room_regdate"readonly="readonly"></td>
+				<td><input type="date" value="${room.room_regdate}" id="room_regdate"readonly="readonly" name="room_regdate"></td>
 			</tr>
 			<tr>
 				<th>준공 날짜</th>
-				<td><input type="date" value="${room_cpdate}" id="room_cpdate" name="room_cpdate"></td>
+				<td><input type="date" value="${room.room_cpdate}" id="room_cpdate" name="room_cpdate"></td>
 			</tr>
 			<tr>
 				<th>입주 가능일</th>
-				<td><input type="date" value="${room_avdate}" id="room_avdate" name="room_avdate"></td>
+				<td><input type="date" value="${room.room_avdate}" id="room_avdate" name="room_avdate"></td>
+			</tr>
+			<tr>
+				<th>위도</th>
+				<td><input type="text" value="${room.room_longi }" name = "room_longi"></td>
+			</tr>
+			<tr>
+				<th>경도</th>
+				<td><input type="text" value="${room.room_lati }" name = "room_lati"></td>
 			</tr>
 			<tr>
 				<th>방 상세설명</th>
@@ -204,5 +194,8 @@ $(function(){
 		</table>
 	</form>
 	</section>
+	
+	<!-- footer.jsp -->
+	<%@ include file="form/footer.jsp"%>
 </body>
 </html>

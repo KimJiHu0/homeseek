@@ -1,6 +1,5 @@
 package com.mvc.homeseek.model.dto;
 
-import java.util.Date;
 
 //매물 테이블 Dto
 public class RoomDto {
@@ -16,9 +15,9 @@ public class RoomDto {
 	private String room_kind;
 	private String room_structure;
 	private String room_floor;
-	private Date room_regdate;
-	private Date room_cpdate;
-	private Date room_avdate;
+	private String room_regdate;
+	private String room_cpdate;
+	private String room_avdate;
 	private int room_longi;
 	private int room_lati;
 	private String room_detail;
@@ -31,7 +30,7 @@ public class RoomDto {
 	}
 	public RoomDto(int room_no, String room_name, String room_photo, String room_type, int room_deposit, int room_price,
 			int room_extent, String room_addr, String room_kind, String room_structure, String room_floor,
-			Date room_regdate, Date room_cpdate, Date room_avdate, int room_longi, int room_lati, String room_detail,
+			String room_regdate, String room_cpdate, String room_avdate, int room_longi, int room_lati, String room_detail,
 			String room_id) {
 		super();
 		this.room_no = room_no;
@@ -176,37 +175,37 @@ public class RoomDto {
 
 
 
-	public Date getRoom_regdate() {
+	public String getRoom_regdate() {
 		return room_regdate;
 	}
 
 
 
-	public void setRoom_regdate(Date room_regdate) {
+	public void setRoom_regdate(String room_regdate) {
 		this.room_regdate = room_regdate;
 	}
 
 
 
-	public Date getRoom_cpdate() {
+	public String getRoom_cpdate() {
 		return room_cpdate;
 	}
 
 
 
-	public void setRoom_cpdate(Date room_cpdate) {
+	public void setRoom_cpdate(String room_cpdate) {
 		this.room_cpdate = room_cpdate;
 	}
 
 
 
-	public Date getRoom_avdate() {
+	public String getRoom_avdate() {
 		return room_avdate;
 	}
 
 
 
-	public void setRoom_avdate(Date room_avdate) {
+	public void setRoom_avdate(String room_avdate) {
 		this.room_avdate = room_avdate;
 	}
 

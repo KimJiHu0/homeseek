@@ -27,9 +27,6 @@
 	<!-- header.jsp -->
 	<%@ include file="form/header.jsp"%>
 	<section>
-
-		
-		
 		<!-- first container -->
 		<div id="firstcontainer">
 			<!-- 방 사진들을 담고있는 div박스 -->
@@ -37,9 +34,12 @@
 
 				<!-- 방 사진 정보 -->
 				<div id="roomimg">
-					<img alt="d" src="resources/img/arrowleft.png" id="leftarrow">
-					사진
-					<img alt="d" src="resources/img/arrowright.png" id="rightarrow">
+					<a href="#">
+						<img alt="d" src="resources/img/arrowleft.png" id="leftarrow" class="arrow">
+					</a>
+					<a href="#">
+						<img alt="d" src="resources/img/arrowright.png" id="rightarrow" class="arrow">
+					</a>
 				</div>
 				
 			</div>
@@ -50,77 +50,76 @@
 					<div id="userinfotitle">
 						<span id="leftb">사용자 / 매물 정보</span><span id="rightb">찜하기♥</span>
 					</div>
-					<!-- 매물 종류가 매매일 때(3) ROOM_PRICE만 보여주기 -->
 					<%
 						RoomDto room = (RoomDto)request.getAttribute("room");
 					
 						// ROOM_TYPE가 매매일 경우에는 매매이기 때문에 ROOM_PRICE만 보여주고
 						if(room.getRoom_type().equals("3")){
 					%>
-						<div class="userinfocontent">
-							<span class="leftb">매물 종류 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">매물 종류</span>
 							<span class="rightb">매매</span>
 						</div>
-						<div class="userinfocontent">
-							<span class="leftb">매매가 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">매매가</span>
 							<span class="rightb">${room.room_price }만원</span>
 						</div>
 					<%
 						// 그게 아니라 전세일 경우에는 ROOM_PRICE와 젠세가로 ROOM_DEPOSIT를 보여준다.
 						} else if(room.getRoom_type().equals("2")){
 					%>
-						<div class="userinfocontent">
-							<span class="leftb">매물 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">매물</span>
 							<span class="rightb">전세</span>
 						</div>
-						<div class="userinfocontent">
-							<span class="leftb">전세가 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">전세가 </span>
 							<span class="rightb">${room.room_price }만원</span>
 						</div>
 					<%
 						// 월세,4,5일 경우에는 둘 다 보여준다.
 						} else if(room.getRoom_type().equals("1")){
 					%>
-						<div class="userinfocontent">
-							<span class="leftb">매물 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">매물</span>
 							<span class="rightb">월세</span>
 						</div>
-						<div class="userinfocontent">
-							<span class="leftb">보증금 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">보증금</span>
 							<span class="rightb">${room.room_deposit }만원</span>
 						</div>
-						<div class="userinfocontent">
-							<span class="leftb">월세가 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">월세가</span>
 							<span class="rightb">${room.room_price }만원</span>
 						</div>
 					<%
 						// 반전세인 경우(월세인데 보증금을 더 내고 월세를 줄인다.)
 						} else if(room.getRoom_type().equals("4")){
 					%>
-						<div class="userinfocontent">
-							<span class="leftb">매물 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">매물</span>
 							<span class="rightb">반전세</span>
 						</div>
-						<div class="userinfocontent">
-							<span class="leftb">보증금 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">보증금</span>
 							<span class="rightb">${room.room_deposit }만원</span>
 						</div>
-						<div class="userinfocontent">
-							<span class="leftb">월세가 : </span>
+						<div class="roominfocontent" >
+							<span class="leftb">월세가</span>
 							<span class="rightb">${room.room_price }만원</span>
 						</div>
 					<%
 						} else {
 					%>
-						<div class="userinfocontent">
-							<span class="leftb">매물 : </span>
+						<div class="roominfocontent">
+							<span class="leftb">매물</span>
 							<span class="rightb">단기임대</span>
 						</div>
-						<div class="userinfocontent">
+						<div class="roominfocontent">
 							<span class="leftb">보증금 : </span>
 							<span class="rightb">${room.room_deposit }만원</span>
 						</div>
-						<div class="userinfocontent">
+						<div class="roominfocontent">
 							<span class="leftb">월세가 : </span>
 							<span class="rightb">${room.room_price }만원</span>
 						</div>
@@ -129,7 +128,7 @@
 					%>
 					
 					<div class="userinfocontent">
-						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb">쪽지하기</span> | <span>신고하기</span>
+						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><a href="#">신고</a> | <a href="#">쪽지</a></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">E-Mail : </span><span class="rightb">${member.member_email }</span>
@@ -147,10 +146,15 @@
 		<!-- second container -->
 		
 		<div id="noticeinfo">
-			<p>
+			<span>
 				안전한 거래를 위해 필요한 서류를 <b>꼭</b> 참고해주세요.
 				<a href="#">공지사항 바로가기</a>
-			</p>
+			</span>
+		</div>
+		<div id="recommendinfo">
+			<span>
+				추천 알고리즘 사용하기
+			</span>
 		</div>
 		
 		<!-- third container -->
@@ -224,15 +228,15 @@
 						</tr>
 						<tr>
 							<th>매물 등록 날짜</th>
-							<td><fmt:formatDate value="${room.room_regdate }" pattern="yyyy-MM-dd"/></td>
+							<td>${room.room_regdate }</td>
 						</tr>
 						<tr>
 							<th>매물 준공 날짜</th>
-							<td><fmt:formatDate value="${room.room_cpdate }" pattern="yyyy-MM-dd"/></td>
+							<td>${room.room_cpdate }</td>
 						</tr>
 						<tr>
 							<th>입주 가능일</th>
-							<td><fmt:formatDate value="${room.room_avdate }" pattern="yyyy-MM-dd"/></td>
+							<td>${room.room_avdate }</td>
 						</tr>
 						<tr>
 							<th>경도</th>
@@ -245,7 +249,7 @@
 						<tr>
 							<th>방 상세설명</th>
 							<td>
-								<textarea rows="10" cols="60" readonly="readonly">${room.room_detail }</textarea>
+								<textarea id="detailcontent" rows="10" cols="60" readonly="readonly">${room.room_detail }</textarea>
 							</td>
 						</tr>
 						<tr>

@@ -16,7 +16,7 @@
    <header> 
       <div class="header">
          <div class="logo">
-            <a href="main.do">HOME<span>SEE</span>K</a>
+            <a class="headeratag" href="main.do">HOME<span>SEE</span>K</a>
          </div>
 
 <% if(dto == null) { %>         
@@ -24,24 +24,24 @@
 <% }else{ %>
  		 <ul class="nav2">
 <% } %> 		 	  
-            <li><a href="listroom.do">전체 방 조회</a></li>
-            <li><a href="insertroom.do">방 올리기</a></li> 
+            <li><a class="headeratag" href="listroom.do">전체 방 조회</a></li>
+            <li><a class="headeratag" href="insertroom.do">방 올리기</a></li> 
             
             <li><div class="dropdown">
                  <button class="dropbtn">게시판</button>
                     <div class="dropdown-content">
-                      <a href="#">공지사항</a>
-                      <a href="#">Q & A</a>
+                      <a class="headeratag" href="#">공지사항</a>
+                      <a class="headeratag" href="#">Q & A</a>
                     </div>
             </div></li>
                         
-            <li><a href="#">채팅</a></li> 
-            <li><a href="#">후원하기</a></li> 
-            <li><a href="#">Kr | En</a></li>
+            <li><a class="headeratag" href="#">채팅</a></li> 
+            <li><a class="headeratag" href="#">후원하기</a></li> 
+            <li><a class="headeratag" href="#">Kr | En</a></li>
             <% if(dto == null) { %> 
             <li>
             	<span class="login">
-                <a href="loginform.do">LOGIN | REGIST</a>
+                <a class="headeratag" href="loginform.do">LOGIN | REGIST</a>
             	</span>
             </li>
            
@@ -50,26 +50,26 @@
             <li><div class="dropdown">
                  <button class="dropbtn"><strong><%= dto.getMember_name()%>님 환영합니다</strong></button>
                     <div class="dropdown-content">
-                      <a href="#">전체 회원 관리</a>
-                      <a href="#">전체 후원 내역</a>
+                      <a class="headeratag" href="#">전체 회원 관리</a>
+                      <a class="headeratag" href="#">전체 후원 내역</a>
                     </div>
             </div></li>
             <li>
             	<span class="logout">
-                <a href="logout.do"><strong>| LOGOUT</strong></a>
+                <a class="headeratag" href="logout.do"><strong>| LOGOUT</strong></a>
             	</span>
             </li>
             <% } else if(dto.getMember_role() == 'N'){ %>
               <li><div class="dropdown">
                  <button class="dropbtn"><strong><%= dto.getMember_name()%>님 환영합니다</strong></button>
                     <div class="dropdown-content">
-                      <a href="#">내 정보 보기</a>
-                      <a href="#">나의 후원 내역</a>
+                      <a class="headeratag" href="#">내 정보 보기</a>
+                      <a class="headeratag" href="#">나의 후원 내역</a>
                     </div>
             </div></li>
             <li>
             	<span class="logout">
-                <a href="logout.do"><strong>| LOGOUT</strong></a>
+                <a class="headeratag" href="logout.do"><strong>| LOGOUT</strong></a>
             	</span>
             </li>
              <% } %>
