@@ -6,8 +6,10 @@
 		INSERT INTO ROOM
 		VALUES(ROOM_NO_SEQ.NEXTVAL, #{room_name}, #{room_photo}, #{room_type}, #{room_deposit},
 		#{room_price}, #{room_extent}, #{room_addr}, #{room_kind}, #{room_structure}, #{room_floor},
-		SYSDATE, #{room_cpdate}, #{room_avdate}, #{room_longi}, #{room_lati}, #{room_detail}, 
+		SYSDATE, TO_DATE(#{room_avdate}, 'yyyy-MM-dd'), TO_DATE(#{room_avdate}, 'yyyy-MM-dd'), #{room_longi}, #{room_lati}, #{room_detail}, 
 		#{room_id})
+		
+		
 	</insert>
 	
 	
