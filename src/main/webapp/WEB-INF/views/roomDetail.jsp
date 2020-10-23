@@ -264,7 +264,12 @@
 			</div>
 		</div>
 		<!-- 모달창을 띄어줄 div -->
-		<div id="reportform"></div>
+		<div id="reportform">
+			<table>
+				<thead id="reporthead"></thead>
+				<tbody id="reportbody"></tbody>
+			</table>
+		</div>
 	</section>
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
