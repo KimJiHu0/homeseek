@@ -16,7 +16,7 @@ ul,li,ol{
 	z-index : 9999;
 }
 
-.headeratag{
+a{
 	text-decoration : none;
 	color:#6A6868;
 }

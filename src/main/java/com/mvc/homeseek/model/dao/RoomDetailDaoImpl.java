@@ -21,6 +21,8 @@ public class RoomDetailDaoImpl implements RoomDetailDao {
 	@Override
 	public RoomDto selectRoomOne(int room_no) {
 		
+		logger.info("[ RoomDetailDao ] selectRoomOne");
+		
 		RoomDto dto = null;
 		
 		try {
@@ -36,6 +38,8 @@ public class RoomDetailDaoImpl implements RoomDetailDao {
 	@Override
 	public int updateRoomOne(RoomDto dto) {
 		
+		logger.info("[ RoomDetailDao ] updateRoomOne");
+		
 		int res = 0;
 		
 		try {
@@ -50,6 +54,8 @@ public class RoomDetailDaoImpl implements RoomDetailDao {
 	// 방 삭제하기
 	@Override
 	public int deleteRoomOne(int room_no) {
+		
+		logger.info("[ RoomDetailDao ] deleteRoomOne");
 		
 		int res = 0;
 		

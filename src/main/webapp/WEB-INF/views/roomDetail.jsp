@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>homeseek</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/roomDetail.css"
 	type="text/css" />
@@ -128,7 +128,7 @@
 					%>
 					
 					<div class="userinfocontent">
-						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><a href="#">신고</a> | <a href="#">쪽지</a></span>
+						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><a href="reportform.do">신고</a> | <a href="#">쪽지</a></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">E-Mail : </span><span class="rightb">${member.member_email }</span>
