@@ -16,9 +16,11 @@ public class ReportController {
 	@Autowired
 	private ReportBiz reportbiz;
 	
-	@RequestMapping("")
+	@RequestMapping("reportmember.do")
 	public String insertReportForm() {
-		return "";
+		
+		logger.info("[ ReportController ] insertReportform");
+		return "reportMemberForm";
 	}
 
 }

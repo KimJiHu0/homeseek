@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek</title>
+<title>homeseek : 매물 상세보기</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/roomDetail.css"
 	type="text/css" />
@@ -128,7 +129,7 @@
 					%>
 					
 					<div class="userinfocontent">
-						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><a href="reportform.do">신고</a> | <a href="#">쪽지</a></span>
+						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><b id="reportbtn">신고</b> | <b id="commentbtn">쪽지</b></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">E-Mail : </span><span class="rightb">${member.member_email }</span>
@@ -262,6 +263,8 @@
 				</div>
 			</div>
 		</div>
+		<!-- 모달창을 띄어줄 div -->
+		<div id="reportform"></div>
 	</section>
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>

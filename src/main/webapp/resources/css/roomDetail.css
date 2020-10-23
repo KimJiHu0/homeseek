@@ -28,6 +28,11 @@ section{
 	position: relative;
 }
 
+/* 신고, 쪽지에 대한 커서 만들어주기 */
+#reportbtn, #commentbtn{
+	cursor : pointer;
+}
+
 /* 오른쪽 화살표 */
 #rightarrow{
 	position: absolute;
