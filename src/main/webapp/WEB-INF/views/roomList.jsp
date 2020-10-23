@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +30,32 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list }" var="list" >
-							<div class="img">
-								<a href="detailroom.do?room_no=${list.room_no }"><img src="${list.room_photo}"></a> <!-- list로 보낼 때 room_photo의 첫번째 사진만 list에 담겨서 보내자 -->
+							<div class="imgbox" >
+								<a href="detailroom.do?room_no=${list.room_no }"><img src="resources/img/backgroundimg.jpg" class="img"></a> <!-- list로 보낼 때 room_photo의 첫번째 사진만 list에 담겨서 보내자, 일단 사진 보려고 대문 사진으로박아놓음 -->
+								<div class="content">
+									<div class="room_type">
+										<c:choose>
+											<c:when test="${list.room_type == 1 }">
+												월세
+											</c:when>
+											<c:when test="${list.room_type == 2 }">
+												전세
+											</c:when>
+											<c:when test="${list.room_type == 3 }">
+												매매
+											</c:when>
+											<c:when test="${list.room_type == 4 }">
+												반전세
+											</c:when>
+											<c:otherwise>
+												단기임대
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div class="room_price">
+										<fmt:formatNumber value="${list.room_price }" pattern="#,###" />만원
+									</div>
+								</div>
 							</div>
 						</c:forEach>
 					</c:otherwise>
@@ -58,7 +84,7 @@
 		</c:choose>
 
 
-		<%-- 현재 page가 속한 page 그룹 내의 페이지들 링크 --%>
+		<%-- 현재 page가 속한 page, 그룹 내의 페이지들 링크 --%>
 		<c:forEach begin="${requestScope.pageBean.beginPage }"
 			end="${requestScope.pageBean.endPage }" var="page">
 			<c:choose>
