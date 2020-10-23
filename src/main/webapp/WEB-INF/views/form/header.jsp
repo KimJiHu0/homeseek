@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.mvc.homeseek.model.dto.MemberDto" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,13 +18,34 @@
       <div class="header">
          <div class="logo">
             <a class="headeratag" href="main.do">HOME<span>SEE</span>K</a>
-         </div>
+         </div> 
+         
+      
+       
 
 <% if(dto == null) { %>         
          <ul class="nav">
 <% }else{ %>
  		 <ul class="nav2">
 <% } %> 		 	  
+         <c:choose>
+         	<c:when test="${pageContext.request.requestURI eq '/homeseek/'}">
+				
+         	</c:when> 
+         	<c:when test="${main eq 'main'}">
+      			
+         	</c:when >
+         	<c:otherwise>
+	         	<li class="searchbox">
+	         		<div class="search">
+	         			<input type="text" name="search" placeholder="검색어를 입력해주세요, 근데 아직 안됨">
+	         		</div>
+	         	</li>
+         	</c:otherwise>
+         </c:choose>   
+
+
+         	
             <li><a class="headeratag" href="listroom.do">전체 방 조회</a></li>
             <li><a class="headeratag" href="insertroom.do">방 올리기</a></li> 
             
