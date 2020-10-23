@@ -30,7 +30,8 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getSession().getAttribute("login") != null ||
 				request.getRequestURI().contains("listroom.do") ||
 				request.getRequestURI().contains("detail") ||
-				request.getRequestURI().contains("update")){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getRequestURI().contains("update") ||
+				request.getRequestURI().contains("reportmember.do")){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 		
 			return true;
 		}
