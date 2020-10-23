@@ -1,5 +1,6 @@
 package com.mvc.homeseek.model.biz;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mvc.homeseek.model.dao.RoomDao;
@@ -8,6 +9,7 @@ import com.mvc.homeseek.model.dto.RoomDto;
 @Service
 public class RoomBizImpl implements RoomBiz {
 	
+	@Autowired
 	private RoomDao roomDao;
 
 

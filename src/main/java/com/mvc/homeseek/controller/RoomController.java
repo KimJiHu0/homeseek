@@ -1,6 +1,8 @@
 package com.mvc.homeseek.controller;
 
 
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -46,11 +48,30 @@ public class RoomController {
 	public String selectRoomInsert(RoomDto room_dto, Model model) {
 		logger.info("[inertres.do] : 매물 올리기 제출중");
 
+		
+		String prv_room_cpdate = room_dto.getRoom_cpdate().substring(0,10);
+		String prv_room_avdate = room_dto.getRoom_avdate().substring(0,10); 
+		logger.info(prv_room_cpdate); 
+		logger.info(prv_room_avdate);
+		
+		String new_room_avdate = prv_room_avdate.replaceAll("-", "/"); 
+		String new_room_cpdate = prv_room_cpdate.replaceAll("-", "/");
+		
+		logger.info(new_room_avdate);
+		logger.info(new_room_cpdate);
+		
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		
+//		room_dto.setRoom_cpdate(new_room_cpdate);
+//		room_dto.setRoom_avdate(new_room_avdate);
+		
+		
 		int res = roomBiz.selectRoomInsert(room_dto);
 
 		if (res > 0) {
-			
-			return "redirect:roomList.do";
+			logger.info("입력성공");
 		}
 
 		return "roomInsertRes";
