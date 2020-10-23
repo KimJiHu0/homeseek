@@ -1,25 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-  
-  <!-- 로그인 -->
-	<select id="login" parameterType="MemberDto" resultType="MemberDto">
-		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_ENABLED, MEMBER_ROLE
+
+	<!-- 로그인 -->
+	<select id="login" parameterType="MemberDto"
+		resultType="MemberDto">
+		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL,
+		MEMBER_PHONE, MEMBER_ENABLED, MEMBER_ROLE
 		FROM MEMBER
-		WHERE MEMBER_ID = #{member_id}
+		WHERE MEMBER_ID =
+		#{member_id}
 		AND MEMBER_PW = #{member_pw}
 	</select>
-  
-  <!-- 회원가입 -->
+
+	<!-- sns로그인 -->
+	<select id="getBySnsNaver" parameterType="MemberDto"
+		resultType="MemberDto">
+		SELECT *
+		FROM MEMBER
+		WHERE getMember_naverid =
+		#{getMember_naverid}
+	</select>
+
+	<select id="getBySnsGoogle" parameterType="MemberDto"
+		resultType="MemberDto">
+		SELECT *
+		FROM MEMBER
+		WHERE getMember_googleid =
+		#{getMember_googleid}
+	</select>
+
+	<!-- 회원가입 -->
 	<insert id="insert" parameterType="MemberDto">
 		INSERT INTO MEMBER
-		VALUES(#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_phone}, 'N', 'N')
+		VALUES(#{member_id}, #{member_pw}, #{member_name}, #{member_email},
+		#{member_phone}, 'N', 'N')
 
 	</insert>
+	<!-- 아이디 중복 검사 -->
+	<select id="checkId" parameterType="String" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+	</select>
 
 	<!-- 매물 올린 사용자의 정보를 추출하기위한 mapper -->
-	<select id="selectMemberById" resultType="MemberDto" parameterType="String">
-		SELECT MEMBER_ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE
+	<select id="selectMemberById" resultType="MemberDto"
+		parameterType="String">
+		SELECT MEMBER_ID, MEMBER_NAME, MEMBER_EMAIL,
+		MEMBER_PHONE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{id}
 	</select>

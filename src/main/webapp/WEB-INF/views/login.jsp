@@ -26,7 +26,7 @@
       
          <div class="black_bg"></div>
             <div class="modal_wrap">
-             <div class="modal_close"><a href="#">close</a></div>
+             <div class="modal_close"><a href="main.do">close</a></div>
                 <div>
             
             <div class="logo">
@@ -48,6 +48,11 @@
                   <td colspan="2" align="center" id="loginchk"></td>
                </tr>
             </table>
+            
+            <div class = "text-center">
+            	<a href="${ naver_url }"><img width="200" src="${pageContext.request.contextPath}/resources/img/naver-login.png" alt="Naver Login"/></a>
+            	<a href="${ google_url }"><img width="200" src="${pageContext.request.contextPath}/resources/img/google-login.png" alt="Google Login"/></a>
+            </div>
             
             <ul class="idpwlink">
                   <li><a href="#">아이디 찾기</a></li>

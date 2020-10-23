@@ -8,12 +8,17 @@ public class MemberDto {
 	private String member_phone;
 	private char member_enabled;
 	private char member_role;
+	//추가: sns로그인 정보를 저장하기위해
+	private String member_naverid;
+	private String member_googleid;
 	
 	
 	public MemberDto() {
 		
 	}
-	public MemberDto(String member_id, String member_pw, String member_name, String member_email, String member_phone, char member_enabled, char member_role) {
+	
+	public MemberDto(String member_id, String member_pw, String member_name, String member_email, String member_phone,
+			char member_enabled, char member_role, String member_naverid, String member_googleid) {
 		
 		this.member_id = member_id;
 		this.member_pw = member_pw;
@@ -22,6 +27,8 @@ public class MemberDto {
 		this.member_phone = member_phone;
 		this.member_enabled = member_enabled;
 		this.member_role = member_role;
+		this.member_naverid = member_naverid;
+		this.member_googleid = member_googleid;
 	}
 	public String getMember_id() {
 		return member_id;
@@ -64,5 +71,17 @@ public class MemberDto {
 	}
 	public void setMember_role(char member_role) {
 		this.member_role = member_role;
+	}
+	public String getMember_naverid() {
+		return member_naverid;
+	}
+	public void setMember_naverid(String member_naverid) {
+		this.member_naverid = member_naverid;
+	}
+	public String getMember_googleid() {
+		return member_googleid;
+	}
+	public void setMember_googleid(String member_googleid) {
+		this.member_googleid = member_googleid;
 	}
 }

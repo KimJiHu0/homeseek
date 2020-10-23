@@ -1,4 +1,4 @@
-var num=1;
+/*var num=1;
 
 function prevRoom(){
    num--;
@@ -6,8 +6,9 @@ function prevRoom(){
       num=5;
    }
    document.getElementById("gallery").src="resources/img/img0" +num+ ".jpg";
-   return false; /* => 이벤트 전파 막기  => naver로 가는 것을 막는다. */
+   return false;  => 이벤트 전파 막기  => naver로 가는 것을 막는다. 
 }
+
 
 function nextRoom(){
    num++;
@@ -16,4 +17,12 @@ function nextRoom(){
    }
    document.getElementById("gallery").src = "resources/img/img0" +num+ ".jpg";
    return false;
+}*/
+window.onload=function(){
+	document.getElementById("reportbtn").onclick = function(){
+		$("#reportbody").append(
+				"<h1>안녕<h1>" +
+				"<h1>${id}</h1>"
+		);
+	}
 }

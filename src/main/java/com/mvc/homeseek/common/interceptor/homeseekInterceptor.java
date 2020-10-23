@@ -23,12 +23,16 @@ public class homeseekInterceptor implements HandlerInterceptor {
 		if(request.getRequestURI().contains("main.do") || 
 				request.getRequestURI().contains("loginform.do")|| 
 				request.getRequestURI().contains("/ajaxlogin.do")||
-				request.getRequestURI().contains("registform.do")||
-				request.getRequestURI().contains("registres.do")||
+				request.getRequestURI().contains("/checkid.do")||
+				request.getRequestURI().contains("/registform.do")||
+				request.getRequestURI().contains("/registres.do")||
+				request.getRequestURI().contains("/sendsms.do")||
 				request.getSession().getAttribute("login") != null ||
 				request.getRequestURI().contains("listroom.do") ||
 				request.getRequestURI().contains("detail") ||
-				request.getRequestURI().contains("update")){//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getRequestURI().contains("update") ||
+				request.getRequestURI().contains("/homeseek/auth/{snsService}/callback") ||
+				request.getRequestURI().contains("reportmember.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 		
 			return true;
 		}

@@ -8,8 +8,12 @@ public interface MemberDao {
 	
 	// 로그인
 	public MemberDto login(MemberDto dto);
-  // 회원가입
+	// 회원가입
 	public int insert(MemberDto dto);
 	// id로 member객체 가져오기 / 방 상세보기에 적용
 	public MemberDto selectMemberById(String id);
+	// id 중복체크 검사
+	public int checkId(String member_id);
+	// sns멤버 정보를 DB에 가져오기
+	public MemberDto getBySns(MemberDto snsUser);
 }

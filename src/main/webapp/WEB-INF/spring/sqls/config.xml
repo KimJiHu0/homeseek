@@ -22,7 +22,7 @@
 	<mapper resource="/mybatis/member-mapper.xml"/>
 	<mapper resource="/mybatis/room-detail-mapper.xml"/>
 	<mapper resource="/mybatis/room-list-mapper.xml"/>
-	<mapper resource="/mybatis/roomInsert-mapper.xml"/>
+	<mapper resource="/mybatis/report-mapper.xml"/>
 </mappers>
 
 
