@@ -42,5 +42,10 @@ public class MemberBizImpl implements MemberBiz {
 		
 		return memberDao.getBySns(snsUser);
 	}
+
+	@Override
+	public int updateMemberEnabled(String report_reid) {
+		return memberDao.updateMemberEnabled(report_reid);
+	}
 }
 

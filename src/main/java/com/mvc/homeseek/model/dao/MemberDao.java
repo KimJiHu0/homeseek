@@ -16,4 +16,6 @@ public interface MemberDao {
 	public int checkId(String member_id);
 	// sns멤버 정보를 DB에 가져오기
 	public MemberDto getBySns(MemberDto snsUser);
+	// 신고당하면 member의 enabled를 r로 변경하는 메소드
+	public int updateMemberEnabled(String report_reid);
 }

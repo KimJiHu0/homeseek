@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="report-mapper">
 
+	<!-- 신고하면 신고테이블에 insert하기 -->
 	<insert id="insertReport" parameterType="ReportDto">
-		INSERT INTO REPORT VALUES(REPORT_NO_SEQ.NEXTVAL, #{report_senid}, #{report_reid}, #{report_content}, SYSDATE)
+		INSERT INTO REPORT VALUES(REPORT_NO_SEQ.NEXTVAL, #{report_senid}, #{report_reid},#{report_title}, #{report_content}, SYSDATE)
 	</insert>
 
 </mapper>

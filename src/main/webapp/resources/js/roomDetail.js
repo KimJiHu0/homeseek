@@ -18,11 +18,3 @@ function nextRoom(){
    document.getElementById("gallery").src = "resources/img/img0" +num+ ".jpg";
    return false;
 }*/
-window.onload=function(){
-	document.getElementById("reportbtn").onclick = function(){
-		$("#reportbody").append(
-				"<h1>안녕<h1>" +
-				"<h1>${id}</h1>"
-		);
-	}
-}

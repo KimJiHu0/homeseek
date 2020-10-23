@@ -16,5 +16,4 @@ public class ReportBizImpl implements ReportBiz {
 	public int insertReport(ReportDto dto) {
 		return reportdao.insertReport(dto);
 	}
-
 }

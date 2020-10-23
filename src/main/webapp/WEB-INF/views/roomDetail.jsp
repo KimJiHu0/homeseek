@@ -22,6 +22,12 @@
 	if(msg != ''){
 		alert(msg);
 	}
+	
+	/* roomDetail에서 신고버튼을 누르면 실행되는 함수 */
+	function reportUser(){
+		var room_id = "${member.member_id}";
+		open("reportmember.do?room_id=" + room_id, "", "width=700, height=600");
+	}
 </script>
 </head>
 <body>
@@ -129,7 +135,7 @@
 					%>
 					
 					<div class="userinfocontent">
-						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><b id="reportbtn">신고</b> | <b id="commentbtn">쪽지</b></span>
+						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><a href="javascript:reportUser()" id="reportbtn">신고</a> | <a href="#" id="commentbtn">쪽지</a></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">E-Mail : </span><span class="rightb">${member.member_email }</span>
@@ -262,13 +268,6 @@
 					</table>
 				</div>
 			</div>
-		</div>
-		<!-- 모달창을 띄어줄 div -->
-		<div id="reportform">
-			<table>
-				<thead id="reporthead"></thead>
-				<tbody id="reportbody"></tbody>
-			</table>
 		</div>
 	</section>
 	<!-- footer.jsp -->

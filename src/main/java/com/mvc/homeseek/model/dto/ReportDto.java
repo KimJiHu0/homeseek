@@ -7,6 +7,7 @@ public class ReportDto {
 	private int report_no;
 	private String report_senid;
 	private String report_reid;
+	private String report_title;
 	private String report_content;
 	private Date report_date;
 
@@ -14,11 +15,13 @@ public class ReportDto {
 		
 	}
 
-	public ReportDto(int report_no, String report_senid, String report_reid, String report_content, Date report_date) {
+	public ReportDto(int report_no, String report_senid, String report_reid, String report_title, String report_content,
+			Date report_date) {
 		super();
 		this.report_no = report_no;
 		this.report_senid = report_senid;
 		this.report_reid = report_reid;
+		this.report_title = report_title;
 		this.report_content = report_content;
 		this.report_date = report_date;
 	}
@@ -47,6 +50,14 @@ public class ReportDto {
 		this.report_reid = report_reid;
 	}
 
+	public String getReport_title() {
+		return report_title;
+	}
+
+	public void setReport_title(String report_title) {
+		this.report_title = report_title;
+	}
+
 	public String getReport_content() {
 		return report_content;
 	}
@@ -62,4 +73,6 @@ public class ReportDto {
 	public void setReport_date(Date report_date) {
 		this.report_date = report_date;
 	}
+
+	
 }

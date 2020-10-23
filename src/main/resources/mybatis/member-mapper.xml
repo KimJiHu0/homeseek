@@ -53,4 +53,8 @@
 		FROM MEMBER
 		WHERE MEMBER_ID = #{id}
 	</select>
+	
+	<update id="updateMemberEnabled" parameterType="String">
+		UPDATE MEMBER SET MEMBER_ENABLED = 'R' WHERE MEMBER_ID = #{report_reid}
+	</update>	
 </mapper>

@@ -32,7 +32,8 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("detail") ||
 				request.getRequestURI().contains("update") ||
 				request.getRequestURI().contains("/homeseek/auth/{snsService}/callback") ||
-				request.getRequestURI().contains("reportmember.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getRequestURI().contains("reportmember.do") ||
+				request.getRequestURI().contains("reportmemberres.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 		
 			return true;
 		}

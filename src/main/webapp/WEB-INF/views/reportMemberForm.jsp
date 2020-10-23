@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 신고하기</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -20,33 +21,40 @@
 	<div id="firstbox">
 		<p class="iconbox" id="icon">HOME<span class="iconbox" id="iconcolor">SEE</span>K</p>
 	</div>
-	<div id="secondbox">
+	<h1>신고하기</h1>
+	<form action="reportmemberres.do" method="post">
 		<table border="1">
 			<tr>
-				<th>신고하는 사람</th>
-				<th></th>
-				<th></th>
-				<th></th>
+				<th>신고하는이름</th>
+				<td>${report_senuser.member_name }</td>
 			</tr>
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
+				<th>신고하는아이디</th>
+				<td><input type="text" value="${report_senuser.member_id }" readonly="readonly" name="report_senid"></td>
 			</tr>
 			<tr>
-				<th>신고받는 사람</th>
-				<th></th>
-				<th></th>
-				<th></th>
+				<th>신고받는이름</th>
+				<td>${report_reuser.member_name }</td>
 			</tr>
 			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
+				<th>신고받는아이디</th>
+				<td><input type="text" value="${report_reuser.member_id }" readonly="readonly" name="report_reid"></td>
+			</tr>
+			<tr>
+				<th>신고사유</th>
+				<td><input type="text" placeholder="신고 사유를 작성해주세요." name="report_title"/></td>
+			</tr>
+			<tr>
+				<th>신고내용</th>
+				<td><textarea rows="10" cols="60" id="summernote" name="report_content" placeholder="신고 내용을 작성해주세요."></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="신고하기"/>
+					<input type="button" value="취소하기" />
+				</td>
 			</tr>
 		</table>
-	</div>
+	</form>
 </body>
 </html>

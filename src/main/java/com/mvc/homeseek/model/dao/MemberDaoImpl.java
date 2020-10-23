@@ -87,4 +87,19 @@ public class MemberDaoImpl implements MemberDao {
 			return sqlSession.selectOne(NAMESPACE + "getBySnsGoogle", snsUser.getMember_googleid());
 		}
 	}
+
+	// 신고당하면 member의 enabled를 r로 변경하기 위한 메소드
+	@Override
+	public int updateMemberEnabled(String report_reid) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "updateMemberEnabled", report_reid);
+		} catch (Exception e) {
+			logger.info("[ Error ] updateMemberEnabled");
+			e.printStackTrace();
+		}
+		return res;
+	}
 }
