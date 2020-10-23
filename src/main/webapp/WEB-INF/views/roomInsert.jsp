@@ -7,22 +7,98 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<!-- css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomInsert.css" type="text/css" />
 
-	<h1> [insertRoom.do] 방올리기 페이지 </h1>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<!-- include summernote css/js-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="/resources/js/summernote-ko-KR.js"></script>
+
+<script>
+$(document).ready(function() {
+	  $('#summernote').summernote({
+			minHeight: 370,             // 최소 높이
+			maxHeight: 370,             // 최대 높이
+			focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+			lang: "ko-KR",					// 한글 설정
+			placeholder: '내용을 입력해주세요.',	//placeholder 설정
+			
+			toolbar: [
+	             // [groupName, [list of button]]
+	             ['fontname', ['fontname']],
+	             ['fontsize', ['fontsize']],
+	             ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+	             ['color', ['forecolor','color']],
+	             ['table', ['table']],
+	             ['para', ['ul', 'ol', 'paragraph']],
+	             ['height', ['height']],
+	             ['insert',['picture']],
+	             ['view', ['fullscreen', 'help']]
+	           ],
+	         fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+	         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+
+	         callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+					onImageUpload : function(files) {
+						uploadSummernoteImageFile(files[0],this);
+					},
+					onPaste: function (e) {
+						var clipboardData = e.originalEvent.clipboardData;
+						if (clipboardData && clipboardData.items && clipboardData.items.length) {
+							var item = clipboardData.items[0];
+							if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+								e.preventDefault();
+							}
+						}
+					}
+				}
+		});
+	});
+     
+     
+
+	/**
+	* 이미지 파일 업로드
 	
-	<form action="insertRes.do" method="POST">
+	function uploadSummernoteImageFile(file, editor) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "/uploadSummernoteImageFile",
+			contentType : false,
+			processData : false,
+			success : function(data) {
+         	//항상 업로드된 파일의 url이 있어야 한다.
+				$(editor).summernote('insertImage', data.url);
+			}
+		});
+	}
+	*/
+</script>
+
+
+<body>
+	<!-- header.jsp include -->
+	<%@ include file="/WEB-INF/views/form/header.jsp" %>
+	
+	<section>
+	<h1> [insertRoom.do] 방올리기 페이지 </h1>	
+	<form action="insertres.do" method="POST">
+	<input type="hidden" name="room_id" value="${dto.member_id }">
 		<table border="1">
 	
 			<tr>
 				<th>매물이름</th>
 				<td><input type="text" name="room_name"></td>
-			</tr>
-			<tr>
-				<th>매물사진</th>
-				<td>
-					<input type="button" value="사진업로드" onclick="window.open('fileupload.do','new','scrollbars=yes,resizable=no width=500 height=500, left=0,top=0');return false">
-				</td>
 			</tr>
 			<tr>
 				<th>매물종류</th>
@@ -92,7 +168,7 @@
 			</tr>
 			<tr>
 				<th>방 상세설명</th>
-				<td><textarea rows="10" cols="60" name="room_datail"></textarea></td>
+				<td><textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
@@ -102,6 +178,6 @@
 			</tr>
 		</table>
 	</form>
-	
+	</section>
 </body>
 </html>
