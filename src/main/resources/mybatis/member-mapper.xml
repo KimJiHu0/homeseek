@@ -16,6 +16,12 @@
 		VALUES(#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_phone}, 'N', 'N')
 
 	</insert>
+  <!-- 아이디 중복 검사 -->
+	<select id="checkId" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER 
+		WHERE MEMBER_ID = #{member_id}
+	</select>
 
 	<!-- 매물 올린 사용자의 정보를 추출하기위한 mapper -->
 	<select id="selectMemberById" resultType="MemberDto" parameterType="String">

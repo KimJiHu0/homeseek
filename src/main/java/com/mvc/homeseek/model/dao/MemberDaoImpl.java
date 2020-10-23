@@ -15,6 +15,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	//로그인
 	@Override
 	public MemberDto login(MemberDto dto) {
 		MemberDto res = null;
@@ -29,12 +30,13 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 	
+	//회원 가입
 	@Override
 	public int insert(MemberDto dto) {
 		int res = 0;
 		
 		try {
-			res = sqlSession.insert(NAMESPACE + "insert", dto);
+			res = sqlSession.insert( NAMESPACE + "insert", dto);
 		} catch (Exception e) {
 			logger.info("error insert");
 			e.printStackTrace();
@@ -56,5 +58,21 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+	
+	//회원가입 시 id 중복검사 
+	@Override
+	public int checkId(String member_id) {
+		
+		int res =0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "checkId", member_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 }
