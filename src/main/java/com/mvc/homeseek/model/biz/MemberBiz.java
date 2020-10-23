@@ -13,5 +13,7 @@ public interface MemberBiz {
 	public MemberDto selectMemberById(String id);
 	//회원가입 시 id 중복검사
 	public int checkId(String member_id);
+	//sns로그인 정보를 DB에 넣기위해
+	public MemberDto getBySns(MemberDto snsUser);
 
 }

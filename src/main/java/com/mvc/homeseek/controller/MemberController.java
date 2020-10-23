@@ -4,20 +4,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mvc.homeseek.auth.SNSLogin;
+import com.mvc.homeseek.auth.SnsValue;
 import com.mvc.homeseek.model.biz.MemberBiz;
 import com.mvc.homeseek.model.dto.MemberDto;
 
@@ -28,13 +38,36 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class MemberController {
 
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	@Inject
+	private SnsValue naverSns;
+	
+	@Inject
+	private SnsValue googleSns;
+	
+	@Inject
+	private GoogleConnectionFactory googleConnectionFactory;
+	
+	@Inject
+	private OAuth2Parameters googleOAuth2Parameters;
 
 	@Autowired
 	private MemberBiz memberBiz;
 
 	@RequestMapping("loginform.do")
-	public String loginForm() {
+	public String loginForm(Model model) {
 		logger.info("login.do");
+		SNSLogin snsLogin = new SNSLogin(naverSns);
+		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
+		
+//		SNSLogin googleLogin = new SNSLogin(googleSns);
+//		model.addAttribute("google_url", googleLogin.getGoogleAuthURL());
+		
+		/* 구글code 발행을 위한 URL 생성 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		model.addAttribute("google_url", url);
+		
 		return "login";
 	}
 
@@ -64,6 +97,50 @@ public class MemberController {
 		return map;
 
 	}
+	
+	/*
+	 * @RequestMapping(value = "/snslogin.do", method = RequestMethod.GET) public
+	 * void snslogin(Model model) throws Exception{ logger.info("snslogin.do");
+	 * 
+	 * }
+	 */
+	
+	@RequestMapping(value = "/homeseek/auth/{snsService}/callback",
+			method = { RequestMethod.GET, RequestMethod.POST})
+	public String snsLoginCallback(@PathVariable String snsService,
+			Model model, @RequestParam String code, HttpSession session) throws Exception {
+		
+		logger.info("snsLoginCallback: service={}", snsService);
+		SnsValue sns = null; 
+		if (StringUtils.equals("naver", snsService))
+			sns = naverSns;
+		else
+			sns = googleSns;
+		
+		// 1. code를 이용해서 access_token 받기
+		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
+		SNSLogin snsLogin = new SNSLogin(sns);
+		MemberDto snsUser = snsLogin.getUserProfile(code);
+		System.out.println("Profile>>" + snsUser);
+		
+		
+		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 컬럼 추가)
+		MemberDto user = memberBiz.getBySns(snsUser);
+		if(user ==null) {
+			model.addAttribute("result", "존재하지 않는 사용자입니다. 가입해 주세요.");
+			
+			//미존재시 가입 페이지로!!
+			
+			
+		}else {
+			model.addAttribute("result", user.getMember_name() +"님 반갑습니다.");
+		
+			// 4. 존재시 강제로그인, 미존재시 가입페이지로!!
+			session.setAttribute("member_id",user);
+		}
+
+		return "loginResult";
+	}	
 
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {

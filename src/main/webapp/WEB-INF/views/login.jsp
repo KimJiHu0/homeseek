@@ -49,6 +49,11 @@
                </tr>
             </table>
             
+            <div class = "text-center">
+            	<a href="${ naver_url }"><img width="200" src="${pageContext.request.contextPath}/resources/img/naver-login.png" alt="Naver Login"/></a>
+            	<a href="${ google_url }"><img width="200" src="${pageContext.request.contextPath}/resources/img/google-login.png" alt="Google Login"/></a>
+            </div>
+            
             <ul class="idpwlink">
                   <li><a href="#">아이디 찾기</a></li>
                   <li><a>  |  </a></li>
