@@ -36,5 +36,11 @@ public class MemberBizImpl implements MemberBiz {
 		return memberDao.checkId(member_id);
 		
 	}
+
+	@Override
+	public MemberDto getBySns(MemberDto snsUser) {
+		
+		return memberDao.getBySns(snsUser);
+	}
 }
 

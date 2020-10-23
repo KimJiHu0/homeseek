@@ -14,4 +14,6 @@ public interface MemberDao {
 	public MemberDto selectMemberById(String id);
 	// id 중복체크 검사
 	public int checkId(String member_id);
+	// sns멤버 정보를 DB에 가져오기
+	public MemberDto getBySns(MemberDto snsUser);
 }
