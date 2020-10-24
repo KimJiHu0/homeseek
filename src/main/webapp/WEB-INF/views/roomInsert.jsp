@@ -24,8 +24,10 @@
 <script>
 $(document).ready(function() {
 	  $('#summernote').summernote({
-			minHeight: 370,             // 최소 높이
-			maxHeight: 370,             // 최대 높이
+			/* minHeight: 370,             // 최소 높이
+			maxHeight: 370,  */            // 최대 높이
+			height: 500,
+			width: 800,
 			focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 			lang: "ko-KR",					// 한글 설정
 			placeholder: '내용을 입력해주세요.',	//placeholder 설정
@@ -45,20 +47,13 @@ $(document).ready(function() {
 	         fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
 	         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
 
-	         callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-					onImageUpload : function(files) {
-						uploadSummernoteImageFile(files[0],this);
-					},
-					onPaste: function (e) {
-						var clipboardData = e.originalEvent.clipboardData;
-						if (clipboardData && clipboardData.items && clipboardData.items.length) {
-							var item = clipboardData.items[0];
-							if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
-								e.preventDefault();
-							}
-						}
-					}
+	         callbacks: {	
+	        	 onImageUpload: function(files, editor, welEditable) {
+	                 for (var i = files.length - 1; i >= 0; i--) {
+	                   sendFile(files[i], this);
+	                 }
 				}
+	         }
 		});
 	});
      
@@ -89,95 +84,98 @@ $(document).ready(function() {
 <body>
 	<!-- header.jsp include -->
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
-	
 	<%
 		MemberDto memberDto = (MemberDto) (session.getAttribute("login"));
 	%>
-	
 	<section>
-	<h1> [insertRoom.do] 방올리기 페이지 </h1>	
-	<form action="insertres.do" method="POST">
-	<input type="hidden" name="room_id" value="${memberDto.getMember_id }">
-		<table border="1">
 	
-			<tr>
-				<th>매물이름</th>
-				<td><input type="text" name="room_name"></td>
-			</tr>
-			<tr>
-				<th>매물종류</th>
-				<td>
-					<select name="room_type">
+	<div id="title">
+		<h3>방 올리기</h3>
+	</div>
+	
+	<hr id="top_line">
+	
+	<form action="insertres.do" class="insert_form" method="POST">
+	<%-- <input type="hidden" name="room_id" value="${memberDto.getMember_id }"> --%>
+		
+	
+			
+				<label for="insert_roomname">매물이름</label>
+					<input type="text" name="room_name" id="insert_name">
+			
+
+			
+				<label for="insert_type">매물종류</label>
+					<select name="room_type" id="insert_roomtype">
 						<option value="1">월세</option>
 						<option value="2">전세</option>
 						<option value="3">매매</option>
 						<option value="4">반전세</option>
 						<option value="5">단기임대</option>
 					</select>				
-				</td>
-			</tr>
-			<tr>
-				<th>보증금</th>
-				<td><input type="text" name="room_deposit"></td>
-			</tr>
-			<tr>
-				<th>매물가격</th>
-				<td><input type="text" name="room_price"></td>
-			</tr>
-			<tr>
-				<th>매물면적</th>
-				<td><input type="text" name="room_extent" placeholder="단위 : 제곱미터"></td>
-			</tr>
-			<tr>
-				<th>매물주소</th>
-				<td><input type="text" name="room_addr" placeholder="도로명주소로 입력해주세요"></td>
-			</tr>
-			<tr>
-				<th>건물종류</th>
-				<td>
-					<select name="room_kind">
+				
+			
+				<label for="insert_deposit">보증금</label>
+					<input type="text" name="room_deposit" id="insert_deposit">
+			
+				
+				<label for="insert_price">매물가격</label>
+					<input type="text" name="room_price" id="insert_price">
+				
+			
+				<label for="insert_ext">매물면정</label>
+					<input type="text" name="room_extent" placeholder="단위 : 제곱미터" id="insert_ext">
+			
+		
+				<label for="insert_addr">매물주소</label>
+					<input type="text" name="room_addr" placeholder="도로명주소로 입력해주세요" id="insert_addr">
+			
+			
+				<label for="insert_kind">매물 종류</label>
+					<select name="room_kind" id="insert_kind">
 						<option value="1">아파트</option>
 						<option value="2">빌라</option>
 						<option value="3">주택</option>
 						<option value="4">오피스텔</option>
 						<option value="5">상가사무실</option>
 					</select>
-				</td>  
-			</tr>
-			<tr>
-				<th>방 구조</th>
-				<td>
-					<select name="room_structure">
+				
+			
+				<label for="insert_structure">방 구조</label>
+					<select name="room_structure" id="insert_structure">
 						<option value="1">방 1개</option>
 						<option value="2">방 2개</option>
 						<option value="3">방 3개이상</option>
 					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>방 층수</th>
-				<td><input type="text" name="room_floor"></td>
-			</tr>
-			<tr>
-				<th>준공 날짜</th>
-				<td><input type="date" name="room_cpdate"></td>
-			</tr>
-			<tr>
-				<th>입주 가능일</th>
-				<td><input type="date" name="room_avdate"></td>
-			</tr>
-			<tr>
-				<th>방 상세설명</th>
-				<td><textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
+				
+			
+				<label for="insert_floor">방 층수</label>
+				<input type="text" name="room_floor" id="insert_floor">
+				
+			
+				<label for="insert_cpdate">준공 날짜</label>
+				<input type="date" name="room_cpdate" id="insert_cpdate">
+				
+			
+				<label>입주 가능일</label>
+				<input type="date" name="room_avdate" id="insert_avdate">
+				
+			
+				<div id="insert_detail">
+					<textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea>
+				</div>
+			
+				<div class="control">
 					<input type="submit" value="작성">
 					<input type="button" value="취소" onclick="location.href='main.do'">
-				</td>
-			</tr>
-		</table>
+				</div>
+		
 	</form>
 	</section>
+	
+	<hr id="botton_line">
+	<!-- footer.jsp -->
+	<%@ include file="form/footer.jsp"%>
+	
 </body>
 </html>

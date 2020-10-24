@@ -47,7 +47,7 @@
 
          	
             <li><a class="headeratag" href="listroom.do">전체 방 조회</a></li>
-            <li><a class="headeratag" href="insertroom.do?member_id=${dto.member_id}">방 올리기</a></li> 
+            <li><a class="headeratag" href="insertroom.do">방 올리기</a></li> 
             
             <li><div class="dropdown">
                  <button class="dropbtn">게시판</button>

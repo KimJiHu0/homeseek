@@ -20,7 +20,6 @@ public class ReportDaoImpl implements ReportDao {
 	public int insertReport(ReportDto dto) {
 		
 		logger.info("[ ReportDao ] insertReport");
-		
 		int res = 0;
 		
 		try {

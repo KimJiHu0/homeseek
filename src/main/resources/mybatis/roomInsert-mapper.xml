@@ -7,7 +7,7 @@
 		VALUES(
 			ROOM_NO_SEQ.NEXTVAL, 
 			#{room_name}, 
-			"사진", 
+			'사진', 
 			#{room_type}, 
 			#{room_deposit},
 			#{room_price}, 

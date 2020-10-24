@@ -23,7 +23,7 @@ public class RoomDaoImpl implements RoomDao {
 		int res = 0;
 		
 		try {
-			res = sqlSession.insert(NAMESPACE+"selectRoomInsert");
+			res = sqlSession.insert(NAMESPACE+"selectRoomInsert", room_dto);
 		} catch (Exception e) {
 			logger.info("[ERROR] : selectRoomInsert");
 			e.printStackTrace();

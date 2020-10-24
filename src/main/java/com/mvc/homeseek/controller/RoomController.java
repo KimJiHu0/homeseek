@@ -80,7 +80,7 @@ public class RoomController {
 		if (res > 0) {
 			logger.info("입력성공");
 		}		
-		return "roomInsertRes";
+		return "redirect:/insertroom.do";
 		
 	}
 	
