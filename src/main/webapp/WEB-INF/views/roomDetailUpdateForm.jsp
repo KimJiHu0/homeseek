@@ -9,24 +9,19 @@
 <meta charset="UTF-8">
 <title>homeseek : 매물 수정하기</title>
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
 <!-- include summernote css/js-->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
+
 <!-- 도로명주소API JS -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet"
@@ -152,10 +147,6 @@
 						name="room_name"></td>
 				</tr>
 				<tr>
-					<th>매물사진</th>
-					<td><input type="file" name="room_photo"></td>
-				</tr>
-				<tr>
 					<th>매물종류</th>
 					<td><select id="room_type" name="room_type">
 							<option value="1">월세</option>
@@ -223,16 +214,6 @@
 					<th>입주 가능일</th>
 					<td><input type="date" value="${room.room_avdate}"
 						id="room_avdate" name="room_avdate"></td>
-				</tr>
-				<tr>
-					<th>위도</th>
-					<td><input type="text" value="${room.room_longi }"
-						name="room_longi"></td>
-				</tr>
-				<tr>
-					<th>경도</th>
-					<td><input type="text" value="${room.room_lati }"
-						name="room_lati"></td>
 				</tr>
 				<tr>
 					<th>방 상세설명</th>

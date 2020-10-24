@@ -29,8 +29,6 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("/sendsms.do")||
 				request.getSession().getAttribute("login") != null ||
 				request.getRequestURI().contains("listroom.do") ||
-				request.getRequestURI().contains("detail") ||
-				request.getRequestURI().contains("update") ||
 				request.getRequestURI().contains("/homeseek/auth/{snsService}/callback") ||
 				request.getRequestURI().contains("reportmember.do") ||
 				request.getRequestURI().contains("insertres.do")||

@@ -2,6 +2,10 @@
 section{
 	padding-top : 100px;
 }
+
+.header{
+	background-color : white !important;
+}
 /* 첫번째 container css */
 #firstcontainer{
 	display : flex;
@@ -139,6 +143,7 @@ a>img {
 	width : 62.7%;
 	height : 400px;
 	margin-left : 50px;
+	padding-top : 50px;
 }
 
 /* 방정보 담는 큰 container */

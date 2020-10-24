@@ -22,7 +22,7 @@
 	/* roomDetail에서 신고버튼을 누르면 실행되는 함수 */
 	function reportUser(){
 		var room_id = "${member.member_id}";
-		open("reportmember.do?room_id=" + room_id, "", "width=750, height=650");
+		open("reportmember.do?room_id=" + room_id, "", "width=750, height=750");
 	}
 </script>
 </head>
@@ -161,7 +161,7 @@
 		
 		<div id="roommap"></div>
 		<!-- kakaoMap을 쓰기위한 스크립트 -->
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">
 		//-------------------------지도쓰기-----------------------//
 		// roommap이라는 div를 container이라는 변수에 담아주기. [실제로 map이 담길 div]
@@ -182,6 +182,61 @@
 		// 마커가 표시될 위치${room.room_longi } / ${room.room_lati }
 		var markerPosition = new kakao.maps.LatLng($("#room_longi").val(), $("#room_lati").val());
 		var imgSrc = "resources/img/pin.png",
+			imgSize = new kakao.maps.Size(64,69),
+			imgOption = {offset : new kakao.maps.Point(27,69)};
+		
+		var markerImg = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
+		
+		// 마커 생성
+		var marker1 = new kakao.maps.Marker({
+			position : markerPosition,
+			image : markerImg
+		});
+		
+		// 마커가 지도 위에 표기되도록 설정
+		var infowindow = new kakao.maps.InfoWindow({zindex:1});
+		// 주소를 위도와 경도로 변환시켜주는 객체
+		var geocoder = new kakao.maps.services.Geocoder();
+		// roadname은 주소를 뜻하는데 room_addr은 지번 혹은 도로명주소를 받아오기 때문에 설정
+		var roadname = '${room.room_addr}';
+		
+		// 주소로 좌표를 검색
+		geocoder.addressSearch(roadname, function(result, status){
+			// 정상적으로 검색이 완료되면
+			if(status === kakao.maps.services.Status.OK){
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				
+				var imgSrc = "resources/img/pin.png",
+				imgSize = new kakao.maps.Size(64,69),
+				imgOption = {offset : new kakao.maps.Point(27,69)};
+				
+				var markerImg = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
+				
+				// 결과값으로 받은 위치를 마커로 표시
+				var marker = new kakao.maps.Marker({
+					position : coords,
+					image : markerImg,
+					map:map
+				});
+				
+				
+				
+				
+				// 지도의 중심을 결과값으로 받은 위치로 이동
+				map.setCenter(coords);
+			} else {
+				// 정상적으로 검색이 되지 않는다면
+				marker1.setMap(map);
+				var infowindow = new kakao.maps.InfoWindow({
+					content : '<div id="mapcontent" style="text-align:center; padding : 6px 0; color : black;">Here</div>'
+				});
+				infowindow.open(map, marker1);
+			}
+		});
+		
+		$(function(){
+			$("#mapcontent").parent().parent().attr('border-radius', '20px');
+		})
 		</script>
 		
 		<!-- third container -->
@@ -192,10 +247,6 @@
 						<tr>
 							<th>방 이름</th>
 							<td>${room.room_name }</td>
-						</tr>
-						<tr>
-							<th>방 사진</th>
-							<td>${room.room_photo }</td>
 						</tr>
 						<tr>
 							<th>방 면적</th>
@@ -266,25 +317,32 @@
 							<td>${room.room_avdate }</td>
 						</tr>
 						<tr>
-							<th>경도</th>
-							<td>${room.room_longi }</td>
-						</tr>
-						<tr>
-							<th>위도</th>
-							<td>${room.room_lati }</td>
-						</tr>
-						<tr>
 							<th>방 상세설명</th>
 							<td>
 								<textarea id="detailcontent" rows="10" cols="60" readonly="readonly">${room.room_detail }</textarea>
 							</td>
 						</tr>
+						<%
+							// 세션에 로그인되어있는 id를 가지고 수정버튼을 보여줄지 말지 선택
+							
+							// 매물올린사람
+							String uploadid = room.getRoom_id();
+							
+							// 세션에 저장되어있는 사람
+							MemberDto user = (MemberDto) request.getSession().getAttribute("login");
+							// session에 담겨있는 값. 즉, id를 따로 담아준다.
+							String useingid = user.getMember_id();
+							if(uploadid.equals(useingid)){
+						%>
 						<tr>
 							<td colspan="2">
 								<input type="button" value="수정" onclick="location.href='updateroom.do?room_no=${room.room_no}'"/>
 								<input type="button" value="삭제" onclick="location.href='deleteroom.do?room_no=${room.room_no}'"/>
 							</td>
 						</tr>
+						<%
+							}
+						%>
 					</table>
 				</div>
 			</div>

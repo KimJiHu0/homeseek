@@ -45,11 +45,13 @@ public class RoomDetailController {
 		room.setRoom_cpdate(sub_room_cpdate);
 		room.setRoom_avdate(sub_room_avdate);
 		
+		// member = 매물 올린사람
 		MemberDto member = memberbiz.selectMemberById(id);
 		model.addAttribute("room", room);
 		// roomDetail.jsp에서 room을 가져와 쓰기 위한 코드
 		request.setAttribute("room", room);
 		model.addAttribute("member", member);
+		request.setAttribute("member", member);
 		return "roomDetail";
 	}
 	
