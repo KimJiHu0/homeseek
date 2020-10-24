@@ -16,6 +16,28 @@
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reportMember.css" type="text/css" />
+<!-- summernote -->
+<script>
+$(document).ready(function() {
+     $('#summernote').summernote({
+           placeholder: 'content',
+           minHeight: 370,
+           maxHeight: 370,
+           focus: true, 
+           lang : 'ko-KR'
+     });              
+     
+     $("#chk").click(function(){
+          if($("#chk").prop("checked")){
+             $("#chk1").val("Y");
+             console.log($("#chk1").val());
+          } else {
+             $("#chk1").val("N");
+             console.log($("#chk1").val());
+          }
+       });
+   });
+</script>
 </head>
 <body>
 	<div id="firstbox">
