@@ -178,6 +178,10 @@
 		
 		// 지도 생성 및 객체 리턴
 		var map = new kakao.maps.Map(container, options);
+		
+		// 마커가 표시될 위치${room.room_longi } / ${room.room_lati }
+		var markerPosition = new kakao.maps.LatLng($("#room_longi").val(), $("#room_lati").val());
+		var imgSrc = "resources/img/pin.png",
 		</script>
 		
 		<!-- third container -->
