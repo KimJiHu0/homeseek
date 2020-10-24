@@ -9,12 +9,8 @@
 <meta charset="UTF-8">
 <title>homeseek : 매물 상세보기</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/roomDetail.css"
-	type="text/css" />
-<script
-	src="${pageContext.request.contextPath}/resources/js/roomDetail.js"
-	type="text/javascript"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomDetail.css" type="text/css" />
+<script src="${pageContext.request.contextPath}/resources/js/roomDetail.js" type="text/javascript"></script>
 	
 <!-- alert띄우기 위한 스크립트 -->
 <script type="text/javascript">
@@ -26,7 +22,7 @@
 	/* roomDetail에서 신고버튼을 누르면 실행되는 함수 */
 	function reportUser(){
 		var room_id = "${member.member_id}";
-		open("reportmember.do?room_id=" + room_id, "", "width=700, height=600");
+		open("reportmember.do?room_id=" + room_id, "", "width=750, height=650");
 	}
 </script>
 </head>
@@ -48,7 +44,6 @@
 						<img alt="d" src="resources/img/arrowright.png" id="rightarrow" class="arrow">
 					</a>
 				</div>
-				
 			</div>
 
 			<!-- 방 올린 유저 정보를 담는 큰 div -->
@@ -163,6 +158,27 @@
 				추천 알고리즘 사용하기
 			</span>
 		</div>
+		
+		<div id="roommap"></div>
+		<!-- kakaoMap을 쓰기위한 스크립트 -->
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202"></script>
+		<script type="text/javascript">
+		//-------------------------지도쓰기-----------------------//
+		// roommap이라는 div를 container이라는 변수에 담아주기. [실제로 map이 담길 div]
+		var container = document.getElementById("roommap");
+		// 지도를 생성할 때 필요한 기본 옵션
+		var options = {
+			// 지도의 중심좌표
+			// LatLng : center에 넣을 위도와 경도를 생성해주는 클래스
+			// 위도(latitude) / 경도(longitude)
+			center : new kakao.maps.LatLng(33.450701, 126.570667),
+			// 지도의 레벨(확대, 축소 정도)
+			level : 3
+		}
+		
+		// 지도 생성 및 객체 리턴
+		var map = new kakao.maps.Map(container, options);
+		</script>
 		
 		<!-- third container -->
 		<div id="thirdcontainer">

@@ -134,6 +134,13 @@ a>img {
 	background-color : gray;
 }
 
+/* map담을 div css */
+#roommap{
+	width : 62.7%;
+	height : 400px;
+	margin-left : 50px;
+}
+
 /* 방정보 담는 큰 container */
 #thirdcontainer{
 	display:flex;
