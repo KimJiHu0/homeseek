@@ -15,10 +15,4 @@ public interface RoomListDao {
 	public int totalCountRoomList();
  
 	
-	
-	
-	
-	// 지워야돼
-	public List<RoomDto> selectRoomlist();
-	
 }

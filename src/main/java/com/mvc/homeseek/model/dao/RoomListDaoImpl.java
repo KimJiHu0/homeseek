@@ -54,18 +54,6 @@ public class RoomListDaoImpl implements RoomListDao {
 	}
 	
 	
-	@Override  //이거 지워야돼
-	public List<RoomDto> selectRoomlist(){
-		List<RoomDto> list = null;
-		
-		try {
-			list = sqlSession.selectList(NAMESPACE + "selectRoomList");
-		} catch (Exception e) {
-			logger.info("[ Error ] selectRoomList");
-			e.printStackTrace();
-		}
-		return list;
-	}
 
 
 

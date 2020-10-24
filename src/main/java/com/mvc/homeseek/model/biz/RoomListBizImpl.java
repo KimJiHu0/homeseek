@@ -33,11 +33,6 @@ public class RoomListBizImpl implements RoomListBiz {
 		return map;
 	}
 
-	// 지워야돼
-	@Override
-	public List<RoomDto> selectRoomList() {
-		return roomlistdao.selectRoomlist();
-	}
 
 
 
