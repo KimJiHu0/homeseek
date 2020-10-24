@@ -90,10 +90,14 @@ $(document).ready(function() {
 	<!-- header.jsp include -->
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 	
+	<%
+		MemberDto memberDto = (MemberDto) (session.getAttribute("login"));
+	%>
+	
 	<section>
 	<h1> [insertRoom.do] 방올리기 페이지 </h1>	
 	<form action="insertres.do" method="POST">
-	<input type="hidden" name="room_id" value="${dto.member_id }">
+	<input type="hidden" name="room_id" value="${memberDto.getMember_id }">
 		<table border="1">
 	
 			<tr>
