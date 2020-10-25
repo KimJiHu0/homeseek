@@ -6,52 +6,149 @@ section{
 	height: auto;
 }
 
-
 section #top_title {
 	width : 100%;
 	max-width : 1200px;
 	height: auto;
 	margin: 0 auto;
-	border-bottom: solid 1px;
 }
 
 .form_div {
 	width: 100%;
-	max-width : 1200px;
-	height: auto;
+	max-width : 1100px;
+	height: 1500px;
 	margin : 0 auto;
+	padding-right: 50px;
+	padding-left: 50px;
 }
 
+
+/* input 구간 나눴음 */
+
+/* --------------- div1 매물이름, 매물종류 --------------- */
 #insert_div1{
-	border-bottom: solid 1px;
+	margin: 0 auto;
+	height: 50px;
+	border-bottom: 1px solid;
 	display: block;
+	padding:5px;
 }
 
+
+#insert_div1 label{
+	width: 10%;
+	max-width:75px;
+	padding-left:10px;
+}
+
+#insert_div1 input{
+	width: 15%;
+	max-width:150px;
+}
+
+#insert_div1 select{
+	width: 15%;
+	max-width:150px;
+}
+
+
+/* --------------- div2 보증금, 매물가격, 매물면적 --------------- */
 #insert_div2{
-	border-bottom: solid 1px;
+	height: 50px;
+	margin: 0 auto;
+	border-bottom: 1px solid;
 	display: block;
+	padding:5px;
 }
 
+#insert_div2 label{
+	width: 10%;
+	max-width:75px;
+	padding-left:10px;
+}
+
+#insert_div2 input{
+	width: 15%;
+	max-width:150px;
+}
+
+/* --------------- div3 주소(kakao map) --------------- */
 #insert_div3{
-	border-bottom: solid 1px;
+	height: 400px;
+	padding: 10px;
+	margin: 0 auto;
+	border-bottom: 1px solid;
 	display: block;
+	
 }
 
+#insert_div3 label{
+	width: 10%;
+	padding-left:10px;
+	max-width:75px;
+	padding-left:10px;
+}
+
+#insert_div3 input{
+	width: 50%;
+	max-width: 500px;
+}
+
+/* --------------- div4 건물종류, 방 구조, 방 층수 --------------- */
 #insert_div4{
-	border-bottom: solid 1px;
+	height: 50px;
+	padding: 5px;
+	margin: 0 auto;
+	border-bottom: 1px solid;
 	display: block;
 }
+
+#insert_div4 label{
+	width: 10%;
+	max-width:75px;
+	padding-left:10px;
+}
+
+#insert_div4 input{
+	width: 15%;
+	max-width:150px;
+}
+
+#insert_div4 select{
+	width: 15%;
+	max-width:150px;
+}
+
+/* --------------- div5 준공날짜, 입주가능일 --------------- */
 #insert_div5{
-	border-bottom: solid 1px;
+	height: 50px;
+	padding: 5px;
+	margin: 0 auto;
+	border-bottom: 1px solid;
 	display: block;
 }
 
+#insert_div5 label{
+	width: 10%;
+	max-width:75px;
+	padding-left:10px;
+}
 
+#insert_div5 input{
+	width: 15%;
+	max-width:150px;
+}
 
+#insert_div5 select{
+	width: 15%;
+	max-width:150px;
+}
 
-
-
-
+/*
+#insert_div5 #insert_datail .summernote {
+	display : block;
+} 
+*/
 
 
 
