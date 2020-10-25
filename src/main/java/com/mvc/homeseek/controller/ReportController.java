@@ -57,26 +57,20 @@ public class ReportController {
 	}
 	
 	@RequestMapping("reportmemberres.do")
-	public String reportMemberRes(ReportDto report_dto, RedirectAttributes msg) {
+	public void reportMemberRes(ReportDto report_dto, RedirectAttributes msg) {
 		logger.info("[ ReportController ] ReportmMember");
 		
-		System.out.println("----------------------------");
-		System.out.println(report_dto.getReport_senid());
-		System.out.println(report_dto.getReport_reid());
-		System.out.println(report_dto.getReport_title());
-		System.out.println(report_dto.getReport_content());
-		System.out.println("============================");
-		
 		int res = reportbiz.insertReport(report_dto);
+		// report_dto에 신고받는 id인 report_reid를 뽑아서 String에 담아준다.
+		// 그리고 
 		
 		if(res > 0) {
 			// 신고에 성공하면 member의 enabled를 R로 update
 			memberbiz.updateMemberEnabled(report_dto.getReport_reid());
 			msg.addFlashAttribute("msg", "신고가 처리되었습니다.");
-			return "redirect:listroom.do";
+			// 그 후에 DETAIL로 가야함. 그러기 위해서는 ROOM_NO가 필요함
 		} else {
 			msg.addFlashAttribute("msg", "신고가 실패되었습니다.");
-			return "redirect:listroom.do";
 		}
 	}
 

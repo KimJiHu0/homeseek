@@ -24,8 +24,12 @@ $(document).ready(function() {
            minHeight: 370,
            maxHeight: 370,
            focus: true, 
-           lang : 'ko-KR'
+           lang : 'ko-KR',
      });
+   });
+   
+   $("#reportform").on("submit", function(){
+	  self.close(); 
    });
 </script>
 </head>
@@ -34,7 +38,7 @@ $(document).ready(function() {
 		<p class="iconbox" id="icon">HOME<span class="iconbox" id="iconcolor">SEE</span>K</p>
 	</div>
 	<h1>신고하기</h1>
-	<form action="reportmemberres.do" method="post">
+	<form action="reportmemberres.do" method="post" id="reportform">
 		<table border="1">
 			<tr>
 				<th class="title">신고하는이름</th>

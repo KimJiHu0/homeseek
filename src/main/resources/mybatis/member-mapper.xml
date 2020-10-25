@@ -48,7 +48,7 @@
 	<!-- 매물 올린 사용자의 정보를 추출하기위한 mapper -->
 	<select id="selectMemberById" resultType="MemberDto"
 		parameterType="String">
-		SELECT MEMBER_ID, MEMBER_NAME, MEMBER_EMAIL,
+		SELECT MEMBER_ID, MEMBER_NAME,
 		MEMBER_PHONE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{id}
