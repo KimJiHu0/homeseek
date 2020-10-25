@@ -2,11 +2,13 @@ section{
 	padding-top : 100px;
 }
 
- .insert_form #summernote{
+.insert_form #summernote{
 	position:relative;
 	left:50%;
 }
 
 .insert_form {
-	background:#000;
+	width:80%;
+	margin:0;
+	
 }
