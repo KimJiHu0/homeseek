@@ -19,13 +19,20 @@
 	MemberDto dto = (MemberDto)request.getSession().getAttribute("login"); 
 %>
    <header> 
-      <div class="header">
+   <c:choose>
+      	<c:when test="${pageContext.request.requestURI eq '/homeseek/'}">
+			<div class="mainheader">
+      	</c:when> 
+      	<c:when test="${main eq 'main'}">
+      		<div class="mainheader">
+      	</c:when >
+      	<c:otherwise>
+	      	<div class="header">
+      	</c:otherwise>
+   </c:choose>
          <div class="logo">
             <a class="headeratag" href="main.do">HOME<span>SEE</span>K</a>
          </div> 
-         
-      
-       
 
 <% if(dto == null) { %>         
          <ul class="nav">
@@ -42,7 +49,9 @@
          	<c:otherwise>
 	         	<li class="searchbox">
 	         		<div class="search">
-	         			<input type="text" name="search" placeholder="검색어를 입력해주세요, 근데 아직 안됨">
+	         			<form action="listroom.do" class="navsearchform">
+	         				<input type="text" id="navsearchtxt" name="searchContent" value="${searchContent }" placeholder="지역,지하철명,대학교">
+	         			</form>
 	         		</div>
 	         	</li>
          	</c:otherwise>
