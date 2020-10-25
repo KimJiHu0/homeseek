@@ -3,4 +3,12 @@ window.onload = function() {
 		$(".nav").width("830px");
 		$(".nav2").width("940px");
 	}
+	
+	$('#navsearchtxt').keydown(function(e){ /*엔터누르면 검색되도록*/
+		if(e.keyCode == 13){
+			$('.navsearchform').submit();
+		}
+	});
+	
+	
 }
