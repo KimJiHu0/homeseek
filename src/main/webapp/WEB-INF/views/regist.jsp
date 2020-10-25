@@ -16,7 +16,7 @@
 	<form action="registres.do" method="post">
 			<div>
 				<label for="member_id">아이디</label>
-					<input type="text" id= "member_id" name="member_id" size="30" placeholder="EX : hwangingyu@homeseek.com"/>
+					<input type="text" id= "member_id" name="member_id" size="30" placeholder="EX : hwangingyu228@homeseek.com"/>
 				<div class="check_font" id="id_check"></div>
 			</div>
 			<div>
