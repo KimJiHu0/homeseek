@@ -5,7 +5,7 @@
 	<!-- 로그인 -->
 	<select id="login" parameterType="MemberDto"
 		resultType="MemberDto">
-		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL,
+		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME,
 		MEMBER_PHONE, MEMBER_ENABLED, MEMBER_ROLE
 		FROM MEMBER
 		WHERE MEMBER_ID =
@@ -33,7 +33,7 @@
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="MemberDto">
 		INSERT INTO MEMBER
-		VALUES(#{member_id}, #{member_pw}, #{member_name}, #{member_email},
+		VALUES(#{member_id}, #{member_pw}, #{member_name},
 		#{member_phone}, 'N', 'N')
 
 	</insert>

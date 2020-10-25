@@ -16,7 +16,7 @@
 	<form action="registres.do" method="post">
 			<div>
 				<label for="member_id">아이디</label>
-					<input type="text" id= "member_id" name="member_id" size="30" placeholder="소문자,숫자 조합(4~12)"/>
+					<input type="text" id= "member_id" name="member_id" size="30" placeholder="EX : hwangingyu228@homeseek.com"/>
 				<div class="check_font" id="id_check"></div>
 			</div>
 			<div>
@@ -33,11 +33,11 @@
 				<label for="member_name">이름</label>
 					<input type="text" name="member_name" id="member_name" size="30" placeholder="NAME"/>
 			</div>
-			<div>
+			<!--  <div>
 				<label for="member_email">E-mail</label>
 					<input type="text" name="member_email" id="member_email" size="30" placeholder="EX : hwangingyu@gmail.com"/>
 					<div class="check_font" id="emailCheck"></div>
-			</div>
+			</div>-->
 			<div>
 				<label for="member_phone">Phone</label>
 					<input type="text" name="member_phone" id="member_phone" size="30" placeholder="010-0000-0000"/>

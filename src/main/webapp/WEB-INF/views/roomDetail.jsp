@@ -130,10 +130,10 @@
 					%>
 					
 					<div class="userinfocontent">
-						<span class="leftb">${member.member_name }(${member.member_id })</span><span class="rightb"><a href="javascript:reportUser()" id="reportbtn">신고</a> | <a href="#" id="commentbtn">쪽지</a></span>
+						<span class="leftb">ID / NAME : </span><span class="rightb">${member.member_name }(${member.member_id })</span>
 					</div>
 					<div class="userinfocontent">
-						<span class="leftb">E-Mail : </span><span class="rightb">${member.member_email }</span>
+						<span class="leftb"><a href="javascript:reportUser()" id="reportbtn">신고</a></span><span class="rightb"><a href="#" id="commentbtn">쪽지</a></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">Phone : </span><span class="rightb">${member.member_phone }</span>

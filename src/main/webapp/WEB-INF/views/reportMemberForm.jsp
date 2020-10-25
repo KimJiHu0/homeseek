@@ -20,22 +20,12 @@
 <script>
 $(document).ready(function() {
      $('#summernote').summernote({
-           placeholder: 'content',
+           placeholder: '신고 내용을 작성해주세요.',
            minHeight: 370,
            maxHeight: 370,
            focus: true, 
            lang : 'ko-KR'
-     });              
-     
-     $("#chk").click(function(){
-          if($("#chk").prop("checked")){
-             $("#chk1").val("Y");
-             console.log($("#chk1").val());
-          } else {
-             $("#chk1").val("N");
-             console.log($("#chk1").val());
-          }
-       });
+     });
    });
 </script>
 </head>
@@ -47,28 +37,28 @@ $(document).ready(function() {
 	<form action="reportmemberres.do" method="post">
 		<table border="1">
 			<tr>
-				<th>신고하는이름</th>
+				<th class="title">신고하는이름</th>
 				<td>${report_senuser.member_name }</td>
 			</tr>
 			<tr>
-				<th>신고하는아이디</th>
+				<th class="title">신고하는아이디</th>
 				<td><input type="text" value="${report_senuser.member_id }" readonly="readonly" name="report_senid"></td>
 			</tr>
 			<tr>
-				<th>신고받는이름</th>
+				<th class="title">신고받는이름</th>
 				<td>${report_reuser.member_name }</td>
 			</tr>
 			<tr>
-				<th>신고받는아이디</th>
+				<th class="title">신고받는아이디</th>
 				<td><input type="text" value="${report_reuser.member_id }" readonly="readonly" name="report_reid"></td>
 			</tr>
 			<tr>
-				<th>신고사유</th>
-				<td><input type="text" placeholder="신고 사유를 작성해주세요." name="report_title"/></td>
+				<th class="title">신고사유</th>
+				<td><input type="text" name="report_title" placeholder="신고 사유을 작성해주세요."/></td>
 			</tr>
 			<tr>
-				<th>신고내용</th>
-				<td><textarea rows="10" cols="60" id="summernote" name="report_content" placeholder="신고 내용을 작성해주세요."></textarea></td>
+				<th class="title">신고내용</th>
+				<td><textarea rows="10" cols="60" id="summernote" name="report_content"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">

@@ -1,11 +1,9 @@
 //모든 공백 체크 정규식
 	var empJ = /\s/g;
 	//아이디 정규식
-	var idJ = /^[a-z0-9]{4,12}$/;
+	var idJ =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	// 비밀번호 정규식
 	var pwJ = /^[a-z0-9]{4,12}$/; 
-	// 이메일 검사 정규식
-	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	// 휴대폰 번호 정규식
 	var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
 
@@ -39,7 +37,7 @@ $(function(){
 	         }
 	    })
     	} else {
-    		$('#id_check').text('숫자 or 문자로만  4~12자리 입력');
+    		$('#id_check').text('e-mail형식으로 입력해주세요');
     		$('#id_check').css('color', 'red');
     		$('#member_id').val('');
     		$('#member_id').focus();
@@ -53,6 +51,8 @@ $(function(){
 		} else {
 			$('#memberPw').text('숫자 or 문자로만 4~12자리 입력');
 			$('#memberPw').css('color', 'red');
+			$('#member_pw').val('');
+			$('#member_pw').focus()
 		}
      })
      //비밀번호 확인 관련
@@ -70,14 +70,15 @@ $(function(){
     		$("#pwCheck").css("color", "blue");
 	    }
 	})
-		$("#member_email").blur(function() {
+		/*$("#member_email").blur(function() {
 		if (mailJ.test($(this).val())) {
 				$("#emailCheck").text('사용 가능');
+				$('#emailCheck').css('color', 'blue');
 		} else {
 			$('#emailCheck').text('이메일 양식에 맞춰주세요');
 			$('#emailCheck').css('color', 'red');
 		}
-	});
+	});*/
   
 	
 	//본인인증 번호 보내기

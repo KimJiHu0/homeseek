@@ -21,6 +21,17 @@
 
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
+<script>
+$(document).ready(function() {
+     $('#summernote').summernote({
+           placeholder: '신고 내용을 작성해주세요.',
+           minHeight: 370,
+           maxHeight: 370,
+           focus: true, 
+           lang : 'ko-KR'
+     });
+   });
+</script>
 
 <!-- 도로명주소API JS -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -28,26 +39,6 @@
 	href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css"
 	type="text/css" />
 <script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			placeholder : 'content',
-			minHeight : 370,
-			maxHeight : 370,
-			focus : true,
-			lang : 'ko-KR'
-		});
-
-		$("#chk").click(function() {
-			if ($("#chk").prop("checked")) {
-				$("#chk1").val("Y");
-				console.log($("#chk1").val());
-			} else {
-				$("#chk1").val("N");
-				console.log($("#chk1").val());
-			}
-		});
-	});
-
 	// 도로주소명API스크립트
 	function addrcheck() {
 		new daum.Postcode({
@@ -217,13 +208,14 @@
 				</tr>
 				<tr>
 					<th>방 상세설명</th>
-					<td><textarea rows="10" cols="60" id="summernote"
-							name="room_detail">${room.room_detail }</textarea></td>
+					<td>
+						<textarea rows="10" cols="60" id="summernote" name="room_detail">${room.room_detail }</textarea>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="right"><input type="submit" value="수정">
-						<input type="button" value="취소"
-						onclick="location.href='detailroom.do?room_no=${room.room_no }'">
+					<td colspan="2" align="right">
+						<input type="submit" value="수정">
+						<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
 					</td>
 				</tr>
 			</table>
