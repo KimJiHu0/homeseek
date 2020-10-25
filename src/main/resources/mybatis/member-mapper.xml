@@ -33,7 +33,7 @@
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="MemberDto">
 		INSERT INTO MEMBER
-		VALUES(#{member_id}, #{member_pw}, #{member_name}, #{member_email},
+		VALUES(#{member_id}, #{member_pw}, #{member_name},
 		#{member_phone}, 'N', 'N')
 
 	</insert>
