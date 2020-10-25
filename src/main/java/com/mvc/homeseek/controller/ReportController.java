@@ -61,8 +61,6 @@ public class ReportController {
 		logger.info("[ ReportController ] ReportmMember");
 		
 		int res = reportbiz.insertReport(report_dto);
-		// report_dto에 신고받는 id인 report_reid를 뽑아서 String에 담아준다.
-		// 그리고 
 		
 		if(res > 0) {
 			// 신고에 성공하면 member의 enabled를 R로 update

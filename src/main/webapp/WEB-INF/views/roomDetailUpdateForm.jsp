@@ -8,120 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 매물 수정하기</title>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-
-<!-- include summernote css/js-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
-
-<!-- include summernote-ko-KR -->
-<script src="/resources/js/summernote-ko-KR.js"></script>
-<script>
-$(document).ready(function() {
-     $('#summernote').summernote({
-           placeholder: '신고 내용을 작성해주세요.',
-           minHeight: 370,
-           maxHeight: 370,
-           focus: true, 
-           lang : 'ko-KR'
-     });
-   });
-</script>
-
-<!-- 도로명주소API JS -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css"
-	type="text/css" />
-<script>
-	// 도로주소명API스크립트
-	function addrcheck() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-
-				// 주소 변수
-				var addr = '';
-
-				// 사용자가 선택한 주소가 도로명주소일 때
-				if (data.userSelectedType === 'R') {
-					addr = data.roadAddress;
-				} else {
-					// 사용자가 선택한 주소가 지번주소일 때 
-					addr = data.jibunAddress;
-				}
-			$("[name=room_addr]").val(addr);
-			}
-		
-		}).open();
-	}
-</script>
-
-<script type="text/javascript">
-	// 매물 거래 종류를 선언 => 전세,월세,매매,반전세,단기임대
-	var room_type = "${room.room_type}";
-	// 매물 종류 => 아파트, 빌라, 주택, 오피스텔, 상가사무실
-	var room_kind = "${room.room_kind}";
-	// 매물 방 구조 => 방1개, 방2개, 방3개 이상
-	var room_structure = "${room.room_structure}";
-
-	$(
-			function() {
-
-				// 매물 종류 selected 조건문
-				// room_type가 1 = 월세 / 2 = 전세 / 3 = 매매 / 4 = 반전세 / 5 = 단기임대 
-				if (room_type == 1) {
-					$("#room_type option[value=1]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 2) {
-					$("#room_type option[value=2]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 3) {
-					$("#room_type option[value=3]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 4) {
-					$("#room_type option[value=4]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 5) {
-					$("#room_type option[value=5]")
-							.prop('selected', 'selected').change();
-				}
-				// 매물 종류 selected 조건문
-
-				if (room_kind == 1) {
-					$("#room_kind option[value=1]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 2) {
-					$("#room_kind option[value=2]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 3) {
-					$("#room_kind option[value=3]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 4) {
-					$("#room_kind option[value=4]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 5) {
-					$("#room_kind option[value=5]")
-							.prop('selected', 'selected').change();
-				}
-				// 매물 방 구조 selected 조건문
-				if (room_structure == 1) {
-					$("#room_structure option[value=1]").prop('selected',
-							'selected').change();
-				} else if (room_structure == 2) {
-					$("#room_structure option[value=2]").prop('selected',
-							'selected').change();
-				} else if (room_structure == 3) {
-					$("#room_structure option[value=3]").prop('selected',
-							'selected').change();
-				}
-			})
-</script>
-
 </head>
 <body>
 	<!-- header.jsp include -->
@@ -209,7 +95,7 @@ $(document).ready(function() {
 				<tr>
 					<th>방 상세설명</th>
 					<td>
-						<textarea rows="10" cols="60" id="summernote" name="room_detail">${room.room_detail }</textarea>
+						<textarea rows="10" cols="60" class="summernote" name="room_detail">${room.room_detail }</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -225,4 +111,87 @@ $(document).ready(function() {
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
 </body>
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+<!-- include summernote css/js-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+
+<!-- include summernote-ko-KR -->
+<script src="/resources/js/summernote-ko-KR.js"></script>
+
+<!-- 도로명주소API js -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/loadAddress.js" type="text/javascript"></script>
+
+<!-- summerNote.js -->
+<script src="${pageContext.request.contextPath}/resources/js/summerNote.js" type="text/javascript"></script>
+
+<!-- roomDetailUpdateForm에 대한 CSS 스크립트 선언 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css" type="text/css" />
+
+
+<script type="text/javascript">
+	// 매물 거래 종류를 선언 => 전세,월세,매매,반전세,단기임대
+	var room_type = "${room.room_type}";
+	// 매물 종류 => 아파트, 빌라, 주택, 오피스텔, 상가사무실
+	var room_kind = "${room.room_kind}";
+	// 매물 방 구조 => 방1개, 방2개, 방3개 이상
+	var room_structure = "${room.room_structure}";
+
+	$(
+			function() {
+
+				// 매물 종류 selected 조건문
+				// room_type가 1 = 월세 / 2 = 전세 / 3 = 매매 / 4 = 반전세 / 5 = 단기임대 
+				if (room_type == 1) {
+					$("#room_type option[value=1]")
+							.prop('selected', 'selected').change();
+				} else if (room_type == 2) {
+					$("#room_type option[value=2]")
+							.prop('selected', 'selected').change();
+				} else if (room_type == 3) {
+					$("#room_type option[value=3]")
+							.prop('selected', 'selected').change();
+				} else if (room_type == 4) {
+					$("#room_type option[value=4]")
+							.prop('selected', 'selected').change();
+				} else if (room_type == 5) {
+					$("#room_type option[value=5]")
+							.prop('selected', 'selected').change();
+				}
+				// 매물 종류 selected 조건문
+
+				if (room_kind == 1) {
+					$("#room_kind option[value=1]")
+							.prop('selected', 'selected').change();
+				} else if (room_kind == 2) {
+					$("#room_kind option[value=2]")
+							.prop('selected', 'selected').change();
+				} else if (room_kind == 3) {
+					$("#room_kind option[value=3]")
+							.prop('selected', 'selected').change();
+				} else if (room_kind == 4) {
+					$("#room_kind option[value=4]")
+							.prop('selected', 'selected').change();
+				} else if (room_kind == 5) {
+					$("#room_kind option[value=5]")
+							.prop('selected', 'selected').change();
+				}
+				// 매물 방 구조 selected 조건문
+				if (room_structure == 1) {
+					$("#room_structure option[value=1]").prop('selected',
+							'selected').change();
+				} else if (room_structure == 2) {
+					$("#room_structure option[value=2]").prop('selected',
+							'selected').change();
+				} else if (room_structure == 3) {
+					$("#room_structure option[value=3]").prop('selected',
+							'selected').change();
+				}
+			})
+</script>
 </html>
