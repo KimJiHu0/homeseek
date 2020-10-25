@@ -106,6 +106,28 @@
 				</tr>
 			</table>
 		</form>
+		<div id="roommap"></div>
+		<!-- KakaoMap -->
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript">
+		
+			$(function(){
+				// 지도를 생성할 div를 지정
+				var container = document.getElementById("roommap"),
+				// 지도를 생성할 떄 필요한 기본 옵션
+				options = {
+					// 지도의 중심 좌표
+					// LatLng : center에 넣을 위도와 경도를 생성해주는 class
+					// 위도 : latitude / 경도 : longtidue
+					center : new kakao.maps.LatLng(33.450701, 126.570667),
+					// 지도의 레벨 (확대, 축소 정도)
+					level : 3
+				}
+				// 지도 생성 및 객체 리턴
+				
+			})
+		
+		</script>
 	</section>
 
 	<!-- footer.jsp -->
