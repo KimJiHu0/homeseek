@@ -25,6 +25,7 @@
 		open("reportmember.do?room_id=" + room_id, "", "width=750, height=750");
 	}
 </script>
+
 </head>
 <body>
 	<!-- header.jsp -->
@@ -218,10 +219,6 @@
 					image : markerImg,
 					map:map
 				});
-				
-				
-				
-				
 				// 지도의 중심을 결과값으로 받은 위치로 이동
 				map.setCenter(coords);
 			} else {

@@ -18,3 +18,5 @@ function nextRoom(){
    document.getElementById("gallery").src = "resources/img/img0" +num+ ".jpg";
    return false;
 }*/
+// ---------------------------------------------------------------------------------------------------------//
+
