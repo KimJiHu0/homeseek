@@ -24,14 +24,14 @@ public class RoomListController {
 	
 	// 전체 조회
 	@RequestMapping("listroom.do")
-	public String roomList(@RequestParam(value="page",defaultValue="1")int page, Model model) {
+	public String roomList(@RequestParam(value="page",defaultValue="1")int page, Model model, String searchContent) {
 		logger.info("[ Room List ]");
 		
 		Map<String,Object> pagingMap = roomlistbiz.selectRoomList(page);
 		
 		model.addAttribute("list",pagingMap.get("list"));
 		model.addAttribute("pageBean",pagingMap.get("pageBean"));
-		
+		model.addAttribute("searchContent",searchContent);
 		
 		return "roomList";
 	}

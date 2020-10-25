@@ -3,9 +3,6 @@ section{
 	padding-top : 100px;
 }
 
-.header{
-	background-color : white !important;
-}
 /* 첫번째 container css */
 #firstcontainer{
 	display : flex;

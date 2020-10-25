@@ -1,4 +1,15 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+	font-family:InfinitySans-RegularA1;
+}
+
 *{
 	margin:0;
 	padding:0;
@@ -14,6 +25,17 @@ ul,li,ol{
 	width : 100%;
 	line-height: 50px;
 	z-index : 9999;
+	background-color : white !important;
+}
+
+.mainheader{
+	position : fixed;
+	margin-left : 35px;
+	margin-right : 35px;
+	width : 100%;
+	line-height: 50px;
+	z-index : 9999;
+	
 }
 
 a{
@@ -143,4 +165,24 @@ li:nth-last-child{
 .dropdown:hover .dropbtn {
   background-color: transparent;
   color:#6A6868;
+}
+
+/* 검색창 */
+#navsearchtxt{
+    border: none;
+    border-bottom: 1px solid;
+    padding: 4px;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+}
+
+/* 검색창에 focus 됐을때 */
+#navsearchtxt:focus{
+	outline: 0;
+	border-bottom: 1px solid;
+    padding: 4px;
+    
 }
