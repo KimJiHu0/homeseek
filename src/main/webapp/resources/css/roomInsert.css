@@ -1,14 +1,60 @@
+/* section 기본설정 */
+
 section{
 	padding-top : 100px;
+	width: 100%;
+	height: auto;
 }
 
-.insert_form #summernote{
-	position:relative;
-	left:50%;
+
+section #top_title {
+	width : 100%;
+	max-width : 1200px;
+	height: auto;
+	margin: 0 auto;
+	border-bottom: solid 1px;
 }
 
-.insert_form {
-	width:80%;
-	margin:0;
-	
+.form_div {
+	width: 100%;
+	max-width : 1200px;
+	height: auto;
+	margin : 0 auto;
 }
+
+#insert_div1{
+	border-bottom: solid 1px;
+	display: block;
+}
+
+#insert_div2{
+	border-bottom: solid 1px;
+	display: block;
+}
+
+#insert_div3{
+	border-bottom: solid 1px;
+	display: block;
+}
+
+#insert_div4{
+	border-bottom: solid 1px;
+	display: block;
+}
+#insert_div5{
+	border-bottom: solid 1px;
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

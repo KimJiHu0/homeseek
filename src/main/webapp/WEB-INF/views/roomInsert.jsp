@@ -89,88 +89,103 @@ $(document).ready(function() {
 	%>
 	<section>
 	
-	<div id="title">
+	<!-- 제목 -->
+	<div id="top_title">
 		<h3>방 올리기</h3>
 	</div>
 	
 	<hr id="top_line">
 	
-	<form action="insertres.do" class="insert_form" method="POST">
-	<%-- <input type="hidden" name="room_id" value="${memberDto.getMember_id }"> --%>
+	<!-- 입력폼 -->
+	<div class="form_div">
+		<form action="insertres.do" class="insert_form" method="POST">
+		<%-- <input type="hidden" name="room_id" value="${memberDto.getMember_id }"> --%>
+			
 		
+				<div id="insert_div1">
+					<label for="insert_roomname">매물이름</label>
+						<input type="text" name="room_name" id="insert_name">
+				
 	
-			
-				<label for="insert_roomname">매물이름</label>
-					<input type="text" name="room_name" id="insert_name">
-			
-
-			
-				<label for="insert_type">매물종류</label>
-					<select name="room_type" id="insert_roomtype">
-						<option value="1">월세</option>
-						<option value="2">전세</option>
-						<option value="3">매매</option>
-						<option value="4">반전세</option>
-						<option value="5">단기임대</option>
-					</select>				
 				
-			
-				<label for="insert_deposit">보증금</label>
-					<input type="text" name="room_deposit" id="insert_deposit">
-			
+					<label for="insert_type">매물종류</label>
+						<select name="room_type" id="insert_roomtype">
+							<option value="1">월세</option>
+							<option value="2">전세</option>
+							<option value="3">매매</option>
+							<option value="4">반전세</option>
+							<option value="5">단기임대</option>
+						</select>				
+				</div>
 				
-				<label for="insert_price">매물가격</label>
-					<input type="text" name="room_price" id="insert_price">
+				<div id="insert_div2">
+					<label for="insert_deposit">보증금</label>
+						<input type="text" name="room_deposit" id="insert_deposit">
 				
-			
-				<label for="insert_ext">매물면정</label>
-					<input type="text" name="room_extent" placeholder="단위 : 제곱미터" id="insert_ext">
-			
-		
-				<label for="insert_addr">매물주소</label>
+					
+					<label for="insert_price">매물가격</label>
+						<input type="text" name="room_price" id="insert_price">
+					
+				
+					<label for="insert_ext">매물면적</label>
+						<input type="text" name="room_extent" placeholder="단위 : 제곱미터" id="insert_ext">
+				</div>
+				
+				<!--  -->
+				<div id="insert_div3">
+					<p id="addr_notice">※ 띄어쓰기를 포함한 정확한 도로명 주소로 입력해주세요.</p>
+					<p id="addr_notice">※ 정확한 주소가 아닐경우 위치확인이 어렵습니다.</p>			
+					<label for="insert_addr">매물주소</label>
 					<input type="text" name="room_addr" placeholder="도로명주소로 입력해주세요" id="insert_addr">
-			
-			
-				<label for="insert_kind">매물 종류</label>
-					<select name="room_kind" id="insert_kind">
-						<option value="1">아파트</option>
-						<option value="2">빌라</option>
-						<option value="3">주택</option>
-						<option value="4">오피스텔</option>
-						<option value="5">상가사무실</option>
-					</select>
-				
-			
-				<label for="insert_structure">방 구조</label>
-					<select name="room_structure" id="insert_structure">
-						<option value="1">방 1개</option>
-						<option value="2">방 2개</option>
-						<option value="3">방 3개이상</option>
-					</select>
-				
-			
-				<label for="insert_floor">방 층수</label>
-				<input type="text" name="room_floor" id="insert_floor">
-				
-			
-				<label for="insert_cpdate">준공 날짜</label>
-				<input type="date" name="room_cpdate" id="insert_cpdate">
-				
-			
-				<label>입주 가능일</label>
-				<input type="date" name="room_avdate" id="insert_avdate">
-				
-			
-				<div id="insert_detail">
-					<textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea>
+					<div id="kakao_map">
+					</div>
 				</div>
-			
+				
+				<div id="insert_div4">
+					<br>
+					<label for="insert_kind">건물 종류</label>
+						<select name="room_kind" id="insert_kind">
+							<option value="1">아파트</option>
+							<option value="2">빌라</option>
+							<option value="3">주택</option>
+							<option value="4">오피스텔</option>
+							<option value="5">상가사무실</option>
+						</select>
+					
+				
+					<label for="insert_structure">방 구조</label>
+						<select name="room_structure" id="insert_structure">
+							<option value="1">방 1개</option>
+							<option value="2">방 2개</option>
+							<option value="3">방 3개이상</option>
+						</select>
+					
+				
+					<label for="insert_floor">방 층수</label>
+					<input type="text" name="room_floor" id="insert_floor">
+				</div>	
+				
+				<div id="insert_div5">
+					<label for="insert_cpdate">준공 날짜</label>
+					<input type="date" name="room_cpdate" id="insert_cpdate">
+					
+				
+					<label>입주 가능일</label>
+					<input type="date" name="room_avdate" id="insert_avdate">
+					
+				
+					<div id="insert_detail">
+						<textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea>
+					</div>
+				</div>
+				
 				<div class="control">
-					<input type="submit" value="작성">
-					<input type="button" value="취소" onclick="location.href='main.do'">
+						<input type="submit" value="작성">
+						<input type="button" value="취소" onclick="location.href='main.do'">
 				</div>
-		
-	</form>
+			
+		</form>
+	</div>
 	</section>
 	
 	<hr id="botton_line">
