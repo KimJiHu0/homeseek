@@ -17,8 +17,6 @@
 		ROOM_REGDATE,
 		ROOM_CPDATE,
 		ROOM_AVDATE,
-		ROOM_LONGI,
-		ROOM_LATI,
 		ROOM_DETAIL,
 		ROOM_ID
 		FROM ROOM
@@ -40,8 +38,6 @@
 		ROOM_FLOOR = #{room_floor},
 		ROOM_CPDATE = TO_DATE(#{room_cpdate}, 'yyyy/MM/dd'),
 		ROOM_AVDATE = TO_DATE(#{room_avdate}, 'yyyy/MM/dd'),
-		ROOM_LONGI = #{room_longi},
-		ROOM_LATI = #{room_lati},
 		ROOM_DETAIL = #{room_detail}
 		WHERE ROOM_NO = #{room_no}
 	</update>

@@ -2,3 +2,7 @@
 section{
 	padding-top : 100px;
 }
+#roommap{
+	width : 500px;
+	height : 500px;
+}

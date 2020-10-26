@@ -20,7 +20,6 @@ ul,li,ol{
 
 .header{
 	position : fixed;
-	margin-left : 35px;
 	margin-right : 35px;
 	width : 100%;
 	line-height: 50px;
@@ -46,6 +45,7 @@ a{
 .logo{
 	width: 10%;
 	float : left;
+	padding-left : 35px;
 }
 
 .logo > a{

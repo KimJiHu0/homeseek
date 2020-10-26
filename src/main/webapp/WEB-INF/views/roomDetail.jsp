@@ -24,6 +24,12 @@
 		var room_id = "${member.member_id}";
 		open("reportmember.do?room_id=" + room_id, "", "width=750, height=750");
 	}
+	
+	// roomDetail에서 쪽지 버튼을 누르면 실행하는 함수
+	function commentUser(){
+		var room_id = "${member.member_id}";
+		open("commentmember.do?room_id=" + room_id, "", "width=750, height=750");
+	}
 </script>
 
 </head>
@@ -134,7 +140,7 @@
 						<span class="leftb">ID / NAME : </span><span class="rightb">${member.member_name }(${member.member_id })</span>
 					</div>
 					<div class="userinfocontent">
-						<span class="leftb"><a href="javascript:reportUser()" id="reportbtn">신고</a></span><span class="rightb"><a href="#" id="commentbtn">쪽지</a></span>
+						<span class="leftb"><a href="javascript:reportUser()" id="reportbtn">신고</a></span><span class="rightb"><a href="javascript:commentUser()" id="commentbtn">쪽지</a></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">Phone : </span><span class="rightb">${member.member_phone }</span>
@@ -180,20 +186,6 @@
 		// 지도 생성 및 객체 리턴
 		var map = new kakao.maps.Map(container, options);
 		
-		// 마커가 표시될 위치${room.room_longi } / ${room.room_lati }
-		var markerPosition = new kakao.maps.LatLng($("#room_longi").val(), $("#room_lati").val());
-		var imgSrc = "resources/img/pin.png",
-			imgSize = new kakao.maps.Size(64,69),
-			imgOption = {offset : new kakao.maps.Point(27,69)};
-		
-		var markerImg = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
-		
-		// 마커 생성
-		var marker1 = new kakao.maps.Marker({
-			position : markerPosition,
-			image : markerImg
-		});
-		
 		// 마커가 지도 위에 표기되도록 설정
 		var infowindow = new kakao.maps.InfoWindow({zindex:1});
 		// 주소를 위도와 경도로 변환시켜주는 객체
@@ -207,6 +199,7 @@
 			if(status === kakao.maps.services.Status.OK){
 				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 				
+				// 마커에 대한 설정
 				var imgSrc = "resources/img/pin.png",
 				imgSize = new kakao.maps.Size(64,69),
 				imgOption = {offset : new kakao.maps.Point(27,69)};
@@ -221,13 +214,6 @@
 				});
 				// 지도의 중심을 결과값으로 받은 위치로 이동
 				map.setCenter(coords);
-			} else {
-				// 정상적으로 검색이 되지 않는다면
-				marker1.setMap(map);
-				var infowindow = new kakao.maps.InfoWindow({
-					content : '<div id="mapcontent" style="text-align:center; padding : 6px 0; color : black;">Here</div>'
-				});
-				infowindow.open(map, marker1);
 			}
 		});
 		

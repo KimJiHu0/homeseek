@@ -17,116 +17,188 @@
 		<h1>수정</h1>
 		<form action="updateroomres.do" method="POST" id="typechange">
 			<input type="hidden" value="${room.room_no }" name="room_no" />
-			<table border="1">
-				<tr>
-					<th>매물이름</th>
-					<td><input type="text" value="${room.room_name }"
-						name="room_name"></td>
-				</tr>
-				<tr>
-					<th>매물종류</th>
-					<td><select id="room_type" name="room_type">
+			<!-- 가장 큰 div박스 -->
+			<div class="updateroominfo">
+				<div class="updateroomimg">
+					<!-- for문 돌려서 이미지들 가져오기 -->
+					<div class="updateroomimgdetail">
+						<img alt="사진" src="resources/img/backgroundimg.jpg">
+					</div>
+				</div>
+				<!-- 매물이름 div -->
+				<div class="updateroomname">
+					<div>매물이름</div>
+					<div>
+						<input type="text" value="${room.room_name }" name="room_name">
+					</div>
+				</div>
+				<!-- 매물종류 div -->
+				<div class="updateroomtype">
+					<div>매물종류</div>
+					<div>
+						<select id="room_type" name="room_type">
 							<option value="1">월세</option>
 							<option value="2">전세</option>
 							<option value="3">매매</option>
 							<option value="4">반전세</option>
 							<option value="5">단기임대</option>
-					</select></td>
-				</tr>
-				<tr>
-					<th>보증금</th>
-					<td><input type="text" value="${room.room_deposit }"
-						name="room_deposit"></td>
-				</tr>
-				<tr>
-					<th>매물가격</th>
-					<td><input type="text" value="${room.room_price }"
-						name="room_price"></td>
-				</tr>
-				<tr>
-					<th>매물면적</th>
-					<td><input type="text" value="${room.room_extent }"
-						name="room_extent" placeholder="단위 : 제곱미터"></td>
-				</tr>
-				<tr>
-					<th>매물주소</th>
-					<td><input type="text" value="${room.room_addr }"
-						name="room_addr" placeholder="도로명주소로 입력해주세요"
-						onclick="addrcheck();"></td>
-				</tr>
-				<tr>
-					<th>건물종류</th>
-					<td><select id="room_kind" name="room_kind">
+						</select>
+					</div>
+				</div>
+				<!-- 보증금 div -->
+				<!-- price : 매물 가격 -->
+				<!-- deposit : 보증금 -->
+				<!-- 매매면 pirce만  -->
+				<!-- 전세면 price만 -->
+				<!-- 월세면 deposit가 보증금 / price가 월세 -->
+				<!-- 반전세면 deposit가 보증금 / price가 월세 -->
+				<!-- 단기임대면 deposit가 보증금 / price가 월세 -->
+				<div class="updateroomdeposit">
+					<div>보증금</div>
+					<div>
+						<input type="text" value="${room.room_deposit }" name="room_deposit">
+					</div>
+				</div>
+				<!-- 매물 가격 div -->
+				<!-- 매매, 전세 : price만 -->
+				<!-- 월세, 반전세, 단기임대 : deposit랑 같이 출력 -->
+				<div class="updateroomprice">
+					<div>가격</div>
+					<div>
+						<input type="text" value="${room.room_price }" name="room_price">
+					</div>
+				</div>
+				
+				<!-- 매물면적 -->
+				<div class="updateroomextent">
+					<div>매물면적</div>
+					<div>
+						<input type="text" value="${room.room_extent }" name="room_extent">
+					</div>
+				</div>
+				
+				<!-- 매물주소 -->
+				<div class="updateroomaddr">
+					<div>매물주소</div>
+					<div>
+						<input type="text" value="${room.room_addr }" id="room_addr" name="room_addr" onclick="addrcheck();">
+					</div>
+				</div>
+				<!-- 매물 건물종류 -->
+				<div class="updateroomkind">
+					<div>매물 건물 종류</div>
+					<select id="room_kind" name="room_kind">
 							<option value="1">아파트</option>
 							<option value="2">빌라</option>
 							<option value="3">주택</option>
 							<option value="4">오피스텔</option>
 							<option value="5">상가사무실</option>
-					</select></td>
-				</tr>
-				<tr>
-					<th>방 구조</th>
-					<td><select id="room_structure" name="room_structure">
+					</select>
+				</div>
+				<!-- 매물구조 -->
+				<div class="updateroomstructure">
+					<div>매물 구조</div>
+					<div>
+						<select id="room_structure" name="room_structure">
 							<option value="1">방 1개</option>
 							<option value="2">방 2개</option>
 							<option value="3">방 3개이상</option>
-					</select></td>
-				</tr>
-				<tr>
-					<th>방 층수</th>
-					<td><input type="text" value="${room.room_floor }"
-						name="room_floor"></td>
-				</tr>
-				<tr>
-					<th>매물 등록날짜</th>
-					<td><input type="date" value="${room.room_regdate}"
-						id="room_regdate" readonly="readonly" name="room_regdate"></td>
-				</tr>
-				<tr>
-					<th>준공 날짜</th>
-					<td><input type="date" value="${room.room_cpdate}"
-						id="room_cpdate" name="room_cpdate"></td>
-				</tr>
-				<tr>
-					<th>입주 가능일</th>
-					<td><input type="date" value="${room.room_avdate}"
-						id="room_avdate" name="room_avdate"></td>
-				</tr>
-				<tr>
-					<th>방 상세설명</th>
-					<td>
-						<textarea rows="10" cols="60" class="summernote" name="room_detail">${room.room_detail }</textarea>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="right">
-						<input type="submit" value="수정">
-						<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
-					</td>
-				</tr>
-			</table>
+						</select>
+					</div>
+				</div>
+				<!-- 매물 층수 -->
+				<div class="updateroomfloor">
+					<div>매물 층수</div>
+					<div>
+						<input type="text" value="${room.room_floor }" name="room_floor">
+					</div>
+				</div>
+				<!-- 매물 등록 날짜 -->
+				<div class="updateroomregdate">
+					<div>매물 등록 날짜</div>
+					<div>
+						<input type="date" value="${room.room_regdate}" id="room_regdate" readonly="readonly" name="room_regdate">
+					</div>
+				</div>
+				<!-- 매물 준공 날짜 -->
+				<div class="updateroomcpdate">
+					<div>매물 준공 날짜</div>
+					<div>
+						<input type="date" value="${room.room_cpdate}" id="room_cpdate" name="room_cpdate">
+					</div>
+				</div>
+				<!-- 매물 입주 가능일 -->
+				<div class="updateroomavdate">
+					<div>매물 입주 가능일</div>
+					<div>
+						<input type="date" value="${room.room_avdate}" id="room_avdate" name="room_avdate">
+					</div>
+				</div>
+				<!-- 매물 상세설명 -->
+				<div class="updateroomdetail">
+					<div>매물 상세설명</div>
+					<div class="summernote" name="room_detail"></div>
+				</div>
+				<!-- form태그 안에서 submit버튼을 클릭하면 값 넘기기 -->
+				<div class="updateroomsubmit">
+					<input type="submit" value="수정">
+					<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
+				</div>
+			</div>
 		</form>
 		<div id="roommap"></div>
 		<!-- KakaoMap -->
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">
-		
-			$(function(){
-				// 지도를 생성할 div를 지정
-				var container = document.getElementById("roommap"),
-				// 지도를 생성할 떄 필요한 기본 옵션
-				options = {
-					// 지도의 중심 좌표
-					// LatLng : center에 넣을 위도와 경도를 생성해주는 class
-					// 위도 : latitude / 경도 : longtidue
-					center : new kakao.maps.LatLng(33.450701, 126.570667),
-					// 지도의 레벨 (확대, 축소 정도)
-					level : 3
+			// room_addr이라는 id를 가진 변경될 경우 함수 실행
+			// 지도를 생성할 div를 지정
+			var container = document.getElementById("roommap"),
+			// 지도를 생성할 떄 필요한 기본 옵션
+			options = {
+				// 지도의 중심 좌표
+				// LatLng : center에 넣을 위도와 경도를 생성해주는 class
+				// 위도 : latitude / 경도 : longtidue
+				center : new kakao.maps.LatLng(33.450701, 126.570667),
+				// 지도의 레벨 (확대, 축소 정도)
+				level : 3
+			}
+			// 지도 생성 및 객체 리턴
+			var map = new kakao.maps.Map(container, options);
+
+			// 마커가 지도 위에 표기되도록 설정
+			var infowindow = new kakao.maps.InfoWindow({
+				zindex : 1
+			});
+			// 주소를 위도와 경도로 변환시켜주는 객체
+			var geocoder = new kakao.maps.services.Geocoder();
+			// roadname을 가지고 room_addr값을 가져오기
+			var roadname = '${room.room_addr}';
+			
+			// 주소로 좌표를 검색
+			geocoder.addressSearch(roadname, function(result, status){
+				// 정상적으로 검색이 완료되었을 경우
+				if(status === kakao.maps.services.Status.OK){
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					
+					// 마커에 대한 설정
+					var imgSrc = "resources/img/pin.png",
+						imgSize = new kakao.maps.Size(64,69),
+						imgOption = {offset : new kakao.maps.Point(27,69)};
+					
+					var markerImg = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
+					
+					// 결과값으로 받은 위치를 마커로 표시
+					var marker = new kakao.maps.Marker({
+						position : coords,
+						image : markerImg,
+						map : map
+					});
+					// 지도 중심을 결과값의 위치로 이동
+					map.setCenter(coords);
 				}
-				// 지도 생성 및 객체 리턴
-				
-			})
-		
+			});
+			
 		</script>
 	</section>
 
@@ -134,26 +206,39 @@
 	<%@ include file="form/footer.jsp"%>
 </body>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
 
 <!-- 도로명주소API js -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/loadAddress.js" type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/loadAddress.js"
+	type="text/javascript"></script>
 
 <!-- summerNote.js -->
-<script src="${pageContext.request.contextPath}/resources/js/summerNote.js" type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/summerNote.js"
+	type="text/javascript"></script>
 
 <!-- roomDetailUpdateForm에 대한 CSS 스크립트 선언 -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css" type="text/css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css"
+	type="text/css" />
 
 
 <script type="text/javascript">
@@ -164,56 +249,55 @@
 	// 매물 방 구조 => 방1개, 방2개, 방3개 이상
 	var room_structure = "${room.room_structure}";
 
-	$(
-			function() {
+	$(function() {
 
-				// 매물 종류 selected 조건문
-				// room_type가 1 = 월세 / 2 = 전세 / 3 = 매매 / 4 = 반전세 / 5 = 단기임대 
-				if (room_type == 1) {
-					$("#room_type option[value=1]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 2) {
-					$("#room_type option[value=2]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 3) {
-					$("#room_type option[value=3]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 4) {
-					$("#room_type option[value=4]")
-							.prop('selected', 'selected').change();
-				} else if (room_type == 5) {
-					$("#room_type option[value=5]")
-							.prop('selected', 'selected').change();
-				}
-				// 매물 종류 selected 조건문
+		// 매물 종류 selected 조건문
+		// room_type가 1 = 월세 / 2 = 전세 / 3 = 매매 / 4 = 반전세 / 5 = 단기임대 
+		if (room_type == 1) {
+			$("#room_type option[value=1]").prop('selected', 'selected')
+					.change();
+		} else if (room_type == 2) {
+			$("#room_type option[value=2]").prop('selected', 'selected')
+					.change();
+		} else if (room_type == 3) {
+			$("#room_type option[value=3]").prop('selected', 'selected')
+					.change();
+		} else if (room_type == 4) {
+			$("#room_type option[value=4]").prop('selected', 'selected')
+					.change();
+		} else if (room_type == 5) {
+			$("#room_type option[value=5]").prop('selected', 'selected')
+					.change();
+		}
+		// 매물 종류 selected 조건문
 
-				if (room_kind == 1) {
-					$("#room_kind option[value=1]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 2) {
-					$("#room_kind option[value=2]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 3) {
-					$("#room_kind option[value=3]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 4) {
-					$("#room_kind option[value=4]")
-							.prop('selected', 'selected').change();
-				} else if (room_kind == 5) {
-					$("#room_kind option[value=5]")
-							.prop('selected', 'selected').change();
-				}
-				// 매물 방 구조 selected 조건문
-				if (room_structure == 1) {
-					$("#room_structure option[value=1]").prop('selected',
-							'selected').change();
-				} else if (room_structure == 2) {
-					$("#room_structure option[value=2]").prop('selected',
-							'selected').change();
-				} else if (room_structure == 3) {
-					$("#room_structure option[value=3]").prop('selected',
-							'selected').change();
-				}
-			})
+		if (room_kind == 1) {
+			$("#room_kind option[value=1]").prop('selected', 'selected')
+					.change();
+		} else if (room_kind == 2) {
+			$("#room_kind option[value=2]").prop('selected', 'selected')
+					.change();
+		} else if (room_kind == 3) {
+			$("#room_kind option[value=3]").prop('selected', 'selected')
+					.change();
+		} else if (room_kind == 4) {
+			$("#room_kind option[value=4]").prop('selected', 'selected')
+					.change();
+		} else if (room_kind == 5) {
+			$("#room_kind option[value=5]").prop('selected', 'selected')
+					.change();
+		}
+		// 매물 방 구조 selected 조건문
+		if (room_structure == 1) {
+			$("#room_structure option[value=1]").prop('selected', 'selected')
+					.change();
+		} else if (room_structure == 2) {
+			$("#room_structure option[value=2]").prop('selected', 'selected')
+					.change();
+		} else if (room_structure == 3) {
+			$("#room_structure option[value=3]").prop('selected', 'selected')
+					.change();
+		}
+	})
 </script>
 </html>
