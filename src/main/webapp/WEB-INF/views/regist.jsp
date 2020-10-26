@@ -11,18 +11,47 @@
 </head>
 <body>
 
+	<%
+	if (request.getAttribute("naveremail") != null) {		
+	%>
+	<h1>NAVER 연동 회원가입</h1>
+	<%
+	} else if (request.getAttribute("kakaoemail") != null) {
+	%>
+	<h1>KAKAO 연동 회원가입</h1>
+	<%
+	} else {
+	%>
 	<h1>회원가입</h1>
+	<%
+	}
+	%>
 	
 	<form action="registres.do" method="post">
 	
 			<div> 
 			<label for="member_id">아이디</label>
 			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text"> 
-				  <select name="select_email" id="select_email"> 
+			<%
+				if (request.getAttribute("naveremail") != null) {
+			%>
+			<input type="text" id="member_id" name="member_id" value="${ naveremail }" size="30" readonly/>
+			<%
+				}else if (request.getAttribute("kakaoemail") != null) {
+			%>
+			<input type="text" id="member_id" name="member_id" value="${ kakaoemail }" size="30" readonly/>	
+			<%
+				} else {
+			%>
+			<select name="select_email" id="select_email"> 
 				  <option value="" selected>선택하세요</option> 
 				  <option value="naver.com">naver.com</option> 
 				  <option value="gmail.com">gmail.com</option>   
-				  </select> 
+			</select> 
+			<%
+				}
+			%>
+				  
 				  <div class="check_font" id="id_check"></div>
 			</div>
 			<div>
@@ -37,7 +66,17 @@
 			</div>
 			<div>
 				<label for="member_name">이름</label>
+				<%
+				if (request.getAttribute("kakaoemail") != null) {
+				%>
+					<input type="text" name="member_name" id="member_name" value="${ kakaoemail }" size="30" readonly/>
+				<%
+				}else{ 
+				%>
 					<input type="text" name="member_name" id="member_name" size="30" placeholder="NAME"/>
+				<%
+				}
+				%>
 			</div>
 			
 			<div>

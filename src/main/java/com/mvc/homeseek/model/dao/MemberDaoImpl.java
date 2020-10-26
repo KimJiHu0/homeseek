@@ -1,6 +1,9 @@
 package com.mvc.homeseek.model.dao;
 
+import javax.inject.Inject;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +14,9 @@ import com.mvc.homeseek.model.dto.MemberDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
+	
+	@Inject
+	private SqlSession session;
 
 	private Logger logger = LoggerFactory.getLogger(MemberDaoImpl.class);
 	@Autowired
@@ -80,11 +86,12 @@ public class MemberDaoImpl implements MemberDao {
 	// sns에서 snsid를 뽑는 dao
 	@Override
 	public MemberDto getBySns(MemberDto snsUser) {
+		//네이버 아이디가 있으면,,,
 		if (StringUtils.isNotEmpty(snsUser.getMember_naverid())) {
-			return sqlSession.selectOne(NAMESPACE + "getBySnsNaver", snsUser.getMember_naverid());
-
+			return session.selectOne(NAMESPACE + "getBySnsNaver", snsUser.getMember_naverid());
+		//구글아이디면,,,		
 		} else {
-			return sqlSession.selectOne(NAMESPACE + "getBySnsGoogle", snsUser.getMember_googleid());
+			return session.selectOne(NAMESPACE + "getBySnsGoogle", snsUser.getMember_googleid());
 		}
 	}
 

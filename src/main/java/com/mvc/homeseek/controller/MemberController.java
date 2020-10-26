@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mvc.homeseek.auth.KakaoAPI;
 import com.mvc.homeseek.auth.SNSLogin;
 import com.mvc.homeseek.auth.SnsValue;
 import com.mvc.homeseek.model.biz.MemberBiz;
@@ -38,36 +39,46 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class MemberController {
 
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
+
 	@Inject
 	private SnsValue naverSns;
-	
+
 	@Inject
 	private SnsValue googleSns;
-	
+
 	@Inject
 	private GoogleConnectionFactory googleConnectionFactory;
-	
+
 	@Inject
 	private OAuth2Parameters googleOAuth2Parameters;
 
 	@Autowired
 	private MemberBiz memberBiz;
 
+	@Autowired
+	private KakaoAPI kakao;
+
+	private final static String id = "2dc56fd515158890d47575ddc651d7e8";
+	private final static String url = "http://localhost:8787/homeseek/auth/kakao/callback.do";
+
 	@RequestMapping("loginform.do")
 	public String loginForm(Model model) {
 		logger.info("login.do");
+		
+		// 네이버 로그인 URL받기
 		SNSLogin snsLogin = new SNSLogin(naverSns);
 		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
 		
-//		SNSLogin googleLogin = new SNSLogin(googleSns);
-//		model.addAttribute("google_url", googleLogin.getGoogleAuthURL());
-		
-		/* 구글code 발행을 위한 URL 생성 */
+		// 카카오 로그인 URL받기
+		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + id + "&redirect_uri=" + url
+				+ "&response_type=code";
+		model.addAttribute("kakao_url", kakaoUrl);
+
+		// 구글code발행을 위한 URL 생성 
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 		model.addAttribute("google_url", url);
-		
+
 		return "login";
 	}
 
@@ -86,61 +97,85 @@ public class MemberController {
 			logger.info("---------------------------------");
 			logger.info("| 현재 로그인한 사용자 : " + dto.getMember_id() + " |");
 			logger.info("---------------------------------");
-			
-		
+
 			check = true;
 		}
 
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("check", check);
-		
+
 		return map;
 
 	}
-	
-	/*
-	 * @RequestMapping(value = "/snslogin.do", method = RequestMethod.GET) public
-	 * void snslogin(Model model) throws Exception{ logger.info("snslogin.do");
-	 * 
-	 * }
-	 */
-	
-	@RequestMapping(value = "/homeseek/auth/{snsService}/callback",
-			method = { RequestMethod.GET, RequestMethod.POST})
-	public String snsLoginCallback(@PathVariable String snsService,
-			Model model, @RequestParam String code, HttpSession session) throws Exception {
+
+	@RequestMapping(value = "auth/{snsService}/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String snsLoginCallback(@PathVariable String snsService, Model model, MemberDto dto, @RequestParam String code,
+			HttpSession session, HttpServletRequest request) throws Exception {
+		
 		
 		logger.info("snsLoginCallback: service={}", snsService);
-		SnsValue sns = null; 
-		if (StringUtils.equals("naver", snsService))
+		SnsValue sns = null;
+		if (StringUtils.equals("naver", snsService)) {
+			System.out.println("★naver★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 			sns = naverSns;
-		else
+		} else {
 			sns = googleSns;
-		
+		}
+
+
 		// 1. code를 이용해서 access_token 받기
 		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
 		SNSLogin snsLogin = new SNSLogin(sns);
 		MemberDto snsUser = snsLogin.getUserProfile(code);
 		System.out.println("Profile>>" + snsUser);
 		
+		System.out.println("확인용!!!!"+ dto.getMember_id());
+		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid  추가해야함 !!! 그래야 select해볼수있음!)
+		MemberDto usertest = memberBiz.getBySns(snsUser);
 		
-		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 컬럼 추가)
-		MemberDto user = memberBiz.getBySns(snsUser);
-		if(user ==null) {
-			model.addAttribute("result", "존재하지 않는 사용자입니다. 가입해 주세요.");
-			
-			//미존재시 가입 페이지로!!
-			
-			
-		}else {
-			model.addAttribute("result", user.getMember_name() +"님 반갑습니다.");
+		System.out.println(snsUser.getMember_id());
 		
-			// 4. 존재시 강제로그인, 미존재시 가입페이지로!!
-			session.setAttribute("member_id",user);
-		}
 
-		return "loginResult";
-	}	
+		if (usertest == null) {  // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
+			
+			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+			model.addAttribute("naveremail", snsUser.getMember_id());
+			
+			return "regist";
+			
+		} else { // 존재시, 세션주고 로그인 시켜줌 
+			
+			model.addAttribute("result" ,"기존에 가입한 회원 . 로그인시켜도됨 ");
+
+			session.setAttribute("login", usertest);
+			
+			return "redirect:/main.do";
+		}
+	}
+	
+
+	@RequestMapping(value = "auth/kakao/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String login(@RequestParam("code") String code, HttpSession session, Model model) {
+		System.out.println("★★★KAKAO★★★★★★★★★★KAKAO★★★★★KAKAO★★★★★★★★★★KAKAO★★★★★★★★★★★★★★");
+		String access_Token = kakao.getAccessToken(code);
+		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+		System.out.println("login Controller : " + userInfo);
+
+		// 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+		if (userInfo.get("nickname") != null) {
+			// session.setAttribute("kakaoemail", userInfo.get("email"));
+			// session.setAttribute("access_Token", access_Token);
+			System.out.println("★★★KAKAO★★★★★★★★★★KAKAO★★★★★KAKAO★★★★★★★★★★KAKAO★★★★★★★★★★★★★★");
+			// model.addAttribute("kakaoemail", userInfo.get("email"));
+			model.addAttribute("kakaoemail", userInfo.get("nickname"));
+
+			return "regist";
+		} else {
+
+			session.setAttribute("login", userInfo.get("nickname"));
+			return "redirect:/main.do";
+		}
+	}
 
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
@@ -148,79 +183,79 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main.do";
 	}
+
 	@RequestMapping("registform.do")
 	public String registForm() {
 		logger.info("registform.do");
-		
+
 		return "regist";
 	}
-	
+
 	@RequestMapping("registres.do")
 	public String registRes(String member_id, @RequestParam("email") String email, MemberDto dto) {
 		logger.info("registres.do");
-		
-		String memberId = member_id + "@" + email;//이메일 형식
+
+		String memberId = member_id + "@" + email;// 이메일 형식
 		dto.setMember_id(memberId);
-		
+
 		System.out.println(email + "*****!!!!!!!^^^#%$#$%$%&^&^&%#$%^#$@$#%");
-		
-		if(memberBiz.insert(dto) > 0) {
+
+		if (memberBiz.insert(dto) > 0) {
 			return "redirect:/main.do";
 		}
-		
-		
+
 		return "redirect:registform.do";
-		
+
 	}
+
 	@ResponseBody
-	@RequestMapping(value="/checkid.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/checkid.do", method = RequestMethod.POST)
 	public String chkId(@RequestParam("member_id") String member_id) {
-		
+
 		String str = "";
 		int res = memberBiz.checkId(member_id);
-		if(res == 1){ //이미 존재하는 계정
-			str = "NO";	
-		}else{	//사용 가능한 계정
-			str = "YES";	
+		if (res == 1) { // 이미 존재하는 계정
+			str = "NO";
+		} else { // 사용 가능한 계정
+			str = "YES";
 		}
 		return str;
 
-
 	}
-	
-	@RequestMapping(value="/sendsms.do", method = RequestMethod.POST)
-    @ResponseBody
-    public String sendSMS(@RequestParam("phoneNumber") String phoneNumber) {
 
-        Random rand  = new Random();
-        String numStr = "";
-        for(int i=0; i<4; i++) {
-            String ran = Integer.toString(rand.nextInt(10));
-            numStr+=ran;
-        }
+	@RequestMapping(value = "/sendsms.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String sendSMS(@RequestParam("phoneNumber") String phoneNumber) {
 
-        System.out.println("수신자 번호 : " + phoneNumber);
-        System.out.println("인증번호 : " + numStr);
-        String api_key = "NCS2ZUPG3LMOQ0H3";
-        String api_secret = "JA50IZAE97G9MEQQ1BJVUBTOUIMLWHYZ";
-        Message coolsms = new Message(api_key, api_secret);
+		Random rand = new Random();
+		String numStr = "";
+		for (int i = 0; i < 4; i++) {
+			String ran = Integer.toString(rand.nextInt(10));
+			numStr += ran;
+		}
 
-        // 4 params(to, from, type, text) are mandatory. must be filled
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("to", phoneNumber);    // 수신전화번호
-        params.put("from", "01099731489");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
-        params.put("type", "SMS");
-        params.put("text", " homeseek 회원가입  인증번호는 " + "["+numStr+"]" + "입니다.");
-        params.put("app_version", "test app 1.2"); // application name and version
+		System.out.println("수신자 번호 : " + phoneNumber);
+		System.out.println("인증번호 : " + numStr);
+		String api_key = "NCS2ZUPG3LMOQ0H3";
+		String api_secret = "JA50IZAE97G9MEQQ1BJVUBTOUIMLWHYZ";
+		Message coolsms = new Message(api_key, api_secret);
 
-        try {
-            JSONObject obj = (JSONObject) coolsms.send(params);
-            System.out.println(obj.toString());
-        } catch (CoolsmsException e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getCode());
-        }
-        return numStr;
-    }
+		// 4 params(to, from, type, text) are mandatory. must be filled
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("to", phoneNumber); // 수신전화번호
+		params.put("from", "01099731489"); // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+		params.put("type", "SMS");
+		params.put("text", " homeseek 회원가입  인증번호는 " + "[" + numStr + "]" + "입니다.");
+		params.put("app_version", "test app 1.2"); // application name and version
+
+		try {
+			JSONObject obj = (JSONObject) coolsms.send(params);
+			System.out.println(obj.toString());
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		return numStr;
+	}
 
 }
