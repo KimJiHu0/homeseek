@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +19,6 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -154,10 +154,15 @@ public class MemberController {
 		
 		return "regist";
 	}
+	
 	@RequestMapping("registres.do")
-	public String registRes(MemberDto dto) {
+	public String registRes(String member_id, @RequestParam("email") String email, MemberDto dto) {
 		logger.info("registres.do");
 		
+		String memberId = member_id + "@" + email;
+		dto.setMember_id(memberId);
+		
+		System.out.println(email + "*****!!!!!!!^^^#%$#$%$%&^&^&%#$%^#$@$#%");
 		
 		if(memberBiz.insert(dto) > 0) {
 			return "redirect:/main.do";
