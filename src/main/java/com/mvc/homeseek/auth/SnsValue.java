@@ -13,7 +13,7 @@ public class SnsValue implements SnsUrls {
 	private DefaultApi20 api20Instance;
 	//sns마다 토큰을 받는 url이 다르기때문에 생성
 	private String profileUrl;
-	
+	//인지 아닌지 판단
 	private boolean isNaver;
 	private boolean isGoogle;
 	

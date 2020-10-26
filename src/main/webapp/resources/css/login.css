@@ -42,6 +42,11 @@ a{
    text-decoration: none;
    
 }
+.snslogin{
+	position: absolute;
+	left: 23px;
+	top: 350px;
+}
     
 .logo{
 

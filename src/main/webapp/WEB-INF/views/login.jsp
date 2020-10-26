@@ -49,9 +49,10 @@
                </tr>
             </table>
             
-            <div class = "text-center">
-            	<a href="${ naver_url }"><img width="200" src="${pageContext.request.contextPath}/resources/img/naver-login.png" alt="Naver Login"/></a>
-            	<a href="${ google_url }"><img width="200" src="${pageContext.request.contextPath}/resources/img/google-login.png" alt="Google Login"/></a>
+            <div class = "snslogin">
+            	<a href="${ naver_url }"><img width="150" src="${pageContext.request.contextPath}/resources/img/naver-login.png" alt="Naver Login"/></a>
+            	<a href="${ google_url }"><img width="150" src="${pageContext.request.contextPath}/resources/img/google-login.png" alt="Google Login"/></a>
+            	<a href="${ kakao_url }"><img width="150"src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png" alt="Kakao Login"/></a>
             </div>
             
             <ul class="idpwlink">

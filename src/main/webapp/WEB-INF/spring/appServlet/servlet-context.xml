@@ -32,15 +32,13 @@
 	
 	<!-- naver sns login -->
 	<beans:bean id="naverClientID" class="java.lang.String">
-		<beans:constructor-arg
-			value="QAAvdWTo1o2T1xyFFbev" />
+		<beans:constructor-arg value="QAAvdWTo1o2T1xyFFbev" />
 	</beans:bean>
 	<beans:bean id="naverClientSecret" class="java.lang.String">
 		<beans:constructor-arg value="TrYp9sb4Yn" />
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg
-			value="http://localhost:8787/homeseek/auth/naver/callback" />
+		<beans:constructor-arg value="http://localhost:8787/homeseek/auth/naver/callback.do" />
 	</beans:bean>
 
 	<beans:bean id="naverSns" class="com.mvc.homeseek.auth.SnsValue">
@@ -52,16 +50,13 @@
 
 	<!-- google sns login -->
 	<beans:bean id="googleClientID" class="java.lang.String">
-		<beans:constructor-arg
-			value="295271077624-gaqiu30en3q9u2l52kmasmor1o2daq0o.apps.googleusercontent.com" />
+		<beans:constructor-arg value="295271077624-gaqiu30en3q9u2l52kmasmor1o2daq0o.apps.googleusercontent.com" />
 	</beans:bean>
 	<beans:bean id="googleClientSecret" class="java.lang.String">
-		<beans:constructor-arg
-			value="gIXSQubPgVjrX0NEHsPhkxc7" />
+		<beans:constructor-arg value="gIXSQubPgVjrX0NEHsPhkxc7" />
 	</beans:bean>
 	<beans:bean id="googleRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg
-			value="http://localhost:8787/homeseek/auth/google/callback" />
+		<beans:constructor-arg value="http://localhost:8787/homeseek/auth/google/callback.do" />
 	</beans:bean>
 
 	<beans:bean id="googleSns" class="com.mvc.homeseek.auth.SnsValue">
@@ -78,8 +73,8 @@
 	</beans:bean>
 
 	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email" />
-		<!-- <beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" /> -->
+		<!-- <beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email" /> -->
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" /> 
 		<beans:property name="redirectUri" ref="googleRedirectUrl" />
 	</beans:bean>
 

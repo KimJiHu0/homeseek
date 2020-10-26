@@ -18,7 +18,7 @@
 		resultType="MemberDto">
 		SELECT *
 		FROM MEMBER
-		WHERE getMember_naverid =
+		WHERE MEMBER_ID =
 		#{getMember_naverid}
 	</select>
 
@@ -26,7 +26,7 @@
 		resultType="MemberDto">
 		SELECT *
 		FROM MEMBER
-		WHERE getMember_googleid =
+		WHERE MEMBER_ID =
 		#{getMember_googleid}
 	</select>
 

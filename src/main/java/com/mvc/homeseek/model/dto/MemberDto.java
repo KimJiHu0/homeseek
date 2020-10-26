@@ -13,6 +13,14 @@ public class MemberDto {
 	private String member_googleid;
 	
 	
+	@Override
+	public String toString() {
+		return "MemberDto [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
+				+ ", member_email=" + member_email + ", member_phone=" + member_phone + ", member_enabled="
+				+ member_enabled + ", member_role=" + member_role + ", member_naverid=" + member_naverid
+				+ ", member_googleid=" + member_googleid + "]";
+	}
+
 	public MemberDto() {
 		
 	}
