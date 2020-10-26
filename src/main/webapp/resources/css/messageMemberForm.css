@@ -1,0 +1,57 @@
+#firstbox{
+	border-bottom : 3px gray solid;
+}
+
+#icon{
+	font-size : 15pt;
+	text-align : center;
+	padding-top : 15px;
+}
+#iconcolor{
+	color : green;
+}
+.iconbox{
+	width : 100%;
+	height : 50px;
+	text-align : center;
+	margin : 0px;
+}
+
+/* 두번쨰 div박스를 첫번째 div박스에서부터 띄우기 */
+
+.secondbox{
+	margin-top : 50px;
+	margin-left : 10px;
+}
+
+/* summernote의 가로 길이를 설정 */
+.message_title{
+	width : 540px;
+	height : 30px;
+	margin-bottom : 5px;
+	border : none;
+}
+
+/* th,td들 글씨 cent er */
+.message_th, .message_td{
+	text-align : center;
+	font-size : 11pt;
+}
+.message_tr{
+	border-bottom : 2px black solid;
+}
+
+.messagebtntwo{
+	width : 100%;
+	margin-top : -10px;
+}
+
+.messagebtn{
+	border : none;
+	text-align : center;
+	width : 360px;
+}
+/* 세로 스크롤 없애기 */
+body{
+	overflow-y:hidden;
+}

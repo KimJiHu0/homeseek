@@ -18,11 +18,21 @@
 
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
+
+<!-- reportMemberForm.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reportMemberForm.css" type="text/css" />
 
 <!-- summernote.js 사용 -->
 <script src="${pageContext.request.contextPath}/resources/js/summerNote.js" type="text/javascript"></script>
 
+<!-- 취소누르면 창닫기 -->
+<script type="text/javascript">
+
+	function reportFormClose(){
+		self.close();
+	}
+
+</script>
 </head>
 <body>
 	<div id="firstbox">
@@ -30,6 +40,8 @@
 	</div>
 	<h1>신고하기</h1>
 	<form action="reportmemberres.do" method="post" id="reportform">
+	<input type="hidden" value="${report_senuser.member_id }" name="report_senid">
+	<input type="hidden" value="${report_reuser.member_id }" name="report_reid">
 		<table border="1">
 			<tr>
 				<th class="title">신고하는이름</th>
@@ -37,7 +49,7 @@
 			</tr>
 			<tr>
 				<th class="title">신고하는아이디</th>
-				<td><input type="text" value="${report_senuser.member_id }" readonly="readonly" name="report_senid"></td>
+				<td>${report_senuser.member_id }</td>
 			</tr>
 			<tr>
 				<th class="title">신고받는이름</th>
@@ -45,7 +57,7 @@
 			</tr>
 			<tr>
 				<th class="title">신고받는아이디</th>
-				<td><input type="text" value="${report_reuser.member_id }" readonly="readonly" name="report_reid"></td>
+				<td>${report_reuser.member_id }</td>
 			</tr>
 			<tr>
 				<th class="title">신고사유</th>
@@ -58,7 +70,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="신고하기"/>
-					<input type="button" value="취소하기" class="reportformclose"/>
+					<input type="button" value="취소하기" onclick="reportFormClose();"/>
 				</td>
 			</tr>
 		</table>

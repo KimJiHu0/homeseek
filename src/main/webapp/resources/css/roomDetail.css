@@ -30,7 +30,7 @@ section{
 }
 
 /* 신고, 쪽지에 대한 커서 만들어주기 */
-#reportbtn, #commentbtn{
+#reportbtn, #messagebtn{
 	cursor : pointer;
 }
 

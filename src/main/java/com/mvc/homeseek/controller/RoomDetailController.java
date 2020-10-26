@@ -94,9 +94,11 @@ public class RoomDetailController {
 		
 		if(res > 0) {
 			msg.addFlashAttribute("room", roomdetailbiz.selectRoomOne(dto.getRoom_no()));
+			msg.addFlashAttribute("msg", "수정이 성공적으로 완료되었습니다.");
 			return "redirect:/detailroom.do?room_no=" + dto.getRoom_no();
 		} else {
 			msg.addFlashAttribute("room", roomdetailbiz.selectRoomOne(dto.getRoom_no()));
+			msg.addFlashAttribute("msg", "수정이 실패하였습니다. 다시 시도해주세요.");
 			return "redirect:/updateroom.do?room_no=" + dto.getRoom_no();
 		}
 	}

@@ -27,13 +27,13 @@
 	/* roomDetail에서 신고버튼을 누르면 실행되는 함수 */
 	function reportUser() {
 		var room_id = "${member.member_id}";
-		open("reportmember.do?room_id=" + room_id, "", "width=750, height=750");
+		open("reportmember.do?room_id=" + room_id, "", "width=750, height=800");
 	}
 
 	// roomDetail에서 쪽지 버튼을 누르면 실행하는 함수
-	function commentUser() {
+	function messageUser() {
 		var room_id = "${member.member_id}";
-		open("commentmember.do?room_id=" + room_id, "", "width=750, height=750");
+		open("messagemember.do?room_id=" + room_id, "", "width=750, height=800");
 	}
 </script>
 
@@ -133,7 +133,7 @@
 					<div class="userinfocontent">
 						<span class="leftb"><a href="javascript:reportUser()"
 							id="reportbtn">신고</a></span><span class="rightb"><a
-							href="javascript:commentUser()" id="commentbtn">쪽지</a></span>
+							href="javascript:messageUser()" id="messagebtn">쪽지</a></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">Phone : </span><span class="rightb">${member.member_phone }</span>
@@ -365,9 +365,6 @@
 				String useingid = user.getMember_id();
 				if (uploadid.equals(useingid)) {
 				%>
-				<%
-					}
-				%>
 				<div class="roominfosubmit">
 					<div class="submitbtn">
 						<input type="button" value="수정"
@@ -376,6 +373,9 @@
 							onclick="location.href='deleteroom.do?room_no=${room.room_no}'" class="roombtn"/>
 					</div>
 				</div>
+				<%
+					}
+				%>
 	</section>
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>

@@ -5,10 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+onload=function(){
+	alert("쪽지가 전송되었습니다.");
+	self.close();
+}
+
+</script>
 </head>
 <body>
-
-	<h1>쪽지보내기 Form</h1>
 
 </body>
 </html>
