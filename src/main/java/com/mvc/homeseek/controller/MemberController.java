@@ -159,7 +159,7 @@ public class MemberController {
 	public String registRes(String member_id, @RequestParam("email") String email, MemberDto dto) {
 		logger.info("registres.do");
 		
-		String memberId = member_id + "@" + email;
+		String memberId = member_id + "@" + email;//이메일 형식
 		dto.setMember_id(memberId);
 		
 		System.out.println(email + "*****!!!!!!!^^^#%$#$%$%&^&^&%#$%^#$@$#%");

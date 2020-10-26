@@ -39,11 +39,7 @@
 				<label for="member_name">이름</label>
 					<input type="text" name="member_name" id="member_name" size="30" placeholder="NAME"/>
 			</div>
-			<!--  <div>
-				<label for="member_email">E-mail</label>
-					<input type="text" name="member_email" id="member_email" size="30" placeholder="EX : hwangingyu@gmail.com"/>
-					<div class="check_font" id="emailCheck"></div>
-			</div>-->
+			
 			<div>
 				<label for="member_phone">Phone</label>
 					<input type="text" name="member_phone" id="member_phone" size="30" placeholder="010-0000-0000"/>
