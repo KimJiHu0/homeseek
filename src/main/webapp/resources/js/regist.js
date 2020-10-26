@@ -1,7 +1,7 @@
-//모든 공백 체크 정규식
+
 	var empJ = /\s/g;
 	//아이디 정규식
-	var idJ =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	//var idJ =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	// 비밀번호 정규식
 	var pwJ = /^[a-z0-9]{4,12}$/; 
 	// 휴대폰 번호 정규식
@@ -10,20 +10,34 @@
 $(function(){
 	document.getElementById("phone_check").style.display = "none";
 	document.getElementById("phoneCheck").style.display = "none";
+	$('#select_email').change(function(){ 
+		$("#select_email option:selected").each(function () {
+			if($(this).val()== '1'){ //직접입력일 경우
+				$("#email").val(''); //값 초기화 
+				$("#email").attr("disabled",false); //활성화 
+				}else{ //직접입력이 아닐경우 
+					$("#email").val($(this).val()); //선택값 입력 
+					} 
+			}); 
+		});
+		
+	
+
+
 	//아이디 관련
-    $('#member_id').blur(function(){
-    	if (idJ.test($('#member_id').val())) {
+    $('#select_email').blur(function(){
 		 $.ajax({
 	     type:"POST",
 	     url:"checkid.do",
 	     data:{
-	            "member_id":$('#member_id').val()
+	            "member_id":$('#member_id').val() +'@'+ $('#email').val()
 	     },
 	     success:function(data){	//data : checkSignup에서 넘겨준 결과값
 	            if($.trim(data)=="YES"){
 	               if($('#member_id').val()!=''){ 
 	            	   $("#id_check").text("사용가능한 아이디입니다");
 	            	   $("#id_check").css("color", "blue");
+	        
 	               }
 	           	}else{
 	               if($('#member_id').val()!=''){
@@ -36,12 +50,7 @@ $(function(){
 	            }
 	         }
 	    })
-    	} else {
-    		$('#id_check').text('e-mail형식으로 입력해주세요');
-    		$('#id_check').css('color', 'red');
-    		$('#member_id').val('');
-    		$('#member_id').focus();
-    	}
+    	
      })
      //비밀번호 관련
      $('#member_pw').blur(function(){
@@ -49,10 +58,10 @@ $(function(){
 				$("#memberPw").text('사용 가능');
 				$('#memberPw').css('color', 'blue');
 		} else {
-			$('#memberPw').text('숫자 or 문자로만 4~12자리 입력');
+			$('#memberPw').text('숫자 or 문자로만 4~12자리 입력, 대문자 입력 불가');
 			$('#memberPw').css('color', 'red');
 			$('#member_pw').val('');
-			$('#member_pw').focus()
+			
 		}
      })
      //비밀번호 확인 관련
@@ -83,7 +92,7 @@ $(function(){
 	
 	//본인인증 번호 보내기
 	$('#sendSms').click(function(){
-		if (phoneJ.test($(this).val())) {
+		if (phoneJ.test($('#member_phone').val())) {
 			if($('#member_phone').val() != ""){
 				document.getElementById("phone_check").style.display = "block";
 				document.getElementById("phoneCheck").style.display = "block";
@@ -127,6 +136,7 @@ $(function(){
 	
     //회원 등록 버튼
     $("#submit").on ("click", function(){
+    	
 		if($("#member_id").val()==""){
 			alert("아이디를 입력해주세요.");
 			$("#userId").focus();

@@ -14,10 +14,16 @@
 	<h1>회원가입</h1>
 	
 	<form action="registres.do" method="post">
-			<div>
-				<label for="member_id">아이디</label>
-					<input type="text" id= "member_id" name="member_id" size="30" placeholder="EX : hwangingyu228@homeseek.com"/>
-				<div class="check_font" id="id_check"></div>
+	
+			<div> 
+			<label for="member_id">아이디</label>
+			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text"> 
+				  <select name="select_email" id="select_email"> 
+				  <option value="" selected>선택하세요</option> 
+				  <option value="naver.com">naver.com</option> 
+				  <option value="gmail.com">gmail.com</option>   
+				  </select> 
+				  <div class="check_font" id="id_check"></div>
 			</div>
 			<div>
 				<label for="member_pw">비밀번호</label>
@@ -33,11 +39,7 @@
 				<label for="member_name">이름</label>
 					<input type="text" name="member_name" id="member_name" size="30" placeholder="NAME"/>
 			</div>
-			<!--  <div>
-				<label for="member_email">E-mail</label>
-					<input type="text" name="member_email" id="member_email" size="30" placeholder="EX : hwangingyu@gmail.com"/>
-					<div class="check_font" id="emailCheck"></div>
-			</div>-->
+			
 			<div>
 				<label for="member_phone">Phone</label>
 					<input type="text" name="member_phone" id="member_phone" size="30" placeholder="010-0000-0000"/>
