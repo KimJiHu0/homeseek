@@ -74,7 +74,7 @@ section #top_title {
 
 /* --------------- div3 주소(kakao map) --------------- */
 #insert_div3{
-	height: 700px;
+	height: 600px;
 	padding: 10px;
 	margin: 0 auto;
 	border-bottom: 1px solid;
@@ -95,8 +95,11 @@ section #top_title {
 }
 
 #insert_div3 #show_map {
-	width:100%;
-	height:350px;
+	width:70%;
+	max-width:700px;
+	height:450px;
+	margin-top: 50px;
+	float: left; 
 }
 
 
@@ -127,7 +130,7 @@ section #top_title {
 
 /* --------------- div5 준공날짜, 입주가능일 --------------- */
 #insert_div5{
-	height: 50px;
+	height: 500px;
 	padding: 5px;
 	margin: 0 auto;
 	border-bottom: 1px solid;
@@ -138,6 +141,13 @@ section #top_title {
 	width: 10%;
 	max-width:75px;
 	padding-left:10px;
+	
+}
+
+#insert_div5 #detail_label{
+	font-size : 20px;
+	width: 20%;
+	max-width:150px;
 }
 
 #insert_div5 input{

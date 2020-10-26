@@ -29,12 +29,12 @@
 			
 		
 				<div id="insert_div1">
-					<label for="insert_roomname" id="1st_col">매물이름</label>
+					<label for="insert_roomname" id="name_label">매물이름</label>
 						<input type="text" name="room_name" id="insert_name">
 				
 	
 				
-					<label for="insert_type" id="2nd_col">매물종류</label>
+					<label for="insert_type" id="type_label">매물종류</label>
 						<select name="room_type" id="insert_roomtype">
 							<option value="1">월세</option>
 							<option value="2">전세</option>
@@ -45,15 +45,15 @@
 				</div>
 				
 				<div id="insert_div2">
-					<label for="insert_deposit" id="1st_col">보증금</label>
+					<label for="insert_deposit" id="deposit_label">보증금</label>
 						<input type="text" name="room_deposit" id="insert_deposit">
 				
 					
-					<label for="insert_price" id="2nd_col">매물가격</label>
+					<label for="insert_price" id="price_label">매물가격</label>
 						<input type="text" name="room_price" id="insert_price">
 					
 				
-					<label for="insert_ext" id="3rd_col">매물면적</label>
+					<label for="insert_ext" id="ext_label">매물면적</label>
 						<input type="text" name="room_extent" placeholder="단위 : 제곱미터" id="insert_ext">
 				
 				</div>
@@ -65,11 +65,12 @@
 					<label for="insert_addr" id="addr_label">매물주소</label>
 					<input type="text" id="room_addr" name="room_addr" onclick="goPopup()" placeholder="  입력창 클릭시 도로명주소 팝업창으로 이동합니다." readonly="readonly"/>
 					
+					<!-- 지도 출력 영역 -->
 					<div id="show_map"></div>
 				</div>
 				
 				<div id="insert_div4">
-					<label for="insert_kind" id="1st_col">건물 종류</label>
+					<label for="insert_kind" id="kind_label">건물 종류</label>
 						<select name="room_kind" id="insert_kind">
 							<option value="1">아파트</option>
 							<option value="2">빌라</option>
@@ -79,7 +80,7 @@
 						</select>
 					
 				
-					<label for="insert_structure" id="2nd_col">방 구조</label>
+					<label for="insert_structure" id="strc_label">방 구조</label>
 						<select name="room_structure" id="insert_structure">
 							<option value="1">방 1개</option>
 							<option value="2">방 2개</option>
@@ -87,19 +88,19 @@
 						</select>
 					
 				
-					<label for="insert_floor" id="3rd_col">방 층수</label>
+					<label for="insert_floor" id="floor_label">방 층수</label>
 					<input type="text" name="room_floor" id="insert_floor">
 				</div>	
 				
 				<div id="insert_div5">
-					<label for="insert_cpdate" id="1st_col">준공 날짜</label>
+					<label for="insert_cpdate" id="cpd_label">준공 날짜</label>
 					<input type="date" name="room_cpdate" id="insert_cpdate">
 					
 				
-					<label for="insert_avdate" id="2nd_col">입주 가능일</label>
+					<label for="insert_avdate" id="avd_label">입주 가능일</label>
 					<input type="date" name="room_avdate" id="insert_avdate">
 					<br>
-					<label for="summernote" id="1st_col">상세설명</label>
+					<label for="summernote" id="detail_label">상세설명</label>
 					<div id="insert_detail">
 						<textarea rows="10" cols="60" class="summernote" name="room_detail"></textarea>
 					</div>
@@ -134,66 +135,32 @@
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
 
+<!-- summerNote.js -->
+<script src="${pageContext.request.contextPath}/resources/js/summerNote-roomInsert.js" type="text/javascript"></script>
+
+<!-- 카카오맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script>
-<script>
-var mapContainer = document.getElementById('show_map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-var user_addr = document.getElementById("room_addr").value;
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('경기도 용인시 수지구 현암로 63번길 2', function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">매물 위치</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
-</script>
-
-
-
+<!-- 카카오맵 services 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script>
 
 <!-- 도로명주소API js -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/loadAddress.js" type="text/javascript"></script>
 
-<!-- services 라이브러리 불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script>
-
-<!-- summerNote.js -->
-<script src="${pageContext.request.contextPath}/resources/js/summerNote-roomInsert.js" type="text/javascript"></script>
-
+<!-- page 설정 -->
 
 <!-- roomInsert.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomInsert.css" type="text/css" />
-
-
 <!-- roomInsert.js -->
 <script src="resources/js/roomInsert.js" type="text/javascript"></script>
+
+
+<script>
+
+
+
+
+</script>
 </html>
 
 
