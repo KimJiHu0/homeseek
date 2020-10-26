@@ -27,15 +27,15 @@
 				</div>
 				<!-- 매물이름 div -->
 				<div class="updateroomname">
-					<div>매물이름</div>
-					<div>
+					<span>매물이름</span>
+					<span>
 						<input type="text" value="${room.room_name }" name="room_name">
-					</div>
+					</span>
 				</div>
 				<!-- 매물종류 div -->
 				<div class="updateroomtype">
-					<div>매물종류</div>
-					<div>
+					<span>매물종류</span>
+					<span>
 						<select id="room_type" name="room_type">
 							<option value="1">월세</option>
 							<option value="2">전세</option>
@@ -43,7 +43,7 @@
 							<option value="4">반전세</option>
 							<option value="5">단기임대</option>
 						</select>
-					</div>
+					</span>
 				</div>
 				<!-- 보증금 div -->
 				<!-- price : 매물 가격 -->
@@ -54,90 +54,94 @@
 				<!-- 반전세면 deposit가 보증금 / price가 월세 -->
 				<!-- 단기임대면 deposit가 보증금 / price가 월세 -->
 				<div class="updateroomdeposit">
-					<div>보증금</div>
-					<div>
+					<span>보증금</span>
+					<span>
 						<input type="text" value="${room.room_deposit }" name="room_deposit">
-					</div>
+					</span>
 				</div>
 				<!-- 매물 가격 div -->
 				<!-- 매매, 전세 : price만 -->
 				<!-- 월세, 반전세, 단기임대 : deposit랑 같이 출력 -->
 				<div class="updateroomprice">
-					<div>가격</div>
-					<div>
+					<span>가격</span>
+					<span>
 						<input type="text" value="${room.room_price }" name="room_price">
-					</div>
+					</span>
 				</div>
 				
 				<!-- 매물면적 -->
 				<div class="updateroomextent">
-					<div>매물면적</div>
-					<div>
+					<span>매물면적</span>
+					<span>
 						<input type="text" value="${room.room_extent }" name="room_extent">
-					</div>
+					</span>
 				</div>
 				
 				<!-- 매물주소 -->
 				<div class="updateroomaddr">
-					<div>매물주소</div>
-					<div>
-						<input type="text" value="${room.room_addr }" id="room_addr" name="room_addr" onclick="addrcheck();">
-					</div>
+					<span>매물주소</span>
+					<span>
+						<input type="text" value="${room.room_addr }" id="room_addr" name="room_addr" readonly="readonly" onclick="addrcheck();">
+					</span>
 				</div>
 				<!-- 매물 건물종류 -->
 				<div class="updateroomkind">
-					<div>매물 건물 종류</div>
-					<select id="room_kind" name="room_kind">
-							<option value="1">아파트</option>
-							<option value="2">빌라</option>
-							<option value="3">주택</option>
-							<option value="4">오피스텔</option>
-							<option value="5">상가사무실</option>
-					</select>
+					<span>매물 건물 종류</span>
+						<span>
+							<select id="room_kind" name="room_kind">
+								<option value="1">아파트</option>
+								<option value="2">빌라</option>
+								<option value="3">주택</option>
+								<option value="4">오피스텔</option>
+								<option value="5">상가사무실</option>
+							</select>
+						</span>
 				</div>
 				<!-- 매물구조 -->
 				<div class="updateroomstructure">
-					<div>매물 구조</div>
-					<div>
+					<span>매물 구조</span>
+					<span>
 						<select id="room_structure" name="room_structure">
 							<option value="1">방 1개</option>
 							<option value="2">방 2개</option>
 							<option value="3">방 3개이상</option>
 						</select>
-					</div>
+					</span>
 				</div>
 				<!-- 매물 층수 -->
 				<div class="updateroomfloor">
-					<div>매물 층수</div>
-					<div>
+					<span>매물 층수</span>
+					<span>
 						<input type="text" value="${room.room_floor }" name="room_floor">
-					</div>
+					</span>
 				</div>
 				<!-- 매물 등록 날짜 -->
 				<div class="updateroomregdate">
-					<div>매물 등록 날짜</div>
-					<div>
+					<span>매물 등록 날짜</span>
+					<span>
 						<input type="date" value="${room.room_regdate}" id="room_regdate" readonly="readonly" name="room_regdate">
-					</div>
+					</span>
 				</div>
 				<!-- 매물 준공 날짜 -->
 				<div class="updateroomcpdate">
-					<div>매물 준공 날짜</div>
-					<div>
+					<span>매물 준공 날짜</span>
+					<span>
 						<input type="date" value="${room.room_cpdate}" id="room_cpdate" name="room_cpdate">
-					</div>
+					</span>
 				</div>
 				<!-- 매물 입주 가능일 -->
 				<div class="updateroomavdate">
-					<div>매물 입주 가능일</div>
-					<div>
+					<span>매물 입주 가능일</span>
+					<span>
 						<input type="date" value="${room.room_avdate}" id="room_avdate" name="room_avdate">
-					</div>
+					</span>
 				</div>
 				<!-- 매물 상세설명 -->
 				<div class="updateroomdetail">
-					<div>매물 상세설명</div>
-					<div class="summernote" name="room_detail"></div>
+					<span>매물 상세설명</span>
+					<span>
+						<textarea rows="10" cols="60" class="summernote" name="room_detail">${room.room_detail }</textarea>
+					</span>
 				</div>
 				<!-- form태그 안에서 submit버튼을 클릭하면 값 넘기기 -->
 				<div class="updateroomsubmit">

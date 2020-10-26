@@ -113,9 +113,9 @@ a>img {
 
 /* 공지사항 정보 css */
 #noticeinfo{
-	width : 100%;
+	width : 62.7%;
 	height : 30px;
-	padding-left : 50px;
+	margin-left : 50px;
 }
 
 /* noticeinfo 안에 span에 css */
@@ -125,9 +125,9 @@ a>img {
 
 /* recommendinfo css */
 #recommendinfo{
-	width : 100%;
+	width : 62.7%;
 	height : 30px;
-	padding-left : 50px;
+	margin-left : 50px;
 }
 
 /* recommend 안에 span에 css */
@@ -140,21 +140,27 @@ a>img {
 	width : 62.7%;
 	height : 400px;
 	margin-left : 50px;
-	padding-top : 50px;
+	margin-top : 50px;
 }
 
 /* 방정보 담는 큰 container */
 #thirdcontainer{
 	display:flex;
+	width : 62.7%;
 	margin-bottom : 50px;
 	margin-left : 50px;
 	margin-top : 40px;
+	flex-direction:column;
+	border : 1px black solid;
 }
 
-/* 방상세정보컨테이너 */
-#roominfdetail{
-	text-align : center;
+/* thirdcontainer 안에 한줄한줄에 해당하는 div를 지정 */
+.roominfotitle{
+	border : 1px blue solid;
 }
-#detailcontent{
-	resize : none;
+.roominfocontent{
+	border : 1px red solid;
 }
+
+
+
