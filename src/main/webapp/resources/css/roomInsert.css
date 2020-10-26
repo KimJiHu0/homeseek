@@ -89,9 +89,9 @@ section #top_title {
 	padding-left:10px;
 }
 
-#insert_div3 #juso_popup{
-	width: 10%;
-	max-width: 100px;
+#insert_div3 #room_addr{
+	width : 60%;
+	max-width : 600px;
 }
 
 #insert_div3 #show_map {
