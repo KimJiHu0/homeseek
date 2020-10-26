@@ -97,6 +97,18 @@ public class RoomController {
 	
 	//-------------------------------------------------------
 	
+	@RequestMapping("insertpopup.do")
+	public String addrPopup(){
+		return "roomInsertPopup";
+	}
+	
+	@RequestMapping("popupres.do")
+	public String addrPopupRes(HttpSession session) {
+		
+		
+		return "";
+	}
+	
 
 	public String selectRoomDelete(int room_no) {
 

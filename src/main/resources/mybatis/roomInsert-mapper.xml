@@ -19,8 +19,8 @@
 			SYSDATE, 
 			TO_DATE(#{room_cpdate}, 'yyyy/MM/dd'), 
 			TO_DATE(#{room_avdate}, 'yyyy/MM/dd'), 
-			#{room_longi}, 
-			#{room_lati}, 
+			<!-- #{room_longi}, 
+			#{room_lati}, --> 
 			#{room_detail}, 
 			#{room_id})
 		
