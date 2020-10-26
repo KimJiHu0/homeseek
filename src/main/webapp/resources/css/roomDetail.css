@@ -51,6 +51,7 @@ a>img {
 }
 
 
+/*-------------------우측 매물정보 css 시작-------------------*/
 
 /* 유정보를 담고있는 container */
 #userinfocontainer{
@@ -110,7 +111,10 @@ a>img {
 	height: 5%;
 }
 
+/*-----------------우측 매물정보 css 끝-------------------*/
 
+
+/*------------------공지사항 css 시작--------------------*/
 /* 공지사항 정보 css */
 #noticeinfo{
 	width : 62.7%;
@@ -122,7 +126,10 @@ a>img {
 #noticeinfo > span{
 	background-color : gray;
 }
+/*------------------공지사항 css 끝--------------------*/
 
+
+/*------------------추천알고리즘 css 시작--------------------*/
 /* recommendinfo css */
 #recommendinfo{
 	width : 62.7%;
@@ -135,6 +142,10 @@ a>img {
 	background-color : gray;
 }
 
+/*------------------공지사항 css 끝--------------------*/
+
+
+/*------------------kakaoMap css 시작--------------------*/
 /* map담을 div css */
 #roommap{
 	width : 62.7%;
@@ -142,25 +153,113 @@ a>img {
 	margin-left : 50px;
 	margin-top : 50px;
 }
+/*------------------kakaoMap css 끝--------------------*/
 
+
+/*------------------매물 정보 css 시작--------------------*/
 /* 방정보 담는 큰 container */
 #thirdcontainer{
 	display:flex;
+	flex-direction : column;
 	width : 62.7%;
+	height : 750px;
 	margin-bottom : 50px;
 	margin-left : 50px;
 	margin-top : 40px;
-	flex-direction:column;
+}
+
+/* 방정보 제목을 담을 div css */
+.roominfo-title{
+	width : 100%;
+	height : 10%;
+	border-bottom : 2px black solid;
+}
+/* 방정보 내용을 담을 div css */
+.roominfo-content{
+	display : flex;
+	flex-wrap: wrap;
+	width : 100%;
+	height : 100%;
+}
+/* 아래의 두개를 묶은 div */
+.roominfo-detail{
+	display : flex;
+	width : 45%;
+	height : 50px;
+	margin-left : 30px;
+	margin-top : 30px;
+}
+/* 방정보 내용 안에서 하나의 제목 */
+.roominfo-detail-title{
+	width : 33%;
+	padding-left : 5%;
+	padding-right : 5%;
+	padding-top : 3%;
+	font-size : 13pt;
+	border-bottom : 2px black solid;
+}
+
+/* 방정보 내용 안에서 하나의 내용 */
+.roominfo-detail-content{
+	width : 67%;
+	padding-left : 5%;
+	margin-left : 5%;
+	padding-top : 3%;
+	font-size : 13pt;
+	border-bottom : 2px black solid;
+}
+
+/* textarea의 사이즈 지정 */
+#detailcontent{
+	resize : none;
+}
+
+/* 매물 상세정보 div */
+.roominfo-content-detailcontent{
+	display : flex;
+	width : 45%;
+	height : 50px;
+	margin-left : 30px;
+	margin-top : 30px;
+}
+
+/* 매물 상세정보의 제목 */
+.roominfo-content-detailcontent-title{
+	width : 32%;
+	font-size : 13pt;
+	padding-left : 5%;
+	padding-top : 3%;
+	border-bottom : 2px black solid;
+}
+
+/* 매물 상세정보의 내용 */
+.roominfo-content-detailcontent-content{
+	width : 59.6%;
+	margin-left : 50px;
+	padding-left : 3%;
 	border : 1px black solid;
 }
 
-/* thirdcontainer 안에 한줄한줄에 해당하는 div를 지정 */
-.roominfotitle{
-	border : 1px blue solid;
+/* 버튼 box css */
+.roominfosubmit{
+	margin-top : 70px;
+	margin-left : 50px;
+	width : 62.7%;
+	height : 100px;
 }
-.roominfocontent{
-	border : 1px red solid;
+
+/* 버튼 위치 css */
+.submitbtn{
+	margin-left : 40%;
+}
+
+.roombtn{
+	width : 100px;
+	height : 70px;
+	background-color : white;
+	cursor : pointer;
 }
 
 
+/*------------------매물정보 css 끝--------------------*/
 

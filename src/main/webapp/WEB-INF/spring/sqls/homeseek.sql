@@ -163,7 +163,7 @@ INSERT INTO ROOM VALUES(ROOM_NO_SEQ.NEXTVAL, 'homeseek 사무소', '사진', '4'
 INSERT INTO ROOM VALUES(ROOM_NO_SEQ.NEXTVAL, 'homeseek 사무소', '사진', '5', '100', '1000', '900', '서울특별시 강남구',
 '1', '3', '10층', SYSDATE, SYSDATE, SYSDATE, '127.032888','37.499172', 'homeseek korea', 'admin');
 INSERT INTO ROOM VALUES(ROOM_NO_SEQ.NEXTVAL, 'homeseek 사무소', '사진', '5', '100', '1000', '900', '서울특별시 강남구',
-'1', '3', '10층', SYSDATE, SYSDATE, SYSDATE, '127.032888','37.499172', 'homeseek korea', 'member');
+'1', '3', '10층', SYSDATE, SYSDATE, SYSDATE, 'homeseek korea<br/>dddddddddddddddddddd<br/>ddddddddddddddddd<br/>dddddd<br/>dddd<br/>dddddddd<br/>dddddddddd<br/>dddddddddd<br/>ddddddddddddd<br/>ddddddddddddd<br/>dddddddddddddddd<br/>ddddddd<br/>dddddddd', 'member');
 
 UPDATE ROOM SET ROOM_REGDATE = TO_DATE('20200101','yyyy/MM/dd') WHERE ROOM_NO = 24;
 

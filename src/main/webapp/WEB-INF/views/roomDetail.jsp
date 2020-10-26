@@ -225,67 +225,134 @@
 
 		<!-- third container -->
 		<div id="thirdcontainer">
-				<div class="roominfotitle">
-					<p class="leftroom">매물 이름</p>
-					<p class="leftroom">매물 면적</p>
-					<p class="leftroom">매물 주소</p>
-					<p class="leftroom">건물 종류</p>
-					<p class="leftroom">매물 구조</p>
-					<p class="leftroom">매물 층수</p>
-					<p class="leftroom">매물 등록 날짜</p>
-					<p class="leftroom">매물 준공 날짜</p>
-					<p class="leftroom">입주 가능일</p>
-					<p class="leftroom">매물 상세설명</p>
+			<!-- 방 정보 제목을 담을 div -->
+			<div class="roominfo-title">
+				<h2>매물정보</h2>
+			</div>
+			<!-- 방 정보 내용들을 담을 div -->
+			<div class="roominfo-content">
+				<!-- 하나의 제목과 내용을 담을 div -->
+				<div class="roominfo-detail">
+					<!-- 컬럼div -->
+					<div class="roominfo-detail-title">
+						매물 이름
+					</div>
+					<!-- 해당 컬럼의 값 div -->
+					<div class="roominfo-detail-content">
+						${room.room_name }
+					</div>
 				</div>
-				<div class="roominfocontent">
-					<span class="rightroom">${room.room_name }</span>
-					<span class="rightroom">${room.room_extent }</span>
-					<span class="rightroom">${room.room_addr }</span>
-					<%
-						if (room.getRoom_kind().equals("1")) {
-					%>
-					<span class="rightroom">아파트</span>
-					<%
-						} else if (room.getRoom_kind().equals("2")) {
-					%>
-					<span class="rightroom">빌라</span>
-					<%
-						} else if (room.getRoom_kind().equals("3")) {
-					%>
-					<span class="rightroom">주택</span>
-					<%
-						} else if (room.getRoom_kind().equals("4")) {
-					%>
-					<span class="rightroom">오피스텔</span>
-					<%
-						} else {
-					%>
-					<span class="rightroom">상가사무실</span>
-					<%
-						}
-						if (room.getRoom_structure().equals("1")) {
-					%>
-					<span class="rightroom">방 1개</span>
-					<%
-						} else if (room.getRoom_structure().equals("2")) {
-					%>
-					<span class="rightroom">방 2개</span>
-					<%
-						} else {
-					%>
-					<span class="rightroom">방 3개 이상</span>
-					<%
-						}
-					%>
-					<span class="rightroom">${room.room_floor }</span>
-					<span class="rightroom">${room.room_regdate }</span>
-					<span class="rightroom">${room.room_cpdate }</span>
-					<span class="rightroom">${room.room_avdate }</span>
-					<span class="rightroom">
-						<textarea id="detailcontent" rows="10" cols="60"
-							readonly="readonly">${room.room_detail }</textarea>
-					</span>
+				
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						매물 면적(㎡)
+					</div>
+					<div class="roominfo-detail-content">
+						${room.room_extent }㎡
+					</div>
 				</div>
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						매물 주소
+					</div>
+					<div class="roominfo-detail-content">
+						${room.room_addr }
+					</div>
+				</div>
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						건물 종류
+					</div>
+					<div class="roominfo-detail-content">
+						<%
+							if (room.getRoom_kind().equals("1")) {
+						%>
+							아파트
+						<%
+							} else if (room.getRoom_kind().equals("2")) {
+						%>
+							빌라
+						<%
+							} else if (room.getRoom_kind().equals("3")) {
+						%>
+							주택
+						<%
+							} else if (room.getRoom_kind().equals("4")) {
+						%>
+							오피스텔
+						<%
+							} else {
+						%>
+							상가사무실
+						<%
+							}
+						%>
+					</div>
+				</div>
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						매물 구조
+					</div>
+					<div class="roominfo-detail-content">
+						<%
+							if (room.getRoom_structure().equals("1")) {
+						%>
+							방 1개
+						<%
+							} else if (room.getRoom_structure().equals("2")) {
+						%>
+							방 2개
+						<%
+							} else {
+						%>
+							방 3개 이상
+						<%
+							}
+						%>
+					</div>
+				</div>
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						매물 층수
+					</div>
+					<div class="roominfo-detail-content">
+						${room.room_floor }
+					</div>
+				</div>
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						매물 등록 날짜
+					</div>
+					<div class="roominfo-detail-content">
+						${room.room_regdate }
+					</div>
+				</div>
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						매물 준공 날짜
+					</div>
+					<div class="roominfo-detail-content">
+						${room.room_cpdate }
+					</div>
+				</div>
+				<div class="roominfo-detail">
+					<div class="roominfo-detail-title">
+						입주 가능일
+					</div>
+					<div class="roominfo-detail-content">
+						${room.room_avdate }
+					</div>
+				</div>
+			</div>
+				<div class="roominfo-content-detailcontent">
+					<div class="roominfo-content-detailcontent-title">
+						상세정보
+					</div>
+				</div>
+		</div>
+					<div class="roominfo-content-detailcontent-content">
+						${room.room_detail }
+					</div>
 				<%
 					// 세션에 로그인되어있는 id를 가지고 수정버튼을 보여줄지 말지 선택
 
@@ -298,18 +365,17 @@
 				String useingid = user.getMember_id();
 				if (uploadid.equals(useingid)) {
 				%>
-				<div class="roominfosubmit">
-					<span class="submitbtn">
-						<input type="button" value="수정"
-							onclick="location.href='updateroom.do?room_no=${room.room_no}'" />
-						<input type="button" value="삭제"
-							onclick="location.href='deleteroom.do?room_no=${room.room_no}'" />
-					</span>
-				</div>
 				<%
 					}
 				%>
-			</div>
+				<div class="roominfosubmit">
+					<div class="submitbtn">
+						<input type="button" value="수정"
+							onclick="location.href='updateroom.do?room_no=${room.room_no}'" class="roombtn"/>
+						<input type="button" value="삭제"
+							onclick="location.href='deleteroom.do?room_no=${room.room_no}'" class="roombtn"/>
+					</div>
+				</div>
 	</section>
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
