@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mvc.homeseek.model.dto.MemberDto;
  
 @Service
 public class KakaoAPI {
@@ -75,10 +76,10 @@ public class KakaoAPI {
         
         return access_Token;
     }
-    public HashMap<String, Object> getUserInfo (String access_Token) {
-        
+    public MemberDto getUserInfo (String access_Token) {
+    	MemberDto user = new MemberDto();
         //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
-        HashMap<String, Object> userInfo = new HashMap<>();
+    	//MemberDto userInfo = new MemberDto();
         String reqURL = "https://kapi.kakao.com/v2/user/me";
         try {
             URL url = new URL(reqURL);
@@ -111,16 +112,18 @@ public class KakaoAPI {
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
            
             
-            userInfo.put("nickname", nickname);
-            userInfo.put("email", email);
+            //userInfo.put("nickname", nickname);
+            //userInfo.put("kakaoemail", email);
             
+            user.setMember_kakaoid(nickname);
+            user.setMember_id(email);
             
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
-        return userInfo;
+        return user;
     }
     
 }

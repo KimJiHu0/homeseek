@@ -11,22 +11,18 @@ public class MemberDto {
 	//추가: sns로그인 정보를 저장하기위해
 	private String member_naverid;
 	private String member_googleid;
+	private String member_kakaoid;
 	
-	
-	@Override
-	public String toString() {
-		return "MemberDto [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
-				+ ", member_email=" + member_email + ", member_phone=" + member_phone + ", member_enabled="
-				+ member_enabled + ", member_role=" + member_role + ", member_naverid=" + member_naverid
-				+ ", member_googleid=" + member_googleid + "]";
-	}
-
-	public MemberDto() {
-		
+	// id 찾기용
+	public MemberDto(String member_name, String member_phone) {
+		super();
+		this.member_name = member_name;
+		this.member_phone = member_phone;
 	}
 	
 	public MemberDto(String member_id, String member_pw, String member_name, String member_email, String member_phone,
-			char member_enabled, char member_role, String member_naverid, String member_googleid) {
+			char member_enabled, char member_role, String member_naverid, String member_googleid,
+			String member_kakaoid) {
 		
 		this.member_id = member_id;
 		this.member_pw = member_pw;
@@ -37,6 +33,17 @@ public class MemberDto {
 		this.member_role = member_role;
 		this.member_naverid = member_naverid;
 		this.member_googleid = member_googleid;
+		this.member_kakaoid = member_kakaoid;
+	}
+	public MemberDto() {
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "MemberDto [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
+				+ ", member_email=" + member_email + ", member_phone=" + member_phone + ", member_enabled="
+				+ member_enabled + ", member_role=" + member_role + ", member_naverid=" + member_naverid
+				+ ", member_googleid=" + member_googleid + ", member_kakaoid=" + member_kakaoid + "]";
 	}
 	public String getMember_id() {
 		return member_id;
@@ -92,4 +99,12 @@ public class MemberDto {
 	public void setMember_googleid(String member_googleid) {
 		this.member_googleid = member_googleid;
 	}
+	public String getMember_kakaoid() {
+		return member_kakaoid;
+	}
+	public void setMember_kakaoid(String member_kakaoid) {
+		this.member_kakaoid = member_kakaoid;
+	}
+	
+	
 }

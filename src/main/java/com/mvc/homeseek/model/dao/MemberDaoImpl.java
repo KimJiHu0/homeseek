@@ -86,9 +86,14 @@ public class MemberDaoImpl implements MemberDao {
 	// sns에서 snsid를 뽑는 dao
 	@Override
 	public MemberDto getBySns(MemberDto snsUser) {
+		
 		//네이버 아이디가 있으면,,,
 		if (StringUtils.isNotEmpty(snsUser.getMember_naverid())) {
-			return session.selectOne(NAMESPACE + "getBySnsNaver", snsUser.getMember_naverid());
+			System.out.println("!!!!!!!MemberDaoImpl입니다 :naver !!!!!!"+snsUser.getMember_id());
+			return session.selectOne(NAMESPACE + "getBySnsNaver", snsUser.getMember_id());
+		} else if(StringUtils.isNotEmpty(snsUser.getMember_kakaoid())){
+			System.out.println("!!!!!!!MemberDaoImpl입니다 :kakao !!!!!!"+snsUser.getMember_id());
+			return session.selectOne(NAMESPACE + "getBySnsKakao", snsUser.getMember_id());
 		//구글아이디면,,,		
 		} else {
 			return session.selectOne(NAMESPACE + "getBySnsGoogle", snsUser.getMember_googleid());

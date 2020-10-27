@@ -19,7 +19,7 @@
 		SELECT *
 		FROM MEMBER
 		WHERE MEMBER_ID =
-		#{getMember_naverid}
+		#{snsUser.getMember_id()}
 	</select>
 
 	<select id="getBySnsGoogle" parameterType="MemberDto"
@@ -27,7 +27,15 @@
 		SELECT *
 		FROM MEMBER
 		WHERE MEMBER_ID =
-		#{getMember_googleid}
+		#{snsUser.getMember_googleid()}
+	</select>
+	
+	<select id="getBySnsKakao" parameterType="MemberDto"
+		resultType="MemberDto">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_ID =
+		#{snsUser.getMember_kakaoid()}
 	</select>
 
 	<!-- 회원가입 -->
