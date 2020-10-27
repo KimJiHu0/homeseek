@@ -75,7 +75,7 @@
 			<div>
 				<label for="member_name">이름</label>
 				<%
-				if (request.getAttribute("kakaoemail") != null) {
+				if (request.getAttribute("nickname") != null) {
 				%>
 					<input type="text" name="member_name" id="member_name" value="${ kakaoemail }" size="30" readonly/>
 				<%

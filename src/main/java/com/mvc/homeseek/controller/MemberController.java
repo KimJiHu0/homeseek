@@ -129,7 +129,7 @@ public class MemberController {
 		MemberDto snsUser = snsLogin.getUserProfile(code);
 		System.out.println("Profile>>" + snsUser);
 		
-		System.out.println("확인용!!!!"+ dto.getMember_id());
+		System.out.println("확인용!!!!"+ snsUser.getMember_naverid());
 		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid  추가해야함 !!! 그래야 select해볼수있음!)
 		MemberDto usertest = memberBiz.getBySns(snsUser);
 		
@@ -143,7 +143,7 @@ public class MemberController {
 			
 			return "regist";
 			
-		} else { // 존재시, 세션주고 로그인 시켜줌 
+		} else { // 존재시, 세션주고 로그인 시켜줌 -> main페이지
 			
 			model.addAttribute("result" ,"기존에 가입한 회원 . 로그인시켜도됨 ");
 
@@ -155,24 +155,28 @@ public class MemberController {
 	
 
 	@RequestMapping(value = "auth/kakao/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(@RequestParam("code") String code, HttpSession session, Model model) {
+	public String login(@RequestParam("code") String code, HttpSession session, Model model, MemberDto dto) {
 		System.out.println("★★★KAKAO★★★★★★★★★★KAKAO★★★★★KAKAO★★★★★★★★★★KAKAO★★★★★★★★★★★★★★");
 		String access_Token = kakao.getAccessToken(code);
-		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
-		System.out.println("login Controller : " + userInfo);
+		MemberDto snsUser = kakao.getUserInfo(access_Token);
+		System.out.println("login Controller : " + snsUser);
+		
+		MemberDto usertest = memberBiz.getBySns(snsUser);
 
 		// 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-		if (userInfo.get("nickname") != null) {
-			session.setAttribute("kakaoemail", userInfo.get("email"));
+//		if (userInfo.get("kakaoemail") != null) {
+		if (usertest == null) {
+			session.setAttribute("kakaoemail", snsUser.getMember_id());
 			session.setAttribute("access_Token", access_Token);
 			System.out.println("★★★KAKAO★★★★★★★★★★KAKAO★★★★★KAKAO★★★★★★★★★★KAKAO★★★★★★★★★★★★★★");
-			model.addAttribute("nickname", userInfo.get("email"));
-			model.addAttribute("kakaoemail", userInfo.get("nickname"));
+			model.addAttribute("nickname", snsUser.getMember_kakaoid());
+			model.addAttribute("kakaoemail", snsUser.getMember_id());
 
 			return "regist";
 		} else {
 
-			session.setAttribute("login", userInfo.get("nickname"));
+			//session.setAttribute("login", snsUser.getMember_kakaoid());
+			session.setAttribute("login", usertest);
 			return "redirect:/main.do";
 		}
 	}
@@ -209,14 +213,23 @@ public class MemberController {
 	}
 	
 	@RequestMapping("auth/naver/registres.do")
-	public String naverRegistRes(String member_id, @RequestParam("email") String email, MemberDto dto) {
+	public String naverRegistRes(String member_id, MemberDto dto) {
 		logger.info("auth/naver/registres.do");
 
-		String memberId = member_id + "@" + email;// 이메일 형식
-		dto.setMember_id(memberId);
+		
+		if (memberBiz.insert(dto) > 0) {
+			return "redirect:/main.do";
+		}
 
-		System.out.println(email + "*****!!!!!!!^^^#%$#$%$%&^&^&%#$%^#$@$#%");
+		return "redirect:registform.do";
 
+	}
+	
+	@RequestMapping("auth/kakao/registres.do")
+	public String kakaoRegistRes(String member_id, MemberDto dto) {
+		logger.info("auth/kakao/registres.do");
+
+		
 		if (memberBiz.insert(dto) > 0) {
 			return "redirect:/main.do";
 		}
