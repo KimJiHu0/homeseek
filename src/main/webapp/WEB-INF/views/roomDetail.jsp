@@ -23,7 +23,7 @@
 	if (msg != '') {
 		alert(msg);
 	}
-
+	
 	/* roomDetail에서 신고버튼을 누르면 실행되는 함수 */
 	function reportUser() {
 		var room_id = "${member.member_id}";
@@ -35,6 +35,7 @@
 		var room_id = "${member.member_id}";
 		open("messagemember.do?room_id=" + room_id, "", "width=750, height=800");
 	}
+	
 </script>
 
 </head>

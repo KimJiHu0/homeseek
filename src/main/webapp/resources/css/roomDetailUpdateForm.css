@@ -5,6 +5,31 @@ section{
 /* 가장 큰 container */
 .update-container{
 	width : 100%;
-	height : 100%;
+	height : 3000px;
 	border : 3px black solid;
+}
+
+/* 이미지를 담아중 div css */
+.updateroom-img{
+	border : 1px red solid;
+}
+
+/* 사진 담는 div 크기 */
+.updateroomimgdetail{
+	width : 300px;
+	height : 300px;
+	border : 1px pink solid;
+}
+
+/* 사진 크기 */
+.room-img{
+	width : 250px;
+	height : 250px;
+}
+
+
+#roomkakaomap{
+	width : 700px;
+	height : 500px;
+	border : 3px red solid;
 }

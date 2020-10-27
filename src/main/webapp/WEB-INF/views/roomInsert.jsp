@@ -10,9 +10,7 @@
 <body>
 	<!-- header.jsp include -->
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
-	<%
-		MemberDto memberDto = (MemberDto) (session.getAttribute("login"));
-	%>
+	
 	<section>
 	
 	<!-- 제목 -->
@@ -25,9 +23,6 @@
 	<!-- 입력폼 -->
 	<div class="form_div">
 		<form action="insertres.do" class="insert_form" method="POST">
-		<%-- <input type="hidden" name="room_id" value="${memberDto.getMember_id }"> --%>
-			
-		
 				<div id="insert_div1">
 					<label for="insert_roomname" id="name_label">매물이름</label>
 						<input type="text" name="room_name" id="insert_name">

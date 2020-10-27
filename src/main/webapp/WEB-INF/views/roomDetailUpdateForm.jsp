@@ -8,6 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 매물 수정하기</title>
+<!-- roomDetailUpdateForm에 대한 CSS 스크립트 선언 / KakaoMap때문에. -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css"
+	type="text/css" />
 </head>
 <body>
 	<!-- header.jsp include -->
@@ -161,9 +165,9 @@
         <div id="roomkakaomap"></div>
             
 		<!-- KakaoMap -->
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">
+		
 			// room_addr이라는 id를 가진 변경될 경우 함수 실행
 			// 지도를 생성할 div를 지정
 			var container = document.getElementById("roomkakaomap");
@@ -178,7 +182,7 @@
 			}
 			// 지도 생성 및 객체 리턴
 			var map = new kakao.maps.Map(container, options);
-
+			
 			// 마커가 지도 위에 표기되도록 설정
 			var infowindow = new kakao.maps.InfoWindow({
 				zindex : 1
@@ -186,7 +190,7 @@
 			// 주소를 위도와 경도로 변환시켜주는 객체
 			var geocoder = new kakao.maps.services.Geocoder();
 			// roadname을 가지고 room_addr값을 가져오기
-			var roadname = '${room.room_addr}';
+			var roadname = $("#room_addr").val();
 			
 			// 주소로 좌표를 검색
 			geocoder.addressSearch(roadname, function(result, status){
@@ -211,9 +215,6 @@
 					map.setCenter(coords);
 				}
 			});
-			$("[name=room_addr]").blur(function(){
-				alert("gd");
-			})
 		</script>
         
         <!-- submit button -->
