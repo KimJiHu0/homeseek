@@ -161,60 +161,60 @@
                 </div>
             </div>
         </div>
-        
         <div id="roomkakaomap"></div>
+        <div id = "display"></div>
             
 		<!-- KakaoMap -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">
 		
-			// room_addr이라는 id를 가진 변경될 경우 함수 실행
-			// 지도를 생성할 div를 지정
-			var container = document.getElementById("roomkakaomap");
-			// 지도를 생성할 떄 필요한 기본 옵션
-			var options = {
-				// 지도의 중심 좌표
-				// LatLng : center에 넣을 위도와 경도를 생성해주는 class
-				// 위도 : latitude / 경도 : longtidue
-				center : new kakao.maps.LatLng(33.450701, 126.570667),
-				// 지도의 레벨 (확대, 축소 정도)
-				level : 3
-			}
-			// 지도 생성 및 객체 리턴
-			var map = new kakao.maps.Map(container, options);
-			
-			// 마커가 지도 위에 표기되도록 설정
-			var infowindow = new kakao.maps.InfoWindow({
-				zindex : 1
-			});
-			// 주소를 위도와 경도로 변환시켜주는 객체
-			var geocoder = new kakao.maps.services.Geocoder();
-			// roadname을 가지고 room_addr값을 가져오기
-			var roadname = $("#room_addr").val();
-			
-			// 주소로 좌표를 검색
-			geocoder.addressSearch(roadname, function(result, status){
-				// 정상적으로 검색이 완료되었을 경우
-				if(status === kakao.maps.services.Status.OK){
-					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-					
-					// 마커에 대한 설정
-					var imgSrc = "resources/img/pin.png",
-						imgSize = new kakao.maps.Size(64,69),
-						imgOption = {offset : new kakao.maps.Point(27,69)};
-					
-					var markerImg = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
-					
-					// 결과값으로 받은 위치를 마커로 표시
-					var marker = new kakao.maps.Marker({
-						position : coords,
-						image : markerImg,
-						map : map
-					});
-					// 지도 중심을 결과값의 위치로 이동
-					map.setCenter(coords);
+				// room_addr이라는 id를 가진 변경될 경우 함수 실행
+				// 지도를 생성할 div를 지정
+				var container = document.getElementById("roomkakaomap");
+				// 지도를 생성할 떄 필요한 기본 옵션
+				var options = {
+					// 지도의 중심 좌표
+					// LatLng : center에 넣을 위도와 경도를 생성해주는 class
+					// 위도 : latitude / 경도 : longtidue
+					center : new kakao.maps.LatLng(33.450701, 126.570667),
+					// 지도의 레벨 (확대, 축소 정도)
+					level : 3
 				}
-			});
+				// 지도 생성 및 객체 리턴
+				var map = new kakao.maps.Map(container, options);
+				
+				// 마커가 지도 위에 표기되도록 설정
+				var infowindow = new kakao.maps.InfoWindow({
+					zindex : 1
+				});
+				// 주소를 위도와 경도로 변환시켜주는 객체
+				var geocoder = new kakao.maps.services.Geocoder();
+				// roadname을 가지고 room_addr값을 가져오기
+				var roadname = $("#room_addr").val();
+				
+				// 주소로 좌표를 검색
+				geocoder.addressSearch(roadname, function(result, status){
+					// 정상적으로 검색이 완료되었을 경우
+					if(status === kakao.maps.services.Status.OK){
+						var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+						
+						// 마커에 대한 설정
+						var imgSrc = "resources/img/pin.png",
+							imgSize = new kakao.maps.Size(64,69),
+							imgOption = {offset : new kakao.maps.Point(27,69)};
+						
+						var markerImg = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
+						
+						// 결과값으로 받은 위치를 마커로 표시
+						var marker = new kakao.maps.Marker({
+							position : coords,
+							image : markerImg,
+							map : map
+						});
+						// 지도 중심을 결과값의 위치로 이동
+						map.setCenter(coords);
+					}
+				});
 		</script>
         
         <!-- submit button -->

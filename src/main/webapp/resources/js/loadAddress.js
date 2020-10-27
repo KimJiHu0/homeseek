@@ -18,18 +18,22 @@ function addrcheck() {
 
 			// 주소 변수
 			var addr = '';
-
+			// ()안의 주소 넣어주기
+			var extraAddr = '';
+			
 			// 사용자가 선택한 주소가 도로명주소일 때
 			if (data.userSelectedType === 'R') {
 				addr = data.roadAddress;
+				extraAddr = data.buildingName;
+				$("[name=room_addr]").val(addr + "(" + extraAddr + ")");
 			} else {
 				// 사용자가 선택한 주소가 지번주소일 때 
 				addr = data.jibunAddress;
+				$("[name=room_addr]").val(addr);
 			}
-		$("[name=room_addr]").val(addr);
 		},
-	
-	theme : themeObj
+		
+		theme : themeObj
 	}).open({
 		popupName : 'homeseek : SearchAddress'
 	});

@@ -54,16 +54,13 @@ public class MessageController {
 	
 	// 쪽지보내기 처리하는 메소드
 	@RequestMapping(value="messagememberres.do", method = RequestMethod.POST)
-	public void insertMessageRes(MessageDto messagedto, RedirectAttributes msg) {
+	public String insertMessageRes(MessageDto messagedto, Model model) {
 		
 		logger.info("[ MessageController ] insertMessageRes");
 		
 		int res = messagebiz.insertMessage(messagedto);
 		
-		if(res > 0) {
-			msg.addFlashAttribute("msg", "쪽지가 전송되었습니다.");
-		} else {
-			msg.addFlashAttribute("msg", "쪽지가 전송이 실패되었습니다.");
-		}
+		model.addAttribute("res", res);
+		return "messagememberres";
 	}
 }

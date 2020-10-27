@@ -27,11 +27,9 @@
 
 <!-- 취소누르면 창닫기 -->
 <script type="text/javascript">
-
 	function reportFormClose(){
 		self.close();
 	}
-
 </script>
 </head>
 <body>

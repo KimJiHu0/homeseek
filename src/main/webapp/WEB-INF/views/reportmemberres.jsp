@@ -5,12 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		alert("신고가 완료되었습니다.");
+onload=function(){
+	var res = '${res}';
+	if(res > 0){
+		alert("신고접수가 완료되었습니다.");
 		self.close();
-	});
+	} else {
+		alert("신고접수가 실패하였습니다.");
+		self.close();
+	}
+}
 </script>
 </head>
 <body>

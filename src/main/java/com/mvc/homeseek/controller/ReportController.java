@@ -57,18 +57,19 @@ public class ReportController {
 	}
 	
 	@RequestMapping("reportmemberres.do")
-	public void reportMemberRes(ReportDto report_dto, RedirectAttributes msg) {
+	public String reportMemberRes(ReportDto report_dto, Model model) {
 		logger.info("[ ReportController ] ReportmMember");
 		
-		int res = reportbiz.insertReport(report_dto);
+		int res = reportbiz.insertReport(report_dto);	
 		
 		if(res > 0) {
 			// 신고에 성공하면 member의 enabled를 R로 update
 			memberbiz.updateMemberEnabled(report_dto.getReport_reid());
-			msg.addFlashAttribute("msg", "신고가 처리되었습니다.");
-			// 그 후에 DETAIL로 가야함. 그러기 위해서는 ROOM_NO가 필요함
+			model.addAttribute("res", res);
+			return "reportmemberres";
 		} else {
-			msg.addFlashAttribute("msg", "신고가 실패되었습니다.");
+			model.addAttribute("res", res);
+			return "reportmemberres";
 		}
 	}
 

@@ -24,12 +24,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/messageMemberForm.css" type="text/css" />
 
 <script type="text/javascript">
-
 // 취소버튼 누르면 창 꺼지기
 function messageFormClose(){
 	self.close();
 }
-
 </script>
 
 </head>
