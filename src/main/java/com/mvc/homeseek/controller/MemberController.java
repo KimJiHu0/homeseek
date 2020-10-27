@@ -163,10 +163,10 @@ public class MemberController {
 
 		// 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 		if (userInfo.get("nickname") != null) {
-			// session.setAttribute("kakaoemail", userInfo.get("email"));
-			// session.setAttribute("access_Token", access_Token);
+			session.setAttribute("kakaoemail", userInfo.get("email"));
+			session.setAttribute("access_Token", access_Token);
 			System.out.println("★★★KAKAO★★★★★★★★★★KAKAO★★★★★KAKAO★★★★★★★★★★KAKAO★★★★★★★★★★★★★★");
-			// model.addAttribute("kakaoemail", userInfo.get("email"));
+			model.addAttribute("nickname", userInfo.get("email"));
 			model.addAttribute("kakaoemail", userInfo.get("nickname"));
 
 			return "regist";
@@ -194,6 +194,23 @@ public class MemberController {
 	@RequestMapping("registres.do")
 	public String registRes(String member_id, @RequestParam("email") String email, MemberDto dto) {
 		logger.info("registres.do");
+
+		String memberId = member_id + "@" + email;// 이메일 형식
+		dto.setMember_id(memberId);
+
+		System.out.println(email + "*****!!!!!!!^^^#%$#$%$%&^&^&%#$%^#$@$#%");
+
+		if (memberBiz.insert(dto) > 0) {
+			return "redirect:/main.do";
+		}
+
+		return "redirect:registform.do";
+
+	}
+	
+	@RequestMapping("auth/naver/registres.do")
+	public String naverRegistRes(String member_id, @RequestParam("email") String email, MemberDto dto) {
+		logger.info("auth/naver/registres.do");
 
 		String memberId = member_id + "@" + email;// 이메일 형식
 		dto.setMember_id(memberId);
