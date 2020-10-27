@@ -176,6 +176,12 @@
 
 			// 지도 생성 및 객체 리턴
 			var map = new kakao.maps.Map(container, options);
+			
+			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+			var mapTypeControl = new kakao.maps.MapTypeControl();
+
+			// 지도 타입 컨트롤을 지도에 표시합니다
+			map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
 			// 마커가 지도 위에 표기되도록 설정
 			var infowindow = new kakao.maps.InfoWindow({
@@ -187,40 +193,31 @@
 			var roadname = '${room.room_addr}';
 
 			// 주소로 좌표를 검색
-			geocoder
-					.addressSearch(
-							roadname,
-							function(result, status) {
-								// 정상적으로 검색이 완료되면
-								if (status === kakao.maps.services.Status.OK) {
-									var coords = new kakao.maps.LatLng(
-											result[0].y, result[0].x);
+			geocoder.addressSearch(roadname, function(result, status) {
+				// 정상적으로 검색이 완료되면
+				if (status === kakao.maps.services.Status.OK) {
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					// 마커에 대한 설정
+					var imgSrc = "resources/img/pin.png",
+					imgSize = new kakao.maps.Size(64, 69),
+					imgOption = {offset : new kakao.maps.Point(27, 69)};
+					
+					var markerImg = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
 
-									// 마커에 대한 설정
-									var imgSrc = "resources/img/pin.png", imgSize = new kakao.maps.Size(
-											64, 69), imgOption = {
-										offset : new kakao.maps.Point(27, 69)
-									};
-
-									var markerImg = new kakao.maps.MarkerImage(
-											imgSrc, imgSize, imgOption);
-
-									// 결과값으로 받은 위치를 마커로 표시
-									var marker = new kakao.maps.Marker({
-										position : coords,
-										image : markerImg,
-										map : map
-									});
+					// 결과값으로 받은 위치를 마커로 표시
+					var marker = new kakao.maps.Marker({
+						position : coords,
+						image : markerImg,
+						map : map
+					});
 									// 지도의 중심을 결과값으로 받은 위치로 이동
-									map.setCenter(coords);
-								}
-							});
+					map.setCenter(coords);
+				}
+			});
 
-			$(
-					function() {
-						$("#mapcontent").parent().parent().attr(
-								'border-radius', '20px');
-					})
+			$(function() {
+				$("#mapcontent").parent().parent().attr('border-radius', '20px');
+			})
 		</script>
 
 		<!-- third container -->

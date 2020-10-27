@@ -14,152 +14,161 @@
 	<%@ include file="/WEB-INF/views/form/header.jsp"%>
 
 	<section>
-		<h1>수정</h1>
-		<form action="updateroomres.do" method="POST" id="typechange">
-			<input type="hidden" value="${room.room_no }" name="room_no" />
-			<!-- 가장 큰 div박스 -->
-			<div class="updateroominfo">
-				<div class="updateroomimg">
-					<!-- for문 돌려서 이미지들 가져오기 -->
-					<div class="updateroomimgdetail">
-						<img alt="사진" src="resources/img/backgroundimg.jpg">
-					</div>
-				</div>
-				<!-- 매물이름 div -->
-				<div class="updateroomname">
-					<span>매물이름</span>
-					<span>
-						<input type="text" value="${room.room_name }" name="room_name">
-					</span>
-				</div>
-				<!-- 매물종류 div -->
-				<div class="updateroomtype">
-					<span>매물종류</span>
-					<span>
-						<select id="room_type" name="room_type">
-							<option value="1">월세</option>
-							<option value="2">전세</option>
-							<option value="3">매매</option>
-							<option value="4">반전세</option>
-							<option value="5">단기임대</option>
-						</select>
-					</span>
-				</div>
-				<!-- 보증금 div -->
-				<!-- price : 매물 가격 -->
-				<!-- deposit : 보증금 -->
-				<!-- 매매면 pirce만  -->
-				<!-- 전세면 price만 -->
-				<!-- 월세면 deposit가 보증금 / price가 월세 -->
-				<!-- 반전세면 deposit가 보증금 / price가 월세 -->
-				<!-- 단기임대면 deposit가 보증금 / price가 월세 -->
-				<div class="updateroomdeposit">
-					<span>보증금</span>
-					<span>
-						<input type="text" value="${room.room_deposit }" name="room_deposit">
-					</span>
-				</div>
-				<!-- 매물 가격 div -->
-				<!-- 매매, 전세 : price만 -->
-				<!-- 월세, 반전세, 단기임대 : deposit랑 같이 출력 -->
-				<div class="updateroomprice">
-					<span>가격</span>
-					<span>
-						<input type="text" value="${room.room_price }" name="room_price">
-					</span>
-				</div>
-				
-				<!-- 매물면적 -->
-				<div class="updateroomextent">
-					<span>매물면적</span>
-					<span>
-						<input type="text" value="${room.room_extent }" name="room_extent">
-					</span>
-				</div>
-				
-				<!-- 매물주소 -->
-				<div class="updateroomaddr">
-					<span>매물주소</span>
-					<span>
-						<input type="text" value="${room.room_addr }" id="room_addr" name="room_addr" readonly="readonly" onclick="addrcheck();">
-					</span>
-				</div>
-				<!-- 매물 건물종류 -->
-				<div class="updateroomkind">
-					<span>매물 건물 종류</span>
-						<span>
-							<select id="room_kind" name="room_kind">
-								<option value="1">아파트</option>
-								<option value="2">빌라</option>
-								<option value="3">주택</option>
-								<option value="4">오피스텔</option>
-								<option value="5">상가사무실</option>
-							</select>
-						</span>
-				</div>
-				<!-- 매물구조 -->
-				<div class="updateroomstructure">
-					<span>매물 구조</span>
-					<span>
-						<select id="room_structure" name="room_structure">
-							<option value="1">방 1개</option>
-							<option value="2">방 2개</option>
-							<option value="3">방 3개이상</option>
-						</select>
-					</span>
-				</div>
-				<!-- 매물 층수 -->
-				<div class="updateroomfloor">
-					<span>매물 층수</span>
-					<span>
-						<input type="text" value="${room.room_floor }" name="room_floor">
-					</span>
-				</div>
-				<!-- 매물 등록 날짜 -->
-				<div class="updateroomregdate">
-					<span>매물 등록 날짜</span>
-					<span>
-						<input type="date" value="${room.room_regdate}" id="room_regdate" readonly="readonly" name="room_regdate">
-					</span>
-				</div>
-				<!-- 매물 준공 날짜 -->
-				<div class="updateroomcpdate">
-					<span>매물 준공 날짜</span>
-					<span>
-						<input type="date" value="${room.room_cpdate}" id="room_cpdate" name="room_cpdate">
-					</span>
-				</div>
-				<!-- 매물 입주 가능일 -->
-				<div class="updateroomavdate">
-					<span>매물 입주 가능일</span>
-					<span>
-						<input type="date" value="${room.room_avdate}" id="room_avdate" name="room_avdate">
-					</span>
-				</div>
-				<!-- 매물 상세설명 -->
-				<div class="updateroomdetail">
-					<span>매물 상세설명</span>
-					<span>
-						<textarea rows="10" cols="60" class="summernote" name="room_detail">${room.room_detail }</textarea>
-					</span>
-				</div>
-				<!-- form태그 안에서 submit버튼을 클릭하면 값 넘기기 -->
-				<div class="updateroomsubmit">
-					<input type="submit" value="수정">
-					<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
-				</div>
-			</div>
-		</form>
-		<div id="roommap"></div>
+		<form action="updateroomres.do" method="POST">
+    <input type="hidden" value="${room.room_no}" name="room_no">
+    <!-- 가장 큰 div박스 -->
+    <div class="update-container">
+        <!-- 이미지를 담아줄 div -->
+        <div class="updateroom-img">
+            <div class="updateroomimgdetail">
+                <img class="room-img" alt="가져온 이미지들" src="resources/img/backgroundimg.jpg">
+            </div>
+        </div>
+        <!-- 수정할 방정보를 담아줄 div -->
+        <div class="update-content">
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 이름
+                </div>
+                <div class="update-content-detail-content">
+                    <input type="text" value="${room.room_name }" name="room_name">
+                </div>
+            </div>
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 종류
+                </div>
+                <div class="update-content-detail-content">
+                	<select id="room_type" name="room_type">
+						<option value="1">월세</option>
+						<option value="2">전세</option>
+						<option value="3">매매</option>
+						<option value="4">반전세</option>
+						<option value="5">단기임대</option>
+					</select>
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    보증금(만원)
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="text" value="${room.room_deposit }" name="room_deposit">
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 가격(만원)
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="text" value="${room.room_price }" name="room_price">
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 면적(㎡)
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="text" value="${room.room_extent }" name="room_extent">
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 주소
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="text" value="${room.room_addr }" id="room_addr" name="room_addr" readonly="readonly" onclick="addrcheck();">
+                </div>
+            </div>
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    건물 종류
+                </div>
+                <div class="update-content-detail-content">
+                	<select id="room_kind" name="room_kind">
+						<option value="1">아파트</option>
+						<option value="2">빌라</option>
+						<option value="3">주택</option>
+						<option value="4">오피스텔</option>
+						<option value="5">상가사무실</option>
+					</select>
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 구조
+                </div>
+                <div class="update-content-detail-content">
+                	<select id="room_structure" name="room_structure">
+						<option value="1">방 1개</option>
+						<option value="2">방 2개</option>
+						<option value="3">방 3개이상</option>
+					</select>
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 층수
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="text" value="${room.room_floor }" name="room_floor">
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 등록 날짜
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="date" value="${room.room_regdate}" id="room_regdate" readonly="readonly" name="room_regdate">
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 준공 날짜
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="date" value="${room.room_cpdate}" id="room_cpdate" name="room_cpdate">
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    입주 가능 날짜
+                </div>
+                <div class="update-content-detail-content">
+                	<input type="date" value="${room.room_avdate}" id="room_avdate" name="room_avdate">
+                </div>
+            </div>
+            
+            <div class="update-content-detail">
+                <div class="update-content-detail-title">
+                    매물 상세정보
+                </div>
+                <div class="update-content-detail-content">
+                	<textarea rows="10" cols="60" class="summernote" name="room_detail">${room.room_detail }</textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div id="roomkakaomap"></div>
+            
 		<!-- KakaoMap -->
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">
 			// room_addr이라는 id를 가진 변경될 경우 함수 실행
 			// 지도를 생성할 div를 지정
-			var container = document.getElementById("roommap"),
+			var container = document.getElementById("roomkakaomap");
 			// 지도를 생성할 떄 필요한 기본 옵션
-			options = {
+			var options = {
 				// 지도의 중심 좌표
 				// LatLng : center에 넣을 위도와 경도를 생성해주는 class
 				// 위도 : latitude / 경도 : longtidue
@@ -202,8 +211,18 @@
 					map.setCenter(coords);
 				}
 			});
-			
+			$("[name=room_addr]").blur(function(){
+				alert("gd");
+			})
 		</script>
+        
+        <!-- submit button -->
+        <div class="updateroomsubmit">
+			<input type="submit" value="수정">
+			<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
+		</div>
+    </div>
+</form>		
 	</section>
 
 	<!-- footer.jsp -->

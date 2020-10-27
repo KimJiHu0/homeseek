@@ -192,8 +192,6 @@ a>img {
 /* 방정보 내용 안에서 하나의 제목 */
 .roominfo-detail-title{
 	width : 33%;
-	padding-left : 5%;
-	padding-right : 5%;
 	padding-top : 3%;
 	font-size : 13pt;
 	border-bottom : 2px black solid;
@@ -202,7 +200,6 @@ a>img {
 /* 방정보 내용 안에서 하나의 내용 */
 .roominfo-detail-content{
 	width : 67%;
-	padding-left : 5%;
 	margin-left : 5%;
 	padding-top : 3%;
 	font-size : 13pt;
@@ -227,7 +224,6 @@ a>img {
 .roominfo-content-detailcontent-title{
 	width : 32%;
 	font-size : 13pt;
-	padding-left : 5%;
 	padding-top : 3%;
 	border-bottom : 2px black solid;
 }

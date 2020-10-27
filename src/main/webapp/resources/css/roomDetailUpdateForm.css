@@ -2,7 +2,9 @@
 section{
 	padding-top : 100px;
 }
-#roommap{
-	width : 500px;
-	height : 500px;
+/* 가장 큰 container */
+.update-container{
+	width : 100%;
+	height : 100%;
+	border : 3px black solid;
 }
