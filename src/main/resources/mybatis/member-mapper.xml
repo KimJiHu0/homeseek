@@ -52,7 +52,30 @@
 		FROM MEMBER
 		WHERE MEMBER_ID = #{member_id}
 	</select>
-
+	<!-- 핸드폰 번호 중복검사 -->
+	<select id="checkPhone" parameterType="MemberDto" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_PHONE = #{member_phone}
+		AND MEMBER_NAME = #{member_name}
+	</select>
+	
+	<!-- 아이디 존재 유무 찾기 -->
+	<select id="findId" parameterType="MemberDto" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_NAME = #{member_name}
+		AND MEMBER_PHONE = #{member_phone}
+	</select>
+	<!-- 찾는 아이디 뽑아주기 -->
+		<select id="selectId" parameterType="MemberDto" resultType="String">
+		SELECT MEMBER_ID
+		FROM MEMBER
+		WHERE MEMBER_NAME = #{member_name}
+		AND MEMBER_PHONE = #{member_phone}
+	</select>
+	
 	<!-- 매물 올린 사용자의 정보를 추출하기위한 mapper -->
 	<select id="selectMemberById" resultType="MemberDto"
 		parameterType="String">

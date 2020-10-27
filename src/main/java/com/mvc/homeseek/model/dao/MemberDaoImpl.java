@@ -82,6 +82,48 @@ public class MemberDaoImpl implements MemberDao {
 
 		return res;
 	}
+	//핸드폰번호 중복검사
+	@Override
+	public int checkPhone(MemberDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "checkPhone", dto);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+
+	//id찾기 
+	@Override
+	public int findId(MemberDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+ "findId", dto);
+		} catch (Exception e) {
+			logger.info("findId error");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+	
+	@Override
+	public String selectId(MemberDto dto) {
+		String res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+ "selectId", dto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 	// sns에서 snsid를 뽑는 dao
 	@Override

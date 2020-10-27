@@ -97,6 +97,7 @@
 			<div>
 					<input type="text" name="phone_check" id="phone_check" placeholder="인증 번호 입력"/>
 					<input type="button" name = "phoneCheck" id="phoneCheck" value="인증확인">
+					<div class="check_font" id="pCheck"></div>
 			</div>
 			<div>
 					<button class="btn btn-success" type="submit" id="submit">회원가입</button>

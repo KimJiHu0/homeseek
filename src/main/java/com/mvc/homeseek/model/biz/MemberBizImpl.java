@@ -36,6 +36,22 @@ public class MemberBizImpl implements MemberBiz {
 		return memberDao.checkId(member_id);
 		
 	}
+	@Override
+	public int checkPhone(MemberDto dto) {
+		return memberDao.checkPhone(dto);
+	}
+	
+	@Override
+	public int findId(MemberDto dto) {
+		
+		return memberDao.findId(dto);
+	}
+	
+	@Override
+	public String selectId(MemberDto dto) {
+		
+		return memberDao.selectId(dto);
+	}
 
 	@Override
 	public MemberDto getBySns(MemberDto snsUser) {

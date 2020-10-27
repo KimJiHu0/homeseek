@@ -50,10 +50,10 @@
 
 	<!-- google sns login -->
 	<beans:bean id="googleClientID" class="java.lang.String">
-		<beans:constructor-arg value="295271077624-gaqiu30en3q9u2l52kmasmor1o2daq0o.apps.googleusercontent.com" />
+		<beans:constructor-arg value="511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com" />
 	</beans:bean>
 	<beans:bean id="googleClientSecret" class="java.lang.String">
-		<beans:constructor-arg value="gIXSQubPgVjrX0NEHsPhkxc7" />
+		<beans:constructor-arg value="BGVqvPv7tIU9mnBq9i7Dp-I1" />
 	</beans:bean>
 	<beans:bean id="googleRedirectUrl" class="java.lang.String">
 		<beans:constructor-arg value="http://localhost:8787/homeseek/auth/google/callback.do" />
