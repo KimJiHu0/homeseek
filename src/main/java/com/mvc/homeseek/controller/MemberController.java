@@ -241,7 +241,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/checkid.do", method = RequestMethod.POST)
 	public String chkId(@RequestParam("member_id") String member_id) {
-
+		logger.info("checkid.do");
 		String str = "";
 		int res = memberBiz.checkId(member_id);
 		if (res == 1) { // 이미 존재하는 계정
@@ -252,6 +252,65 @@ public class MemberController {
 		return str;
 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/checkphone.do", method = RequestMethod.POST)
+	public String chkPhone(@RequestParam("member_phone") String member_phone,@RequestParam("member_name") String member_name) {
+		
+		logger.info("checkphone.do");
+		
+		MemberDto dto = new MemberDto(member_name,member_phone);
+
+		String str = "";
+		int res = memberBiz.checkPhone(dto);
+		if (res >= 1) { // 이미 존재하는 번호
+			str = "NO";
+		} else { // 사용 가능한 번호
+			str = "YES";
+		}
+		return str;
+
+	}
+	
+	@RequestMapping("findidform.do")
+	public String findIdForm() {
+		logger.info("findidform.do");
+
+		return "findId";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/findid.do", method = RequestMethod.POST)
+	public String findId(@RequestParam("id_phone") String id_phone,@RequestParam("id_name") String id_name) {
+		logger.info("findid.do");
+		MemberDto memberdto = new MemberDto(id_name,id_phone);
+		String str = "";
+		int res = memberBiz.findId(memberdto);
+		if (res == 1) { // 존재하는 계정
+			str = "NO";
+		} else { // 존재하지않는 계정
+			str = "YES";
+		}
+		return str;
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectid.do", method = RequestMethod.POST)
+	public String selectId(@RequestParam("id_phone") String id_phone, @RequestParam("id_name") String id_name) {
+		logger.info("selectid.do");
+		MemberDto memberdto = new MemberDto(id_name,id_phone);
+		String str = "";
+		String res = memberBiz.selectId(memberdto);
+		if (res == null) { // 존재하는 계정
+			str = "NO";
+		} else { // 존재하지않는 계정
+			str = memberBiz.selectId(memberdto);
+		}
+		return str;
+
+	}
+
 
 	@RequestMapping(value = "/sendsms.do", method = RequestMethod.POST)
 	@ResponseBody

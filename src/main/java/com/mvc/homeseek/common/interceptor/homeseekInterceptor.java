@@ -24,8 +24,12 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("loginform.do")|| 
 				request.getRequestURI().contains("/ajaxlogin.do")||
 				request.getRequestURI().contains("/checkid.do")||
+				request.getRequestURI().contains("/checkphone.do")||
 				request.getRequestURI().contains("/registform.do")||
 				request.getRequestURI().contains("/registres.do")||
+				request.getRequestURI().contains("/findidform.do")||
+				request.getRequestURI().contains("/findid.do")||
+				request.getRequestURI().contains("/selectid.do")||
 				request.getRequestURI().contains("/sendsms.do")||
 				request.getSession().getAttribute("login") != null ||
 				request.getRequestURI().contains("listroom.do") ||

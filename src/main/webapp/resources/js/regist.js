@@ -17,6 +17,8 @@ $(function(){
 				$("#email").attr("disabled",false); //활성화 
 				}else{ //직접입력이 아닐경우 
 					$("#email").val($(this).val()); //선택값 입력 
+					document.getElementById('email').readOnly = true;
+
 					} 
 			}); 
 		});
@@ -92,90 +94,141 @@ $(function(){
 	
 	//본인인증 번호 보내기
 	$('#sendSms').click(function(){
-		if (phoneJ.test($('#member_phone').val())) {
-			if($('#member_phone').val() != ""){
-				document.getElementById("phone_check").style.display = "block";
-				document.getElementById("phoneCheck").style.display = "block";
-				var phoneNumber = $('#member_phone').val();
-				alert("인증번호 발송")
+			 $.ajax({
+		     type:"POST",
+		     url:"checkphone.do",
+		     data:{
+		            "member_phone":$('#member_phone').val(),
+		            "member_name":$('#member_name').val()
+		     },
+		     success:function(data){	//data : checkSignup에서 넘겨준 결과값
+		            if($.trim(data)=="YES"){
+		               if($('#member_phone').val()!=''){ 
+		            	   if (phoneJ.test($('#member_phone').val())) {
+		           			if($('#member_phone').val() != ""){
+		           				document.getElementById("phone_check").style.display = "block";
+		           				document.getElementById("phoneCheck").style.display = "block";
+		           				var phoneNumber = $('#member_phone').val();
+		           				alert("인증번호 발송")
+		           				 $("#memberPhone").text("");
 
 
-				$.ajax({
-					type: "POST",
-					url: "sendsms.do",
-					data: {
-						"phoneNumber" : phoneNumber
-					},
-					success: function(res){
-						//인증번호 확인
-						$('#phoneCheck').click(function(){
-							if($.trim(res) == $('#phone_check').val()){
-							
-								alert("휴대폰 인증이 정상적으로 완료되었습니다.");
-							}else if($.trim(res) != $('#phone_check').val() || $('#phone_check').val('')){
-								alert("인증 실패!");
-								$('#phone_check').val('');
-								$('#phone_check').focus();
-							}
-					
-						})
-				
-	        
-					}
-			
-				})
-			}
-	}else{
-			$('#memberPhone').text('올바른 번호를 입력해주세요');
-			$('#memberPhone').css('color', 'red');
-			$('#memberPhone').val('');
-			$('#memberPhone').focus();
-		}
+		           				$.ajax({
+		           					type: "POST",
+		           					url: "sendsms.do",
+		           					data: {
+		           						"phoneNumber" : phoneNumber
+		           					},
+		           					success: function(res){
+		           						//인증번호 확인
+		           						$('#phoneCheck').click(function(){
+		           							if($.trim(res) == $('#phone_check').val()){
+		           								$("#pCheck").text("본인 인증 완료!");
+		           								 $("#submit").on ("click", function(){
+		           									 if($('#member_pw').val() != $('#pw_check').val()){
+		           										 $("#pwCheck").text("비밀번호가 일치하지 않습니다");
+		           										 $("#pwCheck").css("color", "red");
+		           								    	 $('#pw_check').val('');
+		           								         $('#member_pw').focus();
+		           								         return false;
+		           									 }
+		           								    	
+		           										if($("#member_id").val()==""){
+		           											alert("아이디를 입력해주세요.");
+		           											$("#userId").focus();
+		           											return false;
+		           										}
+		           										else if($("#member_pw").val()==""){
+		           											alert("비밀번호를 입력해주세요.");
+		           											$("#member_pw").focus();
+		           											return false;
+		           										}
+		           										else if($("#pw_check").val()==""){
+		           											alert("비밀번호를 한번 더 입력해주세요.");
+		           											$("#pw_check").focus();
+		           											return false;
+		           										}
+		           										else if($("#member_name").val()==""){
+		           											alert("성명을 입력해주세요.");
+		           											$("#member_name").focus();
+		           											return false;
+		           										}
+		           										else if($("#member_email").val()==""){
+		           											alert("이메일을 입력해주세요.");
+		           											$("#member_email").focus();
+		           											return false;
+		           										}
+		           										else if($("#member_phone").val()==""){
+		           											alert("휴대폰 번호를 입력해주세요");
+		           											$("#member_phone").focus();
+		           											return false;
+		           										}
+		           										else if($("#phone_check").val()==""){
+		           											alert("휴대폰 인증번호를 입력해주세요.");
+		           											$("#phone_check").focus();
+		           											return false;
+		           										}
+		           										//alert("회원가입이 완료되었습니다. 다시 로그인 해주세요 !")
+		           									});
+
+		           								
+
+		           							}else if($.trim(res) != $('#phone_check').val() || $('#phone_check').val('')){
+		           								alert("인증 실패!");
+		           								$('#phone_check').val('');
+		           								$('#phone_check').focus();
+		           							}
+		           					
+		           						})
+		           						 $("#submit").on ("click", function(){
+		           							 if($('#member_pw').val() != $('#pw_check').val()){
+		           								 $("#pwCheck").text("비밀번호가 일치하지 않습니다");
+		           								 $("#pwCheck").css("color", "red");
+		           						    	 $('#pw_check').val('');
+		           						         $('#member_pw').focus();
+		           						         return false;
+		           							 }
+		           							 else if($.trim(res) != $('#phone_check').val() || $("#pCheck").text()==''){
+		           								 alert("본인 인증을 확인해주세요");
+		           							 	 $("#phone_check").focus();
+		           							 	 return false;
+		           							 }
+		           						 })
+		           				
+		           	        
+		           					}
+		           			
+		           				})
+		           			}
+		           	}else{
+		           			$('#memberPhone').text('올바른 번호를 입력해주세요');
+		           			$('#memberPhone').css('color', 'red');
+		           			$('#memberPhone').val('');
+		           			$('#memberPhone').focus();
+		           		}
+		        
+		               }
+		           	}else{
+		               if($('#member_phone').val()!=''){
+		            	   $("#memberPhone").text("이미 등록된 번호입니다");
+		            	   $("#memberPhone").css("color", "red");
+		                   $('#member_phone').val('');
+		                   $('#member_phone').focus();
+		               }
+		            }
+		         }
+		    })
+	    	
+	  
+
+		
 	});
+    
+   
 
 	
     //회원 등록 버튼
-    $("#submit").on ("click", function(){
-    	
-		if($("#member_id").val()==""){
-			alert("아이디를 입력해주세요.");
-			$("#userId").focus();
-			return false;
-		}
-		else if($("#member_pw").val()==""){
-			alert("비밀번호를 입력해주세요.");
-			$("#member_pw").focus();
-			return false;
-		}
-		else if($("#pw_check").val()==""){
-			alert("비밀번호를 한번 더 입력해주세요.");
-			$("#pw_check").focus();
-			return false;
-		}
-		else if($("#member_name").val()==""){
-			alert("성명을 입력해주세요.");
-			$("#member_name").focus();
-			return false;
-		}
-		else if($("#member_email").val()==""){
-			alert("이메일을 입력해주세요.");
-			$("#member_email").focus();
-			return false;
-		}
-		else if($("#member_phone").val()==""){
-			alert("휴대폰 번호를 입력해주세요");
-			$("#member_phone").focus();
-			return false;
-		}
-		else if($("#phone_check").val()==""){
-			alert("휴대폰 인증번호를 입력해주세요.");
-			$("#phone_check").focus();
-			return false;
-		}
-		alert("회원가입이 완료되었습니다. 다시 로그인 해주세요 !")
-	});
-
-	
+   	
 		
 	
 })
