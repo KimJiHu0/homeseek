@@ -69,10 +69,10 @@ public class SNSLogin {
 		if (this.sns.isGoogle()) {
 
 			// 1.아이디
-//			String id = rootNode.get("id").asText();
-//			if (sns.isGoogle()) {
-//				user.setMember_googleid(id);
-//			}
+			String id = rootNode.get("id").asText();
+			if (sns.isGoogle()) {
+				user.setMember_googleid(id);
+			}
 
 			/* String displayName = rootNode.get("displayName").asText(); */
 
@@ -88,7 +88,7 @@ public class SNSLogin {
 				JsonNode emailNode = iterEmails.next();
 				String type = emailNode.get("type").asText();
 				if (StringUtils.equals(type, "account")) {
-					user.setMember_googleid(emailNode.get("value").asText());
+					user.setMember_id(emailNode.get("value").asText());
 					break;
 				}
 				

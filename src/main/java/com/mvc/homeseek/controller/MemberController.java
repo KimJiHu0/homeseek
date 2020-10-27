@@ -140,6 +140,8 @@ public class MemberController {
 			
 			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 			model.addAttribute("naveremail", snsUser.getMember_id());
+			model.addAttribute("googleemail", snsUser.getMember_id());
+			model.addAttribute("nickname", snsUser.getMember_name());
 			
 			return "regist";
 			
