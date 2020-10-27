@@ -80,7 +80,7 @@ function messageFormClose(){
 				
 				<tr class="message_tr">
 					<th class="message_th">내용</th>
-					<td class="message_td" colspan="4">
+					<td colspan="4">
 						<textarea class="summernote" name="message_content"></textarea>
 					</td>
 				</tr>

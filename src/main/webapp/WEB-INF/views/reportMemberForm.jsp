@@ -36,42 +36,69 @@
 	<div id="firstbox">
 		<p class="iconbox" id="icon">HOME<span class="iconbox" id="iconcolor">SEE</span>K</p>
 	</div>
-	<h1>신고하기</h1>
-	<form action="reportmemberres.do" method="post" id="reportform">
-	<input type="hidden" value="${report_senuser.member_id }" name="report_senid">
-	<input type="hidden" value="${report_reuser.member_id }" name="report_reid">
-		<table border="1">
-			<tr>
-				<th class="title">신고하는이름</th>
-				<td>${report_senuser.member_name }</td>
-			</tr>
-			<tr>
-				<th class="title">신고하는아이디</th>
-				<td>${report_senuser.member_id }</td>
-			</tr>
-			<tr>
-				<th class="title">신고받는이름</th>
-				<td>${report_reuser.member_name }</td>
-			</tr>
-			<tr>
-				<th class="title">신고받는아이디</th>
-				<td>${report_reuser.member_id }</td>
-			</tr>
-			<tr>
-				<th class="title">신고사유</th>
-				<td><input type="text" name="report_title" placeholder="신고 사유을 작성해주세요."/></td>
-			</tr>
-			<tr>
-				<th class="title">신고내용</th>
-				<td><textarea rows="10" cols="60" class="summernote" name="report_content"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="신고하기"/>
-					<input type="button" value="취소하기" onclick="reportFormClose();"/>
-				</td>
-			</tr>
-		</table>
-	</form>
+	<div class="secondbox">
+		<form action="reportmemberres.do" method="post" id="reportform">
+		<input type="hidden" value="${report_senuser.member_id }" name="report_senid">
+		<input type="hidden" value="${report_reuser.member_id }" name="report_reid">
+			<table class="report-content">
+				<col width="180">
+				<col width="180">
+				<col width="180">
+				<col width="180">
+				<tr class="report_tr">
+					<th class="report_th">신고받는 아이디</th>
+					<th class="report_th">신고받는 이름</th>
+					<th class="report_th">신고보내는 아이디</th>
+					<th class="report_th">신고보내는 이름</th>
+				</tr>
+				
+				<tr>
+					<td colspan="4">&nbsp;</td>
+				</tr>
+				
+				<tr class="report_tr">
+					<td class="report_td">${report_reuser.member_id }</td>
+					<td class="report_td">${report_reuser.member_name }</td>
+					<td class="report_td">${report_senuser.member_id }</td>
+					<td class="report_td">${report_senuser.member_name }</td>
+				</tr>
+				
+				<tr>
+					<td colspan="4">&nbsp;</td>
+				</tr>
+				
+				<tr class="report_tr">
+					<th class="report_th">신고사유</th>
+					<td colspan="3" class="report_td">
+						<input type="text" class="report_title" name="report_title" placeholder="신고 사유를 작성해주세요"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="4">&nbsp;</td>
+				</tr>
+				
+				<tr class="report_tr">
+					<th class="report_th">내용</th>
+					<td colspan="3">
+						<textarea class="summernote" name="report_content"></textarea>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="4">&nbsp;</td>
+				</tr>
+				
+				<tr class="reportbtn-two">
+					<td colspan="2">
+						<input type="submit" value="보내기" class="reportbtn"/>
+					</td>
+					<td colspan="2">
+						<input type="button" value="취소" class="reportbtn" onclick="reportFormClose();"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>

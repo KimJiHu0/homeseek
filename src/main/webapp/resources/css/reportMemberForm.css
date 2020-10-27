@@ -16,3 +16,42 @@
 	height : 50px;
 	text-align : center;
 }
+
+/* 두번쨰 div박스를 첫번째 div박스에서부터 띄우기 */
+
+.secondbox{
+	margin-top : 50px;
+	margin-left : 10px;
+}
+
+/* summernote의 가로 길이를 설정 */
+.report_title{
+	width : 540px;
+	height : 30px;
+	margin-bottom : 5px;
+	border : none;
+}
+
+/* th,td들 글씨 cent er */
+.report_th, .report_td{
+	text-align : center;
+	font-size : 11pt;
+}
+.report_tr{
+	border-bottom : 2px black solid;
+}
+
+.reportbtn-two{
+	width : 100%;
+	margin-top : -10px;
+}
+
+.reportbtn{
+	border : none;
+	text-align : center;
+	width : 360px;
+}
+/* 세로 스크롤 없애기 */
+body{
+	overflow-y:hidden;
+}
