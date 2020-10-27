@@ -85,7 +85,7 @@
                     매물 주소
                 </div>
                 <div class="update-content-detail-content">
-                	<input type="text" value="${room.room_addr }" id="room_addr" name="room_addr" readonly="readonly" onclick="addrcheck();">
+                	<input type="text" value="${room.room_addr }" id="room_addr" class="room_addr" name="room_addr" readonly="readonly" onclick="addrcheck();">
                 </div>
             </div>
             <div class="update-content-detail">
