@@ -20,6 +20,10 @@
 	%>
 	<h1>KAKAO 연동 회원가입</h1>
 	<%
+	} else if (request.getAttribute("googleemail") != null) {
+	%>
+	<h1>GOOGLE 연동 회원가입</h1>
+	<%
 	} else {
 	%>
 	<h1>회원가입</h1>
@@ -40,6 +44,10 @@
 				}else if (request.getAttribute("kakaoemail") != null) {
 			%>
 			<input type="text" id="member_id" name="member_id" value="${ kakaoemail }" size="30" readonly/>	
+			<%
+			} else if (request.getAttribute("googleemail") != null) {
+			%>
+			<input type="text" id="member_id" name="member_id" value="${ googleemail }" size="30" readonly/>
 			<%
 				} else {
 			%>
@@ -77,7 +85,7 @@
 				<%
 				if (request.getAttribute("nickname") != null) {
 				%>
-					<input type="text" name="member_name" id="member_name" value="${ kakaoemail }" size="30" readonly/>
+					<input type="text" name="member_name" id="member_name" value="${ nickname }" size="30" readonly/>
 				<%
 				}else{ 
 				%>
