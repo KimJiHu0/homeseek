@@ -12,7 +12,7 @@ public class homeseekInterceptor implements HandlerInterceptor {
 
 	private Logger logger = LoggerFactory.getLogger(homeseekInterceptor.class);
 	
-	// D/S 에서 controller으로 가기 전
+	// D/S 에서 controller으로 가기 전sz
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -32,6 +32,8 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("auth/{snsService}/callback.do") ||
 				request.getRequestURI().contains("auth/kakao/callback.do") ||
 				request.getRequestURI().contains("auth/google/callback.do") ||
+				request.getRequestURI().contains("auth/naver/registres.do") ||
+				request.getRequestURI().contains("auth/kakao/registres.do") ||
 				request.getRequestURI().contains("reportmember.do") ||
 				request.getRequestURI().contains("insertres.do")||
 				request.getRequestURI().contains("reportmemberres.do")||

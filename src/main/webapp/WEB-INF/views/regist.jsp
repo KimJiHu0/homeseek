@@ -31,7 +31,7 @@
 	
 			<div> 
 			<label for="member_id">아이디</label>
-			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text"> 
+			 
 			<%
 				if (request.getAttribute("naveremail") != null) {
 			%>
@@ -43,10 +43,18 @@
 			<%
 				} else {
 			%>
+			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text">
 			<select name="select_email" id="select_email"> 
 				  <option value="" selected>선택하세요</option> 
 				  <option value="naver.com">naver.com</option> 
 				  <option value="gmail.com">gmail.com</option>   
+				  <option value="daum.net">daum.net</option>   
+				  <option value="hotmail.com">hotmail.com</option>   
+				  <option value="yahoo.co.kr">yahoo.co.kr</option>   
+				  <option value="hanmir.com">hanmir.com</option>   
+				  <option value="empal.com">empal.com</option>   
+				  <option value="nate.com">nate.com</option>   
+				  <option value="hanmail.net">hanmail.net</option>   
 			</select> 
 			<%
 				}
