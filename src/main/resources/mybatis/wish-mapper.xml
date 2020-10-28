@@ -13,7 +13,7 @@
 	</delete>
 	
 	<select id="selectWish" parameterType="WishDto" resultType="int">
-		SELECT NVL(ROOM_NO,0)
+		SELECT COUNT(*)
 		FROM WISH
 		WHERE WISH_ID = #{wish_id}
 		AND WISH_SELL_ID = #{wish_sell_id}
