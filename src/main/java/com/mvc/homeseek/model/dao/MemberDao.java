@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.dao;
 
+import java.util.Map;
+
 import com.mvc.homeseek.model.dto.MemberDto;
 
 public interface MemberDao {
@@ -27,5 +29,5 @@ public interface MemberDao {
 	//비밀번호 존재유무 찾기 메소드
 	public int findPw(MemberDto dto);
 	//찾은 비밀번호 뽑아주는 메소드
-	public int searchPassword(MemberDto dto);
+	public int searchPassword(Map<String, Object> param);
 }

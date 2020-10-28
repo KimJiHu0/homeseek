@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.biz;
 
+import java.util.Map;
+
 import com.mvc.homeseek.model.dto.MemberDto;
 
 public interface MemberBiz {
@@ -34,6 +36,6 @@ public interface MemberBiz {
 	public int findPw(MemberDto dto);
 
 	// 찾은 비밀번호 뽑아주는 메소드
-	public int searchPassword(MemberDto dto);
+	public int searchPassword(Map<String, Object> param);
 
 }

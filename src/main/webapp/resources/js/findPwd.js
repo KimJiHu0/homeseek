@@ -49,25 +49,25 @@ $('#sendSms').click(function(){
 	   							// 맞으면.. $.trim(res) == numStr == 인증번호
 	   							if($.trim(res) == $('#phone_check').val()){
 	   								$('#idCheck').text("인증번호  확인 완료되었습니다.");
+	   								alert("인증되었습니다.");
 	   								//질문..*** "/selectpw.do" 작동을 안함 //객체리터럴,
-	   								var a = {
-	   										"member_name" : $('#pwd_name').val(),
-		   				   					"member_phone":$('#pwd_phone').val(),
-		   				   					"member_id":$('#pwd_id').val(),
-		   				   					"member_pw":$('#pwd_new').val()
-	   								}
+	   								jsonObject.pwd_name = $('#pwd_name').val();
+	   								jsonObject.pwd_phone =$('#pwd_phone').val();
+	   								jsonObject.pwd_id =$('#pwd_id').val();
+	   								jsonObject.pwd_new =$('#pwd_new').val();
+	   								
 	   								$.ajax({
-	   				   					type: "POST",
-	   				   					url: "/selectpw.do",
-	   				   					data: JSON.stringify(a),
-	   				   					dataType: "JSON",
-	   				   					contentType: "application/json",
-	   				   					success: function(res){
-	   				   					alert("통신성공");
-	   				   					},
-	   				   					error:function(){
-	   				   						alert("통신실패");
-	   				   					}
+	   									url: "selectpw.do",
+	   									type: "POST",
+	   									data: JSON.stringify(jsonObject),
+	   									//dataType: "JSON",
+	   									//contentType: "application/json",
+	   									success: function(data){
+	   										alert("통신성공");
+	   									},
+	   									error:function(){
+	   										alert("통신실패");
+	   									}
 	   								});
 	   							// 틀리면...
 	   							}else{
@@ -86,8 +86,8 @@ $('#sendSms').click(function(){
 		    	 alert("이름, 휴대폰 번호, 아이디를 모두 입력해주세요")
 	    	 }
 	     }
-		 });//이거 왜 있는거지?;;
-	});
+		 });
+});
 	$("#submit").on ("click", function(){
 		if($('#idCheck').text()==''){
 			alert("회원님의 휴대폰으로 인증번호를 전송했습니다.인증번호 확인을 진행해주세요")

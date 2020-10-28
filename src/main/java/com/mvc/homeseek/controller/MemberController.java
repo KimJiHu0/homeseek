@@ -382,8 +382,9 @@ public class MemberController {
 		return str;
 
 	}
-	
-	//비밀번호 찾기 조건 실행 SELECT COUNT(*) FROM MEMBER WHERE MEMBER_NAME = #{member_name} AND MEMBER_PHONE = #{member_phone} AND MEMBER_ID = #{member_id}
+
+	// 비밀번호 찾기 조건 실행 SELECT COUNT(*) FROM MEMBER WHERE MEMBER_NAME = #{member_name}
+	// AND MEMBER_PHONE = #{member_phone} AND MEMBER_ID = #{member_id}
 	@ResponseBody
 	@RequestMapping(value = "/findpw.do", method = RequestMethod.POST)
 	public String findpw(@RequestParam("pwd_phone") String pwd_phone, @RequestParam("pwd_name") String pwd_name,
@@ -415,33 +416,52 @@ public class MemberController {
 		}
 		return str;
 	}
-	
 
 	// 임시비밀번호를 DB에 넣어준다
 	@ResponseBody
 	@RequestMapping(value = "/selectpw.do", method = RequestMethod.POST)
-	public void selectPw(@RequestBody MemberDto dto) {
+	public String selectPw(@RequestParam(value = "pwd_name") String pwd_name,
+						 @RequestParam(value = "pwd_phone") String pwd_phone,
+						 @RequestParam(value = "pwd_id") String pwd_id,
+						 @RequestParam(value = "pwd_new") String pwd_new) {
 		logger.info("selectpw.do");
+		
+		//MemberDto dto = new MemberDto(member_name, member_phone, member_id, member_pw);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("pwd_name", pwd_name);
+        param.put("pwd_phone", pwd_phone);
+        param.put("pwd_id", pwd_id);
+        param.put("pwd_new", pwd_new);
+
 
 		// <<<sha-256적용>>>
 		// 암호 확인용 syso
-		System.out.println("첫번째:" + dto.getMember_pw());
+		System.out.println("첫번째:" + param.get(pwd_new));
+		System.out.println("★★★★★★★★★"+ pwd_new + "★★★★★★★★★");
 		// 비밀번호 암호화 (sha256)
-		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
-		dto.setMember_pw(encryPassword);
-		System.out.println("두번째:" + dto.getMember_pw());
+		String encryPassword = UserSha256.encrypt(pwd_new);
+		param.put("pwd_new", encryPassword);
+		System.out.println("두번째:" + param.get(pwd_new));
+		System.out.println("★★★★★★★★★"+ pwd_new + "★★★★★★★★★");
 		
-		int res=memberBiz.searchPassword(dto);
+		int res=memberBiz.searchPassword(param);
 		
 		if (res == 0) { // 비밀번호 변경 (업데이트) 실패
-			System.out.println("비밀번호 변경 실패");
+			System.out.println("비밀번호 변경 실패ㅠㅠ");
 			//질문: 경고문띄우기하고싶다.. -> $(window).on ("load", function(){내용});
 			
+			return "<input type=\"button\" value=\"메인으로\" onclick=\"location.href='main.do'\"/>\r\n" + 
+					"					<input type=\"button\" value=\"로그인하러 가기\" onclick=\"location.href='loginform.do'\"/>";
+					
 		} else { // 비밀번호 변경 (업데이트) 성공
-			System.out.println("비밀번호 변경 성공");
+			System.out.println("★@@@@★★@@@★비밀번호 변경 성공");
+			// ??ㅠㅠㅠㅠ return값이 그냥 findPwd.jsp의 <form>태그 전체랑 교환돼서 웹페이지에 String 그 자체로 찍힌다...
+			return "<input type=\"button\" value=\"메인으로\" onclick=\"location.href='main.do'\"/>\r\n" + 
+					"					<input type=\"button\" value=\"로그인하러 가기\" onclick=\"location.href='loginform.do'\"/>";
 		}
 		 
-	}
+	}	
+	
 
 	@RequestMapping(value = "/sendsms.do", method = RequestMethod.POST)
 	@ResponseBody
