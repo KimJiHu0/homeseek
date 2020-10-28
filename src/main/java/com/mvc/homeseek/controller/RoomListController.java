@@ -76,7 +76,7 @@ public class RoomListController {
 		
 		
 		
-		if(AllList.get(index)!=null) {
+		if(AllList.get(index) == null) {
 			resMap.put("msg",true);
 			return resMap;
 		}
