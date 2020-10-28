@@ -257,6 +257,5 @@ public class RoomDto {
 		this.room_id = room_id;
 	}
 	
-	
-	
+
 }

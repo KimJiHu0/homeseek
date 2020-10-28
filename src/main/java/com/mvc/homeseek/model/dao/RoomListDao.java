@@ -14,5 +14,6 @@ public interface RoomListDao {
 	// 전체 방 갯수
 	public int totalCountRoomList();
  
+	public List<RoomDto> selectRoomList2();
 	
 }

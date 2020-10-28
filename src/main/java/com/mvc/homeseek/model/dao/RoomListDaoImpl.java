@@ -52,6 +52,18 @@ public class RoomListDaoImpl implements RoomListDao {
 				
 		return totalCount;
 	}
+
+	@Override
+	public List<RoomDto> selectRoomList2() {
+		List<RoomDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "selectRoomList2");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	
 

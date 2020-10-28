@@ -59,7 +59,7 @@
 
 
          	
-            <li><a class="headeratag" href="listroom.do">전체 방 조회</a></li>
+            <li><a class="headeratag" href="listroom2.do">전체 방 조회</a></li>
             <li><a class="headeratag" href="insertroom.do">방 올리기</a></li> 
             
             <li><div class="dropdown">

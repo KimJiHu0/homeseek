@@ -23,4 +23,13 @@
 		WHERE rnum >=#{beginItemNo}
 	]]>
 	</select>
+	
+	<select id="selectRoomList2" resultType="RoomDto">
+		SELECT ROOM_NO, ROOM_NAME, ROOM_PHOTO, ROOM_TYPE, ROOM_DEPOSIT,
+		ROOM_PRICE, ROOM_EXTENT, ROOM_ADDR, ROOM_KIND, ROOM_STRUCTURE,
+		ROOM_FLOOR, ROOM_REGDATE, ROOM_CPDATE, ROOM_AVDATE, ROOM_DETAIL,
+		ROOM_ID
+		FROM ROOM
+		ORDER BY ROOM_NO DESC
+	</select>
 </mapper>

@@ -47,7 +47,8 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("reportmemberres.do")||
 				request.getRequestURI().contains("insertpopup.do") ||
 				request.getRequestURI().contains("messagemember.do") ||
-				request.getRequestURI().contains("wish.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getRequestURI().contains("wish.do") || 
+				request.getRequestURI().contains("appendList.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 		
 			return true;
 		}
