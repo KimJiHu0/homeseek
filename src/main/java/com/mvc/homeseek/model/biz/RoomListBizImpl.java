@@ -34,6 +34,12 @@ public class RoomListBizImpl implements RoomListBiz {
 	}
 
 
+	@Override
+	public List<RoomDto> selectRoomList2() {
+		return roomlistdao.selectRoomList2();
+	}
+
+
 
 
 }
