@@ -34,6 +34,6 @@ public interface MemberBiz {
 	public int findPw(MemberDto dto);
 
 	// 찾은 비밀번호 뽑아주는 메소드
-	public String searchPassword(MemberDto dto);
+	public int searchPassword(MemberDto dto);
 
 }

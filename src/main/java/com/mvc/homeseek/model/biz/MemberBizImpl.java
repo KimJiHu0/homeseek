@@ -60,7 +60,7 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
-	public String searchPassword(MemberDto dto) {
+	public int searchPassword(MemberDto dto) {
 		
 		return memberDao.searchPassword(dto);
 	}

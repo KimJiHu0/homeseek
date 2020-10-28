@@ -27,6 +27,14 @@ public class MemberDto {
 		this.member_phone = member_phone;
 		this.member_id = member_id;
 	}
+	// pw 비밀번호 바꾸기
+	public MemberDto(String member_name, String member_phone, String member_id, String member_pw) {
+		super();
+		this.member_name = member_name;
+		this.member_phone = member_phone;
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+	}	
 
 	public MemberDto(String member_id, String member_pw, String member_name, String member_email, String member_phone,
 			char member_enabled, char member_role, String member_naverid, String member_googleid,
