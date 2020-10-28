@@ -10,6 +10,11 @@
 <body>
 	<!-- header.jsp include -->
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
+	<%
+		MemberDto insert_dto = (MemberDto) request.getSession().getAttribute("login");
+		String room_id = insert_dto.getMember_id();
+	%>
+	
 	
 	<section>
 	
@@ -23,6 +28,7 @@
 	<!-- 입력폼 -->
 	<div class="form_div">
 		<form action="insertres.do" class="insert_form" method="POST">
+		<input type="hidden" value="<%=room_id %>" name="room_id">
 				<div id="insert_div1">
 					<label for="insert_roomname" id="name_label">매물이름</label>
 						<input type="text" name="room_name" id="insert_name">
@@ -84,7 +90,7 @@
 					
 				
 					<label for="insert_floor" id="floor_label">방 층수</label>
-					<input type="text" name="room_floor" id="insert_floor">
+					<input type="text" name="room_floor" id="insert_floor" value="${room_floor }"  placeholder="숫자만 입력해주세요.">
 				</div>	
 				
 				<div id="insert_div5">
@@ -95,9 +101,13 @@
 					<label for="insert_avdate" id="avd_label">입주 가능일</label>
 					<input type="date" name="room_avdate" id="insert_avdate">
 					<br>
+					
 					<label for="summernote" id="detail_label">상세설명</label>
+					<div id="insert_list">
+						<p></p>
+					</div>
 					<div id="insert_detail">
-						<textarea rows="10" cols="60" class="summernote" name="room_detail"></textarea>
+						<textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea>
 					</div>
 				</div>
 				
@@ -123,7 +133,6 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-<!-- include summernote css/js-->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
