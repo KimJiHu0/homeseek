@@ -13,6 +13,7 @@
 	<typeAlias type="com.mvc.homeseek.model.dto.QnaDto" alias="QnaDto"/>
 	<typeAlias type="com.mvc.homeseek.model.dto.ReportDto" alias="ReportDto"/> 
 	<typeAlias type="com.mvc.homeseek.model.dto.MemberDto" alias="MemberDto"/>
+	<typeAlias type="com.mvc.homeseek.model.dto.WishDto" alias="WishDto"/>
 </typeAliases>
 	
 
@@ -25,6 +26,7 @@
 	<mapper resource="/mybatis/report-mapper.xml"/>
 	<mapper resource="/mybatis/roomInsert-mapper.xml"/>
 	<mapper resource="/mybatis/message-mapper.xml"/>
+	<mapper resource="/mybatis/wish-mapper.xml"/>
 </mappers>
 
 

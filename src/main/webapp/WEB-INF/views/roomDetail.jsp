@@ -16,32 +16,15 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/roomDetail.js"
 	type="text/javascript"></script>
-
-<!-- alert띄우기 위한 스크립트 -->
-<script type="text/javascript">
-	var msg = '${msg}';
-	if (msg != '') {
-		alert(msg);
-	}
 	
-	/* roomDetail에서 신고버튼을 누르면 실행되는 함수 */
-	function reportUser() {
-		var room_id = "${member.member_id}";
-		open("reportmember.do?room_id=" + room_id, "", "width=750, height=800");
-	}
-
-	// roomDetail에서 쪽지 버튼을 누르면 실행하는 함수
-	function messageUser() {
-		var room_id = "${member.member_id}";
-		open("messagemember.do?room_id=" + room_id, "", "width=750, height=800");
-	}
-	
-</script>
-
 </head>
 <body>
 	<!-- header.jsp -->
 	<%@ include file="form/header.jsp"%>
+	<%
+		// 세션 값 가져오기 : 내 아이디
+		String wish_id = dto.getMember_id();
+	%>
 	<section>
 		<!-- first container -->
 		<div id="firstcontainer">
@@ -50,10 +33,12 @@
 
 				<!-- 매물 사진 정보 -->
 				<div id="roomimg">
-					<a href="#"> <img alt="d" src="resources/img/arrowleft.png"
-						id="leftarrow" class="arrow">
-					</a> <a href="#"> <img alt="d" src="resources/img/arrowright.png"
-						id="rightarrow" class="arrow">
+					<a href="#">
+						<img alt="d" src="resources/img/arrowleft.png" id="leftarrow" class="arrow">
+					</a>
+						
+					<a href="#">
+						<img alt="d" src="resources/img/arrowright.png" id="rightarrow" class="arrow">
 					</a>
 				</div>
 			</div>
@@ -62,7 +47,7 @@
 			<div id="userinfocontainer">
 				<div id="userinfodetail">
 					<div id="userinfotitle">
-						<span id="leftb">사용자 / 매물 정보</span><span id="rightb">찜하기♥</span>
+						<span id="leftb">사용자 / 매물 정보</span><span id="rightb" class="wish">찜하기♡</span>
 					</div>
 					<%
 						RoomDto room = (RoomDto) request.getAttribute("room");
@@ -74,7 +59,7 @@
 						<span class="leftb">매물 종류</span> <span class="rightb">매매</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">매매가</span> <span class="rightb">${room.room_price }만원</span>
+						<span class="leftb">매매가</span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
 					</div>
 					<%
 						// 그게 아니라 전세일 경우에는 ROOM_PRICE와 젠세가로 ROOM_DEPOSIT를 보여준다.
@@ -84,7 +69,7 @@
 						<span class="leftb">매물</span> <span class="rightb">전세</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">전세가 </span> <span class="rightb">${room.room_price }만원</span>
+						<span class="leftb">전세가 </span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
 					</div>
 					<%
 						// 월세,4,5일 경우에는 둘 다 보여준다.
@@ -94,10 +79,10 @@
 						<span class="leftb">매물</span> <span class="rightb">월세</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">보증금</span> <span class="rightb">${room.room_deposit }만원</span>
+						<span class="leftb">보증금</span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/>만원</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">월세가</span> <span class="rightb">${room.room_price }만원</span>
+						<span class="leftb">월세가</span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
 					</div>
 					<%
 						// 반전세인 경우(월세인데 보증금을 더 내고 월세를 줄인다.)
@@ -107,10 +92,10 @@
 						<span class="leftb">매물</span> <span class="rightb">반전세</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">보증금</span> <span class="rightb">${room.room_deposit }만원</span>
+						<span class="leftb">보증금</span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/>만원</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">월세가</span> <span class="rightb">${room.room_price }만원</span>
+						<span class="leftb">월세가</span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
 					</div>
 					<%
 						} else {
@@ -119,10 +104,10 @@
 						<span class="leftb">매물</span> <span class="rightb">단기임대</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">보증금 : </span> <span class="rightb">${room.room_deposit }만원</span>
+						<span class="leftb">보증금 : </span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/>만원</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">월세가 : </span> <span class="rightb">${room.room_price }만원</span>
+						<span class="leftb">월세가 : </span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
 					</div>
 					<%
 						}
@@ -378,4 +363,64 @@
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
 </body>
+<!-- alert띄우기 위한 스크립트 -->
+<script type="text/javascript">
+	var msg = '${msg}';
+	if (msg != '') {
+		alert(msg);
+	}
+	
+	/* roomDetail에서 신고버튼을 누르면 실행되는 함수 */
+	function reportUser() {
+		var room_id = "${member.member_id}";
+		open("reportmember.do?room_id=" + room_id, "", "width=750, height=800");
+	}
+
+	// roomDetail에서 쪽지 버튼을 누르면 실행하는 함수
+	function messageUser() {
+		var room_id = "${member.member_id}";
+		open("messagemember.do?room_id=" + room_id, "", "width=750, height=800");
+	}
+	
+	// 찜하기 버튼을 클릭했을 때
+	// 그러기 위해서는 room_no와, session에 저장되어있는 id의 값이랑, room_id을 가지고 와야함.
+	$(".wish").click(function(){
+		// 해당 글의 room_no
+		var room_no = "${room.room_no}";
+		// 내 아이디
+		var wish_id = "<%=dto.getMember_id()%>";
+		// 판매자 아이디
+		var wish_sell_id = "${member.member_id}";
+		alert(room_no);
+		alert(wish_id);
+		alert(wish_sell_id);
+		
+		
+		var wish_data = {
+				"room_no" : room_no,
+				"wish_id" : wish_id,
+				"wish_sell_id" : wish_sell_id
+		}
+		
+		$.ajax({
+			url : "wish.do",
+			type : "post",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify(wish_data),
+			success : function(wish){
+				if(wish.insertwish == 'insert'){
+					alert(wish.insertwish);
+				} else {
+					alert(wish.deletewish);
+				}
+			},
+			
+			error : function(){
+				alert("연결실패");
+			}
+		})
+	});
+	
+</script>
 </html>

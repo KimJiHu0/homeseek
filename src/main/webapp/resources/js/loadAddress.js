@@ -25,7 +25,11 @@ function addrcheck() {
 			if (data.userSelectedType === 'R') {
 				addr = data.roadAddress;
 				extraAddr = data.buildingName;
-				$("[name=room_addr]").val(addr + "(" + extraAddr + ")");
+				if(data.buildingName === ''){
+					$("[name=room_addr]").val(addr);
+				} else {
+					$("[name=room_addr]").val(addr + "(" + extraAddr + ")");
+				}
 			} else {
 				// 사용자가 선택한 주소가 지번주소일 때 
 				addr = data.jibunAddress;

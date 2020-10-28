@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wish-mapper">
+
+	<insert id="insertWish" parameterType="WishDto">
+		INSERT INTO WISH VALUES(WISH_NO_SEQ.NEXTVAL, #{wish_id}, #{wish_sell_id}, #{room_no})
+	</insert>
+	
+	<delete id="deleteWish" parameterType="WishDto">
+		DELETE FROM WISH
+		WHERE ROOM_NO = #{room_no}
+		AND WISH_ID = #{wish_id}
+	</delete>
+	
+	<select id="selectWish" parameterType="WishDto" resultType="int">
+		SELECT NVL(ROOM_NO,0)
+		FROM WISH
+		WHERE WISH_ID = #{wish_id}
+		AND WISH_SELL_ID = #{wish_sell_id}
+		AND ROOM_NO = #{room_no}
+	</select>
+	
+
+</mapper>

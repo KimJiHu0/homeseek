@@ -3,6 +3,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,13 @@
 		        <!-- 이미지를 담아줄 div -->
 		        <div class="update-image">
 		            <div class="update-image-detail">
-		                <img class="room-image" alt="가져온 이미지들" src="resources/img/backgroundimg.jpg">
+		           		<a href="#">
+		            		<img class="leftarrow" alt="왼쪽화살표" src="resources/img/arrowleft.png">
+		            	</a>
+		                	<img class="room-image" alt="가져온 이미지들" src="resources/img/backgroundimg.jpg">
+		                <a href="#">
+		                	<img class="rightarrow" alt="오른쪽화살표" src="resources/img/arrowright.png">
+		            	</a>
 		            </div>
 		        </div>
 		        <!-- 수정할 방정보를 담아줄 div -->
@@ -61,7 +68,7 @@
 		                    보증금(만원)
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input class="update-input" type="text" value="${room.room_deposit }" name="room_deposit">
+		                	<input class="update-input" type="text" value="${room.room_deposit }" name="room_deposit" placeholder="숫자만 입력해주세요.">
 		                </div>
 		            </div>
 		            
@@ -70,7 +77,7 @@
 		                    매물 가격(만원)
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input class="update-input" type="text" value="${room.room_price }" name="room_price">
+		                	<input class="update-input" type="text" value="${room.room_price }" name="room_price" placeholder="숫자만 입력해주세요.">
 		                </div>
 		            </div>
 		            
@@ -79,7 +86,7 @@
 		                    매물 면적(㎡)
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input class="update-input" type="text" value="${room.room_extent }" name="room_extent">
+		                	<input class="update-input" type="text" value="${room.room_extent }" name="room_extent" placeholder="숫자만 입력해주세요.">
 		                </div>
 		            </div>
 		            
@@ -124,7 +131,7 @@
 		                    매물 층수
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input class="update-input" type="text" value="${room.room_floor }층" name="room_floor">
+		                	<input class="update-input" type="text" value="${room.room_floor }" name="room_floor" placeholder="숫자만 입력해주세요.">층
 		                </div>
 		            </div>
 		            
@@ -156,11 +163,11 @@
 		            </div>
 		        </div>
 				<div class="update-content-two">		            
-		            <div class="update-content-detail">
-		                <div class="update-content-detail-title">
+		            <div class="update-content-detail-summernote">
+		                <div class="update-content-detail-title-summernote">
 		                    매물 상세정보
 		                </div>
-		                <div class="update-content-detail-content">
+		                <div class="update-content-detail-content-summernote">
 		                	<textarea class="summernote" name="room_detail">${room.room_detail }</textarea>
 		                </div>
 		            </div>
@@ -169,8 +176,8 @@
 		        
 		        <!-- submit button -->
 		        <div class="update-room-submit">
-					<input type="submit" value="수정">
-					<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
+					<input class="submitbtn" type="submit" value="수정">
+					<input class="submitbtn" type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
 				</div>
 		    </div>
 		</form>		
