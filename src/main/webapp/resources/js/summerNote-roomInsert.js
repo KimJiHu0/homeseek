@@ -4,7 +4,7 @@ function sendFile(file, el) {
 	$.ajax({
 		data: form_data,
 		type : "post",
-		url: 'summerfile.do',
+		url:'summer_image.do',
 		cache :false,
 		contentType : false,
 		enctype : 'multipart/form-data',
