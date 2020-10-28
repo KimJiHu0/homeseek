@@ -28,16 +28,20 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("/registform.do")||
 				request.getRequestURI().contains("/registres.do")||
 				request.getRequestURI().contains("/findidform.do")||
+				request.getRequestURI().contains("/findpwdform.do")||
 				request.getRequestURI().contains("/findid.do")||
+				request.getRequestURI().contains("/findpw.do")||
 				request.getRequestURI().contains("/selectid.do")||
+				request.getRequestURI().contains("/selectpw.do")||
 				request.getRequestURI().contains("/sendsms.do")||
 				request.getSession().getAttribute("login") != null ||
 				request.getRequestURI().contains("listroom.do") ||
-				request.getRequestURI().contains("auth/{snsService}/callback.do") ||
-				request.getRequestURI().contains("auth/kakao/callback.do") ||
-				request.getRequestURI().contains("auth/google/callback.do") ||
-				request.getRequestURI().contains("auth/naver/registres.do") ||
-				request.getRequestURI().contains("auth/kakao/registres.do") ||
+				request.getRequestURI().contains("/navercallback.do") ||
+				request.getRequestURI().contains("/kakaocallback.do") ||
+				request.getRequestURI().contains("/googlecallback.do") ||
+				request.getRequestURI().contains("naverregistres.do") ||
+				request.getRequestURI().contains("kakaoregistres.do") ||
+				request.getRequestURI().contains("googleregistres.do") ||
 				request.getRequestURI().contains("reportmember.do") ||
 				request.getRequestURI().contains("insertres.do")||
 				request.getRequestURI().contains("reportmemberres.do")||

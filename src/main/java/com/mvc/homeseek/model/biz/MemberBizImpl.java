@@ -52,6 +52,18 @@ public class MemberBizImpl implements MemberBiz {
 		
 		return memberDao.selectId(dto);
 	}
+	
+	@Override
+	public int findPw(MemberDto dto) {
+		
+		return memberDao.findPw(dto);
+	}
+
+	@Override
+	public String searchPassword(MemberDto dto) {
+		
+		return memberDao.searchPassword(dto);
+	}
 
 	@Override
 	public MemberDto getBySns(MemberDto snsUser) {
@@ -63,5 +75,6 @@ public class MemberBizImpl implements MemberBiz {
 	public int updateMemberEnabled(String report_reid) {
 		return memberDao.updateMemberEnabled(report_reid);
 	}
+
 }
 

@@ -15,23 +15,26 @@
 	if (request.getAttribute("naveremail") != null) {		
 	%>
 	<h1>NAVER 연동 회원가입</h1>
+	<form action="naverregistres.do" method="post">
 	<%
 	} else if (request.getAttribute("kakaoemail") != null) {
 	%>
 	<h1>KAKAO 연동 회원가입</h1>
+	<form action="kakaoregistres.do" method="post">
 	<%
 	} else if (request.getAttribute("googleemail") != null) {
 	%>
 	<h1>GOOGLE 연동 회원가입</h1>
+	<form action="googleregistres.do" method="post">
 	<%
 	} else {
 	%>
 	<h1>회원가입</h1>
+	<form action="registres.do" method="post">
 	<%
 	}
 	%>
 	
-	<form action="registres.do" method="post">
 	
 			<div> 
 			<label for="member_id">아이디</label>

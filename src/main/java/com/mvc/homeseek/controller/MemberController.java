@@ -30,6 +30,7 @@ import com.mvc.homeseek.auth.KakaoAPI;
 import com.mvc.homeseek.auth.SNSLogin;
 import com.mvc.homeseek.auth.SnsValue;
 import com.mvc.homeseek.model.biz.MemberBiz;
+import com.mvc.homeseek.model.biz.UserSha256;
 import com.mvc.homeseek.model.dto.MemberDto;
 
 import net.nurigo.java_sdk.api.Message;
@@ -59,22 +60,22 @@ public class MemberController {
 	private KakaoAPI kakao;
 
 	private final static String id = "2dc56fd515158890d47575ddc651d7e8";
-	private final static String url = "http://localhost:8787/homeseek/auth/kakao/callback.do";
+	private final static String url = "http://localhost:8787/homeseek/kakaocallback.do";
 
 	@RequestMapping("loginform.do")
 	public String loginForm(Model model) {
 		logger.info("login.do");
-		
+
 		// 네이버 로그인 URL받기
 		SNSLogin snsLogin = new SNSLogin(naverSns);
 		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
-		
+
 		// 카카오 로그인 URL받기
 		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + id + "&redirect_uri=" + url
 				+ "&response_type=code";
 		model.addAttribute("kakao_url", kakaoUrl);
 
-		// 구글code발행을 위한 URL 생성 
+		// 구글code발행을 위한 URL 생성
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 		model.addAttribute("google_url", url);
@@ -86,7 +87,14 @@ public class MemberController {
 	@RequestMapping(value = "/ajaxlogin.do", method = RequestMethod.POST)
 	public Map<String, Boolean> login(@RequestBody MemberDto dto, HttpSession session) {
 		logger.info("ajaxlogin.do");
-
+		// <<<sha-256적용>>>
+		// 암호 확인용 syso
+		System.out.println("첫번째:" + dto.getMember_pw());
+		// 비밀번호 암호화 (sha256)
+		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
+		dto.setMember_pw(encryPassword);
+		System.out.println("두번째:" + dto.getMember_pw());
+		// 로그인 체크 mapper와 연결
 		MemberDto res = memberBiz.login(dto);
 
 		boolean check = false;
@@ -108,61 +116,91 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "auth/{snsService}/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String snsLoginCallback(@PathVariable String snsService, Model model, MemberDto dto, @RequestParam String code,
-			HttpSession session, HttpServletRequest request) throws Exception {
-		
-		
-		logger.info("snsLoginCallback: service={}", snsService);
-		SnsValue sns = null;
-		if (StringUtils.equals("naver", snsService)) {
-			System.out.println("★naver★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
-			sns = naverSns;
-		} else {
-			sns = googleSns;
-		}
+	@RequestMapping(value = "/navercallback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String naverCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session,
+			HttpServletRequest request) throws Exception {
 
+		logger.info("snsLoginCallback: service= naver ");
+		SnsValue sns = null;
+		sns = naverSns;
 
 		// 1. code를 이용해서 access_token 받기
 		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
 		SNSLogin snsLogin = new SNSLogin(sns);
 		MemberDto snsUser = snsLogin.getUserProfile(code);
 		System.out.println("Profile>>" + snsUser);
-		
-		System.out.println("확인용!!!!"+ snsUser.getMember_naverid());
-		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid  추가해야함 !!! 그래야 select해볼수있음!)
-		MemberDto usertest = memberBiz.getBySns(snsUser);
-		
-		System.out.println(snsUser.getMember_id());
-		
 
-		if (usertest == null) {  // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
-			
+		System.out.println("확인용!!!!" + snsUser.getMember_naverid());
+		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 추가해야함 !!! 그래야 select해볼수있음!)
+		MemberDto usertest = memberBiz.getBySns(snsUser);
+
+		System.out.println(snsUser.getMember_id());
+
+		if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
+
 			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 			model.addAttribute("naveremail", snsUser.getMember_id());
 			model.addAttribute("googleemail", snsUser.getMember_id());
 			model.addAttribute("nickname", snsUser.getMember_name());
-			
+
 			return "regist";
-			
+
 		} else { // 존재시, 세션주고 로그인 시켜줌 -> main페이지
-			
-			model.addAttribute("result" ,"기존에 가입한 회원 . 로그인시켜도됨 ");
+
+			model.addAttribute("result", "기존에 가입한 회원 . 로그인시켜도됨 ");
 
 			session.setAttribute("login", usertest);
-			
+
 			return "redirect:/main.do";
 		}
 	}
-	
 
-	@RequestMapping(value = "auth/kakao/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/googlecallback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googleCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session,
+			HttpServletRequest request) throws Exception {
+
+		logger.info("snsLoginCallback: service= google");
+		SnsValue sns = null;
+		sns = googleSns;
+
+		// 1. code를 이용해서 access_token 받기
+		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
+		SNSLogin snsLogin = new SNSLogin(sns);
+		MemberDto snsUser = snsLogin.getUserProfile(code);
+		System.out.println("Profile>>" + snsUser);
+
+		System.out.println("확인용!!!!" + snsUser.getMember_naverid());
+		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 추가해야함 !!! 그래야 select해볼수있음!)
+		MemberDto usertest = memberBiz.getBySns(snsUser);
+
+		System.out.println(snsUser.getMember_id());
+
+		if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
+
+			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+			model.addAttribute("naveremail", snsUser.getMember_id());
+			model.addAttribute("googleemail", snsUser.getMember_id());
+			model.addAttribute("nickname", snsUser.getMember_name());
+
+			return "regist";
+
+		} else { // 존재시, 세션주고 로그인 시켜줌 -> main페이지
+
+			model.addAttribute("result", "기존에 가입한 회원 . 로그인시켜도됨 ");
+
+			session.setAttribute("login", usertest);
+
+			return "redirect:/main.do";
+		}
+	}
+
+	@RequestMapping(value = "/kakaocallback.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(@RequestParam("code") String code, HttpSession session, Model model, MemberDto dto) {
 		System.out.println("★★★KAKAO★★★★★★★★★★KAKAO★★★★★KAKAO★★★★★★★★★★KAKAO★★★★★★★★★★★★★★");
 		String access_Token = kakao.getAccessToken(code);
 		MemberDto snsUser = kakao.getUserInfo(access_Token);
 		System.out.println("login Controller : " + snsUser);
-		
+
 		MemberDto usertest = memberBiz.getBySns(snsUser);
 
 		// 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
@@ -177,7 +215,7 @@ public class MemberController {
 			return "regist";
 		} else {
 
-			//session.setAttribute("login", snsUser.getMember_kakaoid());
+			// session.setAttribute("login", snsUser.getMember_kakaoid());
 			session.setAttribute("login", usertest);
 			return "redirect:/main.do";
 		}
@@ -197,6 +235,7 @@ public class MemberController {
 		return "regist";
 	}
 
+	// 일반 회원가입
 	@RequestMapping("registres.do")
 	public String registRes(String member_id, @RequestParam("email") String email, MemberDto dto) {
 		logger.info("registres.do");
@@ -206,6 +245,14 @@ public class MemberController {
 
 		System.out.println(email + "*****!!!!!!!^^^#%$#$%$%&^&^&%#$%^#$@$#%");
 
+		// <<<sha-256적용>>>
+		// 암호 확인용 syso
+		System.out.println("첫번째:" + dto.getMember_pw());
+		// 비밀번호 암호화 (sha256)
+		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
+		dto.setMember_pw(encryPassword);
+		System.out.println("두번째:" + dto.getMember_pw());
+
 		if (memberBiz.insert(dto) > 0) {
 			return "redirect:/main.do";
 		}
@@ -213,12 +260,18 @@ public class MemberController {
 		return "redirect:registform.do";
 
 	}
-	
-	@RequestMapping("auth/naver/registres.do")
+
+	@RequestMapping("naverregistres.do")
 	public String naverRegistRes(String member_id, MemberDto dto) {
-		logger.info("auth/naver/registres.do");
+		logger.info("naverregistres.do");
+		// <<<sha-256적용>>>
+		// 암호 확인용 syso
+		System.out.println("첫번째:" + dto.getMember_pw());
+		// 비밀번호 암호화 (sha256)
+		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
+		dto.setMember_pw(encryPassword);
+		System.out.println("두번째:" + dto.getMember_pw());
 
-		
 		if (memberBiz.insert(dto) > 0) {
 			return "redirect:/main.do";
 		}
@@ -226,12 +279,37 @@ public class MemberController {
 		return "redirect:registform.do";
 
 	}
-	
-	@RequestMapping("auth/kakao/registres.do")
-	public String kakaoRegistRes(String member_id, MemberDto dto) {
-		logger.info("auth/kakao/registres.do");
 
-		
+	@RequestMapping("kakaoregistres.do")
+	public String kakaoRegistRes(String member_id, MemberDto dto) {
+		logger.info("kakaoregistres.do");
+		// <<<sha-256적용>>>
+		// 암호 확인용 syso
+		System.out.println("첫번째:" + dto.getMember_pw());
+		// 비밀번호 암호화 (sha256)
+		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
+		dto.setMember_pw(encryPassword);
+		System.out.println("두번째:" + dto.getMember_pw());
+
+		if (memberBiz.insert(dto) > 0) {
+			return "redirect:/main.do";
+		}
+
+		return "redirect:registform.do";
+
+	}
+
+	@RequestMapping("googleregistres.do")
+	public String googleRegistRes(String member_id, MemberDto dto) {
+		logger.info("googleregistres.do");
+		// <<<sha-256적용>>>
+		// 암호 확인용 syso
+		System.out.println("첫번째:" + dto.getMember_pw());
+		// 비밀번호 암호화 (sha256)
+		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
+		dto.setMember_pw(encryPassword);
+		System.out.println("두번째:" + dto.getMember_pw());
+
 		if (memberBiz.insert(dto) > 0) {
 			return "redirect:/main.do";
 		}
@@ -254,14 +332,15 @@ public class MemberController {
 		return str;
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/checkphone.do", method = RequestMethod.POST)
-	public String chkPhone(@RequestParam("member_phone") String member_phone,@RequestParam("member_name") String member_name) {
-		
+	public String chkPhone(@RequestParam("member_phone") String member_phone,
+			@RequestParam("member_name") String member_name) {
+
 		logger.info("checkphone.do");
-		
-		MemberDto dto = new MemberDto(member_name,member_phone);
+
+		MemberDto dto = new MemberDto(member_name, member_phone);
 
 		String str = "";
 		int res = memberBiz.checkPhone(dto);
@@ -273,35 +352,59 @@ public class MemberController {
 		return str;
 
 	}
-	
+
 	@RequestMapping("findidform.do")
 	public String findIdForm() {
 		logger.info("findidform.do");
 
 		return "findId";
 	}
-	
+
+	@RequestMapping("findpwdform.do")
+	public String findPwForm() {
+		logger.info("findpwform.do");
+
+		return "findPwd";
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "/findid.do", method = RequestMethod.POST)
-	public String findId(@RequestParam("id_phone") String id_phone,@RequestParam("id_name") String id_name) {
+	public String findId(@RequestParam("id_phone") String id_phone, @RequestParam("id_name") String id_name) {
 		logger.info("findid.do");
-		MemberDto memberdto = new MemberDto(id_name,id_phone);
+		MemberDto memberdto = new MemberDto(id_name, id_phone);
 		String str = "";
 		int res = memberBiz.findId(memberdto);
 		if (res == 1) { // 존재하는 계정
-			str = "NO";
+			str = "NO"; // check**************************************
 		} else { // 존재하지않는 계정
 			str = "YES";
 		}
 		return str;
 
 	}
-	
+
+	@ResponseBody
+	@RequestMapping(value = "/findpw.do", method = RequestMethod.POST)
+	public String findpw(@RequestParam("pwd_phone") String pwd_phone, @RequestParam("pwd_name") String pwd_name,
+			@RequestParam("pwd_id") String pwd_id) {
+		logger.info("findpw.do");
+		MemberDto memberdto = new MemberDto(pwd_name, pwd_phone, pwd_id);
+		String str = "";
+		int res = memberBiz.findPw(memberdto);
+		if (res == 1) { // 존재하는 계정
+			str = "YES";
+		} else { // 존재하지않는 계정
+			str = "NO";
+		}
+		return str;
+
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "/selectid.do", method = RequestMethod.POST)
 	public String selectId(@RequestParam("id_phone") String id_phone, @RequestParam("id_name") String id_name) {
 		logger.info("selectid.do");
-		MemberDto memberdto = new MemberDto(id_name,id_phone);
+		MemberDto memberdto = new MemberDto(id_name, id_phone);
 		String str = "";
 		String res = memberBiz.selectId(memberdto);
 		if (res == null) { // 존재하는 계정
@@ -313,6 +416,27 @@ public class MemberController {
 
 	}
 
+	// 임시비밀번호를 DB에 넣어준다
+//	@ResponseBody
+//	@RequestMapping(value = "/selectpw.do", method = RequestMethod.POST)
+//	public String selectPw(@RequestParam("pwd_phone") String pwd_phone, @RequestParam("pwd_name") String pwd_name,
+//			@RequestParam("pwd_id") String pwd_id, @RequestParam("pwd_id") String key) {
+//		logger.info("selectpw.do");
+//		MemberDto memberdto = new MemberDto(pwd_name, pwd_phone, pwd_id);
+//		String str = "";
+//		// <<<sha-256적용>>>
+//		// 암호 확인용 syso
+//		System.out.println("첫번째:" + dto.getMember_pw());
+//		// 비밀번호 암호화 (sha256)
+//		String encryPassword = UserSha256.encrypt(key);
+//		dto.setMember_pw(encryPassword);
+//		if (res == null) { // 임시비밀번호 업데이트 실패
+//			str = "NO";
+//		} else { // 임시비밀번호 업데이트 성공
+//			str = memberBiz.searchPassword(memberdto);
+//		}
+//		return str;
+//	}
 
 	@RequestMapping(value = "/sendsms.do", method = RequestMethod.POST)
 	@ResponseBody

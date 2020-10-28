@@ -38,7 +38,7 @@
 		<beans:constructor-arg value="TrYp9sb4Yn" />
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="http://localhost:8787/homeseek/auth/naver/callback.do" />
+		<beans:constructor-arg value="http://localhost:8787/homeseek/navercallback.do" />
 	</beans:bean>
 
 	<beans:bean id="naverSns" class="com.mvc.homeseek.auth.SnsValue">
@@ -56,7 +56,7 @@
 		<beans:constructor-arg value="BGVqvPv7tIU9mnBq9i7Dp-I1" />
 	</beans:bean>
 	<beans:bean id="googleRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="http://localhost:8787/homeseek/auth/google/callback.do" />
+		<beans:constructor-arg value="http://localhost:8787/homeseek/googlecallback.do" />
 	</beans:bean>
 
 	<beans:bean id="googleSns" class="com.mvc.homeseek.auth.SnsValue">

@@ -24,4 +24,8 @@ public interface MemberDao {
 	public int findId(MemberDto dto);
 	//찾은 아이디 뽑아주는 메소드
 	public String selectId(MemberDto dto);
+	//비밀번호 존재유무 찾기 메소드
+	public int findPw(MemberDto dto);
+	//찾은 비밀번호 뽑아주는 메소드
+	public String searchPassword(MemberDto dto);
 }
