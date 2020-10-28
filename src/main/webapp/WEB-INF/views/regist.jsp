@@ -51,7 +51,7 @@
 			<%
 				} else {
 			%>
-			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text">
+			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text" readonly/>
 			<select name="select_email" id="select_email"> 
 				  <option value="" selected>선택하세요</option> 
 				  <option value="naver.com">naver.com</option> 
@@ -97,7 +97,7 @@
 			
 			<div>
 				<label for="member_phone">Phone</label>
-					<input type="text" name="member_phone" id="member_phone" size="30" placeholder="010-0000-0000"/>
+					<input type="text" name="member_phone" id="member_phone" size="30" placeholder="'-'없이 번호입력"/>
 					<!--  <button onclick="sendSms();">휴대폰 인증</button>-->
 					<input type="button" name = "sendSms" id="sendSms" value="휴대폰 인증">
 					<div class="check_font" id="memberPhone"></div>
