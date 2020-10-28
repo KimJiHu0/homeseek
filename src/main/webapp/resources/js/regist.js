@@ -24,7 +24,7 @@ $(function(){
 			}); 
 		});
 	
-	/*$('#member_id').blur(function(){
+	$('#member_id').blur(function(){
    	 if (idJ.test($('#member_id').val())) {
    		 	$('#id_check').text('');
 		} else {
@@ -34,12 +34,12 @@ $(function(){
 			$('#member_id').focus();
 			
 		}
-    })*/
-     $('#member_id').blur(function(){
+    })
+   /*  $('#member_id').blur(function(){
     	
 		 $.ajax({
 	     type:"POST",
-	     url:"checkid.do",
+	     url:"/homeseek/checkid.do",
 	     data:{
 	            "member_id":$('#member_id')
 	     },
@@ -66,7 +66,7 @@ $(function(){
     	
     	
      })
-	
+	*/
 
 		
 	
@@ -76,7 +76,7 @@ $(function(){
     $('#select_email').blur(function(){
     	
 		 $.ajax({
-	     type:"POST",
+	     type:"post",
 	     url:"checkid.do",
 	     data:{
 	            "member_id":$('#member_id').val() +'@'+ $('#email').val()
@@ -146,7 +146,7 @@ $(function(){
 	//본인인증 번호 보내기
 	$('#sendSms').click(function(){
 			 $.ajax({
-		     type:"POST",
+		     type:"post",
 		     url:"checkphone.do",
 		     data:{
 		            "member_phone":$('#member_phone').val(),
@@ -240,7 +240,7 @@ $(function(){
 		           						         return false;
 		           							 }
 		           							 else if($.trim(res) != $('#phone_check').val()){
-		           								 if($('#phone_check').val()==''){
+		           								 if($('#pCheck').text()==''){
 		           									 return false
 		           								 }else{
 		           									 alert("본인 인증을 확인해주세요");
