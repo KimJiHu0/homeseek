@@ -19,7 +19,7 @@
 	<%@ include file="/WEB-INF/views/form/header.jsp"%>
 
 	<section>
-		<form action="updateroomres.do" method="POST">
+		<form action="updateroomres.do" method="POST" enctype='multipart/form-data'>
 		    <input class="update-input" type="hidden" value="${room.room_no}" name="room_no">
 		    <!-- 가장 큰 div박스 -->
 		    <div class="update-container">

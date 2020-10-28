@@ -335,6 +335,7 @@
 		</div>
 					<div class="roominfo-content-detailcontent-content">
 						${room.room_detail }
+						<input type="hidden" name="room_photo" id="room_photo" value=""/>
 					</div>
 				<%
 					// 세션에 로그인되어있는 id를 가지고 수정버튼을 보여줄지 말지 선택
@@ -390,11 +391,7 @@
 		// 내 아이디
 		var wish_id = "<%=dto.getMember_id()%>";
 		// 판매자 아이디
-		var wish_sell_id = "${member.member_id}";
-		alert(room_no);
-		alert(wish_id);
-		alert(wish_sell_id);
-		
+		var wish_sell_id = "${member.member_id}"; 
 		
 		var wish_data = {
 				"room_no" : room_no,
@@ -410,9 +407,11 @@
 			data : JSON.stringify(wish_data),
 			success : function(wish){
 				if(wish.insertwish == 'insert'){
-					alert(wish.insertwish);
+					alert("찜하기가 완료되었습니다.");
+					$(".wish").html("찜하기♥");
 				} else {
-					alert(wish.deletewish);
+					alert("찜하기가 취소되었습니다.");
+					$(".wish").html("찜하기♡");
 				}
 			},
 			
