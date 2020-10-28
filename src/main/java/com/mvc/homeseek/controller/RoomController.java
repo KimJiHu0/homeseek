@@ -1,7 +1,5 @@
 package com.mvc.homeseek.controller;
 
-
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;

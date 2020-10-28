@@ -98,7 +98,7 @@ section #top_title {
 	width:70%;
 	max-width:700px;
 	height:450px;
-	margin-top: 50px;
+	margin: auto 0;
 	float: left; 
 }
 
@@ -158,6 +158,13 @@ section #top_title {
 #insert_div5 select{
 	width: 15%;
 	max-width:150px;
+}
+
+#insert_div5 #insert_list {
+	width : 50%;
+	max-width : 500px;
+	border : 2px solid;
+	margin : 30px;
 }
 
 /*
