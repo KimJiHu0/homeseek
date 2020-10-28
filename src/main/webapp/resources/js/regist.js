@@ -1,11 +1,12 @@
 
 	var empJ = /\s/g;
 	//아이디 정규식
-	//var idJ =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	///^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	var idJ = /^[a-z0-9]{2,12}$/; 
 	// 비밀번호 정규식
 	var pwJ = /^[a-z0-9]{4,12}$/; 
 	// 휴대폰 번호 정규식
-	var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	var phoneJ = /^01([0|1|6|7|8|9]?)([0-9]{3,4})([0-9]{4})$/;
 
 $(function(){
 	document.getElementById("phone_check").style.display = "none";
@@ -22,12 +23,58 @@ $(function(){
 					} 
 			}); 
 		});
+	
+	/*$('#member_id').blur(function(){
+   	 if (idJ.test($('#member_id').val())) {
+   		 	$('#id_check').text('');
+		} else {
+			$('#id_check').text('아이디 입력하세요(소문자,숫자)');
+			$('#id_check').css('color', 'red');
+			$('#id_check').val('');
+			$('#member_id').focus();
+			
+		}
+    })*/
+     $('#member_id').blur(function(){
+    	
+		 $.ajax({
+	     type:"POST",
+	     url:"checkid.do",
+	     data:{
+	            "member_id":$('#member_id')
+	     },
+	     success:function(data){	//data : checkSignup에서 넘겨준 결과값
+	            if($.trim(data)=="YES"){
+	               if($('#member_id').val()!=''){ 
+	            	   $("#id_check").text("사용가능한 아이디입니다");
+	            	   $("#id_check").css("color", "blue");
+	        
+	               }
+	           	}else{
+	               if($('#member_id').val()!=''){
+	            	   $("#id_check").text("사용중인 아이디입니다");
+	            	   $("#id_check").css("color", "red");
+	            	   $("#reg_submit").attr("disabled", true);
+	                   $('#member_id').val('');
+	                   $('#member_id').focus();
+	               }
+	            }
+	         }
+	    })
+    	
+    	
+    	
+    	
+     })
+	
+
 		
 	
 
-
+	
 	//아이디 관련
     $('#select_email').blur(function(){
+    	
 		 $.ajax({
 	     type:"POST",
 	     url:"checkid.do",
@@ -53,7 +100,11 @@ $(function(){
 	         }
 	    })
     	
+    	
+    	
+    	
      })
+	
      //비밀번호 관련
      $('#member_pw').blur(function(){
     	 if (pwJ.test($('#member_pw').val())) {
@@ -105,7 +156,7 @@ $(function(){
 		            if($.trim(data)=="YES"){
 		               if($('#member_phone').val()!=''){ 
 		            	   if (phoneJ.test($('#member_phone').val())) {
-		           			if($('#member_phone').val() != ""){
+		           			if($('#member_phone').val() != "" && $('#member_name').val() != "" ){
 		           				document.getElementById("phone_check").style.display = "block";
 		           				document.getElementById("phoneCheck").style.display = "block";
 		           				var phoneNumber = $('#member_phone').val();
@@ -188,10 +239,14 @@ $(function(){
 		           						         $('#member_pw').focus();
 		           						         return false;
 		           							 }
-		           							 else if($.trim(res) != $('#phone_check').val() || $("#pCheck").text()==''){
-		           								 alert("본인 인증을 확인해주세요");
-		           							 	 $("#phone_check").focus();
-		           							 	 return false;
+		           							 else if($.trim(res) != $('#phone_check').val()){
+		           								 if($('#phone_check').val()==''){
+		           									 return false
+		           								 }else{
+		           									 alert("본인 인증을 확인해주세요");
+		           							 	 	$("#phone_check").focus();
+		           							 	 	return false;
+		           								 }
 		           							 }
 		           						 })
 		           				
@@ -199,6 +254,12 @@ $(function(){
 		           					}
 		           			
 		           				})
+		           			}else if($('#member_name').val('')){
+		           				$('#memberPhone').text('이름을  입력해주세요');
+			           			$('#memberPhone').css('color', 'red');
+			           			$('#memberPhone').val('');
+			           			$('#member_name').focus();
+		
 		           			}
 		           	}else{
 		           			$('#memberPhone').text('올바른 번호를 입력해주세요');
@@ -208,6 +269,13 @@ $(function(){
 		           		}
 		        
 		               }
+		               else {
+	           				$('#memberPhone').text('번호를  입력해주세요');
+		           			$('#memberPhone').css('color', 'red');
+		           			$('#memberPhone').val('');
+		           			$('#member_phone').focus();
+	
+	           			}
 		           	}else{
 		               if($('#member_phone').val()!=''){
 		            	   $("#memberPhone").text("이미 등록된 번호입니다");
@@ -223,12 +291,17 @@ $(function(){
 
 		
 	});
+    $("#submit").on ("click", function(){
+    	if($('#pCheck').text() == ''){
+    		alert("휴대폰 인증을 진행해주세요");
+    		 $('#member_phone').focus();
+    		 return false;
+    	}
+    })
     
    
 
 	
-    //회원 등록 버튼
-   	
 		
 	
 })
