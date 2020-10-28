@@ -83,9 +83,10 @@
 		AND MEMBER_PHONE = #{member_phone}
 		AND MEMBER_ID = #{member_id}
 	</select>
-	<!-- 회원 임시 비밀번호-->
+	<!-- 회원  비밀번호 바꾸기-->
 	<update id="searchPassword" parameterType="MemberDto">
-		UPDATE MEMBER SET MEMBER_PW = #{key} WHERE MEMBER_ID = #{param1} AND MEMBER_PHONE = #{param2}
+		UPDATE MEMBER SET MEMBER_PW = #{member_pw} 
+		WHERE MEMBER_ID = #{member_id} AND MEMBER_PHONE = #{member_phone} AND MEMBER_NAME = #{member_name}
 	</update>
 
 

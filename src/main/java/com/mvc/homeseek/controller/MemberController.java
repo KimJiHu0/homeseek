@@ -382,7 +382,8 @@ public class MemberController {
 		return str;
 
 	}
-
+	
+	//비밀번호 찾기 조건 실행 SELECT COUNT(*) FROM MEMBER WHERE MEMBER_NAME = #{member_name} AND MEMBER_PHONE = #{member_phone} AND MEMBER_ID = #{member_id}
 	@ResponseBody
 	@RequestMapping(value = "/findpw.do", method = RequestMethod.POST)
 	public String findpw(@RequestParam("pwd_phone") String pwd_phone, @RequestParam("pwd_name") String pwd_name,
@@ -413,30 +414,34 @@ public class MemberController {
 			str = memberBiz.selectId(memberdto);
 		}
 		return str;
-
 	}
+	
 
 	// 임시비밀번호를 DB에 넣어준다
-//	@ResponseBody
-//	@RequestMapping(value = "/selectpw.do", method = RequestMethod.POST)
-//	public String selectPw(@RequestParam("pwd_phone") String pwd_phone, @RequestParam("pwd_name") String pwd_name,
-//			@RequestParam("pwd_id") String pwd_id, @RequestParam("pwd_id") String key) {
-//		logger.info("selectpw.do");
-//		MemberDto memberdto = new MemberDto(pwd_name, pwd_phone, pwd_id);
-//		String str = "";
-//		// <<<sha-256적용>>>
-//		// 암호 확인용 syso
-//		System.out.println("첫번째:" + dto.getMember_pw());
-//		// 비밀번호 암호화 (sha256)
-//		String encryPassword = UserSha256.encrypt(key);
-//		dto.setMember_pw(encryPassword);
-//		if (res == null) { // 임시비밀번호 업데이트 실패
-//			str = "NO";
-//		} else { // 임시비밀번호 업데이트 성공
-//			str = memberBiz.searchPassword(memberdto);
-//		}
-//		return str;
-//	}
+	@ResponseBody
+	@RequestMapping(value = "/selectpw.do", method = RequestMethod.POST)
+	public void selectPw(@RequestBody MemberDto dto) {
+		logger.info("selectpw.do");
+
+		// <<<sha-256적용>>>
+		// 암호 확인용 syso
+		System.out.println("첫번째:" + dto.getMember_pw());
+		// 비밀번호 암호화 (sha256)
+		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
+		dto.setMember_pw(encryPassword);
+		System.out.println("두번째:" + dto.getMember_pw());
+		
+		int res=memberBiz.searchPassword(dto);
+		
+		if (res == 0) { // 비밀번호 변경 (업데이트) 실패
+			System.out.println("비밀번호 변경 실패");
+			//질문: 경고문띄우기하고싶다.. -> $(window).on ("load", function(){내용});
+			
+		} else { // 비밀번호 변경 (업데이트) 성공
+			System.out.println("비밀번호 변경 성공");
+		}
+		 
+	}
 
 	@RequestMapping(value = "/sendsms.do", method = RequestMethod.POST)
 	@ResponseBody

@@ -141,11 +141,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public String searchPassword(MemberDto dto) {
-		String res = null;
+	public int searchPassword(MemberDto dto) {
+		int res = 0;
 		
 		try {
-			res = sqlSession.selectOne(NAMESPACE + "searchPassword", dto);
+			res = sqlSession.update(NAMESPACE + "searchPassword", dto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
