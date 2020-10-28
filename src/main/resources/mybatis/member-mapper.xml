@@ -75,6 +75,20 @@
 		WHERE MEMBER_NAME = #{member_name}
 		AND MEMBER_PHONE = #{member_phone}
 	</select>
+	<!-- 비밀번호 존재 유무 찾기: 이름 아이디 전화번호 -->
+	<select id="findPw" parameterType="MemberDto" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_NAME = #{member_name}
+		AND MEMBER_PHONE = #{member_phone}
+		AND MEMBER_ID = #{member_id}
+	</select>
+	<!-- 회원 임시 비밀번호-->
+	<update id="searchPassword" parameterType="MemberDto">
+		UPDATE MEMBER SET MEMBER_PW = #{key} WHERE MEMBER_ID = #{param1} AND MEMBER_PHONE = #{param2}
+	</update>
+
+
 	
 	<!-- 매물 올린 사용자의 정보를 추출하기위한 mapper -->
 	<select id="selectMemberById" resultType="MemberDto"

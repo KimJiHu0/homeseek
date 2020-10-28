@@ -58,7 +58,7 @@
             <ul class="idpwlink">
                   <li><a href="findidform.do">아이디 찾기</a></li>
                   <li><a>  |  </a></li>
-                     <li><a href="#">비밀번호 찾기</a></li>
+                     <li><a href="findpwdform.do">비밀번호 찾기</a></li>
                      <li><a>  |  </a></li> 
                      <li><a href="registform.do">회원가입</a></li>
              </ul>

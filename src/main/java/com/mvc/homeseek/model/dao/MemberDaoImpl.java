@@ -14,7 +14,7 @@ import com.mvc.homeseek.model.dto.MemberDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
-	
+
 	@Inject
 	private SqlSession session;
 
@@ -82,28 +82,28 @@ public class MemberDaoImpl implements MemberDao {
 
 		return res;
 	}
-	//핸드폰번호 중복검사
+
+	// 핸드폰번호 중복검사
 	@Override
 	public int checkPhone(MemberDto dto) {
 		int res = 0;
-		
+
 		try {
 			res = sqlSession.selectOne(NAMESPACE + "checkPhone", dto);
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 		return res;
 	}
-	
 
-	//id찾기 
+	// id찾기
 	@Override
 	public int findId(MemberDto dto) {
 		int res = 0;
-		
+
 		try {
-			res = sqlSession.selectOne(NAMESPACE+ "findId", dto);
+			res = sqlSession.selectOne(NAMESPACE + "findId", dto);
 		} catch (Exception e) {
 			logger.info("findId error");
 			e.printStackTrace();
@@ -111,13 +111,41 @@ public class MemberDaoImpl implements MemberDao {
 
 		return res;
 	}
-	
+
+	// pw찾기
+	@Override
+	public int findPw(MemberDto dto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "findPw", dto);
+		} catch (Exception e) {
+			logger.info("findPw error");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
 	@Override
 	public String selectId(MemberDto dto) {
 		String res = null;
+
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "selectId", dto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public String searchPassword(MemberDto dto) {
+		String res = null;
 		
 		try {
-			res = sqlSession.selectOne(NAMESPACE+ "selectId", dto);
+			res = sqlSession.selectOne(NAMESPACE + "searchPassword", dto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,15 +156,15 @@ public class MemberDaoImpl implements MemberDao {
 	// sns에서 snsid를 뽑는 dao
 	@Override
 	public MemberDto getBySns(MemberDto snsUser) {
-		
-		//네이버 아이디가 있으면,,,
+
+		// 네이버 아이디가 있으면,,,
 		if (StringUtils.isNotEmpty(snsUser.getMember_naverid())) {
-			System.out.println("!!!!!!!MemberDaoImpl입니다 :naver !!!!!!"+snsUser.getMember_id());
+			System.out.println("!!!!!!!MemberDaoImpl입니다 :naver !!!!!!" + snsUser.getMember_id());
 			return session.selectOne(NAMESPACE + "getBySnsNaver", snsUser.getMember_id());
-		} else if(StringUtils.isNotEmpty(snsUser.getMember_kakaoid())){
-			System.out.println("!!!!!!!MemberDaoImpl입니다 :kakao !!!!!!"+snsUser.getMember_id());
+		} else if (StringUtils.isNotEmpty(snsUser.getMember_kakaoid())) {
+			System.out.println("!!!!!!!MemberDaoImpl입니다 :kakao !!!!!!" + snsUser.getMember_id());
 			return session.selectOne(NAMESPACE + "getBySnsKakao", snsUser.getMember_id());
-		//구글아이디면,,,		
+			// 구글아이디면,,,
 		} else {
 			return session.selectOne(NAMESPACE + "getBySnsGoogle", snsUser.getMember_googleid());
 		}
@@ -145,9 +173,9 @@ public class MemberDaoImpl implements MemberDao {
 	// 신고당하면 member의 enabled를 r로 변경하기 위한 메소드
 	@Override
 	public int updateMemberEnabled(String report_reid) {
-		
+
 		int res = 0;
-		
+
 		try {
 			res = sqlSession.update(NAMESPACE + "updateMemberEnabled", report_reid);
 		} catch (Exception e) {
