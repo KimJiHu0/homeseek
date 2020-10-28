@@ -2,35 +2,93 @@
 section{
 	padding-top : 100px;
 }
+
 /* 가장 큰 container */
 .update-container{
 	width : 100%;
-	height : 3000px;
-	display : flex;
+		display : flex;
+	flex-wrap: wrap;
 	border : 3px black solid;
 }
 
 /* 제목 div */
 .update-title{
-	
+	width : 100%;
+	height : 60px;
+	font-weight : bold;
+	border-bottom : 2px black solid;	
 }
 
 /* 이미지를 담아중 div css */
 .update-image{
 	border : 1px red solid;
+	width : 35%;
+	height : 450px;
 }
 
 /* 사진 담는 div 크기 */
 .update-image-detail{
-	width : 300px;
-	height : 300px;
+	width : 90%;
+	height : 90%;
+	margin-left : 5%;
+	margin-top : 5%;
 	border : 1px pink solid;
 }
 
 /* 사진 크기 */
 .room-image{
-	width : 250px;
-	height : 250px;
+	width : 100%;
+	height : 100%;
+}
+
+/* 매물 정보의 내용이 들어가는 div css */
+.update-content{
+	width : 65%;
+	height : 450px;
+	display : flex;
+	flex-wrap: wrap;
+	border : 1px purple solid;
+}
+
+/* 매물정보의 내용이 들어가는 div css(아래의 2개 div를 포함하는 div) */
+.update-content-detail{
+	width : 30%;
+	padding-left : 70px;
+	padding-top : 20px;
+}
+
+/* 매물정보의 내용 중 제목이 들어가는 div css */
+.update-content-detail-title{
+	font-size : 14pt;
+	font-weight : bold;
+	color : green;
+	border-bottom : 1px gray solid;
+}
+
+/* 매물정보의 내용 중 내용이 들어가는 div css */
+.update-content-detail-content{
+	
+}
+/* 매물정보의 상세정보내용이 들어가는 div css */
+.update-content-two{
+	width : 100%;
+	height : 500px;
+	border : 1px orange solid;
+}
+
+/* 수정할 수 있는 input태그의 css */
+.update-input{
+	border : none;	
+}
+
+.summernote{
+	width : 100%;
+	height : 100px;
+}
+
+/* 수정완료, 취소하기 버튼 2개를 가지고 있는 div */
+.update-room-submit{
+	
 }
 
 

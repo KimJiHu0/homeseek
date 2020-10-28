@@ -19,7 +19,7 @@
 
 	<section>
 		<form action="updateroomres.do" method="POST">
-		    <input type="hidden" value="${room.room_no}" name="room_no">
+		    <input class="update-input" type="hidden" value="${room.room_no}" name="room_no">
 		    <!-- 가장 큰 div박스 -->
 		    <div class="update-container">
 		    	<div class="update-title">
@@ -38,7 +38,7 @@
 		                    매물 이름
 		                </div>
 		                <div class="update-content-detail-content">
-		                    <input type="text" value="${room.room_name }" name="room_name">
+		                    <input class="update-input" type="text" value="${room.room_name }" name="room_name">
 		                </div>
 		            </div>
 		            <div class="update-content-detail">
@@ -61,7 +61,7 @@
 		                    보증금(만원)
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="text" value="${room.room_deposit }" name="room_deposit">
+		                	<input class="update-input" type="text" value="${room.room_deposit }" name="room_deposit">
 		                </div>
 		            </div>
 		            
@@ -70,7 +70,7 @@
 		                    매물 가격(만원)
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="text" value="${room.room_price }" name="room_price">
+		                	<input class="update-input" type="text" value="${room.room_price }" name="room_price">
 		                </div>
 		            </div>
 		            
@@ -79,7 +79,7 @@
 		                    매물 면적(㎡)
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="text" value="${room.room_extent }" name="room_extent">
+		                	<input class="update-input" type="text" value="${room.room_extent }" name="room_extent">
 		                </div>
 		            </div>
 		            
@@ -88,7 +88,7 @@
 		                    매물 주소
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="text" value="${room.room_addr }" id="room_addr" class="room_addr" name="room_addr" readonly="readonly" onclick="addrcheck();">
+		                	<input class="update-input" type="text" value="${room.room_addr }" id="room_addr" class="room_addr" name="room_addr" readonly="readonly" onclick="addrcheck();">
 		                </div>
 		            </div>
 		            <div class="update-content-detail">
@@ -124,7 +124,7 @@
 		                    매물 층수
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="text" value="${room.room_floor }" name="room_floor">
+		                	<input class="update-input" type="text" value="${room.room_floor }층" name="room_floor">
 		                </div>
 		            </div>
 		            
@@ -133,7 +133,7 @@
 		                    매물 등록 날짜
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="date" value="${room.room_regdate}" id="room_regdate" readonly="readonly" name="room_regdate">
+		                	<input class="update-input" type="date" value="${room.room_regdate}" id="room_regdate" readonly="readonly" name="room_regdate">
 		                </div>
 		            </div>
 		            
@@ -142,7 +142,7 @@
 		                    매물 준공 날짜
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="date" value="${room.room_cpdate}" id="room_cpdate" name="room_cpdate">
+		                	<input class="update-input" type="date" value="${room.room_cpdate}" id="room_cpdate" name="room_cpdate">
 		                </div>
 		            </div>
 		            
@@ -151,23 +151,24 @@
 		                    입주 가능 날짜
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<input type="date" value="${room.room_avdate}" id="room_avdate" name="room_avdate">
+		                	<input class="update-input" type="date" value="${room.room_avdate}" id="room_avdate" name="room_avdate">
 		                </div>
 		            </div>
-		            
+		        </div>
+				<div class="update-content-two">		            
 		            <div class="update-content-detail">
 		                <div class="update-content-detail-title">
 		                    매물 상세정보
 		                </div>
 		                <div class="update-content-detail-content">
-		                	<textarea rows="10" cols="60" class="summernote" name="room_detail">${room.room_detail }</textarea>
+		                	<textarea class="summernote" name="room_detail">${room.room_detail }</textarea>
 		                </div>
 		            </div>
 		        </div>
 		        <!-- 지도 넣을 자리 -->
 		        
 		        <!-- submit button -->
-		        <div class="updateroomsubmit">
+		        <div class="update-room-submit">
 					<input type="submit" value="수정">
 					<input type="button" value="취소" onclick="location.href='detailroom.do?room_no=${room.room_no }'">
 				</div>

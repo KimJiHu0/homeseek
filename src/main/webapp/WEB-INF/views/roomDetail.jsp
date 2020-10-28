@@ -314,7 +314,7 @@
 						매물 층수
 					</div>
 					<div class="roominfo-detail-content">
-						${room.room_floor }
+						${room.room_floor }층
 					</div>
 				</div>
 				<div class="roominfo-detail">
