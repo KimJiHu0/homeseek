@@ -126,17 +126,20 @@ public class RoomDetailController {
 	}
 	
 	@RequestMapping("fileupload.do")
-	public void profileUpload(int room_no, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void profileUpload(int room_no, String room_id, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		// 업로드할 폴더 경로
-		String realFolder = request.getSession().getServletContext().getRealPath("/");
+		String realFolder = request.getSession().getServletContext().getRealPath("/fileUpload");
 		
 		logger.info("\n -----------이미지 업로드중----------");
 		/*
 		 * int cnt = 1; for(int i = 0; i < file.getSize(); i++) { cnt++;
 		 * System.out.println("숫자 올라가여? : " + cnt); }
 		 */
+		
+		System.out.println("Controller에 들어오는 room_no의 값은 뭔데 ? : " + room_no);
+		System.out.println("Controller에 들어오는 room_id의 값은 뭔데 ? : " + room_id);
 		
 		System.out.println("file.getSize() : " + file.getSize());
 		System.out.println("file.getByte[]() : " + file.getBytes());
@@ -162,6 +165,7 @@ public class RoomDetailController {
 
 		File f = new File(filepath);
 		if (!f.exists()) {
+			logger.info("디렉토티 생성!");
 			f.mkdirs();
 		}
 		file.transferTo(f);
