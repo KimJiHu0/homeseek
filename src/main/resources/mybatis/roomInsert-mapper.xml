@@ -20,12 +20,29 @@
 			TO_DATE(#{room_cpdate}, 'yyyy/MM/dd'), 
 			TO_DATE(#{room_avdate}, 'yyyy/MM/dd'), 
 			#{room_detail}, 
-			#{room_id})
-		
-		
+			#{room_id})		
 	</insert>
 	
-	
+	<insert id="selectRoomInsert_2" parameterType="RoomDto">
+		INSERT INTO ROOM
+		VALUES(
+			ROOM_NO_SEQ.NEXTVAL, 
+			#{room_name}, 
+			'사진', 
+			#{room_type}, 
+			NULL,
+			#{room_price}, 
+			#{room_extent}, 
+			#{room_addr}, 
+			#{room_kind}, 
+			#{room_structure}, 
+			#{room_floor},
+			SYSDATE, 
+			TO_DATE(#{room_cpdate}, 'yyyy/MM/dd'), 
+			TO_DATE(#{room_avdate}, 'yyyy/MM/dd'), 
+			#{room_detail}, 
+			#{room_id})		
+	</insert>
 	
  
 </mapper>

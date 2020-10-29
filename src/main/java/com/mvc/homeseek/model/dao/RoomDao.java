@@ -8,7 +8,8 @@ public interface RoomDao {
 	String NAMESPACE = "roomInsert.";
 
 	public int selectRoomInsert(RoomDto room_dto);
-	public int selectRoomUpdate(RoomDto room_dto);
-	public int selectRoomDelete(int room_no);
+	// 보증금이 없을때
+	public int selectRoomInsert2(RoomDto room_dto);
+	
 
 }

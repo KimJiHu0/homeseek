@@ -36,7 +36,8 @@
 	
 				
 					<label for="insert_type" id="type_label">매물종류</label>
-						<select name="room_type" id="insert_roomtype">
+						<select name="room_type" id="insert_roomtype" >
+							<option  hidden disabled selected value></option>
 							<option value="1">월세</option>
 							<option value="2">전세</option>
 							<option value="3">매매</option>
@@ -112,8 +113,8 @@
 				</div>
 				
 				<div class="control">
-						<input type="submit" value="작성" class="form_button">
-						<input type="button" value="취소" class="form_button" onclick="location.href='main.do'">
+						<input type="submit" value="작성" id="sumbit_button">
+						<input type="button" value="취소" id="cancel_button" onclick="location.href='main.do'">
 				</div>
 			
 		</form>

@@ -51,8 +51,43 @@ geocoder.addressSearch(user_addr, function(result, status) {
         map.setCenter(coords);
     } 
 });    
-	
-	
-	
-	
 }
+
+
+//------------------------- select box속성변화
+
+$(function(){
+	$('#insert_roomtype').change(function(){
+		if(this.value == "3"){
+			$("#insert_deposit").hide();
+			$("#deposit_label").hide();
+			
+			$(".insert_form").attr("action", "insertres2.do");
+			
+		} else{
+			$("#insert_deposit").show();
+			$("#deposit_label").show();
+			$(".form_div").attr("action", "insertres.do");
+		}
+	})
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
