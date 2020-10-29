@@ -2,6 +2,8 @@ package com.mvc.homeseek.model.biz;
 
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,9 +62,9 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
-	public int searchPassword(MemberDto dto) {
+	public int searchPassword(Map<String, Object> param) {
 		
-		return memberDao.searchPassword(dto);
+		return memberDao.searchPassword(param);
 	}
 
 	@Override

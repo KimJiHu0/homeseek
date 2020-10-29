@@ -32,7 +32,7 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("/findid.do")||
 				request.getRequestURI().contains("/findpw.do")||
 				request.getRequestURI().contains("/selectid.do")||
-				request.getRequestURI().contains("/selectpw.do")||
+				request.getRequestURI().contains("/selectpw.do")||//
 				request.getRequestURI().contains("/sendsms.do")||
 				request.getSession().getAttribute("login") != null ||
 				request.getRequestURI().contains("listroom2.do") || // 페이징때문에 잠시 listroom2 사용중

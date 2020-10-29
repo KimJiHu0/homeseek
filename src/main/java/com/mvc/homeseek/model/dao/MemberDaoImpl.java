@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.dao;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
@@ -141,11 +143,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int searchPassword(MemberDto dto) {
+	public int searchPassword(Map<String, Object> param) {
 		int res = 0;
 		
 		try {
-			res = sqlSession.update(NAMESPACE + "searchPassword", dto);
+			res = sqlSession.update(NAMESPACE + "searchPassword", param);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
