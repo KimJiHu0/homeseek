@@ -28,7 +28,7 @@
 		           		<a href="#">
 		            		<img class="leftarrow" alt="왼쪽화살표" src="resources/img/arrowleft.png">
 		            	</a>
-		                	<img class="room-image" alt="가져온 이미지들" src="resources/img/backgroundimg.jpg">
+		                <img class="room-image" alt="가져온 이미지들" src="">
 		                <a href="#">
 		                	<img class="rightarrow" alt="오른쪽화살표" src="resources/img/arrowright.png">
 		            	</a>
@@ -168,9 +168,9 @@
 		                </div>
 		            </div>
 		        </div>
+		        
 		        <!-- summernote -->
 		        <script type="text/javascript">
-		        
 		        $(document).ready(function() {
 		       	 //$('#summernote').val("${board_data.BOARD_CONTENT}");
 		            $('.summernote').summernote({
@@ -182,16 +182,21 @@
 		                  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
 		                  callbacks : {
 		               	   onImageUpload : function(files, editor, welEditable){
-		       		            sendFile(files[0], this);
-		               	   }
-		                  }
+		               		for (var i = files.length - 1; i >= 0; i--) {
+				            	sendFile(files[i], this);
+				            }
+		               	 }
+		              }
 		          });
 		       });
 
-		       function sendFile(file, el){
+		       function sendFile(file, editor){
+		    	   
 		       	var data = new FormData();
 		       	data.append("file", file);
-		       	data.append("room_no", ${room.room_no})
+		       	data.append("room_no", ${room.room_no});
+		       	data.append("room_id", '${room.room_id}');
+		       
 		       	$.ajax({
 		       		data : data,
 		       		type : "POST",
@@ -201,9 +206,10 @@
 		       		enctype : 'multipart/form-data',
 		       		processData : false,
 		       		success : function(img_name){
-		       			$(el).summernote('editor.insertImage', img_name);
 		       			var image =$("<img>").attr("src",img_name);
+		       			// 이미지태그가 content가 박히는 명령어
 		       			$('.summernote').summernote('insertNode', image[0]);
+		       			$('.update-image-detail').append(image);
 		       			document.getElementById("room_photo").value = img_name;
 		       		},
 		       		error : function(){

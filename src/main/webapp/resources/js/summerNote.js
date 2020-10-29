@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	 //$('#summernote').val("${board_data.BOARD_CONTENT}");
      $('.summernote').summernote({
            placeholder: '???',
@@ -9,15 +9,16 @@ $(document).ready(function() {
            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
            callbacks : {
         	   onImageUpload : function(files, editor, welEditable){
-		            sendFile(files[0], this);
+        			   sendFile(files[0], this);
         	   }
-           }
+          }
    });
 });
 
-function sendFile(file, el){
+function sendFile(file, editor){
 	var data = new FormData();
 	data.append("file", file);
+	alert(data);
 	$.ajax({
 		data : data,
 		type : "POST",
@@ -27,12 +28,14 @@ function sendFile(file, el){
 		enctype : 'multipart/form-data',
 		processData : false,
 		success : function(img_name){
-			var image =$("<img>").attr("src",img_name);
+			alert(img_name);
+			var image =$("<img>").attr("src",img_name.fname);
 			$('.summernote').summernote('insertNode', image[0]);
+			console.log("fname : " + data.fname);
 			document.getElementById("room_photo").value = img_name;
 		},
 		error : function(){
 			alert("실패");
 		}
 	});
-}
+}*/

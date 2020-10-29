@@ -1,5 +1,6 @@
 package com.mvc.homeseek.controller;
 
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.UUID;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -125,40 +125,51 @@ public class RoomDetailController {
 		}
 	}
 	
-	// 파일업로드 컨트롤러
 	@RequestMapping("fileupload.do")
-	@ResponseBody
-	public String profileUpload(int room_no, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
-	response.setContentType("text/html;charset=utf-8");
-	PrintWriter out = response.getWriter();
-	// 업로드할 폴더 경로
-	String realPath = request.getSession().getServletContext().getRealPath("/");
-	System.out.println("\n realPath : " + realPath);
+	public void profileUpload(int room_no, String room_id, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		// 업로드할 폴더 경로
+		String realFolder = request.getSession().getServletContext().getRealPath("/fileUpload");
+		
+		logger.info("\n -----------이미지 업로드중----------");
+		/*
+		 * int cnt = 1; for(int i = 0; i < file.getSize(); i++) { cnt++;
+		 * System.out.println("숫자 올라가여? : " + cnt); }
+		 */
+		
+		System.out.println("Controller에 들어오는 room_no의 값은 뭔데 ? : " + room_no);
+		System.out.println("Controller에 들어오는 room_id의 값은 뭔데 ? : " + room_id);
+		
+		System.out.println("file.getSize() : " + file.getSize());
+		System.out.println("file.getByte[]() : " + file.getBytes());
+		// 업로드할 파일 이름
+		String org_filename = file.getOriginalFilename(); // 이름.jpg 형식
 
-	// 업로드할 파일 이름
-	String org_filename = file.getOriginalFilename(); // 원본 파일명
-	String str_filename = org_filename; // 저장할 파일명
-	
-	String realFileName = str_filename.substring(str_filename.indexOf(".")); // . 뒤에 확장자 자르기
-	String headFileName = str_filename.substring(0, str_filename.indexOf(".")); // 확장자 자른 진짜 파일 이름
-	
-	System.out.println("\n gif, png 확장자 자르기 : " + realFileName);
-	System.out.println("\n 확장자 자른 진짜 파일 이름 : " + headFileName);
+		System.out.println("원본 파일명 : " + org_filename);
+		
+		// 확장자 자르기
+		String back_FileName = org_filename.substring(org_filename.indexOf(".")); //.jpg 형식
+		logger.info("\n 자른 확장자명 : " + back_FileName);
+					
+		// 확장자를 자른 파일 이름
+		String front_FileName = org_filename.substring(0, org_filename.indexOf(".")); // 확장자 앞 이름
+		logger.info("\n 확장자를 자른 진짜 파일 이름 : " + front_FileName);
 
-	System.out.println("\n 원본 파일명 : " + org_filename);
-	System.out.println("\n 저장할 파일명 : " + headFileName);
+		// 파일 경로
+		String filepath = realFolder + "\\" + front_FileName + "_" + room_no + back_FileName;
+		System.out.println("\n 파일경로 : " + filepath);
+		
+		// 파일 진짜 이름
+		String realFileName = front_FileName + "_" + room_no + back_FileName;
 
-	String filepath = realPath + "'\'" + headFileName+"_"+room_no;
-	System.out.println("\n 파일경로 : " + filepath);
-
-	File f = new File(filepath);
-	if (!f.exists()) {
-	f.mkdirs();
+		File f = new File(filepath);
+		if (!f.exists()) {
+			logger.info("디렉토티 생성!");
+			f.mkdirs();
+		}
+		file.transferTo(f);
+		out.println("fileUpload/"+realFileName);
+		out.close();
 	}
-	file.transferTo(f);
-	out.close();
-	
-	return "";
-	}
-
 }

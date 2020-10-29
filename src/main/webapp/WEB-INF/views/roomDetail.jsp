@@ -231,7 +231,7 @@
 						매물 면적(㎡)
 					</div>
 					<div class="roominfo-detail-content">
-						${room.room_extent }㎡
+						<fmt:formatNumber value="${room.room_extent }" pattern="#,###"/>㎡
 					</div>
 				</div>
 				<div class="roominfo-detail">
