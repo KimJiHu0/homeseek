@@ -18,14 +18,11 @@ public class RoomBizImpl implements RoomBiz {
 		return roomDao.selectRoomInsert(room_dto);
 	}
 
+	// 보증금이 없을때
 	@Override
-	public int selectRoomUpdate(RoomDto room_dto) {
-		return roomDao.selectRoomUpdate(room_dto);
-	}
-
-	@Override
-	public int selectRoomDelete(int room_no) {
-		return roomDao.selectRoomDelete(room_no);
+	public int selectRoomInsert2(RoomDto room_dto) {
+		
+		return roomDao.selectRoomInsert2(room_dto);
 	}
 
 }

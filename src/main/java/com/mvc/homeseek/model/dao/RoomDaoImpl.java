@@ -1,6 +1,5 @@
 package com.mvc.homeseek.model.dao;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,63 +10,41 @@ import com.mvc.homeseek.model.dto.RoomDto;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	private Logger logger = LoggerFactory.getLogger(RoomDao.class);
-	
+
 	@Override
 	public int selectRoomInsert(RoomDto room_dto) {
-		
+
 		int res = 0;
-		
+
 		try {
-			res = sqlSession.insert(NAMESPACE+"selectRoomInsert", room_dto);
+			res = sqlSession.insert(NAMESPACE + "selectRoomInsert", room_dto);
 		} catch (Exception e) {
 			logger.info("[ERROR] : selectRoomInsert");
 			e.printStackTrace();
 		}
-		
+
 		return res;
 	}
 
+	// 보증금이 없을때
 	@Override
-	public int selectRoomUpdate(RoomDto room_dto) {
-		
-		int res = 0;
-		
-		try {
-			res = sqlSession.update(NAMESPACE+"selectRoomUpdate");
-		} catch (Exception e) {
-			logger.info("[ERROR] : selectRoomUpdate");
-			e.printStackTrace();
-		}
-		
-		return res;
-	}
+	public int selectRoomInsert2(RoomDto room_dto) {
 
-	@Override
-	public int selectRoomDelete(int room_no) {
-		
 		int res = 0;
-		
+
 		try {
-			res = sqlSession.delete(NAMESPACE+"selectRoomDelete");
+			res = sqlSession.insert(NAMESPACE + "selectRoomInsert2", room_dto);
 		} catch (Exception e) {
-			logger.info("[ERROR] : selectRoomDelete");
+			logger.info("[ERROR] : selectRoomInsert2");
 			e.printStackTrace();
 		}
-		
+
 		return res;
 	}
 
 }
-
-
-
-
-
-
-
-

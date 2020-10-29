@@ -169,7 +169,12 @@ section #top_title {
 
 /* --------------- div control --------------- */
 
-.control .form_button{
+.control #submit_button{
+	width : 10%;
+	max-width : 100px;
+}
+
+.control #cancel_button{
 	width : 10%;
 	max-width : 100px;
 }
