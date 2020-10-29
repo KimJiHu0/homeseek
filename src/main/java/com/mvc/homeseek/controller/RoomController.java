@@ -89,12 +89,12 @@ public class RoomController {
 
 	@ResponseBody
 	@PostMapping("/summer_image")
-	public void summer_image2(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
+	public String summer_image2(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		String save_folder = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/storage");
 
-		PrintWriter out = response.getWriter();
+//		PrintWriter out = response.getWriter();
 		String file_name = file.getOriginalFilename();
 		String server_file_name = fileDBName(file_name, save_folder);
 		System.out.println("server file : " + server_file_name);
@@ -102,9 +102,12 @@ public class RoomController {
 		file.transferTo(new File(save_folder + server_file_name));
 
 		System.out.println(WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/storage"));
-		// 서머노트에 띄워줄 이미지출력하는 코드
-		out.println("resources/upload" + server_file_name);
-		out.close();
+		
+//		// 서머노트에 띄워줄 이미지출력하는 코드
+//		out.println("resources/upload" + server_file_name);
+//		out.close();
+		
+		return "resources/storage" + server_file_name;
 	}
 
 	private String fileDBName(String fileName, String saveFolder) {
