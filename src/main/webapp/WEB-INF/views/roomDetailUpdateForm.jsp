@@ -9,10 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 매물 수정하기</title>
-<!-- roomDetailUpdateForm에 대한 CSS 스크립트 선언 / KakaoMap때문에. -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css"
-	type="text/css" />
 </head>
 <body>
 	<!-- header.jsp include -->
@@ -172,6 +168,51 @@
 		                </div>
 		            </div>
 		        </div>
+		        <!-- summernote -->
+		        <script type="text/javascript">
+		        
+		        $(document).ready(function() {
+		       	 //$('#summernote').val("${board_data.BOARD_CONTENT}");
+		            $('.summernote').summernote({
+		                  placeholder: '???',
+		                  minHeight: 370,
+		                  maxHeight: 370,
+		                  focus: true, 
+		                  lang : 'ko-KR',
+		                  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+		                  callbacks : {
+		               	   onImageUpload : function(files, editor, welEditable){
+		       		            sendFile(files[0], this);
+		               	   }
+		                  }
+		          });
+		       });
+
+		       function sendFile(file, el){
+		       	var data = new FormData();
+		       	data.append("file", file);
+		       	data.append("room_no", ${room.room_no})
+		       	$.ajax({
+		       		data : data,
+		       		type : "POST",
+		       		url : "fileupload.do",
+		       		cache : false,
+		       		contentType : false,
+		       		enctype : 'multipart/form-data',
+		       		processData : false,
+		       		success : function(img_name){
+		       			$(el).summernote('editor.insertImage', img_name);
+		       			var image =$("<img>").attr("src",img_name);
+		       			$('.summernote').summernote('insertNode', image[0]);
+		       			document.getElementById("room_photo").value = img_name;
+		       		},
+		       		error : function(){
+		       			alert("실패");
+		       		}
+		       	});
+		       }
+		        
+		        </script>
 		        <!-- 지도 넣을 자리 -->
 		        
 		        <!-- submit button -->
@@ -211,10 +252,7 @@
 	src="${pageContext.request.contextPath}/resources/js/loadAddress.js"
 	type="text/javascript"></script>
 
-<!-- summerNote.js -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/summerNote.js"
-	type="text/javascript"></script>
+
 
 <!-- roomDetailUpdateForm에 대한 CSS 스크립트 선언 -->
 <link rel="stylesheet"

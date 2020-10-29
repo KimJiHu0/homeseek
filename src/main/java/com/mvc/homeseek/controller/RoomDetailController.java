@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -126,30 +127,38 @@ public class RoomDetailController {
 	
 	// 파일업로드 컨트롤러
 	@RequestMapping("fileupload.do")
-	public void profileUpload(String email, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@ResponseBody
+	public String profileUpload(int room_no, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
 	response.setContentType("text/html;charset=utf-8");
 	PrintWriter out = response.getWriter();
 	// 업로드할 폴더 경로
-	String realFolder = request.getSession().getServletContext().getRealPath("profileUpload");
-	UUID uuid = UUID.randomUUID();
+	String realPath = request.getSession().getServletContext().getRealPath("/");
+	System.out.println("\n realPath : " + realPath);
 
 	// 업로드할 파일 이름
-	String org_filename = file.getOriginalFilename();
-	String str_filename = uuid.toString() + org_filename;
+	String org_filename = file.getOriginalFilename(); // 원본 파일명
+	String str_filename = org_filename; // 저장할 파일명
+	
+	String realFileName = str_filename.substring(str_filename.indexOf(".")); // . 뒤에 확장자 자르기
+	String headFileName = str_filename.substring(0, str_filename.indexOf(".")); // 확장자 자른 진짜 파일 이름
+	
+	System.out.println("\n gif, png 확장자 자르기 : " + realFileName);
+	System.out.println("\n 확장자 자른 진짜 파일 이름 : " + headFileName);
 
-	System.out.println("원본 파일명 : " + org_filename);
-	System.out.println("저장할 파일명 : " + str_filename);
+	System.out.println("\n 원본 파일명 : " + org_filename);
+	System.out.println("\n 저장할 파일명 : " + headFileName);
 
-	String filepath = realFolder + "\\" + email + "\\" + str_filename;
-	System.out.println("파일경로 : " + filepath);
+	String filepath = realPath + "'\'" + headFileName+"_"+room_no;
+	System.out.println("\n 파일경로 : " + filepath);
 
 	File f = new File(filepath);
 	if (!f.exists()) {
 	f.mkdirs();
 	}
 	file.transferTo(f);
-	out.println("profileUpload/"+email+"/"+str_filename);
 	out.close();
+	
+	return "";
 	}
 
 }

@@ -335,7 +335,7 @@
 		</div>
 					<div class="roominfo-content-detailcontent-content">
 						${room.room_detail }
-						<input type="hidden" name="room_photo" id="room_photo" value=""/>
+						<input type="text" name="room_photo" id="room_photo" value=""/>
 					</div>
 				<%
 					// 세션에 로그인되어있는 id를 가지고 수정버튼을 보여줄지 말지 선택
