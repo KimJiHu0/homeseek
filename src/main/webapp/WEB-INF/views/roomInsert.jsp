@@ -94,15 +94,15 @@
 				</div>	
 				
 				<div id="insert_div5">
-					<label for="insert_cpdate" id="cpd_label">준공 날짜</label>
-					<input type="date" name="room_cpdate" id="insert_cpdate">
+					<label for="insert_cpdate" class="div5_label">준공 날짜</label>
+					<input type="date" name="room_cpdate" class="div5_input">
 					
 				
-					<label for="insert_avdate" id="avd_label">입주 가능일</label>
-					<input type="date" name="room_avdate" id="insert_avdate">
+					<label for="insert_avdate"  class="div5_label">입주 가능일</label>
+					<input type="date" name="room_avdate" class="div5_input">
 					<br>
 					
-					<label for="summernote" id="detail_label">상세설명</label>
+					<label for="summernote" class="div5_label">상세설명</label>
 					<div id="insert_list">
 						<p></p>
 					</div>
@@ -112,8 +112,8 @@
 				</div>
 				
 				<div class="control">
-						<input type="submit" value="작성">
-						<input type="button" value="취소" onclick="location.href='main.do'">
+						<input type="submit" value="작성" class="form_button">
+						<input type="button" value="취소" class="form_button" onclick="location.href='main.do'">
 				</div>
 			
 		</form>
