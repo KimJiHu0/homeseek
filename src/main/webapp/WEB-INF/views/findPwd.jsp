@@ -19,7 +19,7 @@
 $('#form_value').attr("action", "/homeseek/selectpw.do");
 
  -->
-		<form role="form" method="post" action="/homeseek/selectpw.do" id="form_value">
+		<form  method="post" action="selectpw.do" >
 			<div>
 				<label for="member_id">아이디</label>
 				<input type="text" name="pwd_id" id="pwd_id">
@@ -43,14 +43,20 @@ $('#form_value').attr("action", "/homeseek/selectpw.do");
 					<input type="button" name = "phoneCheck" id="phoneCheck" value="인증번호 확인">
 					<!-- 인증번호 유효성 jquery -->
 					<div class="check_font" id="idCheck"></div>
-					<!-- 새 비밀번호 입력 -->
-				<label for="pwd_new">새 비밀번호</label>
+			</div>		
+					
+			<div>	<!-- 새 비밀번호 입력 -->
+					<label for="pwd_new" id="new_pwd">새 비밀번호</label>
 					<input type="text" name="pwd_new" id="pwd_new" placeholder="2조화이팅"/>
+					<div class="check_font" id="pwCheck"></div>
 			</div>
+				
+			
 			<div>
 					<!-- <input type="button" value="메인으로" onclick="location.href='main.do'"/>
 					<input type="button" value="로그인하러 가기" onclick="location.href='loginform.do'"/> -->
-					<input type="submit"  value="비밀번호 변경하기">
+					
+					<input  type="submit" id="pwdsubmit" value ="비밀번호 변경하기">
 
 			</div>
 			

@@ -418,12 +418,12 @@ public class MemberController {
 	}
 
 	// 임시비밀번호를 DB에 넣어준다
-	@ResponseBody
+	
 	@RequestMapping(value = "/selectpw.do", method = RequestMethod.POST)
-	public String selectPw(@RequestParam(value = "pwd_name") String pwd_name,
-						 @RequestParam(value = "pwd_phone") String pwd_phone,
-						 @RequestParam(value = "pwd_id") String pwd_id,
-						 @RequestParam(value = "pwd_new") String pwd_new) {
+	public String selectPw(@RequestParam( "pwd_name") String pwd_name,
+						 @RequestParam( "pwd_phone") String pwd_phone,
+						 @RequestParam("pwd_id") String pwd_id,
+						 @RequestParam("pwd_new") String pwd_new) {
 		logger.info("selectpw.do");
 		
 		//MemberDto dto = new MemberDto(member_name, member_phone, member_id, member_pw);
@@ -446,20 +446,13 @@ public class MemberController {
 		
 		int res=memberBiz.searchPassword(param);
 		
-		if (res == 0) { // 비밀번호 변경 (업데이트) 실패
-			System.out.println("비밀번호 변경 실패ㅠㅠ");
-			//질문: 경고문띄우기하고싶다.. -> $(window).on ("load", function(){내용});
-			
-			return "<input type=\"button\" value=\"메인으로\" onclick=\"location.href='main.do'\"/>\r\n" + 
-					"					<input type=\"button\" value=\"로그인하러 가기\" onclick=\"location.href='loginform.do'\"/>";
-					
-		} else { // 비밀번호 변경 (업데이트) 성공
-			System.out.println("★@@@@★★@@@★비밀번호 변경 성공");
+	
+		if(res >0 ) { // 비밀번호 변경 (업데이트) 성공
+			logger.info("★@@@@★★@@@★비밀번호 변경 성공");
 			// ??ㅠㅠㅠㅠ return값이 그냥 findPwd.jsp의 <form>태그 전체랑 교환돼서 웹페이지에 String 그 자체로 찍힌다...
-			return "<input type=\"button\" value=\"메인으로\" onclick=\"location.href='main.do'\"/>\r\n" + 
-					"					<input type=\"button\" value=\"로그인하러 가기\" onclick=\"location.href='loginform.do'\"/>";
+			return "redirect:/main.do";
 		}
-		 
+		return "redirect:findpwdform.do";
 	}	
 	
 
