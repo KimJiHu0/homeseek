@@ -1,4 +1,4 @@
-function sendFile(file, el) {
+function sendFile(file) {
 	var form_data = new FormData();
 	form_data.append('file', file);
 	$.ajax({
@@ -10,7 +10,8 @@ function sendFile(file, el) {
 		enctype : 'multipart/form-data',
 		processData : false,
 		success : function(img_name) {
-			$(el).summernote('editor.insertImage',img_name);
+//			$(el).summernote('editor.insertImage',img_name);
+			$('#summernote').summernote('editor.insertImage', img_name);
 			console.log("이미지 처리중");
 		}
 	});
