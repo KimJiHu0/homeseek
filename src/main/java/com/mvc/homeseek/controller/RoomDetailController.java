@@ -130,24 +130,42 @@ public class RoomDetailController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		// 업로드할 폴더 경로
-		String realFolder = request.getSession().getServletContext().getRealPath("fileUpload");
-
+		String realFolder = request.getSession().getServletContext().getRealPath("/");
+		
+		logger.info("\n -----------이미지 업로드중----------");
+		/*
+		 * int cnt = 1; for(int i = 0; i < file.getSize(); i++) { cnt++;
+		 * System.out.println("숫자 올라가여? : " + cnt); }
+		 */
+		
+		System.out.println("file.getSize() : " + file.getSize());
+		System.out.println("file.getByte[]() : " + file.getBytes());
 		// 업로드할 파일 이름
 		String org_filename = file.getOriginalFilename(); // 이름.jpg 형식
-		String str_filename = org_filename + "_" + room_no;
 
 		System.out.println("원본 파일명 : " + org_filename);
-		System.out.println("저장할 파일명 : " + str_filename);
+		
+		// 확장자 자르기
+		String back_FileName = org_filename.substring(org_filename.indexOf(".")); //.jpg 형식
+		logger.info("\n 자른 확장자명 : " + back_FileName);
+					
+		// 확장자를 자른 파일 이름
+		String front_FileName = org_filename.substring(0, org_filename.indexOf(".")); // 확장자 앞 이름
+		logger.info("\n 확장자를 자른 진짜 파일 이름 : " + front_FileName);
 
-		String filepath = realFolder + "\\" + str_filename;
-		System.out.println("파일경로 : " + filepath);
+		// 파일 경로
+		String filepath = realFolder + "\\" + front_FileName + "_" + room_no + back_FileName;
+		System.out.println("\n 파일경로 : " + filepath);
+		
+		// 파일 진짜 이름
+		String realFileName = front_FileName + "_" + room_no + back_FileName;
 
 		File f = new File(filepath);
 		if (!f.exists()) {
 			f.mkdirs();
 		}
 		file.transferTo(f);
-		out.println("fileUpload/"+str_filename);
+		out.println("fileUpload/"+realFileName);
 		out.close();
 	}
 }

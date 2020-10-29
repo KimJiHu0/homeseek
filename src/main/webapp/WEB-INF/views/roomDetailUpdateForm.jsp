@@ -28,7 +28,7 @@
 		           		<a href="#">
 		            		<img class="leftarrow" alt="왼쪽화살표" src="resources/img/arrowleft.png">
 		            	</a>
-		                	<img class="room-image" alt="가져온 이미지들" src="resources/img/backgroundimg.jpg">
+		                	<img class="room-image" alt="가져온 이미지들" src="">
 		                <a href="#">
 		                	<img class="rightarrow" alt="오른쪽화살표" src="resources/img/arrowright.png">
 		            	</a>
@@ -168,9 +168,9 @@
 		                </div>
 		            </div>
 		        </div>
+		        
 		        <!-- summernote -->
 		        <script type="text/javascript">
-		        
 		        $(document).ready(function() {
 		       	 //$('#summernote').val("${board_data.BOARD_CONTENT}");
 		            $('.summernote').summernote({
@@ -205,6 +205,7 @@
 		       		success : function(img_name){
 		       			alert(img_name);
 		       			var image =$("<img>").attr("src",img_name);
+		       			// 이미지태그가 content가 박히는 명령어
 		       			$('.summernote').summernote('insertNode', image[0]);
 		       			document.getElementById("room_photo").value = img_name;
 		       		},

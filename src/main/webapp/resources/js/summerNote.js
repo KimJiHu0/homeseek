@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	 //$('#summernote').val("${board_data.BOARD_CONTENT}");
      $('.summernote').summernote({
            placeholder: '???',
@@ -38,4 +38,4 @@ function sendFile(file, editor){
 			alert("실패");
 		}
 	});
-}
+}*/
