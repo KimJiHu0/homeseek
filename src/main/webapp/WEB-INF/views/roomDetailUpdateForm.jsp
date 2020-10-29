@@ -182,16 +182,18 @@
 		                  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
 		                  callbacks : {
 		               	   onImageUpload : function(files, editor, welEditable){
-		       		            sendFile(files[0], this);
-		               	   }
-		                  }
+		               		for (var i = files.length - 1; i >= 0; i--) {
+				            	sendFile(files[i], this);
+				            }
+		               	 }
+		              }
 		          });
 		       });
 
-		       function sendFile(file, el){
+		       function sendFile(file, editor){
 		       	var data = new FormData();
 		       	data.append("file", file);
-		       	data.append("room_no", ${room.room_no})
+		       	data.append("room_no", ${room.room_no}),
 		       	$.ajax({
 		       		data : data,
 		       		type : "POST",
@@ -201,7 +203,7 @@
 		       		enctype : 'multipart/form-data',
 		       		processData : false,
 		       		success : function(img_name){
-		       			$(el).summernote('editor.insertImage', img_name);
+		       			alert(img_name);
 		       			var image =$("<img>").attr("src",img_name);
 		       			$('.summernote').summernote('insertNode', image[0]);
 		       			document.getElementById("room_photo").value = img_name;

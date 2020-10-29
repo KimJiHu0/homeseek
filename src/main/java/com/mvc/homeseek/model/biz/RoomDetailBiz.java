@@ -1,8 +1,5 @@
 package com.mvc.homeseek.model.biz;
 
-import java.util.List;
-
-import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homeseek.model.dto.RoomDto;
 
 public interface RoomDetailBiz {
@@ -15,5 +12,6 @@ public interface RoomDetailBiz {
 
 	// Delete에서 room_no를 받아서 delete하기
 	public int deleteRoomOne(int room_no);
+	
 
 }
