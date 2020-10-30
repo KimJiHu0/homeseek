@@ -10,9 +10,9 @@ $(function() {
 			onImageUpload: function(files, editor, welEditable) {
 				for(var i = files.length -1; i>=0; i--) {
 					console.log("현재 올린 파일의 길이 : " +  files.length);
-					console.log(" 1111111111 : " + i);
-					sendFile(files[i], this);
-					console.log(" 2222222222 : " + i);
+					console.log(" 1번 : " + i);
+					sendFile(files[i]);
+					console.log(" 2번 : " + i);
 				}
 			}
 		}
@@ -33,7 +33,7 @@ function sendFile(file) {
 		success : function(img) {
 //			$(el).summernote('editor.insertImage',img_name);
 			$('#summernote').summernote('editor.insertImage', img);
-			console.log("3333333333");
+			console.log("함수 실행끝");
 			
 			
 			

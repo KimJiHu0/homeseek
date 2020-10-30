@@ -137,7 +137,7 @@ section #top_title {
 	display: block;
 }
 
-#insert_div5 .div5_label{
+#insert_div5 #div5_label{
 	width: 10%;
 	max-width:75px;
 	padding-left:10px;
@@ -150,16 +150,21 @@ section #top_title {
 	max-width:150px;
 }
 
-#insert_div5 .div5_input{
+#insert_div5 #insert_cpdate{
 	width: 15%;
 	max-width:150px;
 }
 
-#insert_div5 select{
+#insert_div5 #insert_avdate{
 	width: 15%;
 	max-width:150px;
 }
 
+/* #insert_div5 select{
+	width: 15%;
+	max-width:150px;
+}
+ */
 #insert_div5 #insert_list {
 	width : 50%;
 	max-width : 500px;
@@ -167,7 +172,27 @@ section #top_title {
 	margin : 30px;
 }
 
+#insert_div5 #insert_imglist{
+	width : 60%;
+	max-width : 600px;
+	border : 2px solid #696869;
+	height : 150px;
+	display : block;
+	
+}
+
+#insert_div5 label{
+	width: 10%;
+	max-width:75px;
+	padding-left:10px;
+}
+
+
 /* --------------- div control --------------- */
+
+.control {
+	margin-top: 30px;
+}
 
 .control #submit_button{
 	width : 10%;

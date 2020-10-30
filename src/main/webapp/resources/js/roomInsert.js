@@ -61,12 +61,16 @@ $(function(){
 		if(this.value == "3"){
 			$("#insert_deposit").hide();
 			$("#deposit_label").hide();
+			$("#insert_deposit").attr( 'value', '0' );
+			
 			
 			$(".insert_form").attr("action", "insertres2.do");
 			
 		} else{
 			$("#insert_deposit").show();
 			$("#deposit_label").show();
+			$("#insert_deposit").attr( 'value', '' );
+			
 			$(".form_div").attr("action", "insertres.do");
 		}
 	})

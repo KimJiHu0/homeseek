@@ -23,14 +23,15 @@
 			#{room_id})		
 	</insert>
 	
-	<insert id="selectRoomInsert_2" parameterType="RoomDto">
+	<!-- 보증금이 없을때 -->
+	<insert id="selectRoomInsert2" parameterType="RoomDto">
 		INSERT INTO ROOM
 		VALUES(
 			ROOM_NO_SEQ.NEXTVAL, 
 			#{room_name}, 
 			'사진', 
 			#{room_type}, 
-			NULL,
+			'0',
 			#{room_price}, 
 			#{room_extent}, 
 			#{room_addr}, 

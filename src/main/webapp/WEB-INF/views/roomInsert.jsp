@@ -30,14 +30,11 @@
 		<form action="insertres.do" class="insert_form" method="POST">
 		<input type="hidden" value="<%=room_id %>" name="room_id">
 				<div id="insert_div1">
-					<label for="insert_roomname" id="name_label">매물이름</label>
+					<label for="insert_name" id="name_label">매물이름</label>
 						<input type="text" name="room_name" id="insert_name">
 				
-	
-				
-					<label for="insert_type" id="type_label">매물종류</label>
+					<label for="insert_roomtype" id="type_label">매물종류</label>
 						<select name="room_type" id="insert_roomtype" >
-							<option  hidden disabled selected value></option>
 							<option value="1">월세</option>
 							<option value="2">전세</option>
 							<option value="3">매매</option>
@@ -48,7 +45,7 @@
 				
 				<div id="insert_div2">
 					<label for="insert_deposit" id="deposit_label">보증금</label>
-						<input type="text" name="room_deposit" id="insert_deposit">
+						<input type="text" name="room_deposit" id="insert_deposit" value="">
 				
 					
 					<label for="insert_price" id="price_label">매물가격</label>
@@ -64,7 +61,7 @@
 					<p id="addr_notice">※ 띄어쓰기를 포함한 정확한 도로명 주소로 입력해주세요.</p>
 					<p id="addr_notice">※ 정확한 주소가 아닐경우 위치확인이 어렵습니다.</p>			
 					
-					<label for="insert_addr" id="addr_label">매물주소</label>
+					<label for="room_addr" id="addr_label">매물주소</label>
 					<input type="text" id="room_addr" name="room_addr" onclick="goPopup()" placeholder="  입력창 클릭시 도로명주소 팝업창으로 이동합니다." readonly="readonly"/>
 					
 					<!-- 지도 출력 영역 -->
@@ -96,24 +93,30 @@
 				
 				<div id="insert_div5">
 					<label for="insert_cpdate" class="div5_label">준공 날짜</label>
-					<input type="date" name="room_cpdate" class="div5_input">
+					<input type="date" name="room_cpdate" id="insert_cpdate">
 					
 				
 					<label for="insert_avdate"  class="div5_label">입주 가능일</label>
-					<input type="date" name="room_avdate" class="div5_input">
+					<input type="date" name="room_avdate" id="insert_avdate">
 					<br>
 					
-					<label for="summernote" class="div5_label">상세설명</label>
-					<div id="insert_list">
-						<p></p>
-					</div>
+					<!-- <label for="summernote" id="div5_label">상세설명</label> -->
+					<h4 id="summernote_title">상세설명</h4>
+					
+					
+					
 					<div id="insert_detail">
 						<textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea>
 					</div>
+					
+					<div id="insert_imgist">
+						<!-- <input type="hidden" id="room_photo"> -->						
+					</div>
+					
 				</div>
 				
 				<div class="control">
-						<input type="submit" value="작성" id="sumbit_button">
+						<input type="submit" value="작성" id="submit_button">
 						<input type="button" value="취소" id="cancel_button" onclick="location.href='main.do'">
 				</div>
 			
