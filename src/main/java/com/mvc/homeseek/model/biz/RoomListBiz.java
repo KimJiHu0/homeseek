@@ -3,6 +3,8 @@ package com.mvc.homeseek.model.biz;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONObject;
+
 import com.mvc.homeseek.model.dto.RoomDto;
 
 public interface RoomListBiz {
@@ -12,5 +14,10 @@ public interface RoomListBiz {
 	public Map<String,Object> selectRoomList(int page);
 	
 	public List<RoomDto> selectRoomList2();
+	
+	// 숫자를 한글로 바꿔서 리턴하기
+	public String changToKorean(Object room_type);
+	
+	public List<RoomDto> searchToRoomList(JSONObject obj);
 	
 }

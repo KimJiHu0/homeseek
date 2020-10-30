@@ -18,37 +18,30 @@
 		alert(msg);
 	}
 
-	
-/* $(window).scroll(function(){
-    if($(window).scrollTop() == $(document).height() - $(window).height()){
-    	alert("!!!!!!!!!스크롤끝");
- 		showList(cnt);
-		cnt++; 
-    }
-}); */
+
 
 var cnt = 1;
-
+var word = $('#navsearchtxt').val();
+/* 엘라스틱서치 실행할때 주석 풀기
 window.onscroll = function(e) {
-    //추가되는 임시 콘텐츠
     //window height + window scrollY 값이 document height보다 클 경우,
     if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		alert("이힝 스크롤끝");
 		showList(cnt);
 		cnt++;
     }
 };
-	
+*/
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 function showList(cnt){
-	alert("showList() 실행");
-	alert("처음"+cnt);
 	$.ajax({
-		url : "appendList.do?cnt="+cnt,
+		url : "appendList.do?cnt="+cnt+"&word="+word,
 		dataType :"json",
 		contentType : "application/json",
 		success : function(resMap){
-			alert("통신성공")
 			if(resMap.msg==true){
 				alert("마지막 리스트 입니다.");
 				return false;
@@ -56,6 +49,22 @@ function showList(cnt){
 				var list = resMap.roomlist;
 				$.each(list, function(index, room){
 					console.log(index + " : "+room.room_no);
+					
+					var comma_price = numberWithCommas(room.room_price);
+				
+					$(".imgs").prepend(
+						"<div class='imgbox'>"								// 이부분은 파일업로드 되면 room.room_photo 로 바꿔야함
+						+	"<a href='detailroom.do?room_no='"+room.room_no+"'><img src='"+"resources/img/backgroundimg.jpg"+"' class='img'></a>"
+						+	"<div class='content'>"
+						+		"<div class='room_type'>"
+						+			room.room_type
+						+		"</div>"
+						+		"<div class='room_price'>"
+						+			comma_price+"만원"
+						+		"</div>"
+						+	"</div>"
+						+"</div>"
+					);
 				});
 			}
 		},
@@ -79,7 +88,7 @@ function showList(cnt){
 			<div class="imgs">
 				<c:choose>
 					<c:when test="${empty list }">
-						<div class="no_imgs">작성된 글이 없습니다.</div>
+						<div class="no_imgs">검색된 결과가 없습니다.</div>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list }" var="list">
@@ -113,22 +122,20 @@ function showList(cnt){
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				<div>
-					
-				</div>
 			</div>
+			
 		</div>
 		
-<%-- <!-- **************** 페이징 ************  -->
+ <!-- **************** 페이징 ************  -->
 		
 		<!-- 첫 페이지로 이동 -->
 		<p align="center">
 			<a href="listroom.do?page=1">첫 페이지</a>
 			
-	이전 페이지 그룹 처리
+	<!-- 이전 페이지 그룹 처리 -->
 		<c:choose>
 			<c:when test="${requestScope.pageBean.previousPageGroup }">
-				이전 페이지 그룹이 있다면 isPreviousPageGroup() 호출
+				<!-- 이전 페이지 그룹이 있다면 isPreviousPageGroup() 호출 -->
 				<a href="listroom.do?page=${requestScope.pageBean.beginPage - 1 }">◀</a>
 			</c:when>
 			<c:otherwise>
@@ -137,7 +144,7 @@ function showList(cnt){
 		</c:choose>
 
 
-		현재 page가 속한 page, 그룹 내의 페이지들 링크
+	<!-- 현재 page가 속한 page, 그룹 내의 페이지들 링크  -->	
 		<c:forEach begin="${requestScope.pageBean.beginPage }"
 			end="${requestScope.pageBean.endPage }" var="page">
 			<c:choose>
@@ -146,7 +153,7 @@ function showList(cnt){
 					<a href="listroom.do?page=${page}">${page }&nbsp;&nbsp;</a>
 				</c:when>
 				<c:otherwise>
-				[${page }]&nbsp;&nbsp;  &nbsp;는 공백을 나타냄
+				[${page }]&nbsp;&nbsp;  <!-- &nbsp;는 공백을 나타냄 -->
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -155,9 +162,9 @@ function showList(cnt){
 	<!-- 다음페이지 그룹으로 이동. 만약에 다음페이지 그룹이 있으면 링크 처리 없으면 화살표만 나오도록 처리 -->
 		<c:choose>
 			<c:when test="${requestScope.pageBean.nextPageGroup }">
-				isNextPageGroup() 호출
+		<!-- 		isNextPageGroup() 호출 -->
 				<a href="listroom.do?page=${requestScope.pageBean.endPage + 1 }">▶</a>
-				getEndPage()에서 리턴된 값 넣기
+				<!-- getEndPage()에서 리턴된 값 넣기 -->
 			</c:when>
 			<c:otherwise>
 			▶
@@ -166,7 +173,7 @@ function showList(cnt){
 		
 		
 	<!-- 마지막 페이지로 이동 -->
-		<a href="listroom.do?page=${requestScope.pageBean.totalPage}">마지막 페이지</a> --%>
+		<a href="listroom.do?page=${requestScope.pageBean.totalPage}">마지막 페이지</a>
 			
 		</p>
 		
