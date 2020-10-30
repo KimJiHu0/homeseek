@@ -166,6 +166,7 @@
 		                <div class="update-content-detail-content-summernote">
 		                	<textarea class="summernote" name="room_detail">${room.room_detail }</textarea>
 		                </div>
+		                <input type="text" class="room_photo" id="room_photo"/>
 		            </div>
 		        </div>
 		        
@@ -193,12 +194,15 @@
 		       function sendFile(file, editor){
 		    	   
 		       	var data = new FormData();
+		       	// 파일을 보낸다.
 		       	data.append("file", file);
-		       	data.append("room_no", ${room.room_no});
-		       	data.append("room_id", '${room.room_id}');
-		       
+		        data.append("room_no", ${room.room_no});
+		        data.append("room_id", '${room.room_id}');
+		       	
+		       	// FormData인데 다른게 들어가도 되는건가??
 		       	$.ajax({
 		       		data : data,
+		       		dataType : "json",
 		       		type : "POST",
 		       		url : "fileupload.do",
 		       		cache : false,
@@ -206,11 +210,17 @@
 		       		enctype : 'multipart/form-data',
 		       		processData : false,
 		       		success : function(img_name){
-		       			var image =$("<img>").attr("src",img_name);
+		       			alert(img_name.filePath); // 여기 잘 넘어옴
+		       			//$(".roomimg").attr("src", img_name.filePath);
+		       			var image = $("<img>").attr({
+		       				src : img_name.filePath,
+		       				width : 300,
+		       				height : 300
+		       				});
 		       			// 이미지태그가 content가 박히는 명령어
 		       			$('.summernote').summernote('insertNode', image[0]);
-		       			$('.update-image-detail').append(image);
-		       			document.getElementById("room_photo").value = img_name;
+		       			//$('.update-image-detail').append(image);
+		       			document.getElementById("room_photo").value = img_name.filePath;
 		       		},
 		       		error : function(){
 		       			alert("실패");

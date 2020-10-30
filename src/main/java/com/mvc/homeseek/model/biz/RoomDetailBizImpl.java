@@ -27,4 +27,9 @@ public class RoomDetailBizImpl implements RoomDetailBiz {
 	public int deleteRoomOne(int room_no) {
 		return roomdetaildao.deleteRoomOne(room_no);
 	}
+
+	@Override
+	public int updateRoomOnePhoto(RoomDto dto) {
+		return roomdetaildao.updateRoomOnePhoto(dto);
+	}
 }

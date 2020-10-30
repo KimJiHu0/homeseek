@@ -68,4 +68,22 @@ public class RoomDetailDaoImpl implements RoomDetailDao {
 		return res;
 	}
 
+	
+	// 방 수정하면서 photo컬럼 수정
+	@Override
+	public int updateRoomOnePhoto(RoomDto dto) {
+
+		logger.info("[ RoomDetailDao ] updateRoomOnePhoto");
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "updateRoomOnePhoto", dto);
+		} catch (Exception e) {
+			logger.info("[ Error ] updateRoomOnePhoto");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

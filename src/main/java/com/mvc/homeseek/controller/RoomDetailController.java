@@ -2,7 +2,12 @@ package com.mvc.homeseek.controller;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +18,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -110,21 +117,10 @@ public class RoomDetailController {
 		}
 	}
 	
-	// 방 삭제
-	@RequestMapping("deleteroom.do")
-	public String roomDelete(int room_no, RedirectAttributes msg) {
-		
-		int res = roomdetailbiz.deleteRoomOne(room_no);
-		// 삭제 성공 시
-		if(res > 0) {
-			msg.addFlashAttribute("msg", "삭제가 성공적으로 완료되었습니다.");
-			return "redirect:/listroom.do";
-		} else {
-			msg.addFlashAttribute("msg", "삭제가 실패되었습니다. 다시 시도해주세요.");
-			return "redirect:/detailroom.do?" + room_no;
-		}
-	}
-	
+			// ajax에서 넘겨주는 값은 multipart/form-data 타입이라고 enctype에 선언되어있다.
+			// 그래서 controller에서 @RequestBody를 걸어주면 위의 타입을 자바객체로 바꿀 수 없기 떄문에
+			// 415 미디어 타입 에러가난다. 그렇기 때문에 controller에서 @RequestBody를 뺴주거나
+			// ajax에서 contentType = "application/json"을 추가해줘야한다.
 	@RequestMapping("fileupload.do")
 	public void profileUpload(int room_no, String room_id, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
@@ -160,8 +156,19 @@ public class RoomDetailController {
 		String filepath = realFolder + "\\" + front_FileName + "_" + room_no + back_FileName;
 		System.out.println("\n 파일경로 : " + filepath);
 		
+		// 위에서 뽑은 파일 경로를 ROOM_PHOTO에 저장해야됌.
+		// 이곳에서 BIZ실행해서 파일의 이름만 UPDATE하게끔 만들어주기?
+		
+		//int updatePhoto = roomdetailbiz.updateRoomOnePhoto(new RoomDto(room_no, room_id, filepath));
+		//if(updatePhoto > 0) {
+		//	System.out.println("RoomDetailController : Success UpdatePhoto");
+		//} else {
+		//	System.out.println("RoomDetailController : Error UpdatePhoto");
+		//}
+		
 		// 파일 진짜 이름
 		String realFileName = front_FileName + "_" + room_no + back_FileName;
+		
 
 		File f = new File(filepath);
 		if (!f.exists()) {
@@ -171,5 +178,20 @@ public class RoomDetailController {
 		file.transferTo(f);
 		out.println("fileUpload/"+realFileName);
 		out.close();
+	}
+	
+	// 방 삭제
+	@RequestMapping("deleteroom.do")
+	public String roomDelete(int room_no, RedirectAttributes msg) {
+		
+		int res = roomdetailbiz.deleteRoomOne(room_no);
+		// 삭제 성공 시
+		if(res > 0) {
+			msg.addFlashAttribute("msg", "삭제가 성공적으로 완료되었습니다.");
+			return "redirect:/listroom.do";
+		} else {
+			msg.addFlashAttribute("msg", "삭제가 실패되었습니다. 다시 시도해주세요.");
+			return "redirect:/detailroom.do?" + room_no;
+		}
 	}
 }

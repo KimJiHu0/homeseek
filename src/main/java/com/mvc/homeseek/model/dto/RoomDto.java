@@ -28,6 +28,13 @@ public class RoomDto {
 	public RoomDto() {
 		
 	}
+	
+	public RoomDto(int room_no, String room_id, String room_photo) {
+		this.room_no = room_no;
+		this.room_id = room_id;
+		this.room_photo = room_photo;
+	}
+	
 	public RoomDto(int room_no, String room_name, String room_photo, String room_type, int room_deposit, int room_price,
 			int room_extent, String room_addr, String room_kind, String room_structure, String room_floor,
 			String room_regdate, String room_cpdate, String room_avdate, int room_longi, int room_lati, String room_detail,

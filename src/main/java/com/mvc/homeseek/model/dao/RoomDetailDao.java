@@ -19,4 +19,7 @@ public interface RoomDetailDao {
 	// Delete에서 room_no를 받아서 delete하기
 	public int deleteRoomOne(int room_no);
 	
+	// 방 수정 시 photo를 update
+	public int updateRoomOnePhoto(RoomDto dto);
+	
 }

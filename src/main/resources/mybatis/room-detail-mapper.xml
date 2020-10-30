@@ -45,4 +45,11 @@
 	<delete id="deleteRoomOne" parameterType="int">
 		DELETE FROM ROOM WHERE ROOM_NO = #{room_no}
 	</delete>
+	
+	<!-- 사진 업데이트 -->
+	<update id="updateRoomOnePhoto" parameterType="RoomDto">
+		UPDATE ROOM
+		SET ROOM_PHOTO = #{room_photo}
+		WHERE ROOM_NO = #{room_no}
+	</update>
 </mapper>

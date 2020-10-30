@@ -36,7 +36,7 @@
 					<a href="#">
 						<img alt="d" src="resources/img/arrowleft.png" id="leftarrow" class="arrow">
 					</a>
-						
+					<img class = "img" src="${room.room_photo }"/>
 					<a href="#">
 						<img alt="d" src="resources/img/arrowright.png" id="rightarrow" class="arrow">
 					</a>
