@@ -35,7 +35,7 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("/selectpw.do")||//
 				request.getRequestURI().contains("/sendsms.do")||
 				request.getSession().getAttribute("login") != null ||
-				request.getRequestURI().contains("listroom2.do") || // 페이징때문에 잠시 listroom2 사용중
+				request.getRequestURI().contains("listroom.do") || //엘라스틱서치로 사용시 search.do로 변경
 				request.getRequestURI().contains("/navercallback.do") ||
 				request.getRequestURI().contains("/kakaocallback.do") ||
 				request.getRequestURI().contains("/googlecallback.do") ||
