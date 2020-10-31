@@ -1,0 +1,51 @@
+
+/* 페이지 기본설정 */
+
+section{
+	width : 100%;
+	padding: 100px 50px 0 50px;
+	height: auto;
+}
+
+section #top_title {
+	width : 100%;
+	max-width : 1200px;
+	height: auto;
+	margin: 0 auto;
+	border: 1px solid;
+}
+
+.contents {
+	width : 100%;
+	max-width : 1200px;
+	height: auto;
+	margin : auto;
+}
+
+
+/* section 설정 */
+
+/* main 이미지 부분 */
+#main_image{
+	width : 45%;
+	max-width : 540px;
+	float:left;
+	margin: 0;
+}	
+
+#main_image #donate_image{
+	max-width: 600px;
+}
+
+/* donate form 부분 */
+.donate_div{
+	width : 45%;
+	max-width : 540px;
+	margin: 0;
+	float:right;
+}
+
+.ftrbox{
+	clear: both;
+}
+
