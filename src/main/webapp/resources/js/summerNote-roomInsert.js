@@ -8,18 +8,18 @@ $(function() {
 		lang: 'ko-KR',
 		callbacks: {
 			onImageUpload: function(files, editor, welEditable) {
-				for(var i = files.length -1; i>=0; i--) {
-					console.log("현재 올린 파일의 길이 : " +  files.length);
-					console.log(" 1번 : " + i);
-					sendFile(files[i]);
-					console.log(" 2번 : " + i);
-				}
+		 		for (var i=0; i<files.length; i++) {
+		            	sendFile(files[i], this); 
+		            }
 			}
 		}
 	});
 });
 
+var photoValue = "";
+var photo = $('#photo');
 function sendFile(file) {
+	var imgname;
 	var form_data = new FormData();
 	form_data.append('file', file);
 	$.ajax({
@@ -31,14 +31,17 @@ function sendFile(file) {
 		enctype : 'multipart/form-data',
 		processData : false,
 		success : function(img) {
-//			$(el).summernote('editor.insertImage',img_name);
-			$('#summernote').summernote('editor.insertImage', img);
-			console.log("함수 실행끝");
 			
+				photoValue += img + ',';
+				console.log(photoValue);
+				photo.val(photoValue);
+			}
 			
-			
-		}
 	});
+	
+	
+	
+	
 }
 
 

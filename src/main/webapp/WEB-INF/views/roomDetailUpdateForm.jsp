@@ -373,7 +373,7 @@
 
 	var cnt = 0;
 
-	function sendFile(file, editor) {
+	function sendFile(file, editor) { 
 		$(".room-image").remove();
 		$(".room_photo").remove();
 		var data = new FormData();
@@ -389,7 +389,7 @@
 					contentType : false,
 					enctype : 'multipart/form-data',
 					processData : false,
-					success : function(img_name) {
+					success : function(img_name) { 
 
 						//alert(cnt);
 						//alert(img_name); // 여기 잘 넘어옴
