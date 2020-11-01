@@ -165,7 +165,7 @@
 					</div>
 				</div>
 				<!-- 여러 파일을 올릴 때 , 로 구분해서 update해주기 위한 태그 -->
-				<input type="text" id="room_photo" name="room_photo" value="" />
+				<input type="hidden" id="room_photo" name="room_photo" value="" />
 
 				<!-- 지도 넣을 자리 -->
 
@@ -271,7 +271,9 @@
 			$("#room_structure option[value=3]").prop('selected', 'selected')
 					.change();
 		}
-
+		
+		
+//--------------------submit이 실행 되기 직전에 파일업로드 한 모든 src를 가져와서 더해준 다음에 배열에서 String형태로 바꿔서 DB에 저장--------------------
 		$("#plusfilepath").submit(function() {
 			alert("sumbit하기 전 실행되는 함수 시작 !");
 			// room_photos라는 변수에  room_photo라는 class를 가진 모든 애들을 담아준다.
@@ -295,7 +297,7 @@
 			return true;
 		})
 
-		// 시작하자마자 room_photo의 값을 가져와서 잘라주기 위해
+// ---------------------시작하자마자 room_photo의 값을 가져와서 잘라주기 위해-----------------------
 		$(function() {
 			// 디테일을 보여줄 때 넘어오는 room_photo의 값을 변수에 담아주고
 			var room_photo_src = '${room.room_photo}';
@@ -307,8 +309,10 @@
 					.append(
 							"<img alt='DB에서 가져온 사진' class='room-image'/>");
 				$('.room-image').attr("src", room_photo_src_split[0]);
-			})
+		})
 	})
+	
+// ------------------- 화살표 누르기 ----------------------------------------
 	
 	// "파일이름, 파일이름"
 		var room_photo_src = '${room.room_photo}';
@@ -322,27 +326,67 @@
 		var i = room_photo_src_split.length - 1; // : 1
 		var j = 0;
 		
+		var k = 0;
+		
 		// 왼쪽 화살표 누르면 넘어가는 함수
 		function leftimg(){
-			--j;
-			if(j < 0){
-				j = 0;
+			// detail에서 넘어온 값을 그대로 넘겨주기 위해.
+			// 사진을 다시 올리기 전에 실행
+			if(document.getElementsByClassName("room-image").length > 0){
+				--j;
+				if(j < 0){
+					j = 0;
+				} else {
+					$('.room-image').attr("src", room_photo_src_split[j]);
+				}
+			// 사진을 다시 올리고 난 후에 실행
 			} else {
-				$('.room-image').attr("src", room_photo_src_split[j]);
+				var array = new Array();
+				
+				var b = $('.room_image');
+				
+				--k;
+				if(k < 0){
+					k = 0;
+					alert("좌클릭 : " + k);
+				} else {
+					$('.' + String(k)).show();
+					$('.' + String(k-1)).hide();
+					$('.' + String(k+1)).hide();
+				}
 			}
 		}
 		
 		// 오른쪽 화살표 눌면 넘어가는 함수
 		function rightimg(){
-			++j;
-			if(j > i){
-				j = room_photo_src_split.length - 1;
+			// 다시 올릴 사진을 올리기 전에 실행한다.
+			if(document.getElementsByClassName("room-image").length > 0){
+				++j;
+				if(j > i){
+					j = room_photo_src_split.length - 1;
+				} else {
+					$('.room-image').attr("src", room_photo_src_split[j]);
+				}
+			// 다시 올릴 사진을 올리고 난 후에 실행한다.	
 			} else {
-				$('.room-image').attr("src", room_photo_src_split[j]);
+				var array = new Array();
+				
+				var b = $('.room_image');
+				
+				++k;
+				if(k > b.length -1){
+					k = b.length - 1;
+					alert("우클릭 : " + k);
+				} else {
+					$('.' + String(k)).show();
+					$('.' + String(k-1)).hide();
+					$('.' + String(k+1)).hide();
+				}
 			}
 		}
 	
 
+// --------------------------------------썸머노트----------------------------------------------
 	$(document)
 			.ready(
 					function() {
@@ -373,8 +417,9 @@
 
 	var cnt = 0;
 
-	function sendFile(file, editor) { 
+	function sendFile(file, editor) {
 		$(".room-image").remove();
+		$(".room_image").remove();
 		$(".room_photo").remove();
 		var data = new FormData();
 		// 파일을 보낸다.
@@ -390,7 +435,6 @@
 					enctype : 'multipart/form-data',
 					processData : false,
 					success : function(img_name) { 
-
 						//alert(cnt);
 						//alert(img_name); // 여기 잘 넘어옴
 						//$(".roomimg").attr("src", img_name);
@@ -399,7 +443,9 @@
 						var image = $("<img>").attr("src", img_name); //img_name : resources/rgusqls@naver.com/homeseekimg.jsp
 						image.attr("alt", "업로드  할 사진입니다.");
 						// 클래스 추가
-						image.addClass('room-image ' + cnt);
+						image.addClass('room_image ' + cnt);
+						// 올리는 모든 사진들을 hide해준다.
+						image.css("display", "none");
 						// <img class="room_image" src="resources/rgusqls@naver.com/사진.jpg">
 						//var image = $("<img>").attr("src", img_name);
 
@@ -408,6 +454,8 @@
 						// update-image-detail에 image를 append
 
 						$('.update-image-detail').append(image[0]);
+						// 대신 첫번쨰에 있는 사진만 show
+						$('.room_image').eq(0).show();
 						// 파일이 추가될때마다 input 태그가 생성된다.
 						// 즉 3개가 추가되면 input 태그은 3개가 된다.
 						$('.update-content-two')
@@ -418,6 +466,7 @@
 						//document.getElementById("room_photo").value = img_name;
 						cnt++;
 						console.log("3번째로 들어오는곳");
+						// 전역변수 k를 0으로 초기화
 					},
 					error : function() {
 						alert("실패");
