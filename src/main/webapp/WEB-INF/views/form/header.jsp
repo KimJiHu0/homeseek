@@ -13,11 +13,6 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/header.js"
 	type="text/javascript"></script>
-	<script>
-		$(function(){
-			alert(${pageContext.request.requestURI});
-		});
-	</script>
 </head>
 <body>
 <%
