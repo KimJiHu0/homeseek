@@ -33,11 +33,11 @@
 
 				<!-- 매물 사진 정보 -->
 				<div id="roomimg">
-					<a href="#">
+					<a href="javascript:leftimg();">
 						<img alt="d" src="resources/img/arrowleft.png" id="leftarrow" class="arrow">
 					</a>
-					<img class = "img" src="${room.room_photo }"/>
-					<a href="#">
+					
+					<a href="javascript:rightimg();">
 						<img alt="d" src="resources/img/arrowright.png" id="rightarrow" class="arrow">
 					</a>
 				</div>
@@ -335,7 +335,6 @@
 		</div>
 					<div class="roominfo-content-detailcontent-content">
 						${room.room_detail }
-						<input type="text" name="room_photo" id="room_photo" value=""/>
 					</div>
 				<%
 					// 세션에 로그인되어있는 id를 가지고 수정버튼을 보여줄지 말지 선택
@@ -420,6 +419,52 @@
 			}
 		})
 	});
+	
+	// 시작하자마자 room_photo의 값을 가져와서 잘라주기 위해
+	$(function(){
+		// 디테일을 보여줄 때 넘어오는 room_photo의 값을 변수에 담아주고
+		var room_photo_src = '${room.room_photo}';
+		
+		// 그 변수를 ,를 기준으로 split해서 배열에 담아준다.
+		var room_photo_src_split = room_photo_src.split(',');
+		// roomimg라는 id를 지닌 태그 안에 img태그를 만들어준다.
+		$('#roomimg').append(
+			"<img alt='DB에서 가져온 사진' class='room_photo'/>"	
+		);
+		// 만들어준 img태그에 src를 위에서 받아온 room_photo_src_split의 0번지를 넣어 하나만 넣어준다.
+		$('.room_photo').attr("src", room_photo_src_split[0]);
+	})
+	
+	// "파일이름, 파일이름"
+	var room_photo_src = '${room.room_photo}';
+	
+	// room_photo_src_split[0] = 파일이름
+	// room_photo_src_split[1] = 파일이름
+	var room_photo_src_split = room_photo_src.split(',');
+	
+	// 2개의 파일을 올렸으면 2
+	var i = room_photo_src_split.length - 1;
+	
+	// 왼쪽 화살표 누르면 넘어가는 함수
+	function leftimg(){
+		
+		--i;
+		if(i < 0){
+			i = 0;
+		} else {
+			$('.room_photo').attr("src", room_photo_src_split[i]);
+		}
+	}
+	
+	// 오른쪽 화살표 눌면 넘어가는 함수
+	function rightimg(){
+		i++;
+		if(i >= room_photo_src_split.length){
+			i = room_photo_src_split.length - 1;
+		} else {
+			$('.room_photo').attr("src", room_photo_src_split[i]);
+		}
+	}
 	
 </script>
 </html>

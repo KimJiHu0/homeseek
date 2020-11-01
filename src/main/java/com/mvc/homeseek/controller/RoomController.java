@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.mvc.homeseek.filevalidator.RoomInsertFileVali;
@@ -54,7 +53,7 @@ public class RoomController {
 	}
 
 	@RequestMapping("insertres.do")
-	public String selectRoomInsert(RoomDto room_dto, Model model, RedirectAttributes redirect) {
+	public String selectRoomInsert(RoomDto room_dto, Model model) {
 		logger.info("[inertres.do] : 매물 올리기 제출중");
 
 		System.out.println("현재 작성하는 사용자 : " + room_dto.getRoom_id());
@@ -70,13 +69,9 @@ public class RoomController {
 		int res = roomBiz.selectRoomInsert(room_dto);
 
 		if (res > 0) {
-			redirect.addFlashAttribute("msg", "매물등록을 성공했습니다.");
-			return "redirect:/listroom2.do";
-		} else {	
-			redirect.addFlashAttribute("msg", "매물등록을 실패했습니다.");
-			return "redirect:/insertroom.do";
+			logger.info("입력성공");
 		}
-
+		return "roomList";
 
 	}
 	
@@ -99,10 +94,8 @@ public class RoomController {
 
 		if (res > 0) {
 			logger.info("입력성공");
-		} else {
-			
 		}
-		return "redirect:/listroom2.do";
+		return "roomList";
 	}
 	
 
@@ -114,20 +107,24 @@ public class RoomController {
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		MemberDto dto = (MemberDto) session.getAttribute("login");
-		String user = dto.getMember_id();
-		logger.info("파일을 올리는 사용자 : " + user);
-		String save_folder = WebUtils.getRealPath(mRequest.getSession().getServletContext(), user);
 		
+		String save_folder = WebUtils.getRealPath(mRequest.getSession().getServletContext(), "/resources/storage");
+		String user = dto.getMember_id();
+		logger.info(user);
 		String file_name = file.getOriginalFilename();
 		
+		List<MultipartFile> list = mRequest.getFiles(file_name);
+		System.out.println(list.size());
 		
 		String server_file_name = fileDBName(file_name, save_folder, user);
 		System.out.println("server file : " + server_file_name);
 
 		file.transferTo(new File(save_folder + server_file_name));
 
+		System.out.println(WebUtils.getRealPath(mRequest.getSession().getServletContext(), "/resources/storage"));
 		
-		return  user + "/" + server_file_name;
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		return "resources/storage" + server_file_name;
 	}
 	
 //	@ResponseBody
@@ -177,33 +174,30 @@ public class RoomController {
 		int month = c.get(Calendar.MONTH);
 		int date = c.get(Calendar.DATE);
 		int sec = c.get(Calendar.MILLISECOND);
+		String timestamp = year + "-" + month + "-" + date + "-" + sec;
 		
-		String timestamp = year + "_" + month + "_" + date + "_" + sec;
-		
-		String homedir = saveFolder;
+		String homedir = saveFolder + "/" + year + "-" + month + "-" + date;
 
 		System.out.println(homedir);
 		File path1 = new File(homedir);
 		if (!(path1.exists())) {
 			path1.mkdir();
 		}
+		Random r = new Random();
+		int random = r.nextInt(100000000);
 
 		int index = fileName.lastIndexOf(".");
 
-		String extName = fileName.substring(0, index);
-		System.out.println(extName);
-		
-		
 		String fileExtension = fileName.substring(index + 1);
 		System.out.println("fileExtension = " + fileExtension);
 
-		String refileName = extName + "_" + timestamp + "." + fileExtension;
+		String refileName = "homeseek" + "-" + timestamp + "-" + user + "-" + random + "." + fileExtension;
 		System.out.println("refileName = " + refileName);
 
-		String fileDBName = "/" + refileName;
+		String fileDBName = "/" + timestamp + "/" + refileName;
 		System.out.println("fileDBName = " + fileDBName);
 
-		return  fileDBName;
+		return fileDBName;
 		
 	}
 

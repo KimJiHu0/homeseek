@@ -5,9 +5,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mvc.homeseek.model.biz.MemberBiz;
@@ -91,7 +94,7 @@ public class RoomDetailController {
 	@RequestMapping(value="updateroomres.do", method = RequestMethod.POST)
 	public String roomUpdateRes(RoomDto dto, Model model, RedirectAttributes msg) {
 		
-		logger.info("roomUpdateRes");
+		logger.info("\n roomDetailController : roomUpdateRes");
 		
 		String[] cpdate = dto.getRoom_cpdate().split("-");
 		String[] avdate = dto.getRoom_avdate().split("-");
@@ -122,62 +125,70 @@ public class RoomDetailController {
 			// 415 미디어 타입 에러가난다. 그렇기 때문에 controller에서 @RequestBody를 뺴주거나
 			// ajax에서 contentType = "application/json"을 추가해줘야한다.
 	@RequestMapping("fileupload.do")
-	public void profileUpload(int room_no, String room_id, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void fileUpload(String room_id, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
+		
 		PrintWriter out = response.getWriter();
 		// 업로드할 폴더 경로
-		String realFolder = request.getSession().getServletContext().getRealPath("/fileUpload");
+		String realFolder = request.getSession().getServletContext().getRealPath("resources/" + room_id + "/");
 		
-		logger.info("\n -----------이미지 업로드중----------");
-		/*
-		 * int cnt = 1; for(int i = 0; i < file.getSize(); i++) { cnt++;
-		 * System.out.println("숫자 올라가여? : " + cnt); }
-		 */
+		logger.info(" \n fileUpload 사용자 : " + room_id);
 		
-		System.out.println("Controller에 들어오는 room_no의 값은 뭔데 ? : " + room_no);
-		System.out.println("Controller에 들어오는 room_id의 값은 뭔데 ? : " + room_id);
+		// 사용자가 올리고자 하는 파일 이름
+		String org_filename = file.getOriginalFilename();
 		
-		System.out.println("file.getSize() : " + file.getSize());
-		System.out.println("file.getByte[]() : " + file.getBytes());
-		// 업로드할 파일 이름
-		String org_filename = file.getOriginalFilename(); // 이름.jpg 형식
-
-		System.out.println("원본 파일명 : " + org_filename);
+		logger.info(" \n 사용자가 올리고자 하는 파일 이름 : " + org_filename);
+		
+		String uploadFileName = fileChangeName(org_filename, realFolder, room_id);
+		
+		logger.info(" \n fileChangeName메소드를 통해 변경된 이름 : " + uploadFileName);
+		
+		file.transferTo(new File(realFolder + uploadFileName));
+		
+		
+		out.print("resources/" + room_id + "/" + uploadFileName);
+		out.close();
+	}
+	
+	// 업로드 될 이미지의 이름을 바꾸는 메소드
+	private String fileChangeName(String org_filename, String realFolder, String room_id) {
+		
+		// org_filename : fileupload 메소드에서 뽑은 원본 파일명 => 사진.jpg
+		// realFolder : fileupload 메소드에서 뽑은 realpath => homeseek/rgusqls@naver.com 식으로 이곳에 파일업로드
+		
+		Random r = new Random();
+        int random = r.nextInt(100000000);
+		
+		Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH) + 1;
+		int date = c.get(Calendar.DATE);
+		int sec = c.get(Calendar.MILLISECOND);
+		
+		String timetamp = year + "_" + month + "_" + date + "_" + sec;
+		
+		// 파일이 업로드 될 경로 : /homeseek/rgsqls@naver.com/ 
+		String filePath = realFolder;
+		
+		logger.info(" \n fileChangeName Method의 filePath :  " + filePath);
+		
+		File f = new File(filePath);
+		if(!f.exists()) {
+			f.mkdirs();
+		}
 		
 		// 확장자 자르기
 		String back_FileName = org_filename.substring(org_filename.indexOf(".")); //.jpg 형식
 		logger.info("\n 자른 확장자명 : " + back_FileName);
-					
-		// 확장자를 자른 파일 이름
-		String front_FileName = org_filename.substring(0, org_filename.indexOf(".")); // 확장자 앞 이름
-		logger.info("\n 확장자를 자른 진짜 파일 이름 : " + front_FileName);
-
-		// 파일 경로
-		String filepath = realFolder + "\\" + front_FileName + "_" + room_no + back_FileName;
-		System.out.println("\n 파일경로 : " + filepath);
 		
-		// 위에서 뽑은 파일 경로를 ROOM_PHOTO에 저장해야됌.
-		// 이곳에서 BIZ실행해서 파일의 이름만 UPDATE하게끔 만들어주기?
+		// DB에 저장될 이름
+		String front_FileName = "homeseekimage";
 		
-		//int updatePhoto = roomdetailbiz.updateRoomOnePhoto(new RoomDto(room_no, room_id, filepath));
-		//if(updatePhoto > 0) {
-		//	System.out.println("RoomDetailController : Success UpdatePhoto");
-		//} else {
-		//	System.out.println("RoomDetailController : Error UpdatePhoto");
-		//}
+		String realFileName = front_FileName + "_" + timetamp + "_" + random + back_FileName;
 		
-		// 파일 진짜 이름
-		String realFileName = front_FileName + "_" + room_no + back_FileName;
+		logger.info(" DB에 저장될 파일 이름 : " + realFileName);
 		
-
-		File f = new File(filepath);
-		if (!f.exists()) {
-			logger.info("디렉토티 생성!");
-			f.mkdirs();
-		}
-		file.transferTo(f);
-		out.println("fileUpload/"+realFileName);
-		out.close();
+		return realFileName;
 	}
 	
 	// 방 삭제

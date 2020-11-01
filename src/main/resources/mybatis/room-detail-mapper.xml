@@ -28,6 +28,7 @@
 		UPDATE ROOM 
 		SET
 		ROOM_NAME = #{room_name},
+		ROOM_PHOTO = #{room_photo},
 		ROOM_TYPE = #{room_type},
 		ROOM_DEPOSIT = #{room_deposit},
 		ROOM_PRICE = #{room_price},
