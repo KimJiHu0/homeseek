@@ -275,7 +275,6 @@
 		
 //--------------------submit이 실행 되기 직전에 파일업로드 한 모든 src를 가져와서 더해준 다음에 배열에서 String형태로 바꿔서 DB에 저장--------------------
 		$("#plusfilepath").submit(function() {
-			alert("sumbit하기 전 실행되는 함수 시작 !");
 			// room_photos라는 변수에  room_photo라는 class를 가진 모든 애들을 담아준다.
 			var room_photos = document.getElementsByClassName('room_photo');
 			// 배열 생성
@@ -348,7 +347,6 @@
 				--k;
 				if(k < 0){
 					k = 0;
-					alert("좌클릭 : " + k);
 				} else {
 					$('.' + String(k)).show();
 					$('.' + String(k-1)).hide();
@@ -376,7 +374,6 @@
 				++k;
 				if(k > b.length -1){
 					k = b.length - 1;
-					alert("우클릭 : " + k);
 				} else {
 					$('.' + String(k)).show();
 					$('.' + String(k-1)).hide();
@@ -408,14 +405,14 @@
 														editor, welEditable) {
 													for (var i = files.length - 1; i >= 0; i--) {
 														sendFile(files[i], this);
-														console.log("첫번째로 들어오는 곳");
+														cnt = 0;
 													}
 												}
 											}
 										});
 					});
 
-	var cnt = 0;
+	var cnt;
 
 	function sendFile(file, editor) {
 		$(".room-image").remove();
@@ -458,15 +455,13 @@
 						$('.room_image').eq(0).show();
 						// 파일이 추가될때마다 input 태그가 생성된다.
 						// 즉 3개가 추가되면 input 태그은 3개가 된다.
-						$('.update-content-two')
-								.append(
-										"<input class='room_photo "+cnt+"' type='hidden' value=''/>");
+						$('.update-content-two').append(
+										"<input class='room_photo "+cnt+"' type='hidden' value=''/>"
+						);
 						// 위에서 만든 input 태그에 class를 지정해줘서 거기의 value를 넣어준다.
 						$('.' + String(cnt)).val(img_name);
 						//document.getElementById("room_photo").value = img_name;
 						cnt++;
-						console.log("3번째로 들어오는곳");
-						// 전역변수 k를 0으로 초기화
 					},
 					error : function() {
 						alert("실패");

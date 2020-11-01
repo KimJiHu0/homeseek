@@ -444,25 +444,26 @@
 	
 	// 2개의 파일을 올렸으면 2
 	var i = room_photo_src_split.length - 1;
+	var j = 0;
 	
 	// 왼쪽 화살표 누르면 넘어가는 함수
 	function leftimg(){
 		
-		--i;
-		if(i < 0){
-			i = 0;
+		--j;
+		if(j < 0){
+			j = 0;
 		} else {
-			$('.room_photo').attr("src", room_photo_src_split[i]);
+			$('.room_photo').attr("src", room_photo_src_split[j]);
 		}
 	}
 	
 	// 오른쪽 화살표 눌면 넘어가는 함수
 	function rightimg(){
-		i++;
-		if(i >= room_photo_src_split.length){
-			i = room_photo_src_split.length - 1;
+		++j;
+		if(j > i){
+			j = room_photo_src_split.length - 1;
 		} else {
-			$('.room_photo').attr("src", room_photo_src_split[i]);
+			$('.room_photo').attr("src", room_photo_src_split[j]);
 		}
 	}
 	
