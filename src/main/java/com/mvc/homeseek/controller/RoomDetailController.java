@@ -157,7 +157,7 @@ public class RoomDetailController {
 		// realFolder : fileupload 메소드에서 뽑은 realpath => homeseek/rgusqls@naver.com 식으로 이곳에 파일업로드
 		
 		Random r = new Random();
-        int random = r.nextInt(100000000);
+        int random = r.nextInt(100000000); 
 		
 		Calendar c = Calendar.getInstance();
 		int year = c.get(Calendar.YEAR);
