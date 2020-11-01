@@ -1,12 +1,9 @@
 package com.mvc.homeseek.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -23,9 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
-import com.mvc.homeseek.filevalidator.RoomInsertFileVali;
 import com.mvc.homeseek.model.biz.RoomBiz;
-import com.mvc.homeseek.model.biz.RoomListBiz;
 import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homeseek.model.dto.RoomDto;
 
@@ -37,11 +32,6 @@ public class RoomController {
 	@Autowired
 	private RoomBiz roomBiz;
 
-	@Autowired
-	private RoomInsertFileVali validator;
-
-	@Autowired
-	private RoomListBiz roomListBiz;
 
 	@RequestMapping("insertroom.do")
 	public String selectRoomInsertForm(RoomDto room_dto, Model model, HttpSession session) {
@@ -55,8 +45,10 @@ public class RoomController {
 
 	@RequestMapping("insertres.do")
 	public String selectRoomInsert(RoomDto room_dto, Model model, RedirectAttributes redirect) {
+		
 		logger.info("[inertres.do] : 매물 올리기 제출중");
-
+		logger.info("업로드하는 사진 : " + room_dto.getRoom_photo());
+		
 		System.out.println("현재 작성하는 사용자 : " + room_dto.getRoom_id());
 
 		// 1.
@@ -71,7 +63,7 @@ public class RoomController {
 
 		if (res > 0) {
 			redirect.addFlashAttribute("msg", "매물등록을 성공했습니다.");
-			return "redirect:/listroom2.do";
+			return "redirect:/listroom.do";
 		} else {	
 			redirect.addFlashAttribute("msg", "매물등록을 실패했습니다.");
 			return "redirect:/insertroom.do";
@@ -80,10 +72,12 @@ public class RoomController {
 
 	}
 	
+	//보증금 없이 insert	
 	@RequestMapping("insertres2.do")
-	public String selectRoomInsert2(RoomDto room_dto, Model model) {
+	public String selectRoomInsert2(RoomDto room_dto, Model model,  RedirectAttributes redirect) {
 		
 		logger.info("[inertres.do] : 매매 매물 올리기 제출중");
+		logger.info("업로드하는 사진 : " + room_dto.getRoom_photo());
 
 		System.out.println("현재 작성하는 사용자 : " + room_dto.getRoom_id());
 
@@ -98,11 +92,12 @@ public class RoomController {
 		int res = roomBiz.selectRoomInsert2(room_dto);
 
 		if (res > 0) {
-			logger.info("입력성공");
+			redirect.addFlashAttribute("msg", "매물등록을 성공했습니다.");
+			return "redirect:/listroom.do";
 		} else {
-			
+			redirect.addFlashAttribute("msg", "매물등록을 실패했습니다.");
+			return "redirect:/insertroom.do";
 		}
-		return "redirect:/listroom2.do";
 	}
 	
 
@@ -130,46 +125,6 @@ public class RoomController {
 		return  user + "/" + server_file_name;
 	}
 	
-//	@ResponseBody
-//	@PostMapping("/summer_image")
-//	public String summer_image2(HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest mRequest, MultipartFile file)
-//			throws Exception {
-//		response.setContentType("text/html;charset=utf-8");
-//		
-//		List<MultipartFile> fileList = mRequest.getFiles("img_name");
-//		
-//		//경로
-//		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/storage");
-//		
-//		for(MultipartFile mf : fileList) {
-//			
-//			int i = 0;
-//			
-//			String oriName = mf.getOriginalFilename()+ "(" + i + ")";
-//			String server_file_name = fileDBName(oriName, path);
-//			System.out.println("server file : " + server_file_name);
-//			file.transferTo(new File(path + server_file_name));
-//			System.out.println(WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/storage"));
-//			
-//			i++;
-//			return "resources/storage" + server_file_name;
-//		}
-//
-//		
-////		String file_name = file.getOriginalFilename();
-////		String server_file_name = fileDBName(file_name, save_folder);
-////		System.out.println("server file : " + server_file_name);
-////
-////		file.transferTo(new File(save_folder + server_file_name));
-////
-////		System.out.println(WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/storage"));
-////		
-////		return "resources/storage" + server_file_name;
-//		
-//		return "";
-//	}
-	
-	
 	
 	private String fileDBName(String fileName, String saveFolder, String user) {
 		Calendar c = Calendar.getInstance();
@@ -181,15 +136,18 @@ public class RoomController {
 		String timestamp = year + "_" + month + "_" + date + "_" + sec;
 		
 		String homedir = saveFolder;
-
 		System.out.println(homedir);
+		
 		File path1 = new File(homedir);
 		if (!(path1.exists())) {
 			path1.mkdir();
 		}
 
 		int index = fileName.lastIndexOf(".");
-
+		
+		Random r = new Random();
+		int random = r.nextInt(100000000);
+		
 		String extName = fileName.substring(0, index);
 		System.out.println(extName);
 		
@@ -197,7 +155,7 @@ public class RoomController {
 		String fileExtension = fileName.substring(index + 1);
 		System.out.println("fileExtension = " + fileExtension);
 
-		String refileName = extName + "_" + timestamp + "." + fileExtension;
+		String refileName = extName + "_" + timestamp + "_" + random + "." + fileExtension;
 		System.out.println("refileName = " + refileName);
 
 		String fileDBName = "/" + refileName;

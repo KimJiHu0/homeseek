@@ -71,7 +71,7 @@
             </div></li>
                         
             <li><a class="headeratag" href="#">채팅</a></li> 
-            <li><a class="headeratag" href="#">후원하기</a></li> 
+            <li><a class="headeratag" href="donateform.do">후원하기</a></li> 
             <li><a class="headeratag" href="#">Kr | En</a></li>
             <% if(dto == null) { %> 
             <li>

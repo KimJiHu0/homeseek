@@ -181,7 +181,7 @@ section #top_title {
 	
 }
 
-#insert_div5 label{
+#insert_div5 .div5_label{
 	width: 10%;
 	max-width:75px;
 	padding-left:10px;
