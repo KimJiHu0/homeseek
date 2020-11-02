@@ -284,6 +284,14 @@
 		    <version>20200518</version>
 		</dependency>
 		
+		
+		<!-- web socket 추가 -->
+	    <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>4.0.4.RELEASE</version>
+        </dependency>
+		
 
 	</dependencies>
 	<build>

@@ -114,7 +114,7 @@
 					<button class="btn btn-success" type="submit" id="submit">회원가입</button>
 					<input type="button" value="취소" onclick="location.href='main.do'"/>
 			</div>
-		
+			<input type="button" value="채팅연습" onclick="location.href='chat.do'"/>
 	</form>
 	
 </body>
