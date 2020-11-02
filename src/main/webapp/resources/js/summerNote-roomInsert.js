@@ -16,7 +16,7 @@ $(function() {
 	});
 });
 
-var photoValue = "resources/";
+var photoValue = "";
 var photo = $('#insert_photo');
 function sendFile(file) {
 	var imgname;
@@ -31,8 +31,9 @@ function sendFile(file) {
 		enctype : 'multipart/form-data',
 		processData : false,
 		success : function(img) {
-			
-				photoValue += img + ',';
+				
+				var img_db = 'resources/' + img;
+				photoValue += img_db + ',';
 				
 				console.log(photoValue);
 				photo.val(photoValue);
