@@ -37,7 +37,7 @@ function messageFormClose(){
 	</div>
 	
 	<div class="secondbox">
-		<form action="messagememberres.do" method="post">
+		<form action="messagememberres.do" method="post" onsubmit="messgae();">
 			<input type="hidden" value="${message_senuser.member_id }" name="message_senid"/>
 			<input type="hidden" value="${message_reuser.member_id }" name="message_reid"/>
 			<table class="message-content">

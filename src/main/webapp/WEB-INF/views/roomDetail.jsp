@@ -13,7 +13,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/roomDetail.css"
 	type="text/css" />
-<script
+	<script
 	src="${pageContext.request.contextPath}/resources/js/roomDetail.js"
 	type="text/javascript"></script>
 	
