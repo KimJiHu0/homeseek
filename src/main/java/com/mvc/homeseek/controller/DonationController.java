@@ -22,11 +22,11 @@ public class DonationController {
 		
 		return "donation";
 	}
-	
-	@RequestMapping("donate.do")
+	//후원완료후 메인으로
+	@RequestMapping("donateres.do")
 	public String donateRes() {
 		
-		return "";
+		return "index";
 	}
 
 }

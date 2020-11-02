@@ -148,14 +148,15 @@ public class RoomController {
 		Random r = new Random();
 		int random = r.nextInt(100000000);
 		
+		//사용하지 않음 (확장자를 뺀 이름)
 		String extName = fileName.substring(0, index);
 		System.out.println(extName);
 		
-		
+		//확장자
 		String fileExtension = fileName.substring(index + 1);
 		System.out.println("fileExtension = " + fileExtension);
 
-		String refileName = extName + "_" + timestamp + "_" + random + "." + fileExtension;
+		String refileName = "homeseekimage" + "_" + timestamp + "_" + random + "." + fileExtension;
 		System.out.println("refileName = " + refileName);
 
 		String fileDBName = "/" + refileName;
