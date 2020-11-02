@@ -13,7 +13,7 @@
 	<%
 		MemberDto insert_dto = (MemberDto) request.getSession().getAttribute("login");
 		String room_id = insert_dto.getMember_id();
-	%>
+	%> 
 	
 	<!-- 제목 -->
 	<div id="top_title">

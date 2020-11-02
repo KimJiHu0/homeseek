@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +6,20 @@
 <title>Insert title here</title>
 
 <!-- donate.css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/donate.css"
-	type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/donate.css" type="text/css" />
+	
 <!-- donate.js -->
-<script src="resources/js/doante.js" type="text/javascript"></script>
+<script src="resources/js/donate.js" type="text/javascript"></script>
 
+<!-- Iamport 결제 api	 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript">
+
+	var IMP = window.IMP; // 생략가능
+	IMP.init('imp78816785'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+
+</script>
 </head>
 <body>
 	<!-- header.jsp include -->
@@ -47,20 +54,24 @@
 					<br>
 					
 				<form action="donate.do" id="donate_form">
-		
-					<input type="radio" id="donate_1" name="donate_value" value="1000">
-					<label for=donate_1 id="label_1">1000원</label>
+				
+					<label id="value1">
+					<input type="radio" id="value" name="donate_value" value="1000">
+					1000원</label>
 					 
-					<input type="radio"id="donate_3" name="donate_value" value="3000"> 
-					<label for=donate_1 id="label_3">3000원</label>
+					<label id="value3">
+					<input type="radio" id="value" name="donate_value" value="3000"> 
+					3000원</label>
 					 
-					<input type="radio" id="donate_5" name="donate_value" value="5000"> 
-					<label for=donate_1 id="label_5">5000원</label> 
+					 <label id="value5">
+					<input type="radio" id="value" name="donate_value" value="5000"> 
+					5000원</label> 
 					
-					<input type="radio" id="donate_10" name="donate_value" value="10000"> 
-					<label for=donate_1 id="label_10">10000원</label>
+					<label id="value10">
+					<input type="radio" id="value" name="donate_value" value="10000"> 
+					10000원</label>
 					
-					<input type="submit" value="후원하기"> 
+					<input type="button" onclick="requestPay()" value="후원하기"> 
 				</form>
 			</div>
 		</div>
