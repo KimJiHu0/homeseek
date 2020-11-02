@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>homeseek : 후원하기</title>
 
 <!-- donate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/donate.css" type="text/css" />
@@ -22,6 +22,15 @@
 </script>
 </head>
 <body>
+	<%
+	MemberDto memberDto = (MemberDto) request.getSession().getAttribute("login");
+	String member_id = memberDto.getMember_id();
+	String member_name = memberDto.getMember_name();
+	String member_phone = memberDto.getMember_phone();
+	
+	%>
+
+
 	<!-- header.jsp include -->
 	<%@ include file="/WEB-INF/views/form/header.jsp"%>
 
