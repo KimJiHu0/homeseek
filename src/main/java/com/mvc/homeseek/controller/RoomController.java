@@ -111,7 +111,7 @@ public class RoomController {
 		MemberDto dto = (MemberDto) session.getAttribute("login");
 		String user = dto.getMember_id();
 		logger.info("파일을 올리는 사용자 : " + user);
-		String save_folder = WebUtils.getRealPath(mRequest.getSession().getServletContext(), user);
+		String save_folder = WebUtils.getRealPath(mRequest.getSession().getServletContext(), "/resources/"+user);
 		
 		String file_name = file.getOriginalFilename();
 		
