@@ -122,14 +122,14 @@ public class RoomController {
 		file.transferTo(new File(save_folder + server_file_name));
 
 		
-		return  user + "/" + server_file_name;
+		return  user + server_file_name;
 	}
 	
 	
 	private String fileDBName(String fileName, String saveFolder, String user) {
 		Calendar c = Calendar.getInstance();
 		int year = c.get(Calendar.YEAR);
-		int month = c.get(Calendar.MONTH);
+		int month = c.get(Calendar.MONTH) + 1;
 		int date = c.get(Calendar.DATE);
 		int sec = c.get(Calendar.MILLISECOND);
 		
