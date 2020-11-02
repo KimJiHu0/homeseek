@@ -16,8 +16,8 @@ $(function() {
 	});
 });
 
-var photoValue = "";
-var photo = $('#photo');
+var photoValue = "resources/";
+var photo = $('#insert_photo');
 function sendFile(file) {
 	var imgname;
 	var form_data = new FormData();
@@ -33,6 +33,7 @@ function sendFile(file) {
 		success : function(img) {
 			
 				photoValue += img + ',';
+				
 				console.log(photoValue);
 				photo.val(photoValue);
 			}

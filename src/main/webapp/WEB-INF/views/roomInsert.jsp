@@ -29,7 +29,7 @@
 	<div class="form_div">
 		<form action="insertres.do" class="insert_form" method="POST">
 		<input type="hidden" value="<%=room_id %>" name="room_id">
-		<input type="hidden" value="" id="photo" name="room_photo">
+		<input type="hidden" value="" id="insert_photo" name="room_photo">
 				<div id="insert_div1">
 					<label for="insert_name" id="name_label">매물이름</label>
 						<input type="text" name="room_name" id="insert_name">
