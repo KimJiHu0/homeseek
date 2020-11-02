@@ -16,5 +16,4 @@ public class MessageBizImpl implements MessageBiz {
 	public int insertMessage(MessageDto messagedto) {
 		return messagedao.insertMessage(messagedto);
 	}
-
 }

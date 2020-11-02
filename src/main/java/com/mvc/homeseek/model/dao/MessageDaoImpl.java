@@ -30,5 +30,4 @@ public class MessageDaoImpl implements MessageDao {
 		}
 		return res;
 	}
-
 }

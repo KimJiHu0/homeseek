@@ -289,7 +289,7 @@
 	    <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-websocket</artifactId>
-            <version>4.0.4.RELEASE</version>
+            <version>${org.springframework-version}</version>
         </dependency>
 		
 

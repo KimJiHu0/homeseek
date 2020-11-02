@@ -21,15 +21,8 @@
 <!-- SummerNote.js -->
 <script src="${pageContext.request.contextPath}/resources/js/summerNote.js" type="text/javascript"></script>
 
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/messageMemberForm.css" type="text/css" />
-
-<script type="text/javascript">
-// 취소버튼 누르면 창 꺼지기
-function messageFormClose(){
-	self.close();
-}
-</script>
-
 </head>
 <body>
 	<div id="firstbox">
@@ -37,9 +30,6 @@ function messageFormClose(){
 	</div>
 	
 	<div class="secondbox">
-		<form action="messagememberres.do" method="post" onsubmit="messgae();">
-			<input type="hidden" value="${message_senuser.member_id }" name="message_senid"/>
-			<input type="hidden" value="${message_reuser.member_id }" name="message_reid"/>
 			<table class="message-content">
 				<col width="180">
 				<col width="180">
@@ -57,9 +47,9 @@ function messageFormClose(){
 				</tr>
 				
 				<tr class="message_tr">
-					<td class="message_td">${message_reuser.member_id }</td>
+					<td class="message_td" id="message_reid">${message_reuser.member_id }</td>
 					<td class="message_td">${message_reuser.member_name }</td>
-					<td class="message_td">${message_senuser.member_id }</td>
+					<td class="message_td" id="message_senid">${message_senuser.member_id }</td>
 					<td class="message_td">${message_senuser.member_name }</td>
 				</tr>
 				
@@ -70,7 +60,7 @@ function messageFormClose(){
 				<tr class="message_tr">
 					<th class="message_th">제목</th>
 					<td colspan="3">
-						<input type="text" placeholder="제목을 입력해주세요." class="message_title" name="message_title"/>
+						<input type="text" placeholder="제목을 입력해주세요." class="message_title" name="message_title" id="message_title"/>
 					</td>
 				</tr>
 				
@@ -91,14 +81,55 @@ function messageFormClose(){
 				
 				<tr class="messagebtntwo">
 					<td colspan="2">
-						<input type="submit" value="보내기" class="messagebtn"/>
+						<input type="button" value="보내기" class="messagebtn" onclick="javascript:sendMessage();"/>
 					</td>
 					<td colspan="2">
 						<input type="button" value="취소" class="messagebtn" onclick="javascript:messageFormClose()"/>
 					</td>
 				</tr>
 			</table>
-		</form>
 	</div>
 </body>
+<script type="text/javascript">
+// 취소버튼 누르면 창 꺼지기
+function messageFormClose(){
+	self.close();
+}
+
+function sendMessage(){
+	var message_senid = '${message_senuser.member_id}';
+	var message_reid = '${message_reuser.member_id}';
+	var message_title = $("#message_title").val();
+	var message_content = $(".summernote").val();
+	
+	var data = {
+			"message_senid" : message_senid,
+			"message_reid" : message_reid,
+			"message_title" : message_title,
+			"message_content" : message_content
+	}
+	if(message_title == null || message_title == '' || message_content == null || message_content == ''){
+		alert("제목 혹은 내용을 전부 입력해주세요.");
+	} else {
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			data : JSON.stringify(data),
+			contentType : "application/json; charset=utf-8",
+			url : "messagememberres.do",
+			success : function(info){
+				if(info.res > 0){
+					alert("쪽지보내기가 성공적으로 완료되었습니다.");
+					self.close();
+				} else {
+					alert("쪽지보내기가 실패하였습니다.");
+				}
+			},
+			error : function(){
+				alert("실패");
+			}
+		})
+	}
+}
+</script>
 </html>

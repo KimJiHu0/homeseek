@@ -8,5 +8,4 @@ public interface MessageDao {
 	
 	// 쪽지 보내기
 	public int insertMessage(MessageDto messagedto);
-
 }

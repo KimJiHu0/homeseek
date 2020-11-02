@@ -30,6 +30,42 @@
 	function reportFormClose(){
 		self.close();
 	}
+	
+	function sendReport(){
+		var report_senid = '${report_senuser.member_id}';
+		var report_reid = '${report_reuser.member_id}';
+		var report_title = $("#report_title").val();
+		var report_content = $(".summernote").val();
+
+		var data = {
+				"report_senid" : report_senid,
+				"report_reid" : report_reid,
+				"report_title" : report_title,
+				"report_content" : report_content
+		}
+		if(report_title == null || report_title == '' || report_content == null || report_content == ''){
+			alert("신고 사유와 신고 내용을 모두 작성해주세요.");
+		} else {
+			$.ajax({
+				type : "post",
+				dataType : "json",
+				data : JSON.stringify(data),
+				contentType : "application/json",
+				url : "reportmemberres.do",
+				success : function(info){
+					if(info.res > 0){
+						alert("신고처리가 접수되었습니다.");
+						self.close();
+					} else {
+						alert("신고처리가 실패되었습니다.");
+					}
+				},
+				error : function(){
+					alert("실패");
+				}
+			})
+		}
+	}
 </script>
 </head>
 <body>
@@ -37,7 +73,6 @@
 		<p class="iconbox" id="icon">HOME<span class="iconbox" id="iconcolor">SEE</span>K</p>
 	</div>
 	<div class="secondbox">
-		<form action="reportmemberres.do" method="post" id="reportform">
 		<input type="hidden" value="${report_senuser.member_id }" name="report_senid">
 		<input type="hidden" value="${report_reuser.member_id }" name="report_reid">
 			<table class="report-content">
@@ -70,7 +105,7 @@
 				<tr class="report_tr">
 					<th class="report_th">신고사유</th>
 					<td colspan="3" class="report_td">
-						<input type="text" class="report_title" name="report_title" placeholder="신고 사유를 작성해주세요"/>
+						<input type="text" class="report_title" id="report_title" name="report_title" placeholder="신고 사유를 작성해주세요"/>
 					</td>
 				</tr>
 				
@@ -91,14 +126,13 @@
 				
 				<tr class="reportbtn-two">
 					<td colspan="2">
-						<input type="submit" value="보내기" class="reportbtn"/>
+						<input type="button" value="보내기" class="reportbtn" onclick="sendReport();"/>
 					</td>
 					<td colspan="2">
 						<input type="button" value="취소" class="reportbtn" onclick="reportFormClose();"/>
 					</td>
 				</tr>
 			</table>
-		</form>
 	</div>
 </body>
 </html>

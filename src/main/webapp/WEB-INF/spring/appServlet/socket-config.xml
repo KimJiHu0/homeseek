@@ -23,5 +23,4 @@
     <!-- 위에서 선언한 핸들러의 bean 설정 -->
     <!-- Controller의 경로를 정확시 설정해준다 -->
     <bean id="echoHandler" class="com.mvc.homeseek.socket.EchoHandler" />
-
 </beans>
