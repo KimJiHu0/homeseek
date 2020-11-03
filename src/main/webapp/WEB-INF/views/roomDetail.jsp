@@ -13,9 +13,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/roomDetail.css"
 	type="text/css" />
-	<script
-	src="${pageContext.request.contextPath}/resources/js/roomDetail.js"
-	type="text/javascript"></script>
 	
 </head>
 <body>
@@ -114,7 +111,7 @@
 					%>
 
 					<div class="userinfocontent">
-						<span class="leftb">ID / NAME : </span><span class="rightb">${member.member_name }(${member.member_id })</span>
+						<span class="leftb">ID / NAME </span><span class="rightb">${member.member_name }(${member.member_id })</span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb"><a href="javascript:reportUser()"
@@ -122,7 +119,7 @@
 							href="javascript:messageUser()" id="messagebtn">쪽지</a></span>
 					</div>
 					<div class="userinfocontent">
-						<span class="leftb">Phone : </span><span class="rightb">${member.member_phone }</span>
+						<span class="leftb">Phone </span><span class="rightb">${member.member_phone }</span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb"></span><span class="rightb"></span>
@@ -134,13 +131,11 @@
 		<!-- second container -->
 
 		<div id="noticeinfo">
-			<span class="leftroom"> 안전한 거래를 위해 필요한 서류를 <b>꼭</b> 참고해주세요. <a href="#">공지사항
-					바로가기</a>
+			<span class="leftroom"> 안전한 거래를 위해 필요한 서류를 <b>꼭</b> 참고해주세요. <a href="noticelist.do"> [ 공지사항
+					바로가기 ]</a>
 			</span>
 		</div>
-		<div id="recommendinfo">
-			<span class="leftroom"> 추천 알고리즘 사용하기 </span>
-		</div>
+		
 
 		<div id="roommap"></div>
 		<!-- kakaoMap을 쓰기위한 스크립트 -->

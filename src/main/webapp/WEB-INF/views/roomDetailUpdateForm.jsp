@@ -1,3 +1,4 @@
+<%@page import="com.mvc.homeseek.model.dto.RoomDto"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -65,9 +66,18 @@
 					<div class="update-content-detail">
 						<div class="update-content-detail-title">보증금(만원)</div>
 						<div class="update-content-detail-content">
-							<input class="update-input" type="text"
-								value="${room.room_deposit }" name="room_deposit"
-								placeholder="숫자만 입력해주세요.">
+						<%
+							RoomDto roomdto = (RoomDto) request.getAttribute("room");
+							if(!roomdto.getRoom_type().equals("3")){
+						%>
+							<input class="update-input" type="text" value="${room.room_deposit }" name="room_deposit" placeholder="숫자만 입력해주세요.">
+						<%
+							} else {
+						%>
+							<input class="update-input" type="text" value="${room.room_deposit }" name="room_deposit" placeholder="숫자만 입력해주세요." readonly>
+						<%
+							}
+						%>
 						</div>
 					</div>
 
@@ -164,6 +174,8 @@
 						</div>
 					</div>
 				</div>
+				<!-- 원래 db에 있던 값들 -->
+				<input type="hidden" id="dbroom_photo" name="room_photo" value="${room.room_photo }" />
 				<!-- 여러 파일을 올릴 때 , 로 구분해서 update해주기 위한 태그 -->
 				<input type="hidden" id="room_photo" name="room_photo" value="" />
 
@@ -271,9 +283,24 @@
 			$("#room_structure option[value=3]").prop('selected', 'selected')
 					.change();
 		}
+
+// ---------------------시작하자마자 room_photo의 값을 가져와서 잘라주기 위해-----------------------
 		
+			// 디테일을 보여줄 때 넘어오는 room_photo의 값을 변수에 담아주고
+			var room_photo_src = '${room.room_photo}';
+
+			// 그 변수를 ,를 기준으로 split해서 배열에 담아준다.
+			var room_photo_src_split = room_photo_src.split(',');
+			
+
+			$('.update-image-detail').append(
+							"<img alt='DB에서 가져온 사진' class='room-image'/>"
+			);
+			$('.room-image').attr("src", room_photo_src_split[0]);
 		
-//--------------------submit이 실행 되기 직전에 파일업로드 한 모든 src를 가져와서 더해준 다음에 배열에서 String형태로 바꿔서 DB에 저장--------------------
+	})
+	
+	//--------------------submit이 실행 되기 직전에 파일업로드 한 모든 src를 가져와서 더해준 다음에 배열에서 String형태로 바꿔서 DB에 저장--------------------
 		$("#plusfilepath").submit(function() {
 			// room_photos라는 변수에  room_photo라는 class를 가진 모든 애들을 담아준다.
 			var room_photos = document.getElementsByClassName('room_photo');
@@ -295,23 +322,8 @@
 
 			return true;
 		})
-
-// ---------------------시작하자마자 room_photo의 값을 가져와서 잘라주기 위해-----------------------
-		$(function() {
-			// 디테일을 보여줄 때 넘어오는 room_photo의 값을 변수에 담아주고
-			var room_photo_src = '${room.room_photo}';
-
-			// 그 변수를 ,를 기준으로 split해서 배열에 담아준다.
-			var room_photo_src_split = room_photo_src.split(',');
-
-			$('.update-image-detail')
-					.append(
-							"<img alt='DB에서 가져온 사진' class='room-image'/>");
-				$('.room-image').attr("src", room_photo_src_split[0]);
-		})
-	})
 	
-// ------------------- 화살표 누르기 ----------------------------------------
+	// ------------------- 화살표 누르기 ----------------------------------------
 	
 	// "파일이름, 파일이름"
 		var room_photo_src = '${room.room_photo}';
@@ -320,6 +332,11 @@
 		// room_photo_src_split[1] = 파일이름
 		var room_photo_src_split = room_photo_src.split(',');
 		// 2개를 올렸으면 : 0, 1
+		
+		// insert할 때에 마지막에 , 가 들어가서 detail에서 마지막번지가 null인 상태로 사진들이 보여지게 되서 그 배열을 제거하고 출력해주기 위해.
+		if(room_photo_src_split[room_photo_src_split.length-1] == '' || room_photo_src_split[room_photo_src_split.length-1] == null){
+			room_photo_src_split.pop();
+		}
 		
 		// 2개의 파일을 올렸으면 2
 		var i = room_photo_src_split.length - 1; // : 1
@@ -391,7 +408,8 @@
 						$('.summernote')
 								.summernote(
 										{
-											placeholder : '???',
+											placeholder : '최대 2048자까지 입력할 수 있습니다.</br>' + 
+											  '허위사실 기재 혹은 욕설은 관리자에 의해 제재를 당할 수 있습니다.',
 											minHeight : 370,
 											maxHeight : 370,
 											focus : true,
@@ -418,6 +436,7 @@
 		$(".room-image").remove();
 		$(".room_image").remove();
 		$(".room_photo").remove();
+		$("#dbroom_photo").remove();
 		var data = new FormData();
 		// 파일을 보낸다.
 		data.append("file", file);

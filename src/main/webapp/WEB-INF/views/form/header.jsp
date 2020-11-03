@@ -112,6 +112,7 @@
                     <div class="dropdown-content">
                       <a class="headeratag" href="#">내 정보 보기</a>
                       <a class="headeratag" href="#">나의 후원 내역</a>
+                      <a class="headeratag" href="#">쪽지함</a>
                     </div>
             </div></li>
             <li>

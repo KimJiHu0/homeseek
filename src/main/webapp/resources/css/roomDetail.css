@@ -135,25 +135,15 @@ a>img {
 
 /* noticeinfo 안에 span에 css */
 #noticeinfo > span{
-	background-color : gray;
+	font-size : 15pt;
+}
+
+#noticeinfo span > b{
+	color : green;
+	font-weight : bold;
 }
 /*------------------공지사항 css 끝--------------------*/
 
-
-/*------------------추천알고리즘 css 시작--------------------*/
-/* recommendinfo css */
-#recommendinfo{
-	width : 54.2%;
-	height : 30px;
-	margin-left : 50px;
-}
-
-/* recommend 안에 span에 css */
-#recommendinfo > span{
-	background-color : gray;
-}
-
-/*------------------공지사항 css 끝--------------------*/
 
 
 /*------------------kakaoMap css 시작--------------------*/

@@ -74,7 +74,7 @@ public class RoomDetailController {
 	
 	// 방 수정 폼
 	@RequestMapping("updateroom.do")
-	public String roomUpdate(int room_no, Model model) {
+	public String roomUpdate(int room_no, Model model, HttpServletRequest request) {
 		
 		RoomDto room = roomdetailbiz.selectRoomOne(room_no);
 		String sub_room_regdate = room.getRoom_regdate().substring(0,10);
@@ -86,6 +86,7 @@ public class RoomDetailController {
 		room.setRoom_avdate(sub_room_avdate);
 		
 		model.addAttribute("room", room);
+		request.setAttribute("room", room);
 		
 		return "roomDetailUpdateForm";
 	}

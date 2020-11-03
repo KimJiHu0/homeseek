@@ -42,7 +42,10 @@ function connectWs(){
 	
 	socket.onmessage = function(evt){
 		var data = evt.data;
-		var notification = new Notification(" [ homeseek ]\n" + data + "\n");
+		var options = {
+				icon : "resources/img/mainicon.png"
+		}
+		var notification = new Notification(" [ homeseek ]\n" + data + "\n", options);
 		
 		// 알림을 클릭했을 때 원하는 곳으로 이동
 		notification.onclick = function(event){
