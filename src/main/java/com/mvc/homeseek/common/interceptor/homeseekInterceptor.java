@@ -43,9 +43,9 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("kakaoregistres.do") ||
 				request.getRequestURI().contains("googleregistres.do") ||
 				request.getRequestURI().contains("reportmember.do") ||
-//				request.getRequestURI().contains("insertres.do")||
-//				request.getRequestURI().contains("insertres2.do")||
-//				request.getRequestURI().contains("donateform.do") ||
+				request.getRequestURI().contains("insertres.do")||
+				request.getRequestURI().contains("insertres2.do")||
+				request.getRequestURI().contains("donateform.do") ||
 				request.getRequestURI().contains("reportmemberres.do")||
 				request.getRequestURI().contains("insertpopup.do") ||
 				request.getRequestURI().contains("messagemember.do") ||

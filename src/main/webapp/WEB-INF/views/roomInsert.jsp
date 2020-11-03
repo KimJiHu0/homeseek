@@ -27,7 +27,7 @@
 	
 	<!-- 입력폼 -->
 	<div class="form_div">
-		<form action="insertres.do" class="insert_form" method="POST">
+		<form action="insertres.do" class="insert_form" method="POST" onsubmit="return chkForm();" >
 		<input type="hidden" value="<%=room_id %>" name="room_id">
 		<input type="hidden" value="" id="insert_photo" name="room_photo">
 				<div id="insert_div1">

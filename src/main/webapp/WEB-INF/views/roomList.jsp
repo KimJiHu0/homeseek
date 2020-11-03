@@ -93,7 +93,7 @@ function showList(cnt){
 					<c:otherwise>
 						<c:forEach items="${list }" var="list">
 							<div class="imgbox" >
-								<a href="detailroom.do?room_no=${list.room_no }"><img src="resources/img/backgroundimg.jpg" class="img"></a> <!-- list로 보낼 때 room_photo의 첫번째 사진만 list에 담겨서 보내자, 일단 사진 보려고 대문 사진으로박아놓음 -->
+								<a href="detailroom.do?room_no=${list.room_no }"><img src="${list.room_photo }" class="img" alt="${list.room_no } 사진"></a> <!-- list로 보낼 때 room_photo의 첫번째 사진만 list에 담겨서 보내자, 일단 사진 보려고 대문 사진으로박아놓음 -->
 								<div class="content">
 									<div class="room_type">
 										<c:choose>
