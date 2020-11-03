@@ -1,6 +1,7 @@
 package com.mvc.homeseek.socket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,19 +24,20 @@ public class MessageHandler extends TextWebSocketHandler {
 	private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 
 	// 로그인 중인 개별 유저
-	private Map<String, WebSocketSession> userSessionMap = new ConcurrentHashMap<String, WebSocketSession>();
+	private Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
 	
 	// 클라이언트가 서버로 연결 시 들어오는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		
-		// 접속되어 있느 ㄴ유저들을 담는다
+		// 접속되어 있는 유저들을 담는다
 		sessions.add(session);
 		
 		String userId = UserId(session);
 		
-		logger.info(" [ " + userId + " ] 연결됨 ");
+		logger.info(" \n [ " + userId + " ] 연결됨 ");
 		userSessionMap.put(userId, session);
+		logger.info(" \n 유저세선스맵에 방금 로그인한애 담겼어?? : " + userSessionMap);
 	}
 	
 	// 클라이언트가 Data 전송 시 실행되는 메소드
@@ -43,8 +45,11 @@ public class MessageHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
+		// WebSocket Id = 8 << 이런식으로 뜸 내가 로그인한것만 뜨는데?
+		logger.info(" \n [ 로그인 한 회원이 세션에 값이 잘 담겼니? ] : " + session.toString());
+		
 		// session.getId는 자꾸 숫자가 ++ 되고있는데?
-		logger.info(" [ messageHandler ]에서 " + session.getId() + "로부터 message 받음 : " + message);
+		logger.info(" \n [ messageHandler ]에서 " + session.getId() + "로부터 message 받음 : " + message);
 		
 		
 	    String msg = message.getPayload();
@@ -59,8 +64,15 @@ public class MessageHandler extends TextWebSocketHandler {
 	    		String message_senid = strs[1];
 	    		String message_reid = strs[2];
 	    		
+	    		logger.info(" \n 여기 cmd는모야 : " + cmd);
+	    		logger.info(" \n 여기 메세지 받는 사람 보낸 사람 누구야 : " + message_senid);
+	    		logger.info(" \n 여기 메세지 받는 사람 받는 사람 누구야 : " + message_reid);
+	    		
 	    		// 작성자가 로그인해있다면
 	    		WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
+	    		
+	    		// 얘가 널인데 위에꺼 작동 안해.
+	    		logger.info(" \n 작성자 지금 로그인중이냥 ? : " + boardWriterSession);
 	    		
 	    		if("message".equals(cmd) && boardWriterSession != null) {
 	    			TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
@@ -76,7 +88,7 @@ public class MessageHandler extends TextWebSocketHandler {
 		
 		userSessionMap.remove(session.getId());
 		sessions.remove(session);
-		logger.info(" [ " + session.getId() + " ] 연결 끊김");
+		logger.info(" \n [ " + session.getId() + " ] 연결 끊김");
 		
 	}
 	

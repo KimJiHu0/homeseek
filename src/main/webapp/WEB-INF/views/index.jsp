@@ -5,18 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 공인중개사 없는 깔끔한 거래</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- socket.js -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<!-- <script src="${pageContext.request.contextPath}/resources/js/alert.js" type="text/javascript"></script> -->
 <script type="text/javascript">
+
+var socket;
 
 onload=function(){
 	connectWs();
 }
 
 function connectWs(){
-	var socket = new WebSocket("ws://localhost:8787/homeseek/message.do");
-	
+	socket = new WebSocket('ws://localhost:8787/homeseek/message.do');
 	
 	socket.onopen = function(){
-		alert(" 정보 : 연결됌 ");
+		aleret(" 정보 : 연결됌 ");
 	}
 	
 	socket.onmessage = function(evt){
@@ -42,6 +47,7 @@ function connectWs(){
 }
 
 </script>
+
 <script src="${pageContext.request.contextPath}/resources/js/index.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 </head>

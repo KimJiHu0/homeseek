@@ -10,6 +10,8 @@
 <title>HOMESEEK</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/header.js"
 	type="text/javascript"></script>

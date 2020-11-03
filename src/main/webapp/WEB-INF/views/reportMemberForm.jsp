@@ -25,6 +25,10 @@
 <!-- summernote.js 사용 -->
 <script src="${pageContext.request.contextPath}/resources/js/summerNote.js" type="text/javascript"></script>
 
+<!-- socket.js -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/alert.js" type="text/javascript"></script>
+
 <!-- 취소누르면 창닫기 -->
 <script type="text/javascript">
 	function reportFormClose(){
