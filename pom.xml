@@ -292,6 +292,13 @@
             <version>4.0.4.RELEASE</version>
         </dependency>
 		
+		<!-- spring transaction : org.springframework spring-context랑 버전이 같아야함!-->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 	</dependencies>
 	<build>

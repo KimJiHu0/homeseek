@@ -3,21 +3,23 @@ package com.mvc.homeseek.model.dto;
 import java.util.Date;
 
 public class NoticeDto {
+
+	private int notice_no;//PRIMARY KEY
+	private String notice_title;//제목
+	private String notice_content;//내용
+	private Date notice_regdate;//작성일
+	private Date notice_updatedate;//추가 : 수정일
 	
-	private int notice_no;
-	private String notice_title;
-	private String notice_content;
-	private Date notice_regdate;
-	private int notice_hit;
-	private char notice_delflag;
-	private String notice_id;
-	
+	private int notice_hit;//조회수
+	private char notice_delflag;//삭제여부
+	private String notice_id;//아이디
+
 	public NoticeDto() {
 		
 	}
-
+	
 	public NoticeDto(int notice_no, String notice_title, String notice_content, Date notice_regdate, int notice_hit,
-			char notice_delflag, String notice_id) {
+			char notice_delflag, String notice_id, Date notice_updatedate) {
 		super();
 		this.notice_no = notice_no;
 		this.notice_title = notice_title;
@@ -26,6 +28,23 @@ public class NoticeDto {
 		this.notice_hit = notice_hit;
 		this.notice_delflag = notice_delflag;
 		this.notice_id = notice_id;
+		this.notice_updatedate = notice_updatedate;
+	}
+
+	@Override
+	public String toString() {
+		return "NoticeDto [notice_no=" + notice_no + ", notice_title=" + notice_title + ", notice_content="
+				+ notice_content + ", notice_regdate=" + notice_regdate + ", notice_hit=" + notice_hit
+				+ ", notice_delflag=" + notice_delflag + ", notice_id=" + notice_id + ", notice_updatedate="
+				+ notice_updatedate + "]";
+	}
+
+	public Date getNotice_updatedate() {
+		return notice_updatedate;
+	}
+
+	public void setNotice_updatedate(Date notice_updatedate) {
+		this.notice_updatedate = notice_updatedate;
 	}
 
 	public int getNotice_no() {
