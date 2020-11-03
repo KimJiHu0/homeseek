@@ -13,15 +13,14 @@ function connectWs(){
 	
 	socket.onmessage = function(evt){
 		var data = evt.data;
-		alert(" 받은 메세지 : " + data + "\n");
+		var notification = new Notification(" [ homeseek ]\n" + data + "\n");
 		
-		// 모달알림
-		var toastTop = app.toast.create({
-			text : " 알림 : " + data + "\n",
-			postition : 'top',
-			closeButton : true
-		})
-		toastTop.open();
+		// 알림을 클릭했을 때
+		notification.onclick = function(event){
+			event.preventDefault();
+			window.open('http://www.naver.com', '_blank');
+		}
+		
 	}
 	
 	socket.onclose = function(){

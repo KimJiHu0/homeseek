@@ -71,6 +71,7 @@ public class MessageController {
 		map.put("res", res);
 		map.put("message_senid", messagedto.getMessage_senid());
 		map.put("message_reid", messagedto.getMessage_reid());
+		map.put("message_date", messagedto.getMessage_date());
 		
 		//model.addAttribute("res", res);
 		return map;

@@ -22,6 +22,16 @@ window.onload = function() {
 var socket;
 
 onload=function(){
+	
+	// 데스크탑 알림 권한 요청
+	Notification.requestPermission(function(result){
+		// 요청 거절
+		if(result === 'denied'){
+			return;
+		} else {
+			return;
+		}
+	})
 	connectWs();
 }
 
@@ -34,15 +44,13 @@ function connectWs(){
 	
 	socket.onmessage = function(evt){
 		var data = evt.data;
-		alert(" 받은 메세지 : " + data + "\n");
+		var notification = new Notification(" [ homeseek ]\n" + data + "\n");
 		
-		// 모달알림
-		var toastTop = app.toast.create({
-			text : " 알림 : " + data + "\n",
-			postition : 'top',
-			closeButton : true
-		})
-		toastTop.open();
+		// 알림을 클릭했을 때 원하는 곳으로 이동
+		notification.onclick = function(event){
+			event.preventDefault();
+			location.href="main.do";
+		}
 	}
 	
 	socket.onclose = function(){

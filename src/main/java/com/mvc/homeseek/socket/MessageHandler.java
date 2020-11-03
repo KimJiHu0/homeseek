@@ -20,22 +20,25 @@ public class MessageHandler extends TextWebSocketHandler {
 	
 	private Logger logger = LoggerFactory.getLogger(MessageHandler.class); 
 	
-	// 로그인 한 전체
+	// 로그인 한 전체를 담는 list를 선언해준다.
 	private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 
-	// 로그인 중인 개별 유저
+	// 로그인 중인 개별 유저를 담는 map을 선언해준다.
 	private Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
 	
 	// 클라이언트가 서버로 연결 시 들어오는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		
-		// 접속되어 있는 유저들을 담는다
+		// 접속되어 있는 모든 유저들을 위에서 선언한 sessions에 담아준다.
 		sessions.add(session);
 		
+		// userId는 맨 아래 선언되어있는 메소드인데 현재 session에 담긴(로그인한)
+		// 아이디를 가져오기 위해서 선언해주었다.
 		String userId = UserId(session);
 		
 		logger.info(" \n [ " + userId + " ] 연결됨 ");
+		// 방금 로그인에 성공한 애를 담아준다.
 		userSessionMap.put(userId, session);
 		logger.info(" \n 유저세선스맵에 방금 로그인한애 담겼어?? : " + userSessionMap);
 	}
@@ -45,17 +48,17 @@ public class MessageHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
-		// WebSocket Id = 8 << 이런식으로 뜸 내가 로그인한것만 뜨는데?
+		// WebSocket Id = 8 << 이런식으로 뜸
 		logger.info(" \n [ 로그인 한 회원이 세션에 값이 잘 담겼니? ] : " + session.toString());
 		
-		// session.getId는 자꾸 숫자가 ++ 되고있는데?
+		// session.getId는 접속한 애의 아이디(임의로 부여한듯?)
 		logger.info(" \n [ messageHandler ]에서 " + session.getId() + "로부터 message 받음 : " + message);
 		
 		
+		// getPayload는 message에 붙여준다?는 느낌인 것 같다.
 	    String msg = message.getPayload();
 	    System.out.println("\n 으아악 msg첨가해! : " + msg);
 	    
-	    //----------위에하고 바로 끊긴거네?--------------
 	    if(StringUtils.isNotEmpty(msg)) {
 	    	String[] strs = msg.split(",");
 	    	
@@ -64,19 +67,16 @@ public class MessageHandler extends TextWebSocketHandler {
 	    		String message_senid = strs[1];
 	    		String message_reid = strs[2];
 	    		
-	    		logger.info(" \n 여기 cmd는모야 : " + cmd);
-	    		logger.info(" \n 여기 메세지 받는 사람 보낸 사람 누구야 : " + message_senid);
-	    		logger.info(" \n 여기 메세지 받는 사람 받는 사람 누구야 : " + message_reid);
 	    		
 	    		// 작성자가 로그인해있다면
 	    		WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
 	    		
-	    		// 얘가 널인데 위에꺼 작동 안해.
-	    		logger.info(" \n 작성자 지금 로그인중이냥 ? : " + boardWriterSession);
 	    		
 	    		if("message".equals(cmd) && boardWriterSession != null) {
 	    			
-	    			TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
+	    			TextMessage tmpMsg = new TextMessage(
+	    					message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다."
+	    			);
 	    			boardWriterSession.sendMessage(tmpMsg);
 	    		}
 	    	}
