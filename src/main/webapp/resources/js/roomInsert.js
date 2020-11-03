@@ -104,6 +104,9 @@ function chkForm(){
 			alert("상세내용을 입력해주세요");
 			$("#room_detail").focus();
 			return false;
+		}else if($("#insert_photo").val()==""){
+			alert("사진을 한장 이상 올려주세요");
+			return false;
 		}
 		
 		return true;
