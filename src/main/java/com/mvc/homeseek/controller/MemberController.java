@@ -490,5 +490,11 @@ public class MemberController {
 		}
 		return numStr;
 	}
+	
+	// 내 정보보기 눌렀을 때 들어오는 컨트롤러
+	@RequestMapping("mypagemyinfo.do")
+	public String mypageInfo() {
+		return "mypageMyinfo";
+	}
 
 }

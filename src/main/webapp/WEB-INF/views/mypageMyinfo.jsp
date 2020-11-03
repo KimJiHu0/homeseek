@@ -13,7 +13,14 @@
 	
 	<section>
 		
-		<h1>내정보보기</h1>
+		<!-- 모든걸 감싸는 div -->
+		<div class="myinfo">
+			<div class="">
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+		
 	
 	</section>
 	
