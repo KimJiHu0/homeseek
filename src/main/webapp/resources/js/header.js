@@ -1,4 +1,17 @@
+var socket;
+
 window.onload = function() {
+	
+	// 데스크탑 알림 권한 요청
+	Notification.requestPermission(function(result){
+		// 요청 거절
+		if(result === 'denied'){
+			return;
+		} else {
+			return;
+		}
+	})
+	connectWs();
 	
 	
 	if($("li").hasClass("searchbox")){/* 로그인되거나, 검색창이 나올때 크기 update되게*/
@@ -18,21 +31,6 @@ window.onload = function() {
 		window.open("chat.do", "a", "width=400, height=300, left=100, top=50");
 		
 	});
-}
-var socket;
-
-onload=function(){
-	
-	// 데스크탑 알림 권한 요청
-	Notification.requestPermission(function(result){
-		// 요청 거절
-		if(result === 'denied'){
-			return;
-		} else {
-			return;
-		}
-	})
-	connectWs();
 }
 
 function connectWs(){
