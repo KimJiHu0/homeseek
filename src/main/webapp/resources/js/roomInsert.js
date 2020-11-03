@@ -73,8 +73,43 @@ $(function(){
 			
 			$(".form_div").attr("action", "insertres.do");
 		}
-	})
-})
+	});
+	
+	
+});
+
+ 
+function chkForm(){
+
+		if($("#insert_name").val() == ""){
+			alert("매물 이름을 입력해주세요");
+			$("#insert_name").focus();
+			return false;
+		}else if($("#insert_deposit").val()=="" && $("#insert_price").val()==""){
+			alert("가격을 입력해주세요");
+			return false;
+		}else if($("#insert_ext").val()==""){
+			alert("매물면적을 입력해주세요");
+			$("#insert_ext").focus();
+			return false;
+		}else if($("#room_addr").val()==""){
+			alert("매물주소를 입력해주세요");
+			$("#room_addr").focus();
+			return false;
+		}else if($("#insert_floor").val()==""){
+			alert("방층 수를 입력해주세요");
+			$("#insert_floor").focus();
+			return false;
+		}else if($("#summernote").val()==""){
+			alert("상세내용을 입력해주세요");
+			$("#room_detail").focus();
+			return false;
+		}
+		
+		return true;
+}
+
+
 
 
 
