@@ -177,6 +177,7 @@ li:nth-last-child{
     background-position: 95% center;
     background-repeat: no-repeat;
     background-size: 15px 15px;
+    
 }
 
 /* 검색창에 focus 됐을때 */

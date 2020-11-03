@@ -210,9 +210,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
-<!-- include summernote-ko-KR -->
-<script src="/resources/js/summernote-ko-KR.js"></script>
-
 <!-- 도로명주소API js -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script

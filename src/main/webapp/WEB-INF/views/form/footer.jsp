@@ -10,7 +10,7 @@
 <body>
 	<footer>
 		<div class="ftrbox">
-			<pre class="foot">homeseek | <a href="#"><b>회사소개</b></a> | <a href="#"><b>이용약관</b></a> | <a href="#"><b>개인정보처리방침</b></a> | Copyright © & homeseek. all rights reserved</pre>
+			<pre class="foot">homeseek | <b class="onmouse">회사소개</b> | <b class="onmouse">이용약관</b> | <b class="onmouse">개인정보처리방침</b> | Copyright © & homeseek. all rights reserved</pre>
 		</div>
 	</footer>
 </body>
