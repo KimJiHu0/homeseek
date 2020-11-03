@@ -14,5 +14,7 @@ public interface QnaBiz {
 	public int update(QnaDto dto);
 
 	public int delete(int seq);
+	//ajax검색
+	public List<QnaDto> selectList(String keyword);
 
 }

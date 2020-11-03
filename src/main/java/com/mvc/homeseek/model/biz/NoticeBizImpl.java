@@ -48,5 +48,10 @@ public class NoticeBizImpl implements NoticeBiz {
 		return noticeDao.delete(seq);
 	}
 
+	@Override
+	public List<NoticeDto> selectList(String keyword) {
+		return noticeDao.selectList(keyword);
+	}
+
 
 }

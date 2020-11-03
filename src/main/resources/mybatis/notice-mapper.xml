@@ -27,6 +27,12 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM Notice WHERE Notice_no = #{notice_no}
 	</delete>
+	
+	<!-- 제목(title) 검색 -->
+	<select id="selectListSearch" resultType="NoticeDto">
+		SELECT Notice_no, Notice_id, Notice_title, Notice_regdate, notice_hit
+		FROM Notice where Notice_title like #{Keyword} ORDER BY Notice_no DESC
+	</select>
 
 
  	

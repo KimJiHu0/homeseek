@@ -83,4 +83,18 @@ public class NoticeDaoImpl implements NoticeDao {
 		return res;
 	}
 
+	@Override
+	public List<NoticeDto> selectList(String keyword) {
+		List<NoticeDto> list = new ArrayList<NoticeDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "selectListSearch", keyword);
+
+			
+		} catch (DataAccessException e) {
+			logger.info("[ERROR] NOTICE select list Search" + keyword);
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

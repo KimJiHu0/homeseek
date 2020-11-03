@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mvc.homeseek.model.dao.QnaDao;
+import com.mvc.homeseek.model.dto.NoticeDto;
 import com.mvc.homeseek.model.dto.QnaDto;
 
 @Service
@@ -42,6 +43,11 @@ public class QnaBizImpl implements QnaBiz {
 	public int delete(int seq) {
 		// TODO Auto-generated method stub
 		return qnaDao.delete(seq);
+	}
+	
+	@Override
+	public List<QnaDto> selectList(String keyword) {
+		return qnaDao.selectList(keyword);
 	}
 
 }

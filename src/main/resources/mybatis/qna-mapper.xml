@@ -28,6 +28,12 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM QNA WHERE qna_no = #{qna_no}
 	</delete>
+	
+	<!-- 제목(title) 검색 -->
+	<select id="selectListSearch" resultType="QnaDto">
+		SELECT QNA_no, QNA_id, QNA_title, QNA_regdate, QNA_secretflag
+		FROM QNA where Qna_title like #{Keyword} ORDER BY QNA_no DESC
+	</select>
 
 
 

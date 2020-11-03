@@ -68,6 +68,8 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("qnaupdateform.do") ||
 				request.getRequestURI().contains("qnaupdate.do") ||
 				request.getRequestURI().contains("qnadelete.do") ||
+				request.getRequestURI().contains("noticeSearch.do") ||
+				request.getRequestURI().contains("qnaSearch.do") ||
 				request.getRequestURI().contains("remove.do"))
 				 {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 			
