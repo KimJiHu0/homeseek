@@ -74,10 +74,10 @@ public class MessageHandler extends TextWebSocketHandler {
 	    		// 얘가 널인데 위에꺼 작동 안해.
 	    		logger.info(" \n 작성자 지금 로그인중이냥 ? : " + boardWriterSession);
 	    		
-	    		if("message".equals(cmd) && boardWriterSession != null) {
-	    			TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
-	    			boardWriterSession.sendMessage(tmpMsg);
-	    		}
+	    		//if("message".equals(cmd) && boardWriterSession != null) {
+	    		//	TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
+	    		//	boardWriterSession.sendMessage(tmpMsg);
+	    		//}
 	    	}
 	    }
 	}
