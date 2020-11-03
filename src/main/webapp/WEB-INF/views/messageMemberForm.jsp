@@ -24,10 +24,6 @@
 
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/messageMemberForm.css" type="text/css" />
-
-<%
-	MemberDto dto = (MemberDto) session.getAttribute("login");
-%>
 </head>
 <body>
 	<div id="firstbox">
@@ -128,23 +124,10 @@ function sendMessage(){
 			url : "messagememberres.do",
 			success : function(info){
 				if(info.res > 0){
-					//if(socket){
-						//var socketMsg = "message," + info.message_senid + "," + info.message_reid;
-						//socket.send(socketMsg);
-						
-						var options = {
-								body : info.message_senid + "님이 " + info.message_reid + "님에게 쪽지를 보내셨습니다."
-						}
-						
-						// 데스크탑 알림요청
-						var notification = new Notification("homeseek", options);
-						
-						
-						// 알림 5초후 제거
-						setTimeout(function(){
-							notification.close();
-						}, 5000);
-					//}
+					if(socket){
+						var socketMsg = "message," + info.message_senid + "," + info.message_reid;
+						socket.send(socketMsg);
+					}
 					alert("쪽지보내기가 성공적으로 완료되었습니다.");
 					self.close();
 				} else {
@@ -157,5 +140,7 @@ function sendMessage(){
 		})
 	}
 }
+
+
 </script>
 </html>

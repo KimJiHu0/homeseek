@@ -22,17 +22,6 @@ window.onload = function() {
 var socket;
 
 onload=function(){
-	
-	Notification.requestPermission(function(result){
-		// 요청을 거절하면,
-		if(result === 'denied'){
-			return;
-		} else {
-			// 요청을 허용하면
-			return;
-		}
-	})
-	
 	connectWs();
 }
 
@@ -43,8 +32,17 @@ function connectWs(){
 		console.log(" 정보 : 연결됌 ");
 	}
 	
-	socket.onmessage = function(){
-		console.log(" 메세지 보내기 ");
+	socket.onmessage = function(evt){
+		var data = evt.data;
+		alert(" 받은 메세지 : " + data + "\n");
+		
+		// 모달알림
+		var toastTop = app.toast.create({
+			text : " 알림 : " + data + "\n",
+			postition : 'top',
+			closeButton : true
+		})
+		toastTop.open();
 	}
 	
 	socket.onclose = function(){
