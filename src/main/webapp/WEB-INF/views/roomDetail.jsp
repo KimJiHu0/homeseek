@@ -437,7 +437,6 @@
 	
 	// "파일이름, 파일이름"
 	var room_photo_src = '${room.room_photo}';
-	alert("insert하고 가져온 src들 : " + room_photo_src);
 	
 	// room_photo_src_split[0] = 파일이름
 	// room_photo_src_split[1] = 파일이름
@@ -446,7 +445,6 @@
 	// insert할 때에 마지막에 , 가 들어가서 detail에서 마지막번지가 null인 상태로 사진들이 보여지게 되서 그 배열을 제거하고 출력해주기 위해.
 	if(room_photo_src_split[room_photo_src_split.length-1] == '' || room_photo_src_split[room_photo_src_split.length-1] == null){
 		room_photo_src_split.pop();
-		alert(room_photo_src_split);
 	}
 	
 	// 2개의 파일을 올렸으면 2
