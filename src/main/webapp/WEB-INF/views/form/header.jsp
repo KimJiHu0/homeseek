@@ -45,6 +45,9 @@
  		 <ul class="nav2">
 <% } %> 		 	  
          <c:choose>
+            <c:when test="${pageContext.request.requestURI eq '/'}">
+
+   			</c:when>
          	<c:when test="${pageContext.request.requestURI eq '/homeseek/'}">
 				
          	</c:when> 
