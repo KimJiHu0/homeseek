@@ -15,9 +15,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.mvc.homeseek.model.dto.MemberDto;
 
-public class messageHandler extends TextWebSocketHandler {
+public class MessageHandler extends TextWebSocketHandler {
 	
-	private Logger logger = LoggerFactory.getLogger(messageHandler.class); 
+	private Logger logger = LoggerFactory.getLogger(MessageHandler.class); 
 	
 	// 로그인 한 전체
 	private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
@@ -43,24 +43,27 @@ public class messageHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
+		// session.getId는 자꾸 숫자가 ++ 되고있는데?
 		logger.info(" [ messageHandler ]에서 " + session.getId() + "로부터 message 받음 : " + message);
 		
 		
 	    String msg = message.getPayload();
+	    System.out.println("\n 으아악 msg첨가해! : " + msg);
+	    
+	    //----------위에하고 바로 끊긴거네?--------------
 	    if(StringUtils.isNotEmpty(msg)) {
 	    	String[] strs = msg.split(",");
 	    	
-	    	if(strs != null && strs.length == 4) {
+	    	if(strs != null && strs.length == 3) {
 	    		String cmd = strs[0];
-	    		String senid = strs[1];
-	    		String reid = strs[2];
-	    		String messagedate = strs[3];
+	    		String message_senid = strs[1];
+	    		String message_reid = strs[2];
 	    		
 	    		// 작성자가 로그인해있다면
-	    		WebSocketSession boardWriterSession = userSessionMap.get(reid);
+	    		WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
 	    		
 	    		if("message".equals(cmd) && boardWriterSession != null) {
-	    			TextMessage tmpMsg = new TextMessage(senid + "님이 " + reid + "님에게 쪽지를 보냈습니다. <br/> 일시 : " + messagedate);
+	    			TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
 	    			boardWriterSession.sendMessage(tmpMsg);
 	    		}
 	    	}
@@ -90,10 +93,10 @@ public class messageHandler extends TextWebSocketHandler {
 		Map<String, Object> httpSession = session.getAttributes();
 		MemberDto loginUser = (MemberDto)httpSession.get("login");
 		
-		if(loginUser == null) {
-			return session.getId();
+		if(loginUser != null) {
+			return loginUser.getMember_id();
 		} else {
-			return loginUser.getMember_email();
+			return session.getId();
 		}
 	}
 }

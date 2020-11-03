@@ -5,6 +5,43 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 공인중개사 없는 깔끔한 거래</title>
+<script type="text/javascript">
+
+onload=function(){
+	connectWs();
+}
+
+function connectWs(){
+	var socket = new WebSocket("ws://localhost:8787/homeseek/message.do");
+	
+	
+	socket.onopen = function(){
+		alert(" 정보 : 연결됌 ");
+	}
+	
+	socket.onmessage = function(evt){
+		var data = evt.data;
+		alert(" 받은 메세지 : " + data + "\n");
+		
+		// 모달알림
+		var toastTop = app.toast.create({
+			text : " 알림 : " + data + "\n",
+			postition : 'top',
+			closeButton : true
+		})
+		toastTop.open();
+	}
+	
+	socket.onclose = function(){
+		alert(" 연결 끊김 ");
+	}
+	
+	socket.onerror = function(err){
+		alert(" 에러 : " + err);
+	}
+}
+
+</script>
 <script src="${pageContext.request.contextPath}/resources/js/index.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 </head>

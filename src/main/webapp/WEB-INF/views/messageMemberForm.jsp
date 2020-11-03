@@ -90,7 +90,48 @@
 			</table>
 	</div>
 </body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script type="text/javascript">
+
+var socket;
+
+onload=function(){
+	connectWs();
+}
+
+function connectWs(){
+	socket = new WebSocket('ws://localhost:8787/homeseek/message.do');
+	
+	socket.onopen = function(){
+		alert(" 정보 : 연결됌 ");
+	}
+	
+	socket.onmessage = function(evt){
+		var data = evt.data;
+		alert(" 받은 메세지 : " + data + "\n");
+		
+		// 모달알림
+		var toastTop = app.toast.create({
+			text : " 알림 : " + data + "\n",
+			postition : 'top',
+			closeButton : true
+		})
+		toastTop.open();
+	}
+	
+	socket.onclose = function(){
+		alert(" 연결 끊김 ");
+	}
+	
+	socket.onerror = function(err){
+		alert(" 에러 : " + err);
+	}
+}
+
+</script>
+<script type="text/javascript">
+
 // 취소버튼 누르면 창 꺼지기
 function messageFormClose(){
 	self.close();
@@ -119,6 +160,11 @@ function sendMessage(){
 			url : "messagememberres.do",
 			success : function(info){
 				if(info.res > 0){
+					if(socket){
+						var socketMsg = "message," + info.message_senid + "," + info.message_reid;
+						alert("socketMsg : " + socketMsg);
+						socket.send(socketMsg);
+					}
 					alert("쪽지보내기가 성공적으로 완료되었습니다.");
 					self.close();
 				} else {
