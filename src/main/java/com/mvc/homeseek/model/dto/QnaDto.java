@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class QnaDto {
 	
-	private int qna_no;
-	private String qna_title;
-	private String qna_content;
-	private Date qna_regdate;
-	private int qna_hit;
-	private char qna_secretflag;
-	private int qna_pwd;
-	private char qna_delflag;
-	private String qna_id;
+	private int qna_no;//PRIMARY KEY
+	private String qna_title;//제목
+	private String qna_content;//내용
+	private Date qna_regdate;//등록일
+	private int qna_hit;//조회수
+	private char qna_secretflag; //비밀글 여부-- Y : 비밀글 / N : 공개글
+	private int qna_pwd;//비밀글 비번
+	private char qna_delflag;//QNA 삭제여부-- Y : 삭제O / N : 삭제X
+	private String qna_id; //FOREIGN KEY by MEMBER_ID
 	
 	public QnaDto() {
 		

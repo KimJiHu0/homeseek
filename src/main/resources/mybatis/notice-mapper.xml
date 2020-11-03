@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="notice">
+
+	<select id="selectList" resultType="NoticeDto">
+		SELECT Notice_no, Notice_id, Notice_title, Notice_regdate, notice_hit
+		FROM Notice ORDER BY Notice_no DESC
+	</select>
+	
+	
+	<select id="selectOne" resultType="NoticeDto">
+		select Notice_no, Notice_id, Notice_regdate, Notice_title, Notice_content 
+		from Notice 
+		where Notice_no = #{notice_no}
+	</select>
+	
+	<insert id="insert" parameterType="NoticeDto">
+		INSERT INTO Notice VALUES(NOTICE_NO_SEQ.NEXTVAL, #{notice_title}, #{notice_content}, SYSDATE, SYSDATE, '1', 'N',  #{notice_id})
+	</insert>
+	
+	<update id="update" parameterType="NoticeDto" >
+		UPDATE Notice 
+		SET Notice_title = #{notice_title}, Notice_content = #{notice_content} 
+		WHERE Notice_no = #{notice_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM Notice WHERE Notice_no = #{notice_no}
+	</delete>
+
+
+ 	
+
+</mapper>

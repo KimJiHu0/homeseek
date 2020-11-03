@@ -68,8 +68,8 @@
             <li><div class="dropdown">
                  <button class="dropbtn">게시판</button>
                     <div class="dropdown-content">
-                      <a class="headeratag" href="#">공지사항</a>
-                      <a class="headeratag" href="#">Q & A</a>
+                      <a class="headeratag" href="noticelist.do">공지사항</a>
+                      <a class="headeratag" href="qnalist.do">Q & A</a>
                     </div>
             </div></li>
                         

@@ -27,6 +27,8 @@
 	<mapper resource="/mybatis/roomInsert-mapper.xml"/>
 	<mapper resource="/mybatis/message-mapper.xml"/>
 	<mapper resource="/mybatis/wish-mapper.xml"/>
+	<mapper resource="/mybatis/notice-mapper.xml"/>
+	<mapper resource="/mybatis/qna-mapper.xml"/>
 </mappers>
 
 
