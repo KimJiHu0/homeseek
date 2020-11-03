@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.mvc.homeseek.model.dto.NoticeDto;
 import com.mvc.homeseek.model.dto.QnaDto;
 
 @Repository
@@ -81,6 +82,20 @@ public class QnaDaoImpl implements QnaDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+	
+	@Override
+	public List<QnaDto> selectList(String keyword) {
+		List<QnaDto> list = new ArrayList<QnaDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "selectListSearch", keyword);
+
+			
+		} catch (DataAccessException e) {
+			logger.info("[ERROR] QNA select list Search" + keyword);
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

@@ -14,5 +14,8 @@ public interface NoticeBiz {
 	public int update(NoticeDto dto);
 
 	public int delete(int seq);
+	//ajax검색
+	public List<NoticeDto> selectList(String keyword);
+
 
 }

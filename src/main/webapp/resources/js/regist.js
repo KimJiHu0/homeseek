@@ -106,7 +106,7 @@ $(function(){
      })
 	
      //비밀번호 관련
-     $('#member_pw').keyup(function(){
+     $('#member_pw').blur(function(){
     	 if (pwJ.test($('#member_pw').val())) {
 				$("#memberPw").text('사용 가능');
 				$('#memberPw').css('color', 'blue');
@@ -118,7 +118,7 @@ $(function(){
 		}
      })
      //비밀번호 확인 관련
-     $('#pw_check').keyup(function(){
+     $('#pw_check').blur(function(){
     	
 	   if($('#member_pw').val() != $('#pw_check').val()){
 	    	if($('#pw_check').val()!=''){

@@ -2,6 +2,7 @@ package com.mvc.homeseek.model.dao;
 
 import java.util.List;
 
+import com.mvc.homeseek.model.dto.NoticeDto;
 import com.mvc.homeseek.model.dto.QnaDto;
 
 public interface QnaDao {
@@ -17,5 +18,7 @@ public interface QnaDao {
 	public int update(QnaDto dto);
 
 	public int delete(int seq);
+	
+	public List<QnaDto> selectList(String keyword);
 
 }

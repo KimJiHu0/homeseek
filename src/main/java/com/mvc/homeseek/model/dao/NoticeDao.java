@@ -18,6 +18,8 @@ public interface NoticeDao {
 	public int update(NoticeDto dto);
 
 	public int delete(int seq);
+
+	public List<NoticeDto> selectList(String keyword);
 	
 
 }
