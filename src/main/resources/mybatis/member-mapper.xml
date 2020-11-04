@@ -100,7 +100,13 @@
 		WHERE MEMBER_ID = #{id}
 	</select>
 	
+	<!-- 신고받은 회원의 enabled 변경 -->
 	<update id="updateMemberEnabled" parameterType="String">
 		UPDATE MEMBER SET MEMBER_ENABLED = 'R' WHERE MEMBER_ID = #{report_reid}
 	</update>	
+	
+	<!-- 탈퇴회원의 enabled 변경 -->
+	<update id="dropoutMemberEnabled" parameterType="String">
+		UPDATE MEMBER SET MEMBER_ENABLED = 'D' WHERE MEMBER_ID = #{member_id}
+	</update>
 </mapper>

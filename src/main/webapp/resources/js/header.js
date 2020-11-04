@@ -62,3 +62,8 @@ function connectWs(){
 		console.log(" 에러 : " + err);
 	}
 }
+
+function myPage(){
+	
+	open("mypagemyinfo.do", "", "width=600, height=700");
+}

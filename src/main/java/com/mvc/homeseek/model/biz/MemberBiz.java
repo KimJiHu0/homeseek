@@ -37,5 +37,8 @@ public interface MemberBiz {
 
 	// 찾은 비밀번호 뽑아주는 메소드
 	public int searchPassword(Map<String, Object> param);
+	
+	// 탈퇴회원 enabled바꾸기
+	public int dropoutMemberEnabled(String member_id);
 
 }

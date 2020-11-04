@@ -493,8 +493,30 @@ public class MemberController {
 	
 	// 내 정보보기 눌렀을 때 들어오는 컨트롤러
 	@RequestMapping("mypagemyinfo.do")
-	public String mypageInfo() {
+	public String mypageInfo(Model model, HttpSession session) {
+		
+		MemberDto dto = (MemberDto)session.getAttribute("login");
+		
+		String member_id = dto.getMember_id();
+		
+		MemberDto memberdto = memberBiz.selectMemberById(member_id);
+		
+		model.addAttribute("member", memberdto);
+		
 		return "mypageMyinfo";
+	}
+	
+	@RequestMapping("dropmember.do")
+	@ResponseBody
+	public Map<Object, Object> dropMember(@RequestBody String member_id){
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		int res = memberBiz.dropoutMemberEnabled(member_id);
+		
+		map.put("res", res);
+		
+		return map;
 	}
 
 }

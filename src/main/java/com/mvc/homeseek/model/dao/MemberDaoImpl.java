@@ -186,4 +186,18 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return res;
 	}
+
+	@Override
+	public int dropoutMemberEnabled(String member_id) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "dropoutMemberEnabled", member_id);
+		} catch (Exception e) {
+			logger.info("[ Error ] dropoutMemberEnabled");
+			e.printStackTrace();
+		}
+		return res;
+	}
 }

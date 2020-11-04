@@ -78,5 +78,10 @@ public class MemberBizImpl implements MemberBiz {
 		return memberDao.updateMemberEnabled(report_reid);
 	}
 
+	@Override
+	public int dropoutMemberEnabled(String member_id) {
+		return memberDao.dropoutMemberEnabled(member_id);
+	}
+
 }
 
