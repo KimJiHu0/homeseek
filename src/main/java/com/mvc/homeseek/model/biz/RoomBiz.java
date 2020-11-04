@@ -1,7 +1,5 @@
 package com.mvc.homeseek.model.biz;
 
-import java.util.List;
-
 import com.mvc.homeseek.model.dto.RoomDto;
 
 //매물 페이지 Biz
