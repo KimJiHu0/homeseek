@@ -17,8 +17,8 @@
 <div class="a">
 	<div class="bodycontainer">
 		<div class="myinfo-menu">
-			<div class="myinfo-menu-title">내가 찜한 매물</div>
-			<div class="myinfo-menu-title">내가 올린 매물</div>
+			<div class="myinfo-menu-title" id="wishlist">내가 찜한 매물</div>
+			<div class="myinfo-menu-title" id="uploadroomlist">내가 올린 매물</div>
 		</div>
 		<div class="myinfo-content">
 			<div class="myinfo-detail">
@@ -45,26 +45,45 @@
 <script type="text/javascript">
 
 	function dropoutMember(){
+		var dropcheck = confirm("정말 탈퇴하시겠습니까?");
 		var member_id = '${member.member_id}';
 		
-		var data = {
-				"member_id" : member_id
+		if(dropcheck == true){
+			$.ajax({
+				type : 'post',
+				dataType : 'json',
+				data : {"member_id" : member_id},
+				url : 'dropmember.do',
+				success : function(data){
+					if(data.res > 0){
+						alert("탈퇴성공");
+						self.close();
+					} else {
+						alert("탈퇴실패");
+					}
+				},
+				error : function(){
+					alert("실패");
+				}
+			})
+		} else {
+			alert("탈퇴가 취소되었습니다.");
 		}
-		
-		$.ajax({
-			type : 'post',
-			dataType : 'json',
-			data : JSON.stringify(data),
-			contentType : "application/json",
-			url : 'dropmember.do',
-			success : function(data){
-				alert("성공");
-			},
-			error : function(){
-				alert("실패");
-			}
-		})
 	}
+	
+	$(function(){
+		$("#wishlist").click(function(){
+			self.close();
+			window.opener.location.href="mypagewishlist.do";
+		})
+		
+		$("#uploadroomlist").click(function(){
+			self.close();
+			window.opener.location.href="mypagewishlist.do";
+		})
+		
+	});
+	
 
 </script>
 </html>

@@ -32,7 +32,6 @@ public class WishController {
 		
 		int select = wishbiz.selectWishCheck(dto);
 		
-		System.out.println("여기에여ㅛ 여기여깅겨ㅣㅏ겨악아 : " + select);
 		
 		// 이미 wishlist에 있다면
 		if(select > 0) {
@@ -45,6 +44,11 @@ public class WishController {
 			return result;
 		}
 		
+	}
+	
+	@RequestMapping("mypagewishlist.do")
+	public String mypageWishList() {
+		return "mypageMywish";
 	}
 
 }

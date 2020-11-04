@@ -495,24 +495,35 @@ public class MemberController {
 	@RequestMapping("mypagemyinfo.do")
 	public String mypageInfo(Model model, HttpSession session) {
 		
+		logger.info(" [ MemberController ] Memberinfo ");
+		
 		MemberDto dto = (MemberDto)session.getAttribute("login");
 		
-		String member_id = dto.getMember_id();
+		String id = dto.getMember_id();
 		
-		MemberDto memberdto = memberBiz.selectMemberById(member_id);
+		MemberDto memberdto = memberBiz.selectMemberById(id);
 		
 		model.addAttribute("member", memberdto);
 		
 		return "mypageMyinfo";
 	}
 	
-	@RequestMapping("dropmember.do")
+	@RequestMapping(value="dropmember.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<Object, Object> dropMember(@RequestBody String member_id){
+	public Map<Object, Object> dropMember(String member_id, HttpSession session){
+		
+		logger.info("[ MemberController ] dropMember ");
+		
+		logger.info("멤버 컨트롤러에서 member_id : " + member_id);
 		
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		
+		// 탈퇴하고 session을 없애줘야함.
 		int res = memberBiz.dropoutMemberEnabled(member_id);
+		// session 제거
+		session.invalidate();
+		
+		logger.info("멤버 컨트롤러에서 update하고 난 후 : " + res);
 		
 		map.put("res", res);
 		

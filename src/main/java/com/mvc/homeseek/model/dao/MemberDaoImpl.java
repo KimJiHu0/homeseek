@@ -189,6 +189,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int dropoutMemberEnabled(String member_id) {
+		
+		logger.info("[ MemberDao ] dropoutMemberEnabled");
+		logger.info("아이디가 여긴 들어와?? : " + member_id);
 
 		int res = 0;
 		
@@ -198,6 +201,7 @@ public class MemberDaoImpl implements MemberDao {
 			logger.info("[ Error ] dropoutMemberEnabled");
 			e.printStackTrace();
 		}
+		logger.info("\n 다오에서 res의 결과값은? : " + res);
 		return res;
 	}
 }

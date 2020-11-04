@@ -107,6 +107,8 @@
 	
 	<!-- 탈퇴회원의 enabled 변경 -->
 	<update id="dropoutMemberEnabled" parameterType="String">
-		UPDATE MEMBER SET MEMBER_ENABLED = 'D' WHERE MEMBER_ID = #{member_id}
+		UPDATE MEMBER SET MEMBER_ENABLED = 'D'
+		WHERE MEMBER_ID = #{member_id}
+		AND MEMBER_ENABLED = 'N'
 	</update>
 </mapper>
