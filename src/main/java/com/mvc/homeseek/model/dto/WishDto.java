@@ -10,6 +10,17 @@ public class WishDto {
 	public WishDto() {
 		
 	}
+	
+	
+
+	public WishDto(String wish_id, String wish_sell_id, int room_no) {
+		super();
+		this.wish_id = wish_id;
+		this.wish_sell_id = wish_sell_id;
+		this.room_no = room_no;
+	}
+
+
 
 	public WishDto(int wish_no, String wish_id, String wish_sell_id, int room_no) {
 		super();
@@ -18,7 +29,7 @@ public class WishDto {
 		this.wish_sell_id = wish_sell_id;
 		this.room_no = room_no;
 	}
-
+	
 	public int getWish_no() {
 		return wish_no;
 	}

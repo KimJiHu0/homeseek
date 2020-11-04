@@ -44,7 +44,19 @@
 			<div id="userinfocontainer">
 				<div id="userinfodetail">
 					<div id="userinfotitle">
-						<span id="leftb">사용자 / 매물 정보</span><span id="rightb" class="wish">찜하기♡</span>
+						<span id="leftb">사용자 / 매물 정보</span>
+						<%
+							int wishcheck = (int) request.getAttribute("wishcheck");
+							if(wishcheck > 0){
+						 %>
+							<span id="rightb" class="wish">찜하기♥</span>
+						<%
+							} else {
+						%>
+							<span id="rightb" class="wish">찜하기♡</span>
+						<%
+							}
+						%>
 					</div>
 					<%
 						RoomDto room = (RoomDto) request.getAttribute("room");

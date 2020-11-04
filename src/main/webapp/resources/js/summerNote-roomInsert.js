@@ -4,7 +4,6 @@ $(function() {
 		height: 300,
 		minHeight: 300,             
 		maxHeight: 300,             
-		focus: true,
 		lang: 'ko-KR',
 		callbacks: {
 			onImageUpload: function(files, editor, welEditable) {

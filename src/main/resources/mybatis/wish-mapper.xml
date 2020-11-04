@@ -22,7 +22,9 @@
 	
 	<select id="selectWishList" parameterType="String" resultType="WishDto">
 		SELECT WISH_NO, WISH_ID, WISH_SELL_ID, ROOM_NO
+		FROM WISH
 		WHERE WISH_ID = #{wish_id}
+		ORDER BY WISH_NO
 	</select>
 	
 
