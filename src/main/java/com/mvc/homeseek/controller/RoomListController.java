@@ -3,14 +3,14 @@ package com.mvc.homeseek.controller;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -30,18 +30,25 @@ import com.mvc.homeseek.model.dto.RoomDto;
 public class RoomListController {
 	
 	private Logger logger = LoggerFactory.getLogger(RoomListController.class);
-	
+	 
 	@Autowired
 	private RoomListBiz roomlistbiz;
-	
+	 
 	// 전체 조회
 	@RequestMapping("listroom.do")
 	public String roomList(@RequestParam(value="page",defaultValue="1")int page, Model model, String word) {
 		logger.info("[ Room List ]");
 		
 		Map<String,Object> pagingMap = roomlistbiz.selectRoomList(page);
+		List<RoomDto> list = (List<RoomDto>) pagingMap.get("list");
 		
-		model.addAttribute("list",pagingMap.get("list"));
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).setRoom_photo((list.get(i).getRoom_photo()).split(",")[0]); /*room_photo의 0번째 가져오기*/
+			logger.info(i + "번째 room_photo" + list.get(i).getRoom_photo());
+		}
+
+		
+		model.addAttribute("list",list);
 		model.addAttribute("pageBean",pagingMap.get("pageBean"));
 		model.addAttribute("word",word);
 		
@@ -59,19 +66,22 @@ public class RoomListController {
 		String search_addr;
 		
 		if(word==null) {
-			search_addr = "http://localhost:9200/homeseek/_search?&pretty&size=100";
+			search_addr ="https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com/homeseek/_search?&pretty&size=100";
 		}else {
 			try {
 				search = URLEncoder.encode(word,"UTF-8");
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			search_addr = "http://localhost:9200/homeseek/_search?q="+search+"&pretty&size=100";
+			search_addr = "https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com:443/homeseek/_search?q="+search+"&pretty&size=100";
 		}
 		
 		
+	
 		URL search_url = new URL(search_addr); 
-		URLConnection search_conn = search_url.openConnection();
+		HttpsURLConnection search_conn = (HttpsURLConnection) search_url.openConnection();
+		search_conn.setDoOutput(true);
+		 
 		
 		BufferedReader search_br = new BufferedReader(new InputStreamReader(search_conn.getInputStream()));
 		StringBuilder search_sb = new StringBuilder();
@@ -79,27 +89,26 @@ public class RoomListController {
 		
 		while((search_res = search_br.readLine()) != null) {
 			search_sb.append(search_res);
-		}
-		
+		} 
+		 
 		JSONObject search_obj = new JSONObject(search_sb.toString());
 		search_br.close();
 		
 		List<RoomDto> searchList = roomlistbiz.searchToRoomList(search_obj);
 		/*--------------엘라스틱에서 검색 결과 가져오기 끝-------------------*/		
-		/*
-		 * List<RoomDto> AllList = roomlistbiz.selectRoomList2(); // 오라클DB에서 가져온 값
-		 * List<RoomDto> list = new ArrayList<>();
-		 */
+		
 		
 		List<RoomDto> list = new ArrayList<>();
 		
 		if(searchList.size() < 8) { 
 			for(int i=0; i<searchList.size(); i++) {
+				searchList.get(i).setRoom_photo(searchList.get(i).getRoom_photo().split(",")[0]); 
 				list.add(searchList.get(i));
 			}
 		}else {
 			// 8개까지만 넘기기
 			for(int i=0; i<8; i++) {
+				searchList.get(i).setRoom_photo(searchList.get(i).getRoom_photo().split(",")[0]); 
 				list.add(searchList.get(i));
 			}
 		}
@@ -118,20 +127,25 @@ public class RoomListController {
 		String search = "";
 		String search_addr;
 		
-		if(word==null) {
-			search_addr = "http://localhost:9200/homeseek/_search?pretty&size=100";
+		
+		
+		if(word=="") {
+			search_addr ="https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com/homeseek/_search?&pretty&size=100";
+
 		}else {
 			try {
 				search = URLEncoder.encode(word,"UTF-8");
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			search_addr = "http://localhost:9200/homeseek/_search?q="+search+"&pretty&size=100";
+			search_addr = "https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com:443/homeseek/_search?q="+search+"&pretty&size=100";
+
 		}
 		
 		
 		URL search_url = new URL(search_addr); 
-		URLConnection search_conn = search_url.openConnection();
+		HttpsURLConnection search_conn = (HttpsURLConnection) search_url.openConnection();
+		search_conn.setDoOutput(true);
 		
 		BufferedReader search_br = new BufferedReader(new InputStreamReader(search_conn.getInputStream()));
 		StringBuilder search_sb = new StringBuilder();
@@ -154,8 +168,6 @@ public class RoomListController {
 		Map<String,Object> resMap = new HashMap<>();
 		
 		int index = num*8; // for문 시작할 숫자
-		System.out.println("index : "+index);
-		
 		
 		logger.info("searchList size : " + searchList.size());
 		
@@ -185,6 +197,7 @@ public class RoomListController {
 		logger.info("roomList size() : " + roomList.size());
 		
 		for(int i=0; i<roomList.size(); i++) {
+			roomList.get(i).setRoom_photo(roomList.get(i).getRoom_photo().split(",")[0]); 
 			roomList.get(i).setRoom_type(roomlistbiz.changToKorean(roomList.get(i).getRoom_type()));
 		}
 		
