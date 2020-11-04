@@ -76,4 +76,10 @@ public class MessageController {
 		//model.addAttribute("res", res);
 		return map;
 	}
+	
+	// 내가 받은 전체 메세지 조회
+	@RequestMapping("mypagemsglist.do")
+	public String mypagemsglist() {
+		return "mypageMymsg";
+	}
 }

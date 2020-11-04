@@ -1,12 +1,14 @@
 package com.mvc.homeseek.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +49,15 @@ public class WishController {
 	}
 	
 	@RequestMapping("mypagewishlist.do")
-	public String mypageWishList() {
+	public String mypageWishList(String wish_id, Model model) {
+		logger.info("[ WishController ] mypageWishList");
+		
+		List<WishDto> wishlist = null;
+		
+		wishlist = wishbiz.selectWishList(wish_id);
+		
+		model.addAttribute("wishlist", wishlist);
+		
 		return "mypageMywish";
 	}
 

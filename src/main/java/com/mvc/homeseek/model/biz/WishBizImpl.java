@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,11 @@ public class WishBizImpl implements WishBiz {
 	@Override
 	public int selectWishCheck(WishDto dto) {
 		return wishdao.selectWishCheck(dto);
+	}
+
+	@Override
+	public List<WishDto> selectWishList(String wish_id) {
+		return wishdao.selectWishList(wish_id);
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.mvc.homeseek.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,12 +60,6 @@ public class WishDaoImpl implements WishDao {
 
 		logger.info("[ WishDaoImpl ] selectWish");
 		
-		System.out.println("다오에서 번호" + dto.getWish_no());
-		System.out.println("다오에서 아이디" + dto.getWish_id());
-		System.out.println("다오에서 판매자" + dto.getWish_sell_id());
-		System.out.println("다오에서 방번호" + dto.getRoom_no());
-		
-		
 		int res = 0;
 		
 		try {
@@ -73,9 +70,23 @@ public class WishDaoImpl implements WishDao {
 			e.printStackTrace();
 		}
 		
-		System.out.println("asdasdasf여기역 : " + res);
-		
 		return res;
+	}
+
+	@Override
+	public List<WishDto> selectWishList(String wish_id) {
+		
+		logger.info("[ WishDaoImpl ] selectWishList");
+		
+		List<WishDto> wishlist = new ArrayList<WishDto>();
+		
+		try {
+			wishlist = sqlSession.selectList(NAMESPACE + "selectWishList", wish_id);
+		} catch (Exception e) {
+			logger.info("[ Error ] selectWishList");
+			e.printStackTrace();
+		}
+		return wishlist;
 	}
 
 }

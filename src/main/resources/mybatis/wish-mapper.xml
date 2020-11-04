@@ -20,5 +20,10 @@
 		AND ROOM_NO = #{room_no}
 	</select>
 	
+	<select id="selectWishList" parameterType="String" resultType="WishDto">
+		SELECT WISH_NO, WISH_ID, WISH_SELL_ID, ROOM_NO
+		WHERE WISH_ID = #{wish_id}
+	</select>
+	
 
 </mapper>
