@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomList.css" type="text/css" />
 
 <!-- alert띄우기 위한 스크립트 -->
-<script type="text/javascript">
+<script type="text/javascript"> 
 	var msg = '${msg}';
 	if(msg != ''){
 		alert(msg);
 	}
-
-
-
+    
+ 
+   
 var cnt = 1;
 var word = $('#navsearchtxt').val();
 console.log("word : " +word);
@@ -54,7 +54,7 @@ function showList(cnt){
 				
 					$(".imgs").prepend(
 						"<div class='imgbox'>"								
-						+	"<a href='detailroom.do?room_no='"+room.room_no+"'><img src='"+room.room_photo+"' class='img'/></a>"
+						+	"<a href='detailroom.do?room_no='"+room.room_no+"'><img src='"+room.room_photo+"' class='img' alt='"+room.room_no+" 사진'/></a>"
 						+	"<div class='content'>"
 						+		"<div class='room_type'>"
 						+			room.room_type
@@ -126,7 +126,7 @@ function showList(cnt){
 			
 		</div>
 
-<%-- 		
+ 		
  <!-- **************** 페이징 ************  -->
 		
 		<!-- 첫 페이지로 이동 -->
@@ -177,7 +177,7 @@ function showList(cnt){
 		<a href="listroom.do?page=${requestScope.pageBean.totalPage}">마지막 페이지</a>
 			
 		</p>
-		 --%>
+		 
 	</section>
 	
 	<%@ include file="./form/footer.jsp" %>

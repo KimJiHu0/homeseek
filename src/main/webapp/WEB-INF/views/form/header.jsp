@@ -56,8 +56,8 @@
          	</c:when >
          	<c:otherwise>
 	         	<li class="searchbox">
-	         		<div class="search">
-	         			<form action="search.do" class="navsearchform">
+	         		<div class="search"><!--  엘라스틱 시현시 search.do 로 변경 -->
+	         			<form action="listroom.do" class="navsearchform">
 	         				<input type="text" id="navsearchtxt" name="word" value="${word }" placeholder="지역,지하철명,대학교">
 	         			</form>
 	         		</div>
@@ -67,7 +67,7 @@
 
 
          	<!-- 엘라스틱서치로 변경시 search.do 로 변경 -->
-            <li><a class="headeratag" href="search.do">전체 방 조회</a></li>
+            <li><a class="headeratag" href="listroom.do">전체 방 조회</a></li>
             <li><a class="headeratag" href="insertroom.do">방 올리기</a></li> 
             
             <li><div class="dropdown">
