@@ -71,7 +71,7 @@ $(function(){
 			$("#deposit_label").show();
 			$("#insert_deposit").attr( 'value', '' );
 			
-			$(".form_div").attr("action", "insertres.do");
+			$(".insert_form").attr("action", "insertres.do");
 		}
 	});
 	
