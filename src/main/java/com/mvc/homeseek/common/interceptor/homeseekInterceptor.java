@@ -56,20 +56,24 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("message.do")	||
 				request.getRequestURI().contains("noticelist.do") ||
 				request.getRequestURI().contains("noticedetail.do") ||
-				request.getRequestURI().contains("noticeinsertform.do") ||
+				//request.getRequestURI().contains("noticeinsertform.do") ||
 				request.getRequestURI().contains("noticeinsert.do") ||
 				request.getRequestURI().contains("noticeupdateform.do") ||
 				request.getRequestURI().contains("noticeupdate.do") ||
 				request.getRequestURI().contains("noticedelete.do") ||
 				request.getRequestURI().contains("qnalist.do") ||
 				request.getRequestURI().contains("qnadetail.do") ||
-				request.getRequestURI().contains("qnainsertform.do") ||
+				//request.getRequestURI().contains("qnainsertform.do") ||
 				request.getRequestURI().contains("qnainsert.do") ||
 				request.getRequestURI().contains("qnaupdateform.do") ||
 				request.getRequestURI().contains("qnaupdate.do") ||
 				request.getRequestURI().contains("qnadelete.do") ||
 				request.getRequestURI().contains("noticeSearch.do") ||
 				request.getRequestURI().contains("qnaSearch.do") ||
+				request.getRequestURI().contains("commentlist.do") ||
+				request.getRequestURI().contains("commentinsert.do") ||
+				request.getRequestURI().contains("commentupdate.do") ||
+				request.getRequestURI().contains("commentdelete.do") ||
 				request.getRequestURI().contains("remove.do") ||
 				request.getRequestURI().contains("mypagemyinfo.do"))
 				 {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.

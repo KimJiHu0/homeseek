@@ -29,6 +29,7 @@
 	<mapper resource="/mybatis/wish-mapper.xml"/>
 	<mapper resource="/mybatis/notice-mapper.xml"/>
 	<mapper resource="/mybatis/qna-mapper.xml"/>
+	<mapper resource="/mybatis/comment-mapper.xml"/>
 </mappers>
 
 

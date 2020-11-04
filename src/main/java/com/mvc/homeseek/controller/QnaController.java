@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mvc.homeseek.model.biz.QnaBiz;
 import com.mvc.homeseek.model.dto.MemberDto;
-import com.mvc.homeseek.model.dto.NoticeDto;
 import com.mvc.homeseek.model.dto.QnaDto;
 
 @Controller
@@ -34,7 +33,10 @@ public class QnaController {
 	
 	//모든 글 리스트 보기
 	@RequestMapping(value="qnalist.do")
-	public void selectList(Model model) {
+	public void selectList(Model model, HttpSession session) {
+		//세션에서 현재 사용자 id값 저장 
+		//MemberDto dto = (MemberDto) session.getAttribute("login");
+		
 		model.addAttribute("list", QnaBiz.selectList());
 	}	
 	
@@ -50,8 +52,10 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="/qnainsertform.do")
-	public String insertForm() {
-		logger.info("PAGE ## insert 하는중 ##");
+	public String insertForm(Model model, HttpSession session) {
+		MemberDto dto = (MemberDto) session.getAttribute("login");
+		logger.info("| " + dto.getMember_id() + " 사용자가 공지사항 올리는 중 |");
+		logger.info("PAGE ##  insert 페이지로 이동   ##");
 		return "qnaInsert";
 	}
 	

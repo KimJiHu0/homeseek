@@ -4,19 +4,19 @@
 
 	
 	<select id="selectList" resultType="QnaDto">
-		SELECT qna_no, qna_id, qna_title, qna_regdate, qna_SECRETFLAG  
+		SELECT qna_no, qna_id, qna_title, qna_regdate, qna_SECRETFLAG , qna_pwd 
 		FROM QNA ORDER BY qna_no DESC
 	</select>
 	
 	
 	<select id="selectOne" resultType="QnaDto">
-		select qna_no, qna_id, qna_regdate, qna_title, qna_content 
+		select qna_no, qna_id, qna_regdate, qna_title, qna_content , qna_pwd
 		from QNA 
 		where qna_no = #{qna_no}
 	</select>
 	
 	<insert id="insert" parameterType="QnaDto">
-		INSERT INTO QNA VALUES(QNA_NO_SEQ.NEXTVAL, #{qna_title}, #{qna_content}, SYSDATE, '1', 'N', #{qna_pwd},'N', #{qna_id})
+		INSERT INTO QNA VALUES(QNA_NO_SEQ.NEXTVAL, #{qna_title}, #{qna_content}, SYSDATE, '1', #{qna_secretflag}, #{qna_pwd},'N', #{qna_id})
 	</insert>
 	
 	<update id="update" parameterType="QnaDto" >

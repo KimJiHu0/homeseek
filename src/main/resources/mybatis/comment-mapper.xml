@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="comment">
+
+	<select id="commentCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM REPLY
+	</select>
+
+	<select id="commentList" resultMap="replyComment" parameterType="int">
+		SELECT * FROM REPLY where QNA_NO = #{qna_no}
+
+		
+
+	</select>
+
+	<resultMap id="replyComment" type="CommentDto">
+		<id column="reply_no" property="comm_no"></id>
+		<result column="reply_content" property="comm_content"></result>
+		<result column="reply_regdate" property="comm_regdate"></result>
+		<result column="reply_delflag" property="comm_delflag"></result>
+		<result column="reply_id" property="comm_id"></result>
+	</resultMap>
+
+	<insert id="commentInsert" parameterType="CommentDto">
+		INSERT INTO
+		REPLY (REPLY_NO, QNA_NO, REPLY_CONTENT, REPLY_ID, REPLY_REGDATE)
+		VALUES(REPLY_NO_SEQ.NEXTVAL,#{qna_no},#{comm_content},#{comm_id},SYSDATE)
+	</insert>
+
+	<update id="commentUpdate" parameterType="CommentDto">
+		UPDATE REPLY
+		SET
+		REPLY_CONTENT = #{comm_content}
+		WHERE REPLY_NO = #{comm_no}
+	</update>
+
+	<delete id="commentDelete" parameterType="int">
+		DELETE FROM REPLY WHERE REPLY_NO = #{comm_no}
+	</delete>
+</mapper>

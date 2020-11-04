@@ -11,6 +11,12 @@ public class CommentDto {
 	private int qna_no;
 	private String comm_id;
 	
+	@Override
+	public String toString() {
+		return "CommentDto [comm_no=" + comm_no + ", comm_content=" + comm_content + ", comm_regdate=" + comm_regdate
+				+ ", comm_delflag=" + comm_delflag + ", qna_no=" + qna_no + ", comm_id=" + comm_id + "]";
+	}
+
 	public CommentDto() {
 		
 	}
