@@ -25,6 +25,12 @@ section #top_title {
 
 /* section 설정 */
 
+.contents *donate_button{
+	width: 10%;
+	max-width : 120px;
+}
+
+
 /* main 이미지 부분 */
 #main_image{
 	width : 45%;
