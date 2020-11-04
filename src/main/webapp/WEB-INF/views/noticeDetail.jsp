@@ -58,11 +58,12 @@
 		</table>
 
 		<!-- 추가 : 수정,리스트로 버튼 -->
-
+<%if(dto.getMember_role()=='A'){ %>
 		<a href='noticeupdateform.do?notice_no=<c:out value="${dto.notice_no}"/>'>Update</a>
+		<a href='noticedelete.do?notice_no=<c:out value="${dto.notice_no}"/>'>Delete</a>
+<%} %>		
 
-		<a href="noticelist.do">List</a> <a
-			href='noticedelete.do?notice_no=<c:out value="${dto.notice_no}"/>'>Delete</a>
+		<a href="noticelist.do">List</a> 
 
 
 	</section>

@@ -37,6 +37,14 @@
 					<th>글 비밀번호</th>
 					<td><input class="form-control"  name='qna_pwd'></td>
 				</tr>
+				<tr>
+				<th>비밀글 여부</th>
+				<td>
+					<label><input type="radio" name="qna_secretflag" value="Y"> YES</label>
+      				<label><input type="radio" name="qna_secretflag" value="N" checked> NO</label>
+					<input type="hidden" name="qna_secretflag" value="${dto.qna_secretflag }"> 
+      			</td>
+			</tr>
 				
 			</table>
 			

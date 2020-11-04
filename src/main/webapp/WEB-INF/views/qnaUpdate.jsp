@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td><input type="text" readonly="readonly" name="qna_id" value="관리자"></td>
+					<td><input type="text" readonly="readonly" name="qna_id" value="dto.qna_id"></td>
 				</tr>
 				<tr>
 					<th>제목</th>
