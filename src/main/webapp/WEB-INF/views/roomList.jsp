@@ -22,15 +22,15 @@
 
 var cnt = 1;
 var word = $('#navsearchtxt').val();
-/* 엘라스틱서치 실행할때 주석 풀기
+console.log("word : " +word);
+/* 엘라스틱서치 할 때 스크롤 페이징 진행 */
 window.onscroll = function(e) {
-    //window height + window scrollY 값이 document height보다 클 경우,
     if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		showList(cnt);
 		cnt++;
     }
 };
-*/
+
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -53,8 +53,8 @@ function showList(cnt){
 					var comma_price = numberWithCommas(room.room_price);
 				
 					$(".imgs").prepend(
-						"<div class='imgbox'>"								// 이부분은 파일업로드 되면 room.room_photo 로 바꿔야함
-						+	"<a href='detailroom.do?room_no='"+room.room_no+"'><img src='"+"resources/img/backgroundimg.jpg"+"' class='img'></a>"
+						"<div class='imgbox'>"								
+						+	"<a href='detailroom.do?room_no='"+room.room_no+"'><img src='"+room.room_photo+"' class='img'/></a>"
 						+	"<div class='content'>"
 						+		"<div class='room_type'>"
 						+			room.room_type
@@ -93,7 +93,7 @@ function showList(cnt){
 					<c:otherwise>
 						<c:forEach items="${list }" var="list">
 							<div class="imgbox" >
-								<a href="detailroom.do?room_no=${list.room_no }"><img src="${list.room_photo }" class="img" alt="${list.room_no } 사진"></a> <!-- list로 보낼 때 room_photo의 첫번째 사진만 list에 담겨서 보내자, 일단 사진 보려고 대문 사진으로박아놓음 -->
+								<a href="detailroom.do?room_no=${list.room_no }"><img src="${list.room_photo }" class="img" alt="${list.room_no } 사진"></a>
 								<div class="content">
 									<div class="room_type">
 										<c:choose>
@@ -125,7 +125,8 @@ function showList(cnt){
 			</div>
 			
 		</div>
-		
+
+<%-- 		
  <!-- **************** 페이징 ************  -->
 		
 		<!-- 첫 페이지로 이동 -->
@@ -176,7 +177,7 @@ function showList(cnt){
 		<a href="listroom.do?page=${requestScope.pageBean.totalPage}">마지막 페이지</a>
 			
 		</p>
-		
+		 --%>
 	</section>
 	
 	<%@ include file="./form/footer.jsp" %>
