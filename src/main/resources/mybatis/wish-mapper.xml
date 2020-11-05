@@ -54,4 +54,8 @@
 		WHERE W.WISH_ID = #{wish_id}
 		ORDER BY W.WISH_NO ASC
 	</select>
+	
+	<delete id="deletemultiwishlist" parameterType="int">
+		DELETE FROM WISH WHERE WISH_NO = #{wish_no}
+	</delete>
 </mapper>

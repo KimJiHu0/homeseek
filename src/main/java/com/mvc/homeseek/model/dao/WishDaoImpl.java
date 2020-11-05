@@ -1,7 +1,9 @@
 package com.mvc.homeseek.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -88,5 +90,21 @@ public class WishDaoImpl implements WishDao {
 			e.printStackTrace();
 		}
 		return wishlist;
+	}
+
+	@Override
+	public int deletemultiWishlist(int wish_no) {
+		
+		logger.info(" [ WishDalImp ] deletemultiWishList ");
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "deletemultiwishlist", wish_no);
+		} catch (Exception e) {
+			logger.info("[ Error ] deletemultiWishList");
+			e.printStackTrace();
+		}
+		return res;
 	}
 }

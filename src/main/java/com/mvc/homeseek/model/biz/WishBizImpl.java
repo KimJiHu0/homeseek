@@ -34,4 +34,9 @@ public class WishBizImpl implements WishBiz {
 	public List<WishDto> selectWishList(String wish_id) {
 		return wishdao.selectWishList(wish_id);
 	}
+
+	@Override
+	public int deletemultiWishlist(int wish_no) {
+		return wishdao.deletemultiWishlist(wish_no);
+	}
 }

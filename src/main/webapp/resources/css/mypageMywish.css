@@ -2,32 +2,43 @@ section{
 	padding-top : 100px;
 }
 
-.gowishlist, .goroomlist{
+.gowishlist{
 	color : green;
+}
+.goroomlist{
+	color : black;
 }
 
 .maincontainer{
 	display : flex;
 	flex-direction : column;
 	width : 100%;
-	height : 780px;
-	border : 2px black solid;
 }
 
 .mywish-menu{
 	display : flex;
-	width : 70%;
+	width : 50%;
 	height : 80px;
+	margin-left : 25%;
 	font-size : 25pt;
 	color : green;
-	border : 1px red solid;
 }
 
 .mywish-menu-title{
 	width : 100%;
-	border : 1px orange solid;
+	margin-left : 30px;
+	padding-left : 10%;
+	padding-top : 2%;
 }
 
 .mywish-list{
-	border : 1px blue solid;
+	width : 80%;
+	padding-top : 50px;
+	padding-bottom : 50px;
+	padding-left : 10%;
+	margin-left : 5%;
+}
+
+.a{
+	border-bottom : 1px black solid;
 }
