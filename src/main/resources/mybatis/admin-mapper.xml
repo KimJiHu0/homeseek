@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+	<!-- <select id="allMember" parameterType="MemberDto" resultType="MemberDto">
+		SELECT MEMBER_ID, MEMBER_NAME, MEMBER_PHONE, MEMBER_ENABLED, MEMBER_ROLE
+		FROM MEMBER
+		ORDER BY MEMBER_ENABLED
+	</select> -->
+	
+	<select id="allReport" parameterType="ReportDto" resultType="ReportDto">
+		SELECT REPORT_NO, REPORT_SENID, REPORT_REID, REPORT_TITLE, REPORT_CONTENT, REPORT_DATE
+		FROM REPORT
+	</select>
+	<select id="reportRes" parameterType="int" resultType="ReportDto">
+		SELECT REPORT_NO, REPORT_SENID, REPORT_REID, REPORT_TITLE, REPORT_CONTENT
+		FROM REPORT
+		WHERE REPORT_NO = #{report_no}
+	</select>
+	
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countMember" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER
+	</select>
+
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="allMember" resultType="MemberDto">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM MEMBER 
+						ORDER BY MEMBER_ENABLED DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+</mapper>
