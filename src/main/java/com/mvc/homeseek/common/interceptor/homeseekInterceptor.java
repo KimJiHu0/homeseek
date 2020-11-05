@@ -77,6 +77,9 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("remove.do") ||
 				request.getRequestURI().contains("mypagemyinfo.do") ||
 				request.getRequestURI().contains("dropmember.do") ||
+				request.getRequestURI().contains("/admin.do")||
+				request.getRequestURI().contains("/enableUpdateform.do")||
+				request.getRequestURI().contains("/enableUpdate.do")||
 				request.getRequestURI().contains("mypagewishlist.do") ||
 				request.getRequestURI().contains("mypageroomlist.do") ||
 				request.getRequestURI().contains("mypagemsglist.do") ||

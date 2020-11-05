@@ -30,6 +30,7 @@
 	<mapper resource="/mybatis/notice-mapper.xml"/>
 	<mapper resource="/mybatis/qna-mapper.xml"/>
 	<mapper resource="/mybatis/comment-mapper.xml"/>
+	<mapper resource="/mybatis/admin-mapper.xml"/>
 </mappers>
 
 

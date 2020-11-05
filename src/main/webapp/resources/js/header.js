@@ -26,11 +26,11 @@ window.onload = function() {
 	});
 	    
 	
-	$('#chat').click(function(){
 	
-		window.open("chat.do", "a", "width=400, height=300, left=100, top=50");
-		
-	});
+}
+
+function chat(){
+	window.open("chat.do", "a", "width=400, height=300, left=100, top=50");
 }
 
 function connectWs(){
