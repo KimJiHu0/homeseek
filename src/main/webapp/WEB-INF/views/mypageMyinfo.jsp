@@ -73,6 +73,7 @@
 	
 	
 		$("#uploadroomlist").click(function(){
+			var wish_id = '${member.member_id}';
 			self.close();
 			window.opener.location.href="mypageroomlist.do?room_id="+wish_id;
 		});
