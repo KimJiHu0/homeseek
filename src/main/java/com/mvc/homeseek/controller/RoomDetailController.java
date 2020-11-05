@@ -220,4 +220,20 @@ public class RoomDetailController {
 			return "redirect:/detailroom.do?" + room_no;
 		}
 	}
+	
+	@RequestMapping("wishdetailroom.do")
+	public String wishListDetailRoom(int room_no, String room_id, Model model, HttpServletRequest request) {
+		
+		logger.info("[ roomDetail ]");
+		
+		RoomDto roomdto = roomdetailbiz.selectRoomOne(room_no);
+		MemberDto memberdto = memberbiz.selectMemberById(room_id);
+		
+		model.addAttribute("room", roomdto);
+		model.addAttribute("member", memberdto);
+		request.setAttribute("room", roomdto);
+		request.setAttribute("member", memberdto);
+		
+		return "roomDetail";
+	}
 }

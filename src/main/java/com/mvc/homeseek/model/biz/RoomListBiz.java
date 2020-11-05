@@ -20,4 +20,6 @@ public interface RoomListBiz {
 	
 	public List<RoomDto> searchToRoomList(JSONObject obj);
 	
+	// session에 담겨있는 사용자가 올린 roomList 뽑기
+	public List<RoomDto> mypageMyRoomList(String room_id);
 }

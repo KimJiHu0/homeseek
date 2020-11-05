@@ -6,14 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 내가 올린 매물</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMyroomlist.css" type="text/css" />
 </head>
 <body>
 		
 	<%@ include file="./form/header.jsp" %>
 	
 	<section>
+		<div class="maincontainer">
+			<div class="mywish-menu">
+				<div class="mywish-menu-title"><a class="gowishlist" href="mypagewishlist.do">내가 찜한 매물</a></div>
+				<div class="mywish-menu-title"><a class="goroomlist" href="#">내가 올린 매물</a></div>
+			</div>
+			<hr/>
+			
+		</div>
 	
-	<h1>gg</h1>		
 
 	</section>
 	

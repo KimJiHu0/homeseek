@@ -48,7 +48,7 @@
 	</select>
 	
 	<select id="selectWishList" parameterType="String" resultMap="WishDtoResultMap">
-		SELECT W.WISH_NO, R.ROOM_NAME, R.ROOM_ID, R.ROOM_REGDATE
+		SELECT W.WISH_NO, R.ROOM_NAME, R.ROOM_ID, R.ROOM_REGDATE, W.ROOM_NO
 		FROM WISH W JOIN ROOM R
 		ON W.ROOM_NO = R.ROOM_NO
 		WHERE W.WISH_ID = #{wish_id}

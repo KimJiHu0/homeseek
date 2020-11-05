@@ -536,8 +536,6 @@ public class MemberController {
 		// session 제거
 		session.invalidate();
 
-		logger.info("멤버 컨트롤러에서 update하고 난 후 : " + res);
-
 		map.put("res", res);
 
 		return map;

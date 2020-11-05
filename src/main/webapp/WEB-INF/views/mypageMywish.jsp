@@ -9,70 +9,7 @@
 <title>homeseek : 나의 찜목록</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMywish.css" type="text/css" />
-
-<script type="text/javascript">
-
-	// checkbox 전체체크 함수
-	function allChk(bool){
-		var chkbox = document.getElementsByName("chkbox");
-		for(var i = 0; i < chkbox.length; i++){
-			chkbox[i].checked = bool;
-		}
-	}
-	// 유효성
-	$(function(){
-		$(".checkwishlist").submit(function(){
-			if($(".checkwishlist input:checked").length == 0){
-				alert("하나 이상 체크하셔야 합니다.");
-				return false;
-			}
-		});
-		
-		$(".chkbox").click(function(){
-			if($(".chkbox:checked").length == $(".chkbox").length){
-				$(".all_check").prop("checked", true);
-			} else {
-				$(".all_check").prop("checked", false);
-			}
-		});
-		
-		$(".muldelebtn").click(function(){
-			var delcheck = confirm("정말 삭제하시겠습니까?");
-			var chklength = $(".chkbox").length;
-			
-			if(delcheck){
-				var wish_nos = new Array();
-				
-				for(var i = 0; i < chklength; i++){
-					if($("input[name=chkbox]").eq(i).is(":checked") == true ){ 
-						wish_nos.push($("input[name=chkbox]").eq(i).val());
-					} else {
-					}
-				}
-				
-				$.ajax({
-					url : "muldeletewishlist.do",
-					type : "post",
-					data : { wish_no : wish_nos },
-					success : function(del){
-						if(del > 0){
-							alert("찜 목록에서 삭제되었습니다.");
-							location.reload(true);
-						} else {
-							alert("찜 목록에서 삭제가 실패하였습니다.");
-						}
-					},
-					error : function(){
-						alert("ㅅㅍ");
-					}
-				})
-			} else {
-				alert("찜 목록 삭제가 취소되었습니다.");
-			}
-		});
-	})
-
-</script>
+<script src="${pageContext.request.contextPath}/resources/js/mypageMywish.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -83,7 +20,7 @@
 		<div class="maincontainer">
 			<div class="mywish-menu">
 				<div class="mywish-menu-title"><a class="gowishlist" href="#">내가 찜한 매물</a></div>
-				<div class="mywish-menu-title"><a class="goroomlist" href="mypageroomlist.do">내가 올린 매물</a></div>
+				<div class="mywish-menu-title"><a class="goroomlist" href="javascript:goRoomList();">내가 올린 매물</a></div>
 			</div>
 			<hr/>
 			<div class="mywish-list">
@@ -127,7 +64,7 @@
 										<th><input type="checkbox" name="chkbox" class="chkbox" value="${wishlist.wish_no }"/></th>
 										<th>${wishlist.wish_no }</th>
 										<td></td>
-										<th><a class="wishtitle" href="#">${wishlist.roomdto.room_name }</a></th>
+										<th><a class="wishtitle" href="javascript:goRoomDetail();">${wishlist.roomdto.room_name }</a></th>
 										<td></td>
 										<th>${wishlist.roomdto.room_id }</th>
 										<td></td>
@@ -161,4 +98,11 @@
 	
 	<%@ include file="./form/footer.jsp" %>
 </body>
+<script type="text/javascript">
+
+	function goRoomList(){
+		location.href='mypageroomlist.do';
+	}
+
+</script>
 </html>

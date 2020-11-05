@@ -94,6 +94,12 @@ public class RoomListBizImpl implements RoomListBiz {
 	}
 
 
+	@Override
+	public List<RoomDto> mypageMyRoomList(String room_id) {
+		return roomlistdao.mypageMyRoomList(room_id);
+	}
+
+
 
 
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mvc.homeseek.model.biz.RoomListBiz;
+import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homeseek.model.dto.RoomDto;
 
 
@@ -208,7 +210,18 @@ public class RoomListController {
 	}
 	
 	@RequestMapping("mypageroomlist.do")
-	public String mypageRoomList(String wish_id) {
+	public String mypageRoomList(HttpSession session, Model model) {
+		
+		logger.info("[ RoomListController ] mypageRoomList");
+		
+		MemberDto dto = (MemberDto) session.getAttribute("login");
+		List<RoomDto> myroomlist = new ArrayList<RoomDto>();
+		String room_id = dto.getMember_id();
+		
+		myroomlist = roomlistbiz.mypageMyRoomList(room_id);
+		
+		model.addAttribute("myroomlist", myroomlist);
+		
 		return "mypageMyroomlist";
 	}
 	

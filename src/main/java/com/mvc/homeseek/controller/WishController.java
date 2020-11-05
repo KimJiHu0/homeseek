@@ -56,10 +56,13 @@ public class WishController {
 	}
 	
 	@RequestMapping("mypagewishlist.do")
-	public String mypageWishList(String wish_id, Model model) {
+	public String mypageWishList(HttpSession session, Model model) {
 		logger.info("[ WishController ] mypageWishList");
 		
+		MemberDto dto = (MemberDto)session.getAttribute("login");
+		
 		List<WishDto> wishlist = null;
+		String wish_id = dto.getMember_id();
 		
 		wishlist = wishbiz.selectWishList(wish_id);
 		

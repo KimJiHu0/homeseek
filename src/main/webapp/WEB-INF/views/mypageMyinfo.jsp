@@ -56,9 +56,11 @@
 				url : 'dropmember.do',
 				success : function(data){
 					if(data.res > 0){
-						alert("탈퇴성공");
+						alert("그 동안 homeseek를 이용해주셔서 감사합니다.");
 						self.close();
+						window.opener.location.reload();
 					} else {
+						self.close();
 						alert("탈퇴실패");
 					}
 				},
@@ -73,14 +75,12 @@
 	
 	
 		$("#uploadroomlist").click(function(){
-			var wish_id = '${member.member_id}';
 			self.close();
-			window.opener.location.href="mypageroomlist.do?room_id="+wish_id;
+			window.opener.location.href="mypageroomlist.do?";
 		});
 		$("#wishlist").click(function(){
-			var wish_id = '${member.member_id}';
 			self.close();
-			window.opener.location.href="mypagewishlist.do?wish_id="+wish_id;
+			window.opener.location.href="mypagewishlist.do";
 		});
 		
 		

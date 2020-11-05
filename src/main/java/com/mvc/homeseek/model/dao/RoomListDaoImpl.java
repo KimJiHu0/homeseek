@@ -64,6 +64,22 @@ public class RoomListDaoImpl implements RoomListDao {
 		}
 		return list;
 	}
+
+	@Override
+	public List<RoomDto> mypageMyRoomList(String room_id) {
+		
+		logger.info(" [ RoomListDaoImpl ] ");
+		
+		List<RoomDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "mypageMyRoomList", room_id);
+		} catch (Exception e) {
+			logger.info(" [ Error ] mypageMyRoomList ");
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	
 
