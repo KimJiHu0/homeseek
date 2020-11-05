@@ -1,5 +1,6 @@
 package com.mvc.homeseek.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mvc.homeseek.model.biz.WishBiz;
+import com.mvc.homeseek.model.dto.RoomDto;
 import com.mvc.homeseek.model.dto.WishDto;
 
 @Controller

@@ -17,5 +17,4 @@ public interface WishBiz {
 	
 	// 마이페이지에서 찜목록 리스트 뽑기
 	public List<WishDto> selectWishList(String wish_id);
-
 }

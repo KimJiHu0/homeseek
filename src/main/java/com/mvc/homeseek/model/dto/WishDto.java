@@ -6,13 +6,21 @@ public class WishDto {
 	private String wish_id;
 	private String wish_sell_id;
 	private int room_no;
+	private RoomDto roomdto;
 	
+	
+	
+	public RoomDto getRoomdto() {
+		return roomdto;
+	}
+	public void setRoomdto(RoomDto roomdto) {
+		this.roomdto = roomdto;
+	}
+
 	public WishDto() {
 		
 	}
 	
-	
-
 	public WishDto(String wish_id, String wish_sell_id, int room_no) {
 		super();
 		this.wish_id = wish_id;

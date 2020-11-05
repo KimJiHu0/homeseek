@@ -2,6 +2,7 @@ package com.mvc.homeseek.model.dao;
 
 import java.util.List;
 
+import com.mvc.homeseek.model.dto.RoomDto;
 import com.mvc.homeseek.model.dto.WishDto;
 
 public interface WishDao {
@@ -19,5 +20,4 @@ public interface WishDao {
 	
 	// 마이페이지에서 찜목록 리스트 뽑기
 	public List<WishDto> selectWishList(String wish_id);
-
 }

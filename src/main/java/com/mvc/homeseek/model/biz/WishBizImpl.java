@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mvc.homeseek.model.dao.WishDao;
+import com.mvc.homeseek.model.dto.RoomDto;
 import com.mvc.homeseek.model.dto.WishDto;
 
 @Service
@@ -33,5 +34,4 @@ public class WishBizImpl implements WishBiz {
 	public List<WishDto> selectWishList(String wish_id) {
 		return wishdao.selectWishList(wish_id);
 	}
-
 }

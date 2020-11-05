@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mvc.homeseek.model.dto.RoomDto;
 import com.mvc.homeseek.model.dto.WishDto;
 
 @Repository
@@ -88,5 +89,4 @@ public class WishDaoImpl implements WishDao {
 		}
 		return wishlist;
 	}
-
 }
