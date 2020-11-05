@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,6 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -85,7 +83,8 @@ public class MemberController {
 
 	@ResponseBody
 	@RequestMapping(value = "/ajaxlogin.do", method = RequestMethod.POST)
-	public Map<String, Boolean> login(@RequestBody MemberDto dto, HttpSession session) {
+	public Map<String, String> login(@RequestBody MemberDto dto, String member_id, String member_pw,
+			HttpSession session) {
 		logger.info("ajaxlogin.do");
 		// <<<sha-256적용>>>
 		// 암호 확인용 syso
@@ -94,66 +93,84 @@ public class MemberController {
 		String encryPassword = UserSha256.encrypt(dto.getMember_pw());
 		dto.setMember_pw(encryPassword);
 		System.out.println("두번째:" + dto.getMember_pw());
+
+		System.out.println(dto.getMember_enabled());
+
 		// 로그인 체크 mapper와 연결
 		MemberDto res = memberBiz.login(dto);
 
-		boolean check = false;
+		// 로그인 안시켜줄 사람 거르기 시작
+		String check = "idpwfail";
 
-		if (res != null) {
-			session.setAttribute("login", res);
-			session.setAttribute("member_id", dto.getMember_id());
-			logger.info("---------------------------------");
-			logger.info("| 현재 로그인한 사용자 : " + dto.getMember_id() + " |");
-			logger.info("---------------------------------");
+		if (res != null) {// 성공
 
-			check = true;
-		}
+			if (res.getMember_enabled() == 'D') {
+				System.out.println("㉾㉾㉾㉾㉾㉾회원 D or B :" + res.getMember_enabled());
 
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		map.put("check", check);
+				check = "ban_D";
 
-		return map;
+			} else if (res.getMember_enabled() == 'B') {
+				System.out.println("㉾㉾㉾㉾㉾㉾회원 D or B :" + res.getMember_enabled());
 
-	}
+				check = "ban_B";
+
+//			} else if (res.getMember_id() != member_id || res.getMember_pw() != member_pw) {
+//				check = "idpwfail";
+			} else {
+				System.out.println(res.getMember_enabled() + "㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾㉾");
+				session.setAttribute("login", res);
+				session.setAttribute("member_id", res.getMember_id());
+				logger.info("---------------------------------");
+				logger.info("| 현재 로그인한 사용자 : " + res.getMember_id() + " |");
+				logger.info("---------------------------------");
+
+				check = "success";
+			}
+		}	
+      Map<String, String> map = new HashMap<String, String>();
+      map.put("check", check);
+
+      return map;
+
+   }
 
 	@RequestMapping(value = "/navercallback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String naverCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session,
-			HttpServletRequest request) throws Exception {
+	public String naverCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session, HttpServletRequest request) throws Exception {
 
-		logger.info("snsLoginCallback: service= naver ");
-		SnsValue sns = null;
-		sns = naverSns;
+      logger.info("snsLoginCallback: service= naver ");
+      SnsValue sns = null;
+      sns = naverSns;
 
-		// 1. code를 이용해서 access_token 받기
-		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
-		SNSLogin snsLogin = new SNSLogin(sns);
-		MemberDto snsUser = snsLogin.getUserProfile(code);
-		System.out.println("Profile>>" + snsUser);
+      // 1. code를 이용해서 access_token 받기
+      // 2. access_token을 이용해서 사용자 profile 정보 가져오기
+      SNSLogin snsLogin = new SNSLogin(sns);
+      MemberDto snsUser = snsLogin.getUserProfile(code);
+      System.out.println("Profile>>" + snsUser);
 
-		System.out.println("확인용!!!!" + snsUser.getMember_naverid());
-		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 추가해야함 !!! 그래야 select해볼수있음!)
-		MemberDto usertest = memberBiz.getBySns(snsUser);
+      System.out.println("확인용!!!!" + snsUser.getMember_naverid());
+      // 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 추가해야함 !!! 그래야 select해볼수있음!)
+      MemberDto usertest = memberBiz.getBySns(snsUser);
 
-		System.out.println(snsUser.getMember_id());
+      System.out.println(snsUser.getMember_id());
 
-		if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
+      if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
 
-			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
-			model.addAttribute("naveremail", snsUser.getMember_id());
-			model.addAttribute("googleemail", snsUser.getMember_id());
-			model.addAttribute("nickname", snsUser.getMember_name());
+         System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+         model.addAttribute("naveremail", snsUser.getMember_id());
+         model.addAttribute("googleemail", snsUser.getMember_id());
+         model.addAttribute("nickname", snsUser.getMember_name());
 
-			return "regist";
+         return "regist";
 
-		} else { // 존재시, 세션주고 로그인 시켜줌 -> main페이지
+      } else { // 존재시, 세션주고 로그인 시켜줌 -> main페이지
 
-			model.addAttribute("result", "기존에 가입한 회원 . 로그인시켜도됨 ");
+         model.addAttribute("result", "기존에 가입한 회원 . 로그인시켜도됨 ");
 
-			session.setAttribute("login", usertest);
+         session.setAttribute("login", usertest);
 
-			return "redirect:/main.do";
-		}
-	}
+         return "redirect:/main.do";
+      }
+   }
 
 	@RequestMapping(value = "/googlecallback.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session,
@@ -204,7 +221,7 @@ public class MemberController {
 		MemberDto usertest = memberBiz.getBySns(snsUser);
 
 		// 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-//		if (userInfo.get("kakaoemail") != null) {
+//      if (userInfo.get("kakaoemail") != null) {
 		if (usertest == null) {
 			session.setAttribute("kakaoemail", snsUser.getMember_id());
 			session.setAttribute("access_Token", access_Token);
@@ -418,43 +435,39 @@ public class MemberController {
 	}
 
 	// 임시비밀번호를 DB에 넣어준다
-	
+
 	@RequestMapping(value = "/selectpw.do", method = RequestMethod.POST)
-	public String selectPw(@RequestParam( "pwd_name") String pwd_name,
-						 @RequestParam( "pwd_phone") String pwd_phone,
-						 @RequestParam("pwd_id") String pwd_id,
-						 @RequestParam("pwd_new") String pwd_new) {
+	public String selectPw(@RequestParam("pwd_name") String pwd_name, @RequestParam("pwd_phone") String pwd_phone,
+			@RequestParam("pwd_id") String pwd_id, @RequestParam("pwd_new") String pwd_new) {
 		logger.info("selectpw.do");
-		
-		//MemberDto dto = new MemberDto(member_name, member_phone, member_id, member_pw);
+
+		// MemberDto dto = new MemberDto(member_name, member_phone, member_id,
+		// member_pw);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("pwd_name", pwd_name);
-        param.put("pwd_phone", pwd_phone);
-        param.put("pwd_id", pwd_id);
-        param.put("pwd_new", pwd_new);
-
+		param.put("pwd_phone", pwd_phone);
+		param.put("pwd_id", pwd_id);
+		param.put("pwd_new", pwd_new);
 
 		// <<<sha-256적용>>>
 		// 암호 확인용 syso
 		System.out.println("첫번째:" + param.get(pwd_new));
-		System.out.println("★★★★★★★★★"+ pwd_new + "★★★★★★★★★");
+		System.out.println("★★★★★★★★★" + pwd_new + "★★★★★★★★★");
 		// 비밀번호 암호화 (sha256)
 		String encryPassword = UserSha256.encrypt(pwd_new);
 		param.put("pwd_new", encryPassword);
 		System.out.println("두번째:" + param.get(pwd_new));
-		System.out.println("★★★★★★★★★"+ pwd_new + "★★★★★★★★★");
-		
-		int res=memberBiz.searchPassword(param);
-		
-	
-		if(res >0 ) { // 비밀번호 변경 (업데이트) 성공
+		System.out.println("★★★★★★★★★" + pwd_new + "★★★★★★★★★");
+
+		int res = memberBiz.searchPassword(param);
+
+		if (res > 0) { // 비밀번호 변경 (업데이트) 성공
 			logger.info("★@@@@★★@@@★비밀번호 변경 성공");
 			// ??ㅠㅠㅠㅠ return값이 그냥 findPwd.jsp의 <form>태그 전체랑 교환돼서 웹페이지에 String 그 자체로 찍힌다...
 			return "redirect:/main.do";
 		}
 		return "redirect:findpwdform.do";
-	}	
-	
+	}
 
 	@RequestMapping(value = "/sendsms.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -490,43 +503,43 @@ public class MemberController {
 		}
 		return numStr;
 	}
-	
+
 	// 내 정보보기 눌렀을 때 들어오는 컨트롤러
 	@RequestMapping("mypagemyinfo.do")
 	public String mypageInfo(Model model, HttpSession session) {
-		
+
 		logger.info(" [ MemberController ] Memberinfo ");
-		
-		MemberDto dto = (MemberDto)session.getAttribute("login");
-		
+
+		MemberDto dto = (MemberDto) session.getAttribute("login");
+
 		String id = dto.getMember_id();
-		
+
 		MemberDto memberdto = memberBiz.selectMemberById(id);
-		
+
 		model.addAttribute("member", memberdto);
-		
+
 		return "mypageMyinfo";
 	}
-	
-	@RequestMapping(value="dropmember.do", method = RequestMethod.POST)
+
+	@RequestMapping(value = "dropmember.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<Object, Object> dropMember(String member_id, HttpSession session){
-		
+	public Map<Object, Object> dropMember(String member_id, HttpSession session) {
+
 		logger.info("[ MemberController ] dropMember ");
-		
+
 		logger.info("멤버 컨트롤러에서 member_id : " + member_id);
-		
+
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		
+
 		// 탈퇴하고 session을 없애줘야함.
 		int res = memberBiz.dropoutMemberEnabled(member_id);
 		// session 제거
 		session.invalidate();
-		
+
 		logger.info("멤버 컨트롤러에서 update하고 난 후 : " + res);
-		
+
 		map.put("res", res);
-		
+
 		return map;
 	}
 
