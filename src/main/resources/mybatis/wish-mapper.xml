@@ -2,6 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="wish-mapper">
 
+	<resultMap type="RoomDto" id="RoomDtoResultMap">
+		<result property="room_no" column="ROOM_NO"/>
+		<result property="room_name" column="ROOM_NAME"/>
+		<result property="room_photo" column="ROOM_PHOTO"/>
+		<result property="room_type" column="ROOM_TYPE"/>
+		<result property="room_deposit" column="ROOM_DEPOSIT"/>
+		<result property="room_price" column="ROOM_PRICE"/>
+		<result property="room_extent" column="ROOM_EXTENT"/>
+		<result property="room_addr" column="ROOM_ADDR"/>
+		<result property="room_kind" column="ROOM_KIND"/>
+		<result property="room_structure" column="ROOM_STRUCTURE"/>
+		<result property="room_floor" column="ROOM_FLOOR"/>
+		<result property="room_regdate" column="ROOM_REGDATE"/>
+		<result property="room_cpdate" column="ROOM_CPDATE"/>
+		<result property="room_avdate" column="ROOM_AVDATE"/>
+		<result property="room_detail" column="ROOM_DETAIL"/>
+		<result property="room_id" column="ROOM_ID"/>
+	</resultMap>
+	
+	<resultMap type="WishDto" id="WishDtoResultMap">
+		<result property="wish_no" column="WISH_NO"/>
+		<result property="wish_id" column="WISH_ID"/>
+		<result property="wish_sell_id" column="WISH_SELL_ID"/>
+		<result property="room_no" column="ROOM_NO"/>
+		<collection property="roomdto" resultMap="RoomDtoResultMap"></collection>
+	</resultMap>
+	
 	<insert id="insertWish" parameterType="WishDto">
 		INSERT INTO WISH VALUES(WISH_NO_SEQ.NEXTVAL, #{wish_id}, #{wish_sell_id}, #{room_no})
 	</insert>
@@ -20,10 +47,15 @@
 		AND ROOM_NO = #{room_no}
 	</select>
 	
-	<select id="selectWishList" parameterType="String" resultType="WishDto">
-		SELECT WISH_NO, WISH_ID, WISH_SELL_ID, ROOM_NO
-		WHERE WISH_ID = #{wish_id}
+	<select id="selectWishList" parameterType="String" resultMap="WishDtoResultMap">
+		SELECT W.WISH_NO, R.ROOM_NAME, R.ROOM_ID, R.ROOM_REGDATE
+		FROM WISH W JOIN ROOM R
+		ON W.ROOM_NO = R.ROOM_NO
+		WHERE W.WISH_ID = #{wish_id}
+		ORDER BY W.WISH_NO ASC
 	</select>
 	
-
+	<delete id="deletemultiwishlist" parameterType="int">
+		DELETE FROM WISH WHERE WISH_NO = #{wish_no}
+	</delete>
 </mapper>

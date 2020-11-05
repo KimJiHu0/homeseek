@@ -14,6 +14,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +31,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mvc.homeseek.model.biz.MemberBiz;
 import com.mvc.homeseek.model.biz.RoomDetailBiz;
+import com.mvc.homeseek.model.biz.WishBiz;
 import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homeseek.model.dto.RoomDto;
+import com.mvc.homeseek.model.dto.WishDto;
 
 @Controller
 public class RoomDetailController {
@@ -42,15 +45,27 @@ public class RoomDetailController {
 	private RoomDetailBiz roomdetailbiz;
 	@Autowired
 	private MemberBiz memberbiz;
+	@Autowired
+	private WishBiz wishbiz;
 	
 	// 방 상세보기
 	@RequestMapping("detailroom.do")
-	public String roomDetail(int room_no, Model model, HttpServletRequest request) {
+	public String roomDetail(int room_no, Model model, HttpServletRequest request, HttpSession session) {
 		
 		logger.info(" RoomDetailController : roomDetail ");
 		
 		RoomDto room = roomdetailbiz.selectRoomOne(room_no);
+		// 글 올린 사람의 id
 		String id = room.getRoom_id();
+		// member = 매물 올린사람
+		MemberDto member = memberbiz.selectMemberById(id);
+		
+		// 로그인되어있는 아이디를 가져오기 위해
+		MemberDto wish = (MemberDto) session.getAttribute("login");
+		String wish_id = wish.getMember_id();
+		
+		// 체크가 되어있는지 아닌지 판별
+		int wishcheck = wishbiz.selectWishCheck(new WishDto(wish_id, id, room_no));
 		
 		// 2020-10-23 ??:??:??:? 식으로 나온거 물음표 부분 잘라주기
 		String sub_room_regdate = room.getRoom_regdate().substring(0,10);
@@ -62,13 +77,12 @@ public class RoomDetailController {
 		room.setRoom_cpdate(sub_room_cpdate);
 		room.setRoom_avdate(sub_room_avdate);
 		
-		// member = 매물 올린사람
-		MemberDto member = memberbiz.selectMemberById(id);
 		model.addAttribute("room", room);
 		// roomDetail.jsp에서 room을 가져와 쓰기 위한 코드
 		request.setAttribute("room", room);
 		model.addAttribute("member", member);
 		request.setAttribute("member", member);
+		request.setAttribute("wishcheck", wishcheck);
 		return "roomDetail";
 	}
 	

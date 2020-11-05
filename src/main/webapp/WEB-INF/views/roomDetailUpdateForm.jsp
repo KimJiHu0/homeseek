@@ -199,8 +199,6 @@
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js-->
@@ -215,9 +213,6 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/loadAddress.js"
 	type="text/javascript"></script>
-
-
-
 <!-- roomDetailUpdateForm에 대한 CSS 스크립트 선언 -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/roomDetailUpdateForm.css"

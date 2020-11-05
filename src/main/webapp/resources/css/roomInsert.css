@@ -187,6 +187,12 @@ section #top_title {
 	padding-left:10px;
 }
 
+#photo_list{
+	resize: none;
+}
+
+
+
 
 /* --------------- div control --------------- */
 

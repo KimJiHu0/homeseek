@@ -35,7 +35,7 @@ public class RoomListController {
 	private RoomListBiz roomlistbiz;
 	 
 	// 전체 조회
-	@RequestMapping("listroom.do")
+	@RequestMapping("/listroom.do")
 	public String roomList(@RequestParam(value="page",defaultValue="1")int page, Model model, String word) {
 		logger.info("[ Room List ]");
 		
@@ -207,5 +207,9 @@ public class RoomListController {
 		return resMap;
 	}
 	
+	@RequestMapping("mypageroomlist.do")
+	public String mypageRoomList(String wish_id) {
+		return "mypageMyroomlist";
+	}
 	
 }

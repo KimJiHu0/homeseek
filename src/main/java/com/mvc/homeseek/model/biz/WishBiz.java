@@ -17,5 +17,7 @@ public interface WishBiz {
 	
 	// 마이페이지에서 찜목록 리스트 뽑기
 	public List<WishDto> selectWishList(String wish_id);
-
+	
+	// 여러개 한번에 삭제
+	public int deletemultiWishlist(int wish_no);
 }

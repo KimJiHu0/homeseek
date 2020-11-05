@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mvc.homeseek.model.dao.WishDao;
+import com.mvc.homeseek.model.dto.RoomDto;
 import com.mvc.homeseek.model.dto.WishDto;
 
 @Service
@@ -34,4 +35,8 @@ public class WishBizImpl implements WishBiz {
 		return wishdao.selectWishList(wish_id);
 	}
 
+	@Override
+	public int deletemultiWishlist(int wish_no) {
+		return wishdao.deletemultiWishlist(wish_no);
+	}
 }

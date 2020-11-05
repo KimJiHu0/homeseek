@@ -44,7 +44,19 @@
 			<div id="userinfocontainer">
 				<div id="userinfodetail">
 					<div id="userinfotitle">
-						<span id="leftb">사용자 / 매물 정보</span><span id="rightb" class="wish">찜하기♡</span>
+						<span id="leftb">사용자 / 매물 정보</span>
+						<%
+							int wishcheck = (int) request.getAttribute("wishcheck");
+							if(wishcheck > 0){
+						 %>
+							<span id="rightb" class="wish">찜하기♥</span>
+						<%
+							} else {
+						%>
+							<span id="rightb" class="wish">찜하기♡</span>
+						<%
+							}
+						%>
 					</div>
 					<%
 						RoomDto room = (RoomDto) request.getAttribute("room");
@@ -392,27 +404,30 @@
 				"wish_id" : wish_id,
 				"wish_sell_id" : wish_sell_id
 		}
-		
-		$.ajax({
-			url : "wish.do",
-			type : "post",
-			dataType : "json",
-			contentType : "application/json",
-			data : JSON.stringify(wish_data),
-			success : function(wish){
-				if(wish.insertwish == 'insert'){
-					alert("찜하기가 완료되었습니다.");
-					$(".wish").html("찜하기♥");
-				} else {
-					alert("찜하기가 취소되었습니다.");
-					$(".wish").html("찜하기♡");
+		if(wish_id != wish_sell_id){
+			$.ajax({
+				url : "wish.do",
+				type : "post",
+				dataType : "json",
+				contentType : "application/json",
+				data : JSON.stringify(wish_data),
+				success : function(wish){
+					if(wish.insertwish == 'insert'){
+						alert("찜하기가 완료되었습니다.");
+						$(".wish").html("찜하기♥");
+					} else {
+						alert("찜하기가 취소되었습니다.");
+						$(".wish").html("찜하기♡");
+					}
+				},
+				
+				error : function(){
+					alert("연결실패");
 				}
-			},
-			
-			error : function(){
-				alert("연결실패");
-			}
-		})
+			})
+		} else {
+			return false;
+		}
 	});
 	
 	// 시작하자마자 room_photo의 값을 가져와서 잘라주기 위해
