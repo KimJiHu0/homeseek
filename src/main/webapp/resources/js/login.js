@@ -16,22 +16,27 @@ function loginPrc(){
          contentType : "application/json",
          dataType : "json",
          success : function(msg){
-            if(msg.check == true){
-               location.href="main.do";
+            if(msg.check == "success"){//정상로그인
+            	
+            	location.href="main.do";
                //$("#loginchk").show();-->
                //$("#loginchk").html("ID ,PW가 입력되었습니다");
-            }else{
-               $("#loginchk").show();
-               $("#loginchk").html("ID 혹은 PW가 잘못 입력되었습니다");
+            }else if(msg.check == "ban_D"){
+            	$("#loginchk").show();
+                $("#loginchk").html("탈퇴한 회원입니다. 다시 회원가입해주세요.");
+            }else if(msg.check == "ban_B"){
+            	$("#loginchk").show();
+                $("#loginchk").html("차단된 회원입니다. 고객센터에 문의 바랍니다.");	    
+            }else if(msg.check == "idpwfail"){
+            	$("#loginchk").show();
+            	$("#loginchk").html("ID 혹은 PW가 잘못 입력되었습니다");
             }
-            
          },
          error : function(){
             alert("통신실패");
          }
       })
    }
-   
 }
 
 window.onload = function() {
