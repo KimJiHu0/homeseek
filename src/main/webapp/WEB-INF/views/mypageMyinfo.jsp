@@ -71,19 +71,19 @@
 		}
 	}
 	
-	$(function(){
+	
+		$("#uploadroomlist").click(function(){
+			self.close();
+			window.opener.location.href="mypageroomlist.do?room_id="+wish_id;
+		});
 		$("#wishlist").click(function(){
 			var wish_id = '${member.member_id}';
 			self.close();
 			window.opener.location.href="mypagewishlist.do?wish_id="+wish_id;
-		})
+		});
 		
-		$("#uploadroomlist").click(function(){
-			self.close();
-			window.opener.location.href="mypageroomlist.do";
-		})
 		
-	});
+
 	
 
 </script>

@@ -83,7 +83,7 @@
 		<div class="maincontainer">
 			<div class="mywish-menu">
 				<div class="mywish-menu-title"><a class="gowishlist" href="#">내가 찜한 매물</a></div>
-				<div class="mywish-menu-title"><a class="goroomlist" href="#">내가 올린 매물</a></div>
+				<div class="mywish-menu-title"><a class="goroomlist" href="mypageroomlist.do">내가 올린 매물</a></div>
 			</div>
 			<hr/>
 			<div class="mywish-list">

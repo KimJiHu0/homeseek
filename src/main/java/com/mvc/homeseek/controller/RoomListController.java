@@ -207,5 +207,9 @@ public class RoomListController {
 		return resMap;
 	}
 	
+	@RequestMapping("mypageroomlist.do")
+	public String mypageRoomList(String wish_id) {
+		return "mypageMyroomlist";
+	}
 	
 }
