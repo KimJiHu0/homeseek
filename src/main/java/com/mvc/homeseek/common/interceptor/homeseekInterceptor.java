@@ -88,7 +88,9 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("mypageroomlist.do") ||
 				request.getRequestURI().contains("mypagemsglist.do") ||
 				request.getRequestURI().contains("mypagedonalist.do") ||
-				request.getRequestURI().contains("/summer_image.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getRequestURI().contains("/summer_image.do") ||
+				request.getRequestURI().contains("mypagemysenmsglist.do") ||
+				request.getRequestURI().contains("mypagemyremsglist.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 			
 		
 			return true;

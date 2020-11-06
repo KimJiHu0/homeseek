@@ -77,9 +77,9 @@ public class MessageController {
 		return map;
 	}
 	
-	// 내가 받은 전체 메세지 조회
-	@RequestMapping("mypagemsglist.do")
+	// 내가 받은 메세지 조회
+	@RequestMapping("mypagemysenmsglist.do")
 	public String mypagemsglist() {
-		return "mypageMymsg";
+		return "mypageMySenmsg";
 	}
 }

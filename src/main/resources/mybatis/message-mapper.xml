@@ -14,25 +14,4 @@
 		WHERE MESSAGE_REID = #{message_reid}
 		OREDER BY MESSAGE_NO ASC
 	</select>
-	
-	<!-- 쪽지함 상세보기 -->
-	<select id="detailMyMessage" parameterType="int" resultType="MessageDto">
-		SELECT MESSAGE_NO, MESSAGE_SENID, MESSAGE_REID, MESSAGE_TITLE, MESSAGE_CONTENT, MESSAGE_DATE, MESSAGE_SENDEL, MESSAGE_REDEL
-		FROM MESSAGE
-		WHERE MESSAGE_NO = #{message_no}
-	</select>
-	
-	<!-- 쪽지에서 받은 메세지 삭제하기 -->
-	<update id="updateSenDel" parameterType="String">
-		UPDATE SET MESSAGE_SENDEL = 'D'
-		WHERE MESSAGE_SENID = #{message_senid}
-		AND MESSAGE_SENDEL = 'R'
-	</update>
-	
-	<!-- 쪽지에서 보낸 메세지 삭제하기 -->
-	<update id="updateReDel" parameterType="String">
-		UPDATE SET MESSAGE_REDEL = 'D'
-		WHERE MESSAGE_ID = #{message_reid}
-		AND MESSAGE_REDEL = 'R'
-	</update>
 </mapper>

@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek : 내 쪽지함</title>
+<title>homeseek : 받은 쪽지함</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMymsg.css" type="text/css" />
-<script src="${pageContext.request.contextPath}/resources/js/mypageMymsg.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMySenmsg.css" type="text/css" />
+<script src="${pageContext.request.contextPath}/resources/js/mypageMySenmsg.js" type="text/javascript"></script>
 </head>
 <body>
 	<%@ include file="./form/header.jsp" %>
