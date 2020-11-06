@@ -36,4 +36,23 @@
 				)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
+		<!-- 총 후원조회 갯수 출력 -->
+	<select id="countDonation" resultType="int">
+		SELECT COUNT(*) 
+		FROM DONATION
+	</select>
+
+	<!-- 페이징 처리 후 전체 후원 조회 -->
+	<select id="allDonation" resultType="DonationDto">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM DONATION 
+						ORDER BY DONA_NO DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
 </mapper>

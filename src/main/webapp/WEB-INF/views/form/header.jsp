@@ -98,7 +98,7 @@
                  <button class="dropbtn"><strong><%= dto.getMember_name()%>님 환영합니다</strong></button>
                     <div class="dropdown-content">
                       <a class="headeratag" href="admin.do">전체 회원 관리</a>
-                      <a class="headeratag" href="#">전체 후원 내역</a>
+                      <a class="headeratag" href="admindona.do">전체 후원 내역</a>
                     </div>
             </div></li>
             <li>
