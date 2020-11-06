@@ -49,7 +49,7 @@ public class DonationController {
 		MemberDto memberDto = (MemberDto) session.getAttribute("login");
 		String member_id = memberDto.getMember_id();
 		
-		// mainpay.js에서 보낸 obj(JSON문자열)를 받아서 string 변수에 담음
+		// js에서 보낸 obj(JSON문자열)를 받아서 string 변수에 담음
 	    String obj = request.getParameter("obj");
 	    System.out.println(obj);
 
@@ -65,7 +65,7 @@ public class DonationController {
 	    String pay_date2 = tmp.get("purchased_at").getAsString();
 	    System.out.println(pay_amount + pay_date2);
 
-	    // String형태의 dano_date2라는 변수를 Date로 형변환
+	    // String형태의 pay_date2라는 변수를 Date로 형변환
 	    SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date pay_date = null;
 	    try {

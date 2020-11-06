@@ -1,9 +1,12 @@
 /* section 기본설정 */
 
+/* 안쓸예정 */
 section{
 	padding-top : 100px;
 	width: 100%;
+	max-width: 1200px;
 	height: auto;
+	
 }
 
 section #top_title {
@@ -13,13 +16,42 @@ section #top_title {
 	margin: 0 auto;
 }
 
+
+
+
+/* section -> main_content로대체되었다. */
+#main_content{
+	padding-top : 100px;
+	width: 100%;
+	max-width: 1200px;
+	height: auto;
+	margin:auto;
+}
+
+#main_content #top_title{
+	width : 100%;
+	max-width : 1200px;
+	height: auto;
+	margin: 0 auto;
+}
+
+
+
 .form_div {
 	width: 100%;
 	max-width : 1100px;
-	height: 1500px;
+	height: 1800px;
 	margin : 0 auto;
 	padding-right: 50px;
 	padding-left: 50px;
+	background-color:#dcdcdc;
+	border-radius: 10px;
+	
+}
+
+#main_form{
+	padding:30px;
+	height: auto;
 }
 
 
@@ -75,7 +107,7 @@ section #top_title {
 /* --------------- div3 주소(kakao map) --------------- */
 #insert_div3{
 	height: 600px;
-	padding: 10px;
+	padding: 10px 0px 20px 0px;
 	margin: 0 auto;
 	border-bottom: 1px solid;
 	display: block;
@@ -94,12 +126,41 @@ section #top_title {
 	max-width : 600px;
 }
 
-#insert_div3 #show_map {
-	width:70%;
-	max-width:700px;
+#insert_div3 #room_addr{
+	margin-bottom:20px;
+}
+
+
+#insert_div3 #map_bg {
+	width:60%;
+	max-width:600px;
 	height:450px;
-	margin: auto 0;
-	float: left; 
+	margin: auto;
+	position: relative;
+	z-index: 2;
+	background-color:white;
+}
+
+
+#insert_div3 #show_map {
+	width:100%;
+	max-width:600px;
+	height:450px;
+	margin: auto;
+	position: absolute;
+	padding: 100px 50px 50px 50px;
+	text-align: center;
+	
+}
+
+#insert_div3 #show_map #imgIcon{
+	margin:auto;
+}
+
+#insert_div3 #show_map #map_notice{
+	margin-top:20px;
+	font-size: 20px;
+	color : green;	
 }
 
 
@@ -130,10 +191,10 @@ section #top_title {
 
 /* --------------- div5 준공날짜, 입주가능일 --------------- */
 #insert_div5{
-	height: 500px;
-	padding: 5px;
+	height: 1000px;
+	padding-top: 5px;
 	margin: 0 auto;
-	border-bottom: 1px solid;
+	/* border-bottom: 1px solid; */
 	display: block;
 }
 
@@ -166,19 +227,36 @@ section #top_title {
 }
  */
 #insert_div5 #insert_list {
-	width : 50%;
-	max-width : 500px;
-	border : 2px solid;
-	margin : 30px;
+	width : 100%;
+	max-width : 1200px;
+	background-color: #b4b4b4;
+	height : 120px;
+	margin-bottom:20px;
 }
 
 #insert_div5 #insert_imglist{
-	width : 60%;
-	max-width : 600px;
-	border : 2px solid #696869;
-	height : 150px;
-	display : block;
+	width : 100%;
+	max-width : 1200px;
+	background-color: #b4b4b4;
+	height : 220px;
+	padding: 10px;
 	
+}
+
+/* #insert_div5 #insert_imglist #thumb_area {
+	height:100px;
+	width:100%;
+	max-width: 920px;
+	background-color: white;
+	border: 2px solid black;
+	
+} */
+
+
+#insert_div5 #insert_list{
+	
+	padding: 10px;
+		
 }
 
 #insert_div5 .div5_label{
@@ -187,18 +265,28 @@ section #top_title {
 	padding-left:10px;
 }
 
-#photo_list{
+#insert_list #list_area{
 	resize: none;
+	width:100%;
+	max-width: 1000px;
+	height:100px;
+	margin:auto;
+	display:block;
 }
 
 
 
 
-/* --------------- div control --------------- */
 
-.control {
+
+/* --------------- control --------------- */
+
+
+
+
+ #insert_div5 .control {
 	margin-top: 30px;
-}
+} 
 
 .control #submit_button{
 	width : 10%;
@@ -208,6 +296,13 @@ section #top_title {
 .control #cancel_button{
 	width : 10%;
 	max-width : 100px;
+}
+
+
+/* footer */
+
+footer {
+	margin-top: 50px;
 }
 
 

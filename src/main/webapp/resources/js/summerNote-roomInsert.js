@@ -15,8 +15,27 @@ $(function() {
 	});
 });
 
-var photoValue = "";
+//--------------------------------------------------------------------------------------------------------
+//이미지 보기만은 위한 써머노트
+
+$("#summernote_img").summernote({
+	height: 182,
+	maxHeight: 182,             
+    toolbar: false
+//    focus: true,
+//    onInit : function(){
+//        $('.note-editor [data-name="ul"]').tooltip('disable'); 
+//    }
+});
+
+
+
+//--------------------------------------------------------------------------------------------------------
+
+var totalPhoto = "";
 var photo = $('#insert_photo');
+var photoList = $('#list_area');
+
 function sendFile(file) {
 	var imgname;
 	var form_data = new FormData();
@@ -32,19 +51,39 @@ function sendFile(file) {
 		success : function(img) {
 				
 				var img_db = 'resources/' + img;
-				photoValue += img_db + ',';
+				totalPhoto += img_db + ',';
 				
-				console.log(photoValue);
-				photo.val(photoValue);
+				//파일 이름만 자르기
+				console.log("img : " + img);
+				var fileName = img.split("/");
+				console.log("파일이름 : " + fileName[1]);
+				
+				//문자열 자르는 파트 ------------------------------- 
+				//마지막에 콤마를 붙여줘서 항상 마지막 인덱스는 공백.
+				
+				var photoArr = totalPhoto.split(",");
+				for(var i in photoArr){
+					console.log("["+i+"]"+ " 번째파일 : " + photoArr[i]);
+				}
+				
+				$('#summernote_img').summernote('editor.insertImage', img_db);
+				console.log("이미지 처리중");
+				
+				//-------------------------------
+				
+				//console.log("업로드한 사진의총 리스트" + totalPhoto);
+				//파일이 하나하나 처리가 안되고 있어서 파일 A,B 를 보내면 
+				// 업로드한 파일 : A
+				// 업로드한 파일 : A,B
+				// 업로드한 파일 : A,B,C .... 
+				// 식으로 찍히는중
+				photo.val(totalPhoto);
+				photoList.val(totalPhoto);
+				
+				
 			}
 			
 	});
-	
-	
-	
-	
+		
 }
-
-
-//--------------------------------------------------------------------------------------------------------
 
