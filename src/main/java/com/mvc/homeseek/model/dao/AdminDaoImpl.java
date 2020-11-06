@@ -97,6 +97,45 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return res;
 	}
+	
+	@Override
+	public int rejectReport(int report_no) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "rejectReport", report_no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int acceptReport(String report_reid) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "acceptReport", report_reid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int acceptDelete(String report_reid) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "acceptDelete", report_reid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	
 
 
 }
