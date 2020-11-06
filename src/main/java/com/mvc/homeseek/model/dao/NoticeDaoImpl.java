@@ -96,5 +96,17 @@ public class NoticeDaoImpl implements NoticeDao {
 		}
 		return list;
 	}
+	
+	@Override
+	public int hit(int notice_no) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "hit", notice_no);
+		} catch (DataAccessException e) {
+			logger.info("[ERROR] update - " + notice_no);
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 }

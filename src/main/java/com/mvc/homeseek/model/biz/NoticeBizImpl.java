@@ -53,5 +53,11 @@ public class NoticeBizImpl implements NoticeBiz {
 		return noticeDao.selectList(keyword);
 	}
 
+	@Override
+	public int hit(int notice_no) {
+		// TODO Auto-generated method stub
+		return noticeDao.hit(notice_no);
+	}
+
 
 }

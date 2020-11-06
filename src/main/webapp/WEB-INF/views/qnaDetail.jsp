@@ -27,7 +27,7 @@
 		console.log($('input[name=qna_pwd]').val());
 		console.log(document.getElementById("qna_pwd").value);
 		console.log(document.getElementById("qna_pwd").value);
-		console.log(${dto.qna_pwd });//0  제가 잘 못 가져오는듯...그럼 
+		
 		
 		
 		if(Number(pwdCheck) == $('input[name=qna_pwd]').val()){//qna_pwd값을 가져와야하는데 뭘써야 할지 모르겠어요  값이 0이떠요

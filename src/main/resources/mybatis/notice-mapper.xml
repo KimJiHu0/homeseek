@@ -33,6 +33,13 @@
 		SELECT Notice_no, Notice_id, Notice_title, Notice_regdate, notice_hit
 		FROM Notice where Notice_title like #{Keyword} ORDER BY Notice_no DESC
 	</select>
+	
+	<!-- 조회수(hit)  -->
+	<update id = "hit" parameterType= "int">
+		UPDATE NOTICE 
+		SET NOTICE_HIT = NOTICE_HIT + 1 
+		WHERE NOTICE_NO =  #{notice_no}
+	</update>
 
 
  	
