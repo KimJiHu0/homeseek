@@ -15,6 +15,13 @@
 <body>
 	<!-- header.jsp include -->
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
+	<%
+//로그인 성공후 가는 페이지에서 위 코드를 넣어준다면 된다고 합니당 <-로그인후 뒤로가기 막는 방법
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+//response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+response.setHeader("Expires", "0"); // Proxies.
+%>
+
 	
 	
 	<section>

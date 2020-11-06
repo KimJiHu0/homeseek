@@ -255,5 +255,15 @@
 		$container.html(html);
 
 	}
+	
+
+//자바스크립트로 새로고침 1회만실행 코드 <-정답	
+ if (self.name != 'reload') {
+         self.name = 'reload';
+         self.location.reload(true);
+     }
+     else self.name = ''; 
+
+	
 </script>
 </html>
