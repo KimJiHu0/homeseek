@@ -112,7 +112,7 @@
                     <div class="dropdown-content">
                       <a class="headeratag" href="javascript:myPage();">내 정보 보기</a>
                       <a class="headeratag" href="javascript:myDona();">나의 후원 내역</a>
-                      <a class="headeratag" href="#">쪽지함</a>
+                      <a class="headeratag" href="javascript:myMsg();">쪽지함</a>
                     </div>
             </div></li>
             <li>

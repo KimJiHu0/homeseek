@@ -71,3 +71,7 @@ function myPage(){
 function myDona(){
 	location.href='mypagedonalist.do';
 }
+
+function myMsg(){
+	location.href='mypagemsglist.do';
+}
