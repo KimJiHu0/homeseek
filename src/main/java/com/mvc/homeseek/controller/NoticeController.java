@@ -46,8 +46,11 @@ public class NoticeController {
 	public String selectOne(int notice_no, NoticeDto dto, Model model, HttpServletRequest request) {
 		System.out.println();
 		logger.info("PAGE ## select one 하는중 ## : " + notice_no);
+		//조회수(hit) update: 디테일을 눌렀을때 +1 되야하므로
+		noticeBiz.hit(notice_no);
+		
 		model.addAttribute("dto", noticeBiz.selectOne(notice_no));
-		request.setAttribute("dto", noticeBiz.selectOne(notice_no));// 흠...
+//		request.setAttribute("dto", noticeBiz.selectOne(notice_no));// 흠...
 		return "noticeDetail";
 	}
 

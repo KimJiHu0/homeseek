@@ -28,18 +28,24 @@
 .eval-contents {
 	cursor: pointer;
 }
+.header ul.nav2{
+	width:940px;
+}
+.header ul.nav{
+	width:800px;
+}
 </style>
 <body>
 	<section>
 		<div id="products">
 
 			<h1>N O T I C E 리 스 트</h1>
-			
+
 			<div>
-				<a> 검 색  :</a>
-				<input id="noticeSearch" type="search" value="" placeholder="Notice검색해주세여" />
+				<a> 검 색 :</a> <input id="noticeSearch" type="search" value=""
+					placeholder="Notice검색해주세여" />
 			</div>
-			
+
 			<form action="" id="setRows">
 				<input type="hidden" name="rowPerPage" value="5">
 			</form>
@@ -77,11 +83,20 @@
 					</c:choose>
 				</tbody>
 				<tr>
-				<%if(dto.getMember_role()=='A'){ %>
+					<%
+						if (dto != null) {
+							if(dto.getMember_role() == 'A'){
+					%>
 					<td colspan="5" align="right"><input type="button" value="글작성"
 						onclick="location.href='noticeinsertform.do'" /></td>
-				<%} %>		
-					
+					<%}
+						}else{
+					%>
+					<td></td>	
+					<%
+						}
+					%>
+
 				</tr>
 			</table>
 		</div>
@@ -224,8 +239,7 @@
 			html += "<form action='' id='setRows'><input type='hidden' name='rowPerPage' value='10'></form>"
 			for ( var i in data) {
 				var list = data[i];
-				html += "<tr class='eval-contents' onclick='loaction.href=noticedetail.do?notice_no="
-						+ list.notice_no + "'>";
+				html += `<tr class='eval-contents' onclick="location.href='noticedetail.do?notice_no=` + list.notice_no + `'">`;
 				html += "<td>" + list.notice_no + "</td>";
 				html += "<td>" + list.notice_id + "</td>";
 				html += "<td>" + list.notice_title + "</td>";

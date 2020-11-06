@@ -27,7 +27,12 @@
 .eval-contents {
 	cursor: pointer;
 }
-
+.header ul.nav2{
+	width:940px;
+}
+.header ul.nav{
+	width:800px;
+}
 dialog {
 	border: 2px solid black;
 	background: red;
@@ -241,8 +246,7 @@ dialog span {
 				html += "<form action='' id='setRows'><input type='hidden' name='rowPerPage' value='10'></form>"
 				for ( var i in data) {
 					var list = data[i];
-					html += "<tr class='eval-contents' onclick='location.href='qnadetail.do?qna_no="
-							+ list.qna_no + "'>";
+					html += `<tr class='eval-contents' onclick="location.href='qnadetail.do?qna_no=` + list.qna_no + `'">`;
 					html += "<td>" + list.qna_no + "</td>";
 					html += "<td>" + list.qna_id + "</td>";
 					html += "<td>" + list.qna_title + "</td>";

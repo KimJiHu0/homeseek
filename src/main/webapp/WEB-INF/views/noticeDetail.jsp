@@ -29,13 +29,13 @@
 		<table border="1">
 			<tr>
 				<th>글번호</th>
-				<td><input type="hidden" name="notice_no" value="${dto.notice_no }">
-					<c:out value="${dto.notice_no}" /></td>
+				<td><input type="hidden" name="notice_no"
+					value="${dto.notice_no }"> <c:out value="${dto.notice_no}" /></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="hidden" name="notice_id" value="${dto.notice_id }">
-					<c:out value="${dto.notice_id}" /></td>
+				<td><input type="hidden" name="notice_id"
+					value="${dto.notice_id }"> <c:out value="${dto.notice_id}" /></td>
 			</tr>
 			<tr>
 				<th>작성일</th>
@@ -46,7 +46,8 @@
 			<tr>
 				<th>제목</th>
 				<td><input type="hidden" name="notice_title"
-					value="${dto.notice_title }"> <c:out value="${dto.notice_title}" /></td>
+					value="${dto.notice_title }"> <c:out
+						value="${dto.notice_title}" /></td>
 			</tr>
 			<tr>
 				<th>내용</th>
@@ -58,17 +59,21 @@
 		</table>
 
 		<!-- 추가 : 수정,리스트로 버튼 -->
-<%if(dto.getMember_role()=='A'){ %>
+		<%
+		if (dto != null) {
+			if (dto.getMember_role() == 'A') {
+		%>
 		<a href='noticeupdateform.do?notice_no=<c:out value="${dto.notice_no}"/>'>Update</a>
 		<a href='noticedelete.do?notice_no=<c:out value="${dto.notice_no}"/>'>Delete</a>
-<%} %>		
-
-		<a href="noticelist.do">List</a> 
-
-
+		<%
+			}
+		} else {
+		%>
+		<a href="noticelist.do">List</a>
+		<%
+			}
+		%>
 	</section>
-
-
 
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>

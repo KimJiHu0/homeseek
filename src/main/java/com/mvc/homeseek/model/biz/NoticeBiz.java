@@ -16,6 +16,7 @@ public interface NoticeBiz {
 	public int delete(int seq);
 	//ajax검색
 	public List<NoticeDto> selectList(String keyword);
-
+	//조회수(HIT)
+	public int hit(int notice_no);
 
 }
