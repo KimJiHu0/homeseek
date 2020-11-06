@@ -100,6 +100,12 @@ public class RoomListBizImpl implements RoomListBiz {
 	}
 
 
+	@Override
+	public int muldeleteMyRoomList(int room_no) {
+		return roomlistdao.muldeleteMyRoomList(room_no);
+	}
+
+
 
 
 }

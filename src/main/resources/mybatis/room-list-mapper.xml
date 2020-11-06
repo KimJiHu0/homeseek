@@ -40,5 +40,11 @@
 		ROOM_ID
 		FROM ROOM
 		WHERE ROOM_ID = #{room_id}
+		ORDER BY ROOM_NO ASC 	
 	</select>
+	
+	<!-- mypageMyroomlist에서 올린 매물 삭제하기 -->
+	<delete id="muldeleteMyRoomList" parameterType="int">
+		DELETE FROM ROOM WHERE ROOM_NO = #{room_no}
+	</delete>
 </mapper>

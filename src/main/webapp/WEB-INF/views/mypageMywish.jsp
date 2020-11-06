@@ -49,11 +49,11 @@
 								<th><input type="checkbox" class="all_check" name="all_check" onclick="allChk(this.checked)"/></th>
 								<th>찜번호</th>
 								<td></td>
-								<th>글제목</th>
+								<th>매물제목</th>
 								<td></td>
 								<th>파는사람아이디</th>
 								<td></td>
-								<th>글작성날짜</th>
+								<th>매물작성날짜</th>
 								<td></td>
 							</tr>
 							<tr>
@@ -64,7 +64,7 @@
 										<th><input type="checkbox" name="chkbox" class="chkbox" value="${wishlist.wish_no }"/></th>
 										<th>${wishlist.wish_no }</th>
 										<td></td>
-										<th><a class="wishtitle" href="javascript:goRoomDetail();">${wishlist.roomdto.room_name }</a></th>
+										<th><a class="wishtitle" href="javascript:goRoomDetail(${wishlist.roomdto.room_no });">${wishlist.roomdto.room_name }</a></th>
 										<td></td>
 										<th>${wishlist.roomdto.room_id }</th>
 										<td></td>
@@ -98,11 +98,4 @@
 	
 	<%@ include file="./form/footer.jsp" %>
 </body>
-<script type="text/javascript">
-
-	function goRoomList(){
-		location.href='mypageroomlist.do';
-	}
-
-</script>
 </html>

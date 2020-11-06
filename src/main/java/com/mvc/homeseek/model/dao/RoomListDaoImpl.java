@@ -80,6 +80,22 @@ public class RoomListDaoImpl implements RoomListDao {
 		}
 		return list;
 	}
+
+	@Override
+	public int muldeleteMyRoomList(int room_no) {
+		
+		logger.info(" [ RoomListDaoImpl ] ");
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "muldeleteMyRoomList", room_no);
+		} catch (Exception e) {
+			logger.info("[ Error ] nuldeleteMyRoomList");
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
 	
 

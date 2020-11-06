@@ -15,7 +15,7 @@ section{
 	width : 100%;
 }
 
-.mywish-menu{
+.myroom-menu{
 	display : flex;
 	width : 50%;
 	height : 80px;
@@ -24,14 +24,14 @@ section{
 	color : green;
 }
 
-.mywish-menu-title{
+.myroom-menu-title{
 	width : 100%;
 	margin-left : 30px;
 	padding-left : 10%;
 	padding-top : 2%;
 }
 
-.mywish-list{
+.myroom-list{
 	width : 80%;
 	padding-top : 50px;
 	padding-bottom : 50px;

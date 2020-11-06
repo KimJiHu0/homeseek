@@ -19,4 +19,7 @@ public interface RoomListDao {
 	// session에 담겨있는 사용자가 올린 roomList 뽑기
 	public List<RoomDto> mypageMyRoomList(String room_id);
 	
+	// 다중삭제
+	public int muldeleteMyRoomList(int room_no);
+	
 }
