@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,20 @@ public class MessageBizImpl implements MessageBiz {
 	@Override
 	public int insertMessage(MessageDto messagedto) {
 		return messagedao.insertMessage(messagedto);
+	}
+
+	@Override
+	public List<MessageDto> selectMySenMsgList(String message_senid) {
+		return messagedao.selectMySenMsgList(message_senid);
+	}
+
+	@Override
+	public int muldelMyMsgList(int message_no) {
+		return messagedao.muldelMyMsgList(message_no);
+	}
+
+	@Override
+	public List<MessageDto> selectMyReMsgList(String message_reid) {
+		return messagedao.selectMyReMsgList(message_reid);
 	}
 }

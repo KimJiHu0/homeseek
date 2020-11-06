@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,5 +31,55 @@ public class MessageDaoImpl implements MessageDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+	
+	// 다중삭제
+	@Override
+	public int muldelMyMsgList(int message_no) {
+		
+		logger.info(" [ MessageDaoImpl ] ");
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "muldelMyMsgList", message_no);
+		} catch (Exception e) {
+			logger.info("[ Error ] muldelMyMsgList");
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	// 보낸 쪽지함
+	@Override
+	public List<MessageDto> selectMySenMsgList(String message_senid) {
+
+		logger.info("[ MessageDaoImpl ]");
+		
+		List<MessageDto> mysenmsglist = null;
+		
+		try {
+			mysenmsglist = sqlSession.selectList(NAMESPACE + "selectMySenMsgList", message_senid);
+		} catch (Exception e) {
+			logger.info("[ Error ] selectMySenMsgList");
+			e.printStackTrace();
+		}
+		return mysenmsglist;
+	}
+
+	@Override
+	public List<MessageDto> selectMyReMsgList(String message_reid) {
+
+		logger.info("[ MessageDaoImpl ]");
+		
+		List<MessageDto> myremsglist = null;
+		
+		try {
+			myremsglist = sqlSession.selectList(NAMESPACE + "selectMyReMsgList", message_reid);
+		} catch (Exception e) {
+			logger.info("[ Error ] selectMyReMsglist");
+			e.printStackTrace();
+		}
+		return myremsglist;
 	}
 }

@@ -1,6 +1,7 @@
 package com.mvc.homeseek.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,12 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mvc.homeseek.model.biz.MemberBiz;
 import com.mvc.homeseek.model.biz.MessageBiz;
-import com.mvc.homeseek.model.dao.MemberDao;
-import com.mvc.homeseek.model.dao.MessageDao;
 import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homeseek.model.dto.MessageDto;
 
@@ -77,9 +75,56 @@ public class MessageController {
 		return map;
 	}
 	
-	// 내가 받은 메세지 조회
+	// 보낸쪽지함에서 다중삭제
+	@RequestMapping("muldeletemsglist.do")
+	@ResponseBody
+	public int muldeleteSenMsgList(@RequestParam(value="message_no[]") int[] message_nos, HttpSession session) {
+		
+		MemberDto dto = (MemberDto)session.getAttribute("login");
+		
+		String message_senid = dto.getMember_id();
+		
+		int res = 0;
+		
+		if(message_senid != null) {
+			for(int message_no : message_nos) {
+				messagebiz.muldelMyMsgList(message_no);
+			}
+			res = 1;
+		}
+		return res;
+	}
+	
+	// 내가 보낸 메세지 조회
 	@RequestMapping("mypagemysenmsglist.do")
-	public String mypagemsglist() {
+	public String mypagesenmsglist(HttpSession session, Model model) {
+		
+		List<MessageDto> senmsglist = null;
+		MemberDto dto = (MemberDto) session.getAttribute("login");
+		
+		// 메세지 보낸사람 = 내아이디
+		String message_senid = dto.getMember_id();
+		
+		senmsglist = messagebiz.selectMySenMsgList(message_senid);
+		
+		model.addAttribute("senmsglist", senmsglist);
+		
 		return "mypageMySenmsg";
+	}
+	
+	// 내가 받은 메세지 조회
+	@RequestMapping("mypagemyremsglist.do")
+	public String mypageremsglist(HttpSession session, Model model) {
+		List<MessageDto> remsglist = null;
+		
+		MemberDto dto = (MemberDto) session.getAttribute("login");
+		
+		String message_reid = dto.getMember_id();
+		
+		remsglist = messagebiz.selectMyReMsgList(message_reid);
+		
+		model.addAttribute("remsglist", remsglist);
+		
+		return "mypageMyRemsg";
 	}
 }
