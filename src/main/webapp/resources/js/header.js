@@ -73,5 +73,5 @@ function myDona(){
 }
 
 function myMsg(){
-	location.href='mypagemysenmsglist.do';
+	location.href='mypagemyremsglist.do';
 }

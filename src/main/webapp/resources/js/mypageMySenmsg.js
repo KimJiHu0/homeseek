@@ -39,7 +39,7 @@
 				}
 				
 				$.ajax({
-					url : "muldeletemsglist.do",
+					url : "muldeletesenmsglist.do",
 					type : "post",
 					data : { message_no : message_nos },
 					success : function(del){

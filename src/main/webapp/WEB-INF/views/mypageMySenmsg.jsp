@@ -25,7 +25,7 @@
 			<div class="mysenmsg-list">
 				<form action="" method="post" class="checksenmsglist">
 					<table>
-						<!-- 쪽지번호, 보낸사람, 제목, 날짜 -->
+						<!-- 쪽지번호, 받는사람, 제목, 날짜 -->
 						<col width="80px">
 						<col width="100px">
 						<col width="80px">
@@ -41,7 +41,7 @@
 						<c:choose>
 							<c:when test="${empty senmsglist }">
 								<tr>
-									<th colspan="9">현재 회원님께서 받은 메세지가 없습니다.</th>
+									<th colspan="9">현재 회원님께서 보낸 쪽지가 없습니다.</th>
 								</tr>
 							</c:when>
 							<c:otherwise>

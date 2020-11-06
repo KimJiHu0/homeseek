@@ -25,8 +25,13 @@ public class MessageBizImpl implements MessageBiz {
 	}
 
 	@Override
-	public int muldelMyMsgList(int message_no) {
-		return messagedao.muldelMyMsgList(message_no);
+	public int muldelMyReMsgList(int message_no) {
+		return messagedao.muldelMyReMsgList(message_no);
+	}
+	
+	@Override
+	public int muldelMySenMsgList(int message_no) {
+		return messagedao.muldelMySenMsgList(message_no);
 	}
 
 	@Override

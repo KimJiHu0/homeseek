@@ -33,22 +33,39 @@ public class MessageDaoImpl implements MessageDao {
 		return res;
 	}
 	
-	// 다중삭제
+	// 받은쪽지함다중삭제
 	@Override
-	public int muldelMyMsgList(int message_no) {
+	public int muldelMyReMsgList(int message_no) {
 		
 		logger.info(" [ MessageDaoImpl ] ");
 		
 		int res = 0;
 		
 		try {
-			res = sqlSession.delete(NAMESPACE + "muldelMyMsgList", message_no);
+			res = sqlSession.update(NAMESPACE + "muldelMyReMsgList", message_no);
 		} catch (Exception e) {
 			logger.info("[ Error ] muldelMyMsgList");
 			e.printStackTrace();
 		}
 		return res;
 	}
+	
+	// 보낸쪽지함다중삭제
+		@Override
+		public int muldelMySenMsgList(int message_no) {
+			
+			logger.info(" [ MessageDaoImpl ] ");
+			
+			int res = 0;
+			
+			try {
+				res = sqlSession.update(NAMESPACE + "muldelMySenMsgList", message_no);
+			} catch (Exception e) {
+				logger.info("[ Error ] muldelMySenMsgList");
+				e.printStackTrace();
+			}
+			return res;
+		}
 	
 	// 보낸 쪽지함
 	@Override
@@ -67,6 +84,7 @@ public class MessageDaoImpl implements MessageDao {
 		return mysenmsglist;
 	}
 
+	// 받은 쪽지함
 	@Override
 	public List<MessageDto> selectMyReMsgList(String message_reid) {
 

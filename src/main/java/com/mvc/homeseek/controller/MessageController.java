@@ -75,10 +75,10 @@ public class MessageController {
 		return map;
 	}
 	
-	// 보낸쪽지함에서 다중삭제
-	@RequestMapping("muldeletemsglist.do")
+	// 받은쪽지함에서 다중삭제
+	@RequestMapping("muldeleteremsglist.do")
 	@ResponseBody
-	public int muldeleteSenMsgList(@RequestParam(value="message_no[]") int[] message_nos, HttpSession session) {
+	public int muldeleteReMsgList(@RequestParam(value="message_no[]") int[] message_nos, HttpSession session) {
 		
 		MemberDto dto = (MemberDto)session.getAttribute("login");
 		
@@ -88,12 +88,32 @@ public class MessageController {
 		
 		if(message_senid != null) {
 			for(int message_no : message_nos) {
-				messagebiz.muldelMyMsgList(message_no);
+				messagebiz.muldelMyReMsgList(message_no);
 			}
 			res = 1;
 		}
 		return res;
 	}
+	
+	// 보낸쪽지함에서 다중삭제
+		@RequestMapping("muldeletesenmsglist.do")
+		@ResponseBody
+		public int muldeleteSenMsgList(@RequestParam(value="message_no[]") int[] message_nos, HttpSession session) {
+			
+			MemberDto dto = (MemberDto)session.getAttribute("login");
+			
+			String message_senid = dto.getMember_id();
+			
+			int res = 0;
+			
+			if(message_senid != null) {
+				for(int message_no : message_nos) {
+					messagebiz.muldelMySenMsgList(message_no);
+				}
+				res = 1;
+			}
+			return res;
+		}
 	
 	// 내가 보낸 메세지 조회
 	@RequestMapping("mypagemysenmsglist.do")
