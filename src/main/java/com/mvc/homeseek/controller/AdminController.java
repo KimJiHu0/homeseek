@@ -38,22 +38,35 @@ public class AdminController {
 		model.addAttribute("list", adminBiz.allMember(page));
 		return "adminPage";
 	}
-	/*관리자 전체 회원조회
-		@RequestMapping("/admin.do")
-		public String selectList(Model model) {
-			
-			model.addAttribute("list", adminBiz.allMember());
-			
-			return "adminPage";
-		}*/
-		@RequestMapping("/enableUpdateform.do")
+	
+	@GetMapping("/admindona.do")
+	public String donaList(Paging page, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
+		int total = adminBiz.countDonation();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", page);
+		model.addAttribute("list", adminBiz.allDonation(page));
+		return "adminDonation";
+		}
+
+		@RequestMapping("/enableupdateform.do")
 		public String reportList(Model model) {
 			
 			model.addAttribute("list", adminBiz.allReport());
 			
 			return "adminReport";
 		}
-		@RequestMapping("/enableUpdate.do")
+		@RequestMapping("/enableupdate.do")
 		public String reportUpdate(int report_no, Model model) {
 			
 			

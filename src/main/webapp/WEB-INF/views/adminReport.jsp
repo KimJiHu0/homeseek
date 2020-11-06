@@ -42,7 +42,7 @@
 						<td>${dto.report_no }</td>
 						<td>${dto.report_senid }</td>
 						<td>${dto.report_reid }</td>
-						<td><a href="enableUpdate.do?report_no=${dto.report_no}">${dto.report_title }</a>
+						<td><a href="enableupdate.do?report_no=${dto.report_no}">${dto.report_title }</a>
 						</td>
 						<td>${dto.report_date }</td>
 					</tr>
@@ -52,7 +52,7 @@
 		
 	
 	<tr>
-	<td colspan="5" align="right"><input type="button" value="신고 관리 " onclick="location.href='enableUpdateform.do'" /></td>
+	<td colspan="5" align="right"><input type="button" value="신고 관리 " onclick="location.href='enableupdateform.do'" /></td>
 	<tr>
 		
 	</table>

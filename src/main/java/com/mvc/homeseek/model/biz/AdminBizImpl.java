@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mvc.homeseek.model.dao.AdminDao;
+import com.mvc.homeseek.model.dto.DonationDto;
 import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homeseek.model.dto.ReportDto;
 import com.mvc.homseek.paging.Paging;
@@ -35,6 +36,17 @@ public class AdminBizImpl implements AdminBiz {
 	public int countMember() {
 		// TODO Auto-generated method stub
 		return adminDao.countMember();
+	}
+	@Override
+	public int countDonation() {
+		// TODO Auto-generated method stub
+		return adminDao.countDonation();
+	}
+	
+	@Override
+	public List<DonationDto> allDonation(Paging vo) {
+		// TODO Auto-generated method stub
+		return adminDao.allDonation(vo);
 	}
 
 
