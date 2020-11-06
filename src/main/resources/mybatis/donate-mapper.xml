@@ -7,4 +7,12 @@
 		VALUES(DONA_NO_SEQ.NEXTVAL, #{dona_bill}, SYSDATE, #{dona_id})
 	</insert>
 	
+	<!-- 내가 후원한 내역 확인하기 -->
+	<select id="selectMyDonaList" parameterType="String" resultType="DonationDto">
+		SELECT DONA_NO, DONA_BILL, DONA_DATE, DONA_ID
+		FROM DONATION
+		WHERE DONA_ID = #{dona_id}
+		ORDER BY DONA_NO ASC
+	</select>
+	
 </mapper>

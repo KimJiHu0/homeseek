@@ -81,7 +81,7 @@
            <% if(dto == null) { %> 
         	 <li><a class="headeratag" href="loginform.do">채팅</a></li>
         	<% } else {%>
-            <li><p class="headeratag" onclick="chat();">채팅</p></li>
+            <li><a class="headeratag" href="javascript:chat();">채팅</a></li>
             <% } %> 
             <li><a class="headeratag" href="donateform.do">후원하기</a></li> 
             <li><a class="headeratag" href="#">Kr | En</a></li>
@@ -111,7 +111,7 @@
                  <button class="dropbtn"><strong><%= dto.getMember_name()%>님 환영합니다</strong></button>
                     <div class="dropdown-content">
                       <a class="headeratag" href="javascript:myPage();">내 정보 보기</a>
-                      <a class="headeratag" href="#">나의 후원 내역</a>
+                      <a class="headeratag" href="javascript:myDona();">나의 후원 내역</a>
                       <a class="headeratag" href="#">쪽지함</a>
                     </div>
             </div></li>

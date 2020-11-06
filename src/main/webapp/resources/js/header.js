@@ -67,3 +67,7 @@ function myPage(){
 	
 	open("mypagemyinfo.do", "", "width=600, height=700");
 }
+
+function myDona(){
+	location.href='mypagedonalist.do';
+}
