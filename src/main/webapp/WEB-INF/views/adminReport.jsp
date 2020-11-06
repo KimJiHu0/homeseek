@@ -49,12 +49,6 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		
-	
-	<tr>
-	<td colspan="5" align="right"><input type="button" value="신고 관리 " onclick="location.href='enableupdateform.do'" /></td>
-	<tr>
-		
 	</table>
 
 	</section>

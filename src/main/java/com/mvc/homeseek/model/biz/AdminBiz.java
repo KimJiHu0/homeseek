@@ -20,5 +20,11 @@ public interface AdminBiz {
 	public int countDonation();
 	//전체 후원내역 조회
 	public List<DonationDto> allDonation(Paging vo);
+	//신고 반려
+	public int rejectReport(int report_no);
+	//신고 승인
+	public int acceptReport(String report_reid);
+	//신고 승인 후 리스트 삭제
+	public int acceptDelete(String report_reid);
 
 }

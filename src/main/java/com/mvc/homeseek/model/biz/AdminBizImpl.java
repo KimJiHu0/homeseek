@@ -48,6 +48,22 @@ public class AdminBizImpl implements AdminBiz {
 		// TODO Auto-generated method stub
 		return adminDao.allDonation(vo);
 	}
+	
+	@Override
+	public int rejectReport(int report_no) {
+		// TODO Auto-generated method stub
+		return adminDao.rejectReport(report_no);
+	}
+	@Override
+	public int acceptReport(String report_reid) {
+		// TODO Auto-generated method stub
+		return adminDao.acceptReport(report_reid);
+	}
+	@Override
+	public int acceptDelete(String report_reid) {
+		// TODO Auto-generated method stub
+		return adminDao.acceptDelete(report_reid);
+	}
 
 
 }

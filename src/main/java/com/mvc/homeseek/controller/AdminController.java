@@ -75,6 +75,34 @@ public class AdminController {
 			
 			return "adminReportUpdate";
 		}
+		@RequestMapping("/rejectreport.do")
+		public String rejectReport(int report_no) {
+			
+			
+			int res = adminBiz.rejectReport(report_no);
+			
+			if(res > 0) {
+				return "redirect:enableupdateform.do";
+			}
+			
+			
+			return "redirect:adminReportUpdate?report_no=" + report_no;
+		}
+		@RequestMapping("/acceptreport.do")
+		public String acceptReport(String report_reid, int report_no) {
+			
+			logger.info("report_reid:::::" + report_reid);
+			
+			int res = adminBiz.acceptReport(report_reid);
+			
+			if(res > 0) {
+				adminBiz.acceptDelete(report_reid);
+				return "redirect:enableupdateform.do";
+			}
+			
+			
+			return "redirect:adminReportUpdate?report_no=" + report_no;
+		}
 		
 		
 }
