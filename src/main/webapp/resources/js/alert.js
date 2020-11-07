@@ -21,7 +21,7 @@ function connectWs(){
 		// 알림을 클릭했을 때
 		notification.onclick = function(event){
 			event.preventDefault();
-			window.open('http://www.naver.com', '_blank');
+			location.href="mypagemyremsglist.do";
 		}
 		
 	}

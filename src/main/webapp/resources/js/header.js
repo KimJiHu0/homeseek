@@ -50,7 +50,7 @@ function connectWs(){
 		// 알림을 클릭했을 때 원하는 곳으로 이동
 		notification.onclick = function(event){
 			event.preventDefault();
-			location.href="main.do";
+			location.href="mypagemyremsglist.do";
 		}
 	}
 	

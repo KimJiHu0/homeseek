@@ -14,7 +14,7 @@ function goSendMessage(message_senid){
 					self.close();
 					opener.location.reload(true);
 				} else {
-					alert("받은 쪽찌 삭제가 실패하였습니다.");
+					alert("받은 쪽지 삭제가 실패하였습니다.");
 				}
 			},
 			error : function(){
