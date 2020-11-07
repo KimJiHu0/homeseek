@@ -436,7 +436,7 @@ console.log(str);
 var str2 = str[1].split(")");
 var chkAddr = str2[0];
 
-
+ 
 $.ajax({
     async: false, //비동기에서 동기로
     url: jsonAddr,
