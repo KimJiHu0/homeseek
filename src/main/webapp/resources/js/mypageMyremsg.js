@@ -3,6 +3,11 @@ function goSenMsgList(){
 	location.href='mypagemysenmsglist.do';
 }
 
+// 제목 누르면 쪽지 상세보기
+function goReMsgDetail(message_no){
+	open("mypageremsgdetail.do?message_no="+message_no , "", "width=600px height=700px");
+}
+
 // checkbox 전체치크 함수
 function allChk(bool){
 	var chkbox = document.getElementsByName("chkbox");

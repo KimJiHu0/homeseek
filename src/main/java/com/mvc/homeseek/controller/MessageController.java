@@ -147,4 +147,23 @@ public class MessageController {
 		
 		return "mypageMyRemsg";
 	}
+	
+	// 받은 메세지 상세보기
+	@RequestMapping("mypageremsgdetail.do")
+	public String mypageReMsgDetail(int message_no, Model model) {
+		
+		// 쪽지 상세보기 뽑은 messagedto
+		MessageDto messagedto = messagebiz.selectMyReMsgDetail(message_no);
+		
+		// 쪽지 보낸 사람의 id를가지고 member_name을 찾아오기 위한 변수
+		String member_id = messagedto.getMessage_senid();
+		
+		// 위에서 조회한 id를 통해서 그 사람에 대한 모든 정보를 담은 dto
+		MemberDto memberdto = memberbiz.selectMemberById(member_id);
+		
+		model.addAttribute("messagedto", messagedto);
+		model.addAttribute("memberdto", memberdto);
+		
+		return "mypageMyremsgDetail";
+	}
 }

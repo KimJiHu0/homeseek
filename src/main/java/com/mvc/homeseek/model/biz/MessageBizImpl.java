@@ -38,4 +38,9 @@ public class MessageBizImpl implements MessageBiz {
 	public List<MessageDto> selectMyReMsgList(String message_reid) {
 		return messagedao.selectMyReMsgList(message_reid);
 	}
+
+	@Override
+	public MessageDto selectMyReMsgDetail(int message_no) {
+		return messagedao.selectMyReMsgDetail(message_no);
+	}
 }

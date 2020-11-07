@@ -38,4 +38,11 @@
 		AND MESSAGE_REDEL = 'R'
 		ORDER BY MESSAGE_NO ASC 
 	</select>
+	
+	<!-- 받은 쪽지 상세보기 -->
+	<select id="selectMyReMsgDetail" parameterType="int" resultType="MessageDto">
+		SELECT MESSAGE_NO, MESSAGE_SENID, MESSAGE_REID, MESSAGE_TITLE, MESSAGE_CONTENT, MESSAGE_DATE
+		FROM MESSAGE
+		WHERE MESSAGE_NO = #{message_no}
+	</select>
 </mapper>

@@ -65,7 +65,7 @@
 										<th><input type="checkbox" name="chkbox" class="chkbox" value="${remsglist.message_no }"/></th>
 										<th>${remsglist.message_no }</th>
 										<td></td>
-										<th><a class="senmsgtitle" href="#">${remsglist.message_title }</a></th>
+										<th><a class="senmsgtitle" href="javascript:goReMsgDetail(${remsglist.message_no });">${remsglist.message_title }</a></th>
 										<td></td>
 										<th>${remsglist.message_senid }</th>
 										<td></td>
