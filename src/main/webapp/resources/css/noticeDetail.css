@@ -3,4 +3,6 @@
 /* section을 header로 부터 떨어트리는 거리 */
 section{
 	padding-top : 180px;
+	padding-bottom : 180px;
+	padding-left: 200px;
 }

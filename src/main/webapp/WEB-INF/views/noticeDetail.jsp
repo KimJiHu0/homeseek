@@ -60,18 +60,21 @@
 
 		<!-- 추가 : 수정,리스트로 버튼 -->
 		<%
-		if (dto != null) {
-			if (dto.getMember_role() == 'A') {
+		if (dto != null) {//로그인(ㅇ)
+			if (dto.getMember_role() == 'A') {//관리자(ㅇ)
 		%>
 		<a href='noticeupdateform.do?notice_no=<c:out value="${dto.notice_no}"/>'>Update</a>
 		<a href='noticedelete.do?notice_no=<c:out value="${dto.notice_no}"/>'>Delete</a>
 		<%
-			}
-		} else {
+			}//일반회원(ㅇ)
+			%>
+			<a href="noticelist.do">List</a>
+			<%
+		} else {//로그인(x)
 		%>
 		<a href="noticelist.do">List</a>
 		<%
-			}
+		}
 		%>
 	</section>
 

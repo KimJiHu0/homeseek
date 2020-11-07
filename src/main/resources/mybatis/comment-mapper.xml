@@ -27,7 +27,7 @@
 	<insert id="commentInsert" parameterType="CommentDto">
 		INSERT INTO
 		REPLY (REPLY_NO, QNA_NO, REPLY_CONTENT, REPLY_ID, REPLY_REGDATE)
-		VALUES(REPLY_NO_SEQ.NEXTVAL,#{qna_no},#{comm_content},#{comm_id},SYSDATE)
+		VALUES(REPLY_NO_SEQ.NEXTVAL,#{qna_no},#{comm_content},#{comm_id}, SYSDATE)
 	</insert>
 
 	<update id="commentUpdate" parameterType="CommentDto">
