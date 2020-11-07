@@ -40,7 +40,6 @@ public class MessageHandler extends TextWebSocketHandler {
 		logger.info(" \n [ " + userId + " ] 연결됨 ");
 		// 방금 로그인에 성공한 애를 담아준다.
 		userSessionMap.put(userId, session);
-		logger.info(" \n 유저세선스맵에 방금 로그인한애 담겼어?? : " + userSessionMap);
 	}
 	
 	// 클라이언트가 Data 전송 시 실행되는 메소드
@@ -49,7 +48,6 @@ public class MessageHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
 		// WebSocket Id = 8 << 이런식으로 뜸
-		logger.info(" \n [ 로그인 한 회원이 세션에 값이 잘 담겼니? ] : " + session.toString());
 		
 		// session.getId는 접속한 애의 아이디(임의로 부여한듯?)
 		logger.info(" \n [ messageHandler ]에서 " + session.getId() + "로부터 message 받음 : " + message);
@@ -57,7 +55,6 @@ public class MessageHandler extends TextWebSocketHandler {
 		
 		// getPayload는 message에 붙여준다?는 느낌인 것 같다.
 	    String msg = message.getPayload();
-	    System.out.println("\n 으아악 msg첨가해! : " + msg);
 	    
 	    if(StringUtils.isNotEmpty(msg)) {
 	    	String[] strs = msg.split(",");
