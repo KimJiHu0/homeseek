@@ -431,53 +431,63 @@ var A=0; var B=0; var C=0; var D=0; var E=0; var F=0;
 ///////////////// 월세 a=25미만, b=25이상 50미만, c=50이상 80미만, d=80이상 150미만, e=150이상 200미만, f=200이상
 var a = 0; var b = 0; var c = 0; var d = 0; var e = 0; var f = 0;	
 
+var str = "${room.room_addr}".split("(");
+console.log(str);
+var str2 = str[1].split(")");
+var chkAddr = str2[0];
+
+
 $.ajax({
     async: false, //비동기에서 동기로
     url: jsonAddr,
     success: function(data) {
     	$.each(data,function(index,info){
-    		if(${room.room_type == 3}){ // 매매일때
-	    		if(info.거래금액 < 10000){
-	    			A++;
-	    		}else if(10000<= info.거래금액 && info.거래금액<30000){
-	    			B++;
-	    		}else if(30000<=info.거래금액 && info.거래금액<100000){
-	    			C++;
-	    		}else if(100000<=info.거래금액 && info.거래금액<200000){
-	    			D++;
-	    		}else if(200000<=info.거래금액 && info.거래금액<400000){
-	    			E++;
-	    		}else if(400000<=info.거래금액){
-	    			F++;
+    		var infoAddr = info.시군구;
+    		
+    		if(infoAddr.includes(chkAddr) == true){
+	    		if(${room.room_type == 3}){ // 매매일때
+		    		if(info.거래금액 < 10000){
+		    			A++;
+		    		}else if(10000<= info.거래금액 && info.거래금액<30000){
+		    			B++;
+		    		}else if(30000<=info.거래금액 && info.거래금액<100000){
+		    			C++;
+		    		}else if(100000<=info.거래금액 && info.거래금액<200000){
+		    			D++;
+		    		}else if(200000<=info.거래금액 && info.거래금액<400000){
+		    			E++;
+		    		}else if(400000<=info.거래금액){
+		    			F++;
+		    		}
+	    		}else{ 						// 전세, 월세 일때
+		    		if(info.보증금 < 3000){
+		    			A++;
+		    		}else if(3000<= info.보증금 && info.보증금<6000){
+		    			B++;
+		    		}else if(6000<=info.보증금 && info.보증금<10000){
+		    			C++;
+		    		}else if(10000<=info.보증금 && info.보증금<30000){
+		    			D++;
+		    		}else if(30000<=info.보증금 && info.보증금<60000){
+		    			E++;
+		    		}else if(60000<=info.보증금){
+		    			F++;
+		    		}
+	    			
+	    			if(info.월세 < 25){
+	    				a++;
+	    			}else if(25<= info.월세 && info.월세<50){
+	    				b++;
+	    			}else if(50<=info.월세 && info.월세<80){
+	    				c++;
+	    			}else if(80<=info.월세 && info.월세<150){
+	    				d++;
+	    			}else if(150<=info.월세 && info.월세<200){
+	    				e++;
+	    			}else if(200<=info.월세){
+	    				f++;
+	    			}
 	    		}
-    		}else{ 						// 전세, 월세 일때
-	    		if(info.보증금 < 3000){
-	    			A++;
-	    		}else if(3000<= info.보증금 && info.보증금<6000){
-	    			B++;
-	    		}else if(6000<=info.보증금 && info.보증금<10000){
-	    			C++;
-	    		}else if(10000<=info.보증금 && info.보증금<30000){
-	    			D++;
-	    		}else if(30000<=info.보증금 && info.보증금<60000){
-	    			E++;
-	    		}else if(60000<=info.보증금){
-	    			F++;
-	    		}
-    			
-    			if(info.월세 < 25){
-    				a++;
-    			}else if(25<= info.월세 && info.월세<50){
-    				b++;
-    			}else if(50<=info.월세 && info.월세<80){
-    				c++;
-    			}else if(80<=info.월세 && info.월세<150){
-    				d++;
-    			}else if(150<=info.월세 && info.월세<200){
-    				e++;
-    			}else if(200<=info.월세){
-    				f++;
-    			}
     		}
     	});
     }
@@ -518,13 +528,15 @@ if(${room.room_type == 3}){
 	]
 }
 
+
+
 var resdata1 = data1.sort(function(a,b){return b.count - a.count});
 console.log(resdata1[0]);
-document.getElementById("pieresult1").innerHTML="ㅇㅇ동에서 가장 많이 이용하는 금액은 "+resdata1[0].name+" 입니다.";
+document.getElementById("pieresult1").innerHTML= chkAddr+"에서 가장 많이 이용하는 금액은 "+resdata1[0].name+" 입니다.";
 
 if(${room.room_type != 3}){
 	var resdata2 = data2.sort(function(a,b){return b.count - a.count});
-	document.getElementById("pieresult2").innerHTML="ㅇㅇ동에서 가장 많이 이용하는 금액은 "+resdata2[0].name+" 입니다.";	
+	document.getElementById("pieresult2").innerHTML= chkAddr+"에서 가장 많이 이용하는 금액은 "+resdata2[0].name+" 입니다.";	
 }
 
 ///////////////////////////////////// 거래금액 및 보증금 chart
