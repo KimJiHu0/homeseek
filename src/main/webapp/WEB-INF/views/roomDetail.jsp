@@ -139,6 +139,7 @@
 						<span class="leftb"></span><span class="rightb"></span>
 					</div>
 				</div>
+				<div class="noD3Content"></div>
 				<div class="d3Content" >
 					<p class="pieinfo">&lt;매매가 및 전세금&gt;</p>
 					<div id="piechart1" ></div>
@@ -434,7 +435,11 @@ var a = 0; var b = 0; var c = 0; var d = 0; var e = 0; var f = 0;
 var str = "${room.room_addr}".split("(");
 console.log(str);
 var str2 = str[1].split(")");
-var chkAddr = str2[0];
+console.log(str2);
+var str3 = str2[0].split(",");
+console.log(str3);
+var chkAddr = str3[0];
+console.log(chkAddr);
 
  
 $.ajax({
@@ -497,6 +502,13 @@ $.ajax({
 
 console.log(A,B,C,D,E,F);
 console.log(a,b,c,d,e,f);
+
+if(A ==0 && B == 0 && C == 0 && D == 0 && E == 0 && F == 0){
+	$(".d3Content").css("display","none");
+	$(".noD3Content").html("해당 지역의 실거래가 정보가 없습니다.");
+}else{
+	$(".noD3Content").css("display","none");
+}
 
 var data1 ;
 var data2 = [

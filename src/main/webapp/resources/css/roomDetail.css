@@ -270,7 +270,7 @@ a>img {
 .d3Content{
 	border : 1px black solid;
 	width: 550px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 svg{
@@ -289,4 +289,17 @@ svg{
 #pieresult2{
 	margin-left: 80px;
 	margin-bottom: 10px;
+}
+
+.noD3Content{
+    width: 420px;
+    height: 60px;
+    border: 1px black solid;
+    margin-top: 10px;
+    padding-top: 30px;
+    padding-left: 130px;
+}
+
+.pieinfo{
+	margin-top: 10px;
 }
