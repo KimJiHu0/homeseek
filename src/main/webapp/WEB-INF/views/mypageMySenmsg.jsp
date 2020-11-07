@@ -64,7 +64,7 @@
 										<th><input type="checkbox" name="chkbox" class="chkbox" value="${senmsglist.message_no }"/></th>
 										<th>${senmsglist.message_no }</th>
 										<td></td>
-										<th><a class="senmsgtitle" href="#">${senmsglist.message_title }</a></th>
+										<th><a class="senmsgtitle" href="javascript:goSenMsgDetail(${senmsglist.message_no })">${senmsglist.message_title }</a></th>
 										<td></td>
 										<th>${senmsglist.message_reid }</th>
 										<td></td>

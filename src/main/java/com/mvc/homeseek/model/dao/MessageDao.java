@@ -24,5 +24,5 @@ public interface MessageDao {
 	public List<MessageDto> selectMyReMsgList(String message_reid);
 	
 	// 받은 쪽지 상세보기
-	public MessageDto selectMyReMsgDetail(int message_no);
+	public MessageDto selectMyMsgDetail(int message_no);
 }

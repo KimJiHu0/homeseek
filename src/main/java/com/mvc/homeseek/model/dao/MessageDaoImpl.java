@@ -101,16 +101,16 @@ public class MessageDaoImpl implements MessageDao {
 		return myremsglist;
 	}
 
-	// 받은 쪽지 상세보기
+	// 쪽지 상세보기
 	@Override
-	public MessageDto selectMyReMsgDetail(int message_no) {
+	public MessageDto selectMyMsgDetail(int message_no) {
 		
 		logger.info("[ MessageDaoImpl ]");
 		
 		MessageDto messagedto = new MessageDto();
 		
 		try {
-			messagedto = sqlSession.selectOne(NAMESPACE + "selectMyReMsgDetail", message_no);
+			messagedto = sqlSession.selectOne(NAMESPACE + "selectMyMsgDetail", message_no);
 		} catch (Exception e) {
 			logger.info("[ Error ] selectMyReMsgDetail");
 			e.printStackTrace();

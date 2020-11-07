@@ -64,3 +64,8 @@
 	function goRemsgList(){
 		location.href='mypagemyremsglist.do';
 	}
+	
+	// 보낸 쪽지 상세보기
+	function goSenMsgDetail(message_no){
+		open('mypagesenmsgdetail.do?message_no='+message_no,"", "width=600px height=700px");
+	}

@@ -40,7 +40,7 @@ public class MessageBizImpl implements MessageBiz {
 	}
 
 	@Override
-	public MessageDto selectMyReMsgDetail(int message_no) {
-		return messagedao.selectMyReMsgDetail(message_no);
+	public MessageDto selectMyMsgDetail(int message_no) {
+		return messagedao.selectMyMsgDetail(message_no);
 	}
 }
