@@ -24,12 +24,12 @@ var cnt = 1;
 var word = $('#navsearchtxt').val();
 console.log("word : " +word);
 /* 엘라스틱서치 할 때 스크롤 페이징 진행 */
-window.onscroll = function(e) {
+/* window.onscroll = function(e) {
     if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		showList(cnt);
 		cnt++;
     }
-};
+}; */
 
 
 function numberWithCommas(x) {
