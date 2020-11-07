@@ -26,5 +26,17 @@ public interface AdminBiz {
 	public int acceptReport(String report_reid);
 	//신고 승인 후 리스트 삭제
 	public int acceptDelete(String report_reid);
+	//일반 회원 조회
+	public List<MemberDto> NormalMember(Paging vo);
+	//일반 회원 수
+	public int countNormal();
+	//차단 회원 수
+	public int countBan();
+	//차단 회원 조회
+	public List<MemberDto> BanMember(Paging vo);
+	//탈퇴 회원 수
+	public int countWithdrawal();
+	//탈퇴 회원 조회
+	public List<MemberDto> WithdrawalMember(Paging vo);
 
 }

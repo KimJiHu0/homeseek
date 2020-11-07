@@ -1,5 +1,22 @@
 section{
-	padding : 10% 20%; 
+	padding-top : 100px;
+}
+.admin-menu{
+	display : flex;
+	width : 150%;
+	height : 80px;
+	margin-left : 5%;
+	font-size : 20pt;
+	color : green;
+	writing-mode : lr-tb;
+}
+
+.admin-menu-title{
+	width : 100%;
+	margin-left : -150px;
+	padding-left : 0%;
+	padding-top : 2%;
+	writing-mode : lr-tb;
 }
 h2 {
 		text-align: center;

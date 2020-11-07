@@ -64,6 +64,35 @@ public class AdminBizImpl implements AdminBiz {
 		// TODO Auto-generated method stub
 		return adminDao.acceptDelete(report_reid);
 	}
-
+	@Override
+	public List<MemberDto> NormalMember(Paging vo) {
+		// TODO Auto-generated method stub
+		return adminDao.NormalMember(vo);
+	}
+	@Override
+	public int countNormal() {
+		// TODO Auto-generated method stub
+		return adminDao.countNormal();
+	}
+	@Override
+	public List<MemberDto> BanMember(Paging vo) {
+		// TODO Auto-generated method stub
+		return adminDao.BanMember(vo);
+	}
+	@Override
+	public int countBan() {
+		// TODO Auto-generated method stub
+		return adminDao.countBan();
+	}
+	@Override
+	public int countWithdrawal() {
+		// TODO Auto-generated method stub
+		return adminDao.countWithdrawal();
+	}
+	@Override
+	public List<MemberDto> WithdrawalMember(Paging vo) {
+		// TODO Auto-generated method stub
+		return adminDao.WithdrawalMember(vo);
+	}
 
 }

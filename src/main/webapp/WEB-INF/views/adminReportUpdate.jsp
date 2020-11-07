@@ -6,15 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="resources/js/adminReportUpdate.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminReportUpdate.css">
+
+
+
+
 </head>
 <body>
 
 	<!-- header.jsp -->
 	<%@ include file="form/header.jsp"%>
 
-	<section>
-	<form action="acceptreport.do" method="post">
+
+	
+	<form action="acceptreport.do" method="post" name="success">
 	 <input type="hidden" id="report_reid" name="report_reid" value="${dto.report_reid }">
 	 <input type="hidden" id="report_no" name="report_no" value="${dto.report_no }">
 		<h1>신고 관리</h1>
@@ -45,13 +51,13 @@
 		
 
 		</table>
-					<input type="submit" value="신고 승인">
+					<button  onclick="accept();">신고 승인</button>
 					<input type="button" onclick="location.href='rejectreport.do?report_no=<c:out value="${dto.report_no }"/>'" value="신고 반려">
 					
 
 		
 		
 </form>
-</section>
+
 </body>
 </html>

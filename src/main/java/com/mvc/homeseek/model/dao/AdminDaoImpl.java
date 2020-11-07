@@ -134,8 +134,79 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return res;
 	}
+	@Override
+	public List<MemberDto> NormalMember(Paging vo) {
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE+"NormalMember",vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int countNormal() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "countNormal");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
-	
-
+	@Override
+	public List<MemberDto> BanMember(Paging vo) {
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE+"BanMember",vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int countBan() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"countBan");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	@Override
+	public int countWithdrawal() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"countWithdrawal");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public List<MemberDto> WithdrawalMember(Paging vo) {
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE+"WithdrawalMember",vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 }

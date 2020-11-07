@@ -38,6 +38,63 @@ public class AdminController {
 		model.addAttribute("list", adminBiz.allMember(page));
 		return "adminPage";
 	}
+	@GetMapping("/normal.do")
+	public String normalList(Paging page, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
+		int total = adminBiz.countNormal();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", page);
+		model.addAttribute("list", adminBiz.NormalMember(page));
+		return "adminPage";
+	}
+	@GetMapping("/ban.do")
+	public String banList(Paging page, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
+		int total = adminBiz.countBan();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", page);
+		model.addAttribute("list", adminBiz.BanMember(page));
+		return "adminPage";
+	}
+	@GetMapping("/withdrawal.do")
+	public String withdrawalList(Paging page, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
+		int total = adminBiz.countWithdrawal();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", page);
+		model.addAttribute("list", adminBiz.WithdrawalMember(page));
+		return "adminPage";
+	}
 	
 	@GetMapping("/admindona.do")
 	public String donaList(Paging page, Model model
