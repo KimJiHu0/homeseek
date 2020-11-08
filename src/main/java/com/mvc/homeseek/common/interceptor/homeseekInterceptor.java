@@ -86,6 +86,8 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("/normal.do")||
 				request.getRequestURI().contains("/ban.do")||
 				request.getRequestURI().contains("/withdrawal.do")||
+				request.getRequestURI().contains("/enable.do")||
+				request.getRequestURI().contains("/enablemodifyform.do")||
 				request.getRequestURI().contains("mypagewishlist.do") ||
 				request.getRequestURI().contains("muldeletewishlist.do") ||
 				request.getRequestURI().contains("mypageroomlist.do") ||

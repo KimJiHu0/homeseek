@@ -135,5 +135,11 @@
 		FROM REPORT
 		WHERE REPORT_REID = #{report_reid} 
 	</delete>
+	<!-- 회원 활성화 여부 수정 -->
+	<update id="enableModify" parameterType = "String">
+		UPDATE MEMBER
+		SET MEMBER_ENABLED = 'N'
+		WHERE MEMBER_ID = #{member_id}
+	</update>
 	
 </mapper>

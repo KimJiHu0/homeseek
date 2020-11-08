@@ -208,5 +208,17 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return res;
 	}
+	@Override
+	public int enableModify(String member_id) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"enableModify",member_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 }
