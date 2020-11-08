@@ -31,6 +31,7 @@ public class CommentController {
     @ResponseBody
     private List<CommentDto> mCommentServiceList(@RequestParam int qna_no) throws Exception{
 		logger.info("댓글 리스트");
+		//여기서 날짜 포멧 변환 -> setter로 넣어줌
 		return commentBiz.commentList(qna_no);
     }
     
