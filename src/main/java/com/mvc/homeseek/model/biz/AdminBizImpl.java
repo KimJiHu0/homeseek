@@ -94,5 +94,10 @@ public class AdminBizImpl implements AdminBiz {
 		// TODO Auto-generated method stub
 		return adminDao.WithdrawalMember(vo);
 	}
+	@Override
+	public int enableModify(String member_id) {
+		// TODO Auto-generated method stub
+		return adminDao.enableModify(member_id);
+	}
 
 }

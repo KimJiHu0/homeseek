@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mvc.homeseek.model.biz.AdminBiz;
+import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homseek.paging.Paging;
 
 @Controller
@@ -123,6 +125,25 @@ public class AdminController {
 			
 			return "adminReport";
 		}
+		@RequestMapping("/enablemodifyform.do")
+		public String ModifyList(Paging page, Model model
+					, @RequestParam(value="nowPage", required=false)String nowPage
+					, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+				
+				int total = adminBiz.countBan();
+				if (nowPage == null && cntPerPage == null) {
+					nowPage = "1";
+					cntPerPage = "5";
+				} else if (nowPage == null) {
+					nowPage = "1";
+				} else if (cntPerPage == null) { 
+					cntPerPage = "5";
+				}
+				page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+				model.addAttribute("paging", page);
+				model.addAttribute("list", adminBiz.BanMember(page));
+				return "modifyPage";
+		}
 		@RequestMapping("/enableupdate.do")
 		public String reportUpdate(int report_no, Model model) {
 			
@@ -160,6 +181,21 @@ public class AdminController {
 			
 			return "redirect:adminReportUpdate?report_no=" + report_no;
 		}
+		@RequestMapping(value="/enable.do")
+		public String enableModify(String member_id) {
+			
+			logger.info("member_id:::::" + member_id);
+			
+		
+			
+			int res = adminBiz.enableModify(member_id);
+			if(res>0) {
+				return "redirect:enablemodifyform.do";
+			}
+			
+			return "redirect:enablemodifyform.do";
+		}
+		
 		
 		
 }

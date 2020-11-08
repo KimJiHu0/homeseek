@@ -22,15 +22,9 @@
 
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 	<section>
-
+	<h1>차단 회원 관리</h1>
 	<div id="outter">
-		<div class="admin-menu">
-			<div class="admin-menu-title"><a class="all" href="admin.do">전체 회원</a></div>
-			<div class="admin-menu-title"><a class="normal" href="normal.do">일반 회원</a></div>
-			<div class="admin-menu-title"><a class="ban" href="ban.do">차단 회원</a></div>
-			<div class="admin-menu-title"><a class="withdrawal" href="withdrawal.do">탈퇴 회원</a></div>
-		</div>
-		<hr/>
+		
 	
 
 
@@ -74,7 +68,7 @@
 						<td><a id="member_id">${dto.member_id }</a></td>
 						<td>${dto.member_name }</td>
 						<td>${dto.member_phone }</td>
-						<td>${dto.member_enabled }</td>
+						<td>${dto.member_enabled }<input type="button" value="일반회원 수정" onclick="location.href='enable.do?member_id=${dto.member_id}'" /></td>
 						<td>${dto.member_role }</td>
 					</tr>
 				</c:forEach>

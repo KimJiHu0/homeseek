@@ -40,5 +40,7 @@ public interface AdminDao {
 		public int countWithdrawal();
 		//탈퇴 회원 조회
 		public List<MemberDto> WithdrawalMember(Paging vo);
+		//활성화 여부 수정
+		public int enableModify(String member_id);
 		
 }
