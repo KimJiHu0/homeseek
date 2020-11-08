@@ -81,12 +81,26 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("/admindona.do")||
 				request.getRequestURI().contains("/enableUpdateform.do")||
 				request.getRequestURI().contains("/enableUpdate.do")||
+				request.getRequestURI().contains("/rejectreport.do")||
+				request.getRequestURI().contains("/acceptreport.do")||
+				request.getRequestURI().contains("/normal.do")||
+				request.getRequestURI().contains("/ban.do")||
+				request.getRequestURI().contains("/withdrawal.do")||
+				request.getRequestURI().contains("/enable.do")||
+				request.getRequestURI().contains("/enablemodifyform.do")||
 				request.getRequestURI().contains("mypagewishlist.do") ||
 				request.getRequestURI().contains("muldeletewishlist.do") ||
 				request.getRequestURI().contains("mypageroomlist.do") ||
 				request.getRequestURI().contains("mypagemsglist.do") ||
 				request.getRequestURI().contains("mypagedonalist.do") ||
-				request.getRequestURI().contains("/summer_image.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
+				request.getRequestURI().contains("/summer_image.do") ||
+				request.getRequestURI().contains("mypagemysenmsglist.do") ||
+				request.getRequestURI().contains("mypagemyremsglist.do") ||
+				request.getRequestURI().contains("muldeleteremsglist.do") ||
+				request.getRequestURI().contains("muldeletesenmsglist.do") ||
+				request.getRequestURI().contains("deletemsg.do") ||
+				request.getRequestURI().contains("mypagesenmsgdetail.do") ||
+				request.getRequestURI().contains("mypageremsgdetail.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 			
 		
 			return true;

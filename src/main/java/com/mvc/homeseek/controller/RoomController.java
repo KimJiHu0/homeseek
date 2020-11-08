@@ -120,8 +120,14 @@ public class RoomController {
 		System.out.println("server file : " + server_file_name);
 
 		file.transferTo(new File(save_folder + server_file_name));
-
 		
+
+		try {
+			imageReturn(fileDBName(file_name, save_folder, user));
+		} catch (Exception e) {
+			logger.info("----- 이미지 삽입 실패 -----");
+			e.printStackTrace();
+		}
 		return  user + server_file_name;
 	}
 	
@@ -161,43 +167,37 @@ public class RoomController {
 
 		String fileDBName = "/" + refileName;
 		System.out.println("fileDBName = " + fileDBName);
-
+		
+		logger.info("저장완료");
 		return  fileDBName;
 		
 	}
+	
+	//이미지를 보여주기 위한 메소드
+	private String imageReturn(String server_file_name) {
+		
+		return "resources/storage" + server_file_name;
+	}
+	
 
+	
 	// -------------------------------------------------------
 
 	@RequestMapping("insertpopup.do")
 	public String addrPopup() {
 		return "roomInsertPopup";
 	}
-
-	@RequestMapping("popupres.do")
-	public String addrPopupRes(HttpSession session) {
-
-		return "";
-	}
-
-	public String selectRoomDelete(int room_no) {
-
-		logger.info("[delete.do]");
-
-		return "";
-	}
-
-	public String selectRoomUpdateForm(Model model, int room_no) {
-		logger.info("[update.do] jsp로 이동");
-
-		return "";
-	}
-
-	// @RequestMapping(value="/updateres.do", method=RequestMethod.POST)
-	public String selectRoomUpdate(RoomDto roodDto) {
-		logger.info("[updateres.do]");
-
-		return "";
-
-	}
-
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+

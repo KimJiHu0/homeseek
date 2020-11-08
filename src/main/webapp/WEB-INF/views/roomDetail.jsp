@@ -13,7 +13,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/roomDetail.css"
 	type="text/css" />
-	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+
 </head>
 <body>
 	<!-- header.jsp -->
@@ -42,6 +43,7 @@
 
 			<!-- 매물 올린 유저 정보를 담는 큰 div -->
 			<div id="userinfocontainer">
+			<div class="d3DetailBox">
 				<div id="userinfodetail">
 					<div id="userinfotitle">
 						<span id="leftb">사용자 / 매물 정보</span>
@@ -137,7 +139,23 @@
 						<span class="leftb"></span><span class="rightb"></span>
 					</div>
 				</div>
+				<div class="noD3Content"></div>
+				<div class="d3Content" >
+					<p class="pieinfo">&lt;매매가 및 전세금&gt;</p>
+					<div id="piechart1" ></div>
+					<div id="pieresult1"></div>
+					
+					<c:choose>
+						<c:when test="${room.room_type != 3 }">
+							<p class="pieinfo">&lt;월세&gt;</p>
+							<div id="piechart2"></div>
+							<div id="pieresult2"></div>						
+						</c:when>
+					</c:choose>
+				</div>
+				</div>
 			</div>
+						
 		</div>
 
 		<!-- second container -->
@@ -343,6 +361,7 @@
 					<div class="roominfo-content-detailcontent-content">
 						${room.room_detail }
 					</div>
+
 				<%
 					// 세션에 로그인되어있는 id를 가지고 수정버튼을 보여줄지 말지 선택
 
@@ -370,6 +389,249 @@
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
 </body>
+<!-- d3 스크립트 -->
+<!-- <script src="https://d3js.org/d3.v3.min.js"></script>     
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script> -->
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Color scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<script type="text/javascript">
+
+var jsonAddr ;
+
+if(${room.room_kind == 1} && (${room.room_type == 1} || ${room.room_type == 2} || ${room.room_type == 4})){ 		/* 아파트 : 월세,전세,반전세 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/apartment(1,2).json";
+}else if(${room.room_kind == 1} && ${room.room_type == 3}){															/* 아파트 : 매매일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/apartment(3).json"; 
+}else if(${room.room_kind == 2} && (${room.room_type == 1} || ${room.room_type == 2} || ${room.room_type == 4})){	 /* 빌라 : 월세,전세,반전세 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/villa(1,2).json";
+}else if(${room.room_kind == 2} && ${room.room_type == 3}){	 														/* 빌라 : 매매 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/villa(3).json";
+}else if(${room.room_kind == 3} && (${room.room_type == 1} || ${room.room_type == 2} || ${room.room_type == 4})){	 /* 주택 : 월세,전세,반전세 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/dwellingHouse(1,2).json";
+}else if(${room.room_kind == 3} && ${room.room_type == 3}){	 														/* 주택 : 매매 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/dwellingHouse(3).json";
+}else if(${room.room_kind == 4} && (${room.room_type == 1} || ${room.room_type == 2} || ${room.room_type == 4})){	 /* 오피스텔 : 월세,전세,반전세 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/officetels(1,2).json";
+}else if(${room.room_kind == 4} && ${room.room_type == 3}){	 														/* 오피스텔 : 매매 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/dwellingHouse(3).json";
+}else if(${room.room_kind == 5}){																					 /* 상가 일때 */
+	jsonAddr = "${pageContext.request.contextPath}/resources/json/commercialBuilding.json";
+}
+
+
+
+///////////////// 거래금액 및 보증금 
+// 거래금액 : A=1억미만, B=1억이상 3억미만, C=3억이상 10억미만, D=10억이상 20억미만, E=20억이상 40억미만, F=40억이상 
+// 보증금 : A=3천미만, B=3천이상 6천미만, C=6천이상 1억미만, D=1억이상 3억미만, E=3억이상 6억미만, F=6억이상
+var A=0; var B=0; var C=0; var D=0; var E=0; var F=0;
+///////////////// 월세 a=25미만, b=25이상 50미만, c=50이상 80미만, d=80이상 150미만, e=150이상 200미만, f=200이상
+var a = 0; var b = 0; var c = 0; var d = 0; var e = 0; var f = 0;	
+
+var str = "${room.room_addr}".split("(");
+console.log(str);
+var str2 = str[1].split(")");
+console.log(str2);
+var str3 = str2[0].split(",");
+console.log(str3);
+var chkAddr = str3[0];
+console.log(chkAddr);
+
+ 
+$.ajax({
+    async: false, //비동기에서 동기로
+    url: jsonAddr,
+    success: function(data) {
+    	$.each(data,function(index,info){
+    		var infoAddr = info.시군구;
+    		
+    		if(infoAddr.includes(chkAddr) == true){
+	    		if(${room.room_type == 3}){ // 매매일때
+		    		if(info.거래금액 < 10000){
+		    			A++;
+		    		}else if(10000<= info.거래금액 && info.거래금액<30000){
+		    			B++;
+		    		}else if(30000<=info.거래금액 && info.거래금액<100000){
+		    			C++;
+		    		}else if(100000<=info.거래금액 && info.거래금액<200000){
+		    			D++;
+		    		}else if(200000<=info.거래금액 && info.거래금액<400000){
+		    			E++;
+		    		}else if(400000<=info.거래금액){
+		    			F++;
+		    		}
+	    		}else{ 						// 전세, 월세 일때
+		    		if(info.보증금 < 3000){
+		    			A++;
+		    		}else if(3000<= info.보증금 && info.보증금<6000){
+		    			B++;
+		    		}else if(6000<=info.보증금 && info.보증금<10000){
+		    			C++;
+		    		}else if(10000<=info.보증금 && info.보증금<30000){
+		    			D++;
+		    		}else if(30000<=info.보증금 && info.보증금<60000){
+		    			E++;
+		    		}else if(60000<=info.보증금){
+		    			F++;
+		    		}
+	    			
+	    			if(info.월세 < 25){
+	    				a++;
+	    			}else if(25<= info.월세 && info.월세<50){
+	    				b++;
+	    			}else if(50<=info.월세 && info.월세<80){
+	    				c++;
+	    			}else if(80<=info.월세 && info.월세<150){
+	    				d++;
+	    			}else if(150<=info.월세 && info.월세<200){
+	    				e++;
+	    			}else if(200<=info.월세){
+	    				f++;
+	    			}
+	    		}
+    		}
+    	});
+    }
+});
+
+
+
+console.log(A,B,C,D,E,F);
+console.log(a,b,c,d,e,f);
+
+if(A ==0 && B == 0 && C == 0 && D == 0 && E == 0 && F == 0){
+	$(".d3Content").css("display","none");
+	$(".noD3Content").html("해당 지역의 실거래가 정보가 없습니다.");
+}else{
+	$(".noD3Content").css("display","none");
+}
+
+var data1 ;
+var data2 = [
+	{name : "25미만", count : a},
+	{name : "25이상 50미만", count : b},
+	{name : "50이상 80미만", count : c},
+	{name : "80이상 150미만", count : d},
+	{name : "150이상 200미만", count : e},
+	{name : "200이상", count : f}	
+];
+
+if(${room.room_type == 3}){
+	data1 = [
+		{name : "1억미만", count : A},
+		{name : "1억이상 3억미만", count : B},
+		{name : "3억이상 10억미만", count : C},
+		{name : "10억이상 20억미만", count : D},
+		{name : "20억이상 40억미만", count : E},
+		{name : "40억이상", count : F}
+	]
+}else{
+	data1 = [
+		{name : "3천미만", count : A},
+		{name : "3천이상 6천미만", count : B},
+		{name : "3천이상 1억미만", count : C},
+		{name : "1억이상 3억미만", count : D},
+		{name : "3억이상 6억미만", count : E},
+		{name : "6억이상", count : F}
+	]
+}
+
+
+
+var resdata1 = data1.sort(function(a,b){return b.count - a.count});
+console.log(resdata1[0]);
+document.getElementById("pieresult1").innerHTML= chkAddr+"에서 가장 많이 이용하는 금액은 "+resdata1[0].name+" 입니다.";
+
+if(${room.room_type != 3}){
+	var resdata2 = data2.sort(function(a,b){return b.count - a.count});
+	document.getElementById("pieresult2").innerHTML= chkAddr+"에서 가장 많이 이용하는 금액은 "+resdata2[0].name+" 입니다.";	
+}
+
+///////////////////////////////////// 거래금액 및 보증금 chart
+var pie = d3.pie()
+  .value(function(d) { return d.count })
+
+var slices = pie(data1);
+
+var arc = d3.arc()
+  .innerRadius(0)
+  .outerRadius(60);
+
+// helper that returns a color based on an ID
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+var svg = d3.select('#piechart1')
+.append('svg')
+.attr("class","pie");
+var g = svg.append('g')
+  .attr('transform', 'translate(200, 75)');
+
+var arcGraph =g.selectAll('path.slice')
+  .data(slices)
+    .enter();
+arcGraph.append('path')
+        .attr('class', 'slice')
+        .attr('d', arc)
+        .attr('fill', function(d) {
+          return color(d.data.name);
+        });
+
+svg.append('g')
+  .attr('class', 'legend')
+    .selectAll('text')
+    .data(slices)
+      .enter()
+        .append('text')
+          .text(function(d) { return '• ' + d.data.name; })
+          .attr('fill', function(d) { return color(d.data.name); })
+          .attr('y', function(d, i) { return 20 * (i + 1); })
+
+
+///////////////////////////// 월세 chart
+var pie = d3.pie()
+  .value(function(d) { return d.count })
+
+var slices = pie(data2);
+
+var arc = d3.arc()
+  .innerRadius(0)
+  .outerRadius(60);
+
+// helper that returns a color based on an ID
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+var svg = d3.select('#piechart2')
+.append('svg')
+.attr("class","pie");
+var g = svg.append('g')
+  .attr('transform', 'translate(200, 75)');
+
+var arcGraph =g.selectAll('path.slice')
+  .data(slices)
+    .enter();
+arcGraph.append('path')
+        .attr('class', 'slice')
+        .attr('d', arc)
+        .attr('fill', function(d) {
+          return color(d.data.name);
+        });
+
+svg.append('g')
+  .attr('class', 'legend')
+    .selectAll('text')
+    .data(slices)
+      .enter()
+        .append('text')
+          .text(function(d) { return '• ' + d.data.name; })
+          .attr('fill', function(d) { return color(d.data.name); })
+          .attr('y', function(d, i) { return 20 * (i + 1); })
+
+
+</script>
 <!-- alert띄우기 위한 스크립트 -->
 <script type="text/javascript">
 	var msg = '${msg}';
@@ -432,6 +694,7 @@
 	
 	// 시작하자마자 room_photo의 값을 가져와서 잘라주기 위해
 	$(function(){
+		
 		// 디테일을 보여줄 때 넘어오는 room_photo의 값을 변수에 담아주고
 		var room_photo_src = '${room.room_photo}';
 		
@@ -480,6 +743,8 @@
 		} else {
 			$('.room_photo').attr("src", room_photo_src_split[j]);
 		}
+		
+	
 	}
 	
 </script>

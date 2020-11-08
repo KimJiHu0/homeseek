@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class DonationBizImpl implements DonationBiz {
 	@Override
 	public int donationInsert(DonationDto dona_dto) {
 		return donaDao.donationInsert(dona_dto);
+	}
+
+	@Override
+	public List<DonationDto> mypageMyDonaList(String dona_id) {
+		return donaDao.mypageMyDonaList(dona_id);
 	}
 
 }

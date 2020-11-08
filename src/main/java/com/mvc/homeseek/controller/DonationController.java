@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +49,7 @@ public class DonationController {
 		MemberDto memberDto = (MemberDto) session.getAttribute("login");
 		String member_id = memberDto.getMember_id();
 		
-		// mainpay.js에서 보낸 obj(JSON문자열)를 받아서 string 변수에 담음
+		// js에서 보낸 obj(JSON문자열)를 받아서 string 변수에 담음
 	    String obj = request.getParameter("obj");
 	    System.out.println(obj);
 
@@ -63,7 +65,7 @@ public class DonationController {
 	    String pay_date2 = tmp.get("purchased_at").getAsString();
 	    System.out.println(pay_amount + pay_date2);
 
-	    // String형태의 dano_date2라는 변수를 Date로 형변환
+	    // String형태의 pay_date2라는 변수를 Date로 형변환
 	    SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date pay_date = null;
 	    try {
@@ -94,24 +96,20 @@ public class DonationController {
 		//return "index";
 	}
 	
-	
-	
-	
-	
-	
-	
-	@RequestMapping()
-	public String donateRes(@RequestBody DonationDto donaDto,HttpServletRequest request, HttpSession session) {
+	@RequestMapping("mypagedonalist.do")
+	public String mypageDonaList(HttpSession session, Model model) {
 		
-		MemberDto memberDto = (MemberDto) session.getAttribute("login");
-		String user = memberDto.getMember_id();
+		List<DonationDto> donalist = null;
 		
-		String obj = request.getParameter("obj");
+		MemberDto dto = (MemberDto) session.getAttribute("login");
 		
-		ObjectMapper objm = new ObjectMapper();
+		String dona_id = dto.getMember_id();
 		
+		donalist = biz.mypageMyDonaList(dona_id);
 		
-		return "donateRes";
+		model.addAttribute("donalist", donalist);
+		
+		return "mypageMydona";
 	}
 
 }

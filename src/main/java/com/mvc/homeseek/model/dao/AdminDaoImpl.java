@@ -97,6 +97,128 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return res;
 	}
-
+	
+	@Override
+	public int rejectReport(int report_no) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "rejectReport", report_no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int acceptReport(String report_reid) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "acceptReport", report_reid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int acceptDelete(String report_reid) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE + "acceptDelete", report_reid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public List<MemberDto> NormalMember(Paging vo) {
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE+"NormalMember",vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int countNormal() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "countNormal");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	@Override
+	public List<MemberDto> BanMember(Paging vo) {
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE+"BanMember",vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int countBan() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"countBan");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	@Override
+	public int countWithdrawal() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"countWithdrawal");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public List<MemberDto> WithdrawalMember(Paging vo) {
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE+"WithdrawalMember",vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int enableModify(String member_id) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"enableModify",member_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 }

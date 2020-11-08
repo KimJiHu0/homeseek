@@ -125,6 +125,7 @@ li:nth-last-child{
   background-color: transparent;
   color: #6A6868;
   font-size: 16px;
+  font-weight : bold;
   border: none;
   cursor: pointer;
 }

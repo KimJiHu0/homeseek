@@ -76,7 +76,6 @@ a>img {
 	background-color : gray;
 	width : 37%;
 	height : 452px;
-	position: fixed;
 }
 
 /* 사용자 정보 제목 큰 틀 */
@@ -120,10 +119,6 @@ a>img {
 	margin-top : 30px;
 	font-size : 14pt;
 	height: 5%;
-}
-
-.wish{
-	cursor : pointer;
 }
 
 /*-----------------우측 매물정보 css 끝-------------------*/
@@ -265,3 +260,46 @@ a>img {
 
 /*------------------매물정보 css 끝--------------------*/
 
+/*------------------D3 css 시작--------------------*/
+
+.d3DetailBox{
+	position : absolute;
+	width : 100%
+}
+
+.d3Content{
+	border : 1px black solid;
+	width: 550px;
+    margin-top: 10px;
+}
+
+svg{
+	margin-left: 100px;
+}
+
+.pieinfo{
+	margin-left: 100px;
+}
+
+#pieresult1{
+	margin-left: 80px;
+	margin-bottom: 10px;
+}
+
+#pieresult2{
+	margin-left: 80px;
+	margin-bottom: 10px;
+}
+
+.noD3Content{
+    width: 420px;
+    height: 60px;
+    border: 1px black solid;
+    margin-top: 10px;
+    padding-top: 30px;
+    padding-left: 130px;
+}
+
+.pieinfo{
+	margin-top: 10px;
+}

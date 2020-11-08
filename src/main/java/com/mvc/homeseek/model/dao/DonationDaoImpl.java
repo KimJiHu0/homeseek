@@ -1,5 +1,7 @@
 package com.mvc.homeseek.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,22 @@ public class DonationDaoImpl implements DonationDao {
 		}
 		
 		return res;
+	}
+
+	@Override
+	public List<DonationDto> mypageMyDonaList(String dona_id) {
+
+		logger.info(" [ DonationDaoImpl ] ");
+		
+		List<DonationDto> donalist = null;
+		
+		try {
+			donalist = sqlSession.selectList(NAMESPACE + "selectMyDonaList", dona_id);
+		} catch (Exception e) {
+			logger.info(" [ Error ] mypageMyDonaList ");
+			e.printStackTrace();
+		}
+		return donalist;
 	}
 
 }

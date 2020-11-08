@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>homeseek : 내가 올린 매물</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMyroomlist.css" type="text/css" />
+<script src="${pageContext.request.contextPath}/resources/js/mypageMyroomlist.js" type="text/javascript"></script>
 </head>
 <body>
 		
@@ -14,12 +16,81 @@
 	
 	<section>
 		<div class="maincontainer">
-			<div class="mywish-menu">
-				<div class="mywish-menu-title"><a class="gowishlist" href="mypagewishlist.do">내가 찜한 매물</a></div>
-				<div class="mywish-menu-title"><a class="goroomlist" href="#">내가 올린 매물</a></div>
+			<div class="myroom-menu">
+				<div class="myroom-menu-title"><a class="gowishlist" href="javascript:goWishList();">내가 찜한 매물</a></div>
+				<div class="myroom-menu-title"><a class="goroomlist" href="#">내가 올린 매물</a></div>
 			</div>
 			<hr/>
-			
+			<div class="myroom-list">
+				<form action = "muldeleteroomlist.do" method ="post" class = "checkroomlist">
+					<table>
+						<col width="80px">
+						<col width="100px"> <!-- room_no -->
+						<col width="80px">
+						<col width="250px"> <!-- room_name -->
+						<col width="80px">
+						<col width="300px"> <!-- room_addr -->
+						<col width="80px">
+						<col width="100px"> <!-- room_redate -->
+						<col width="80px">
+						<tr>
+							<th colspan="9">&nbsp;</th>
+						</tr>
+						<c:choose>
+							<c:when test="${empty roomlist }">
+								<tr>
+									<th colspan="9">현재 회원님께서 올린 매물이 없습니다.</th>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<th><input type="checkbox" class="all_check" name="all_check" onclick="allChk(this.checked)"/></th>
+									<th>매물번호</th>
+									<td></td>
+									<th>매물제목</th>
+									<td></td>
+									<th>매물주소</th>
+									<td></td>
+									<th>매물작성날짜</th>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="a" colspan="9">&nbsp;</td>
+								</tr>
+								<c:forEach items="${roomlist }" var="roomlist">
+									<tr>
+										<th><input type="checkbox" name="chkbox" class="chkbox" value="${roomlist.room_no }"/></th>
+										<th>${roomlist.room_no}</th>
+										<td></td>
+										<th><a class="roomtitle" href="javascript:goRoomDetail(${roomlist.room_no });">${roomlist.room_name }</a></th>
+										<td></td>
+										<th>${roomlist.room_addr }</th>
+										<td></td>
+										<th>${roomlist.room_regdate }</th>
+										<td></td>
+									</tr>
+									<tr>
+										<td class="a" colspan="9"></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${empty roomlist }">
+								
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="9" align="right">
+										<input type="button" class="muldelebtn" value="삭제하기"/>
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</form>
+			</div>
+			<!-- room_no, room_name, room_addr, room_regdate,  -->
 		</div>
 	
 

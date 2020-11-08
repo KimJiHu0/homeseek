@@ -6,4 +6,43 @@
 	<insert id="insertMessage" parameterType="MessageDto">
 		INSERT INTO MESSAGE VALUES(MESSAGE_NO_SEQ.NEXTVAL, #{message_senid}, #{message_reid}, #{message_title}, #{message_content}, SYSDATE, 'R', 'R')
 	</insert>
+	
+	<!-- 보낸 쪽지 다중삭제 -->
+	<update id="muldelMySenMsgList" parameterType="int">
+		UPDATE MESSAGE SET MESSAGE_SENDEL = 'D'
+		WHERE MESSAGE_NO = #{message_no}
+		AND MESSAGE_SENDEL = 'R'
+	</update>
+	
+	<!-- 받은 쪽지다중삭제 -->
+	<update id="muldelMyReMsgList" parameterType="int">
+		UPDATE MESSAGE SET MESSAGE_REDEL = 'D'
+		WHERE MESSAGE_NO = #{message_no}
+		AND MESSAGE_REDEL = 'R'
+	</update>
+	
+	<!-- 쪽지함 확인하기 / 보낸 쪽지들 뽑아주기 -->
+	<select id="selectMySenMsgList" parameterType="String" resultType="MessageDto">
+		SELECT MESSAGE_NO, MESSAGE_SENID, MESSAGE_REID, MESSAGE_TITLE, MESSAGE_CONTENT, MESSAGE_DATE, MESSAGE_SENDEL, MESSAGE_REDEL
+		FROM MESSAGE
+		WHERE MESSAGE_SENID = #{message_senid}
+		AND MESSAGE_SENDEL = 'R'
+		ORDER BY MESSAGE_NO DESC
+	</select>
+	
+	<!-- 받은 쪽지함 확인하기 -->
+	<select id = "selectMyReMsgList" parameterType="String" resultType="MessageDto">
+		SELECT MESSAGE_NO, MESSAGE_SENID, MESSAGE_REID, MESSAGE_TITLE, MESSAGE_CONTENT, MESSAGE_DATE, MESSAGE_SENDEL, MESSAGE_REDEL
+		FROM MESSAGE
+		WHERE MESSAGE_REID = #{message_reid}
+		AND MESSAGE_REDEL = 'R'
+		ORDER BY MESSAGE_NO DESC
+	</select>
+	
+	<!-- 받은 쪽지 상세보기 -->
+	<select id="selectMyMsgDetail" parameterType="int" resultType="MessageDto">
+		SELECT MESSAGE_NO, MESSAGE_SENID, MESSAGE_REID, MESSAGE_TITLE, MESSAGE_CONTENT, MESSAGE_DATE
+		FROM MESSAGE
+		WHERE MESSAGE_NO = #{message_no}
+	</select>
 </mapper>

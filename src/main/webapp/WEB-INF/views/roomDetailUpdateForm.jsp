@@ -211,7 +211,7 @@
 <!-- 도로명주소API js -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/js/loadAddress.js"
+	src="${pageContext.request.contextPath}/resources/js/roadAddress.js"
 	type="text/javascript"></script>
 <!-- roomDetailUpdateForm에 대한 CSS 스크립트 선언 -->
 <link rel="stylesheet"

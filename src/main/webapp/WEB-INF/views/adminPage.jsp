@@ -7,26 +7,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminPage.css">
+<script src="${pageContext.request.contextPath}/resources/js/adminPage.js" type="text/javascript"></script>
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
 		location.href="admin.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
+
 </script>
 </head>
 <body>
 
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
-	
-	<h2>게시판</h2>
+	<section>
 
 	<div id="outter">
+		<div class="admin-menu">
+			<div class="admin-menu-title"><a class="all" href="admin.do">전체 회원</a></div>
+			<div class="admin-menu-title"><a class="normal" href="normal.do">일반 회원</a></div>
+			<div class="admin-menu-title"><a class="ban" href="ban.do">차단 회원</a></div>
+			<div class="admin-menu-title"><a class="withdrawal" href="withdrawal.do">탈퇴 회원</a></div>
+		</div>
+		<hr/>
 	
 
-	<section>
+
 	<div style="float: right;">
-		<select id="cntPerPage" name="sel" onchange="selChange()">
+		<select id="cntPerPage" name="sel" onchange="selChange(this.value);">
 			<option value="5"
 				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
 			<option value="10"
@@ -37,7 +46,6 @@
 				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
 		</select>
 	</div> <!-- 옵션선택 끝 -->
-	<h1>전체 회원 관리</h1>
 	
 	<table border="1">
 		<colgroup>
@@ -57,13 +65,13 @@
 		<c:choose>
 			<c:when test="${empty list }">
 				<tr>
-					<th colspan="5">----------------신고 사항 없음------------</th>
+					<th colspan="5">----------------회원 없음------------</th>
 				</tr>
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
 					<tr>
-						<td>${dto.member_id }</td>
+						<td><a id="member_id">${dto.member_id }</a></td>
 						<td>${dto.member_name }</td>
 						<td>${dto.member_phone }</td>
 						<td>${dto.member_enabled }</td>
@@ -77,6 +85,7 @@
 	
 		
 	</table>
+	<input type="button" style="float: right;" value="차단회원 관리 " onclick="location.href='enablemodifyform.do'" />
 	<input type="button" style="float: right;" value="신고 관리 " onclick="location.href='enableupdateform.do'" />
 	
 	<div style="display: block; text-align: center;">		
@@ -98,8 +107,9 @@
 		</c:if>
 	</div>
 
-	</section>
+	
 	
 </div>	
+</section>
 </body>
 </html>

@@ -215,14 +215,33 @@ public class RoomListController {
 		logger.info("[ RoomListController ] mypageRoomList");
 		
 		MemberDto dto = (MemberDto) session.getAttribute("login");
-		List<RoomDto> myroomlist = new ArrayList<RoomDto>();
+		List<RoomDto> roomlist = new ArrayList<RoomDto>();
 		String room_id = dto.getMember_id();
 		
-		myroomlist = roomlistbiz.mypageMyRoomList(room_id);
+		roomlist = roomlistbiz.mypageMyRoomList(room_id);
 		
-		model.addAttribute("myroomlist", myroomlist);
+		model.addAttribute("roomlist", roomlist);
 		
 		return "mypageMyroomlist";
+	}
+	
+	@RequestMapping("muldeleteroomlist.do")
+	@ResponseBody
+	public int muldeleteMyRoomList(@RequestParam(value="room_no[]") int[] room_nos, HttpSession session) {
+		
+		MemberDto dto = (MemberDto) session.getAttribute("login");
+		
+		String room_id = dto.getMember_id();
+		
+		int res = 0;
+		
+		if(room_id != null) {
+			for(int room_no : room_nos) {
+				roomlistbiz.muldeleteMyRoomList(room_no);
+			}
+			res = 1;
+		}
+		return res;
 	}
 	
 }

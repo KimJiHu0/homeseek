@@ -17,13 +17,32 @@
 		WHERE REPORT_NO = #{report_no}
 	</select>
 	
-	<!-- 총 게시글 갯수 출력 -->
+	<!-- 총 회원 수 출력 -->
 	<select id="countMember" resultType="int">
 		SELECT COUNT(*) 
 		FROM MEMBER
 	</select>
+	<!-- 일반 회원 갯수 출력 -->
+	<select id="countNormal" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER
+		WHERE MEMBER_ENABLED = 'N'
+	</select>
+	<!-- 차단 회원 갯수 출력 -->
+	<select id="countBan" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER
+		WHERE MEMBER_ENABLED = 'B'
+	</select>
+	<!-- 탈퇴 회원 갯수 출력 -->
+	<select id="countWithdrwal" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER
+		WHERE MEMBER_ENABLED = 'D'
+	</select>
+	
 
-	<!-- 페이징 처리 후 게시글 조회 -->
+	<!-- 페이징 처리 후 모든 멤버 조회 -->
 	<select id="allMember" resultType="MemberDto">
 		SELECT * 
 			FROM (
@@ -31,6 +50,48 @@
 					FROM (
 						SELECT * 
 						FROM MEMBER 
+						ORDER BY MEMBER_ENABLED DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		<!-- 페이징 처리 후 일반 회원 조회 -->
+	<select id="NormalMember" resultType="MemberDto">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM MEMBER 
+						WHERE MEMBER_ENABLED = 'N'
+						ORDER BY MEMBER_ENABLED DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		<!-- 페이징 처리 후 차단 회원 조회 -->
+	<select id="BanMember" resultType="MemberDto">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM MEMBER 
+						WHERE MEMBER_ENABLED = 'B'
+						ORDER BY MEMBER_ENABLED DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		<!-- 페이징 처리 후 탈퇴 회원 조회 -->
+	<select id="WithdrawalMember" resultType="MemberDto">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM MEMBER 
+						WHERE MEMBER_ENABLED = 'D'
 						ORDER BY MEMBER_ENABLED DESC 
 							) A
 				)
@@ -54,5 +115,31 @@
 							) A
 				)
 		WHERE RN BETWEEN #{start} AND #{end}
+	
 	</select>
+	<!-- 신고 반려 -->
+	<delete id="rejectReport" parameterType="int">
+		DELETE 
+		FROM REPORT
+		WHERE REPORT_NO = #{report_no} 
+	</delete>
+	<!-- 신고 승인 -->
+	<update id="acceptReport" parameterType = "String">
+		UPDATE MEMBER
+		SET MEMBER_ENABLED = 'B'
+		WHERE MEMBER_ID = #{report_reid}
+	</update>
+	<!-- 신고 승인 후 리스트에서 삭제 -->
+	<delete id="acceptDelete" parameterType="String">
+		DELETE 
+		FROM REPORT
+		WHERE REPORT_REID = #{report_reid} 
+	</delete>
+	<!-- 회원 활성화 여부 수정 -->
+	<update id="enableModify" parameterType = "String">
+		UPDATE MEMBER
+		SET MEMBER_ENABLED = 'N'
+		WHERE MEMBER_ID = #{member_id}
+	</update>
+	
 </mapper>

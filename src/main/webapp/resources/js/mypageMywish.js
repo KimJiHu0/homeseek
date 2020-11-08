@@ -9,7 +9,7 @@
 	$(function(){
 		$(".checkwishlist").submit(function(){
 			if($(".checkwishlist input:checked").length == 0){
-				alert("하나 이상 체크하셔야 합니다.");
+				alert("삭제를 하시려면 하나 이상 체크하셔야 합니다.");
 				return false;
 			}
 		});
@@ -33,6 +33,7 @@
 					if($("input[name=chkbox]").eq(i).is(":checked") == true ){ 
 						wish_nos.push($("input[name=chkbox]").eq(i).val());
 					} else {
+						// 아무것도 안함
 					}
 				}
 				
@@ -42,7 +43,7 @@
 					data : { wish_no : wish_nos },
 					success : function(del){
 						if(del > 0){
-							alert("찜 목록에서 삭제되었습니다.");
+							alert("선택하신 매물이 찜 목록에서 삭제되었습니다.");
 							location.reload(true);
 						} else {
 							alert("찜 목록에서 삭제가 실패하였습니다.");
@@ -57,7 +58,13 @@
 			}
 		});
 	})
+	// 글 제목 눌렀을 때에 넘어가는 함수
+	function goRoomDetail(room_no){
+		location.href='detailroom.do?room_no='+room_no;
+	}
+	
+	// 내가 쓴 글 누르면 넘어가는 함수
 	function goRoomList(){
-		location.href='mypageroomlist.do';
+		location.href = 'mypageroomlist.do';
 	}
 	

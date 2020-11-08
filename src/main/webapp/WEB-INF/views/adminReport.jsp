@@ -33,7 +33,7 @@
 		<c:choose>
 			<c:when test="${empty list }">
 				<tr>
-					<th colspan="5">----------------작성된 글 없어------------</th>
+					<th colspan="5">----------------신고된 회원이 존재하지 않습니다------------</th>
 				</tr>
 			</c:when>
 			<c:otherwise>
@@ -49,12 +49,6 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		
-	
-	<tr>
-	<td colspan="5" align="right"><input type="button" value="신고 관리 " onclick="location.href='enableupdateform.do'" /></td>
-	<tr>
-		
 	</table>
 
 	</section>
