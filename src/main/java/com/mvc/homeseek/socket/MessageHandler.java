@@ -66,8 +66,10 @@ public class MessageHandler extends TextWebSocketHandler {
 	    		
 	    		
 	    		// 작성자가 로그인해있다면
-	    		WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
 	    		
+	    		WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
+	    		logger.info("boardWriterSession? : "+boardWriterSession.toString());
+	    		logger.info("message? : "+cmd);
 	    		
 	    		if("message".equals(cmd) && boardWriterSession != null) {
 	    			
@@ -88,7 +90,7 @@ public class MessageHandler extends TextWebSocketHandler {
 		sessions.remove(session);
 		logger.info(" \n [ " + session.getId() + " ] 연결 끊김");
 		
-	}
+	} 
 	
 	// 에러 발생시
 	@Override

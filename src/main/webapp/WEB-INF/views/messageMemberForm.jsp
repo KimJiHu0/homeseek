@@ -127,9 +127,10 @@ function sendMessage(){
 					if(socket){
 						var socketMsg = "message," + info.message_senid + "," + info.message_reid;
 						socket.send(socketMsg);
+						console.log(socketMsg);
 					}
 					alert("쪽지보내기가 성공적으로 완료되었습니다.");
-					self.close();
+					/* self.close(); */
 				} else {
 					alert("쪽지보내기가 실패하였습니다.");
 				}

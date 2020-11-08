@@ -26,7 +26,7 @@
     
     <websocket:handlers>
     	<websocket:mapping handler="MessageHandler" path="/message.do"/>
-    	<websocket:handshake-interceptors>
+      	<websocket:handshake-interceptors>
     		<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
     	</websocket:handshake-interceptors>
     </websocket:handlers>
