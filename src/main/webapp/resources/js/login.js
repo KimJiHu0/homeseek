@@ -16,9 +16,12 @@ function loginPrc(){
          contentType : "application/json",
          dataType : "json",
          success : function(msg){
+        	 console.log(msg);
             if(msg.check == "success"){//정상로그인
             	
-            	location.href="main.do";
+            	//location.href="redirect:/main.do";
+            	location.href=location.href;
+            	alert("로그인 되었습니다.Homeseek을 이용하실수 있습니다~")
                //$("#loginchk").show();-->
                //$("#loginchk").html("ID ,PW가 입력되었습니다");
             }else if(msg.check == "ban_D"){
@@ -39,6 +42,7 @@ function loginPrc(){
    }
 }
 
+/*
 window.onload = function() {
     
    document.getElementById("loginchk").style.display = "none"; 
@@ -57,3 +61,4 @@ window.onload = function() {
    
  
 };
+*/

@@ -60,26 +60,14 @@ public class MemberController {
 	private final static String id = "2dc56fd515158890d47575ddc651d7e8";
 	private final static String url = "http://localhost:8787/homeseek/kakaocallback.do";
 
+	//loginform.do없앰
 	@RequestMapping("loginform.do")
-	public String loginForm(Model model) {
+	public String loginForm() {
 		logger.info("login.do");
-
-		// 네이버 로그인 URL받기
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
-
-		// 카카오 로그인 URL받기
-		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + id + "&redirect_uri=" + url
-				+ "&response_type=code";
-		model.addAttribute("kakao_url", kakaoUrl);
-
-		// 구글code발행을 위한 URL 생성
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-		model.addAttribute("google_url", url);
-
-		return "login";
+		
+		return "callme";
 	}
+
 
 	@ResponseBody
 	@RequestMapping(value = "/ajaxlogin.do", method = RequestMethod.POST)

@@ -34,36 +34,35 @@ function chat(){
 }
 
 function connectWs(){
-   socket = new WebSocket('ws://localhost:8787/homeseek/message.do');
-   
-   socket.onopen = function(){
-      console.log(" 정보 : 연결됌 ");
-   }
-   
-   socket.onmessage = function(evt){
-      var data = evt.data;
-      console.log("헤더데이터 : "+data);
-      var options = {
-            icon : "resources/img/mainicon.png"
-      }
-      var notification = new Notification(" [ homeseek ]\n" + data + "\n", options);
-      
-      console.log("헤더.js 노티 : "+notification);
-      
-      // 알림을 클릭했을 때 원하는 곳으로 이동
-      notification.onclick = function(event){
-         event.preventDefault();
-         location.href="mypagemyremsglist.do";
-      }
-   }
-   
-   socket.onclose = function(){
-      console.log(" 연결 끊김 ");
-   }
-   
-   socket.onerror = function(err){
-      console.log(" 에러 : " + err);
-   }
+
+	socket = new WebSocket('ws://localhost:8787/homeseek/message.do');
+	
+	socket.onopen = function(){
+		console.log(" 정보 : 연결됌 ");
+	}
+	
+	socket.onmessage = function(evt){
+		var data = evt.data;
+		var options = {
+				icon : "resources/img/mainicon.png"
+		}
+		var notification = new Notification(" [ homeseek ]\n" + data + "\n", options);
+		
+		// 알림을 클릭했을 때 원하는 곳으로 이동
+		notification.onclick = function(event){
+			event.preventDefault();
+			location.href="mypagemyremsglist.do";
+		}
+	}
+	
+	/*socket.onclose = function(){
+		console.log(" 연결 끊김 ");
+	}*/
+	
+	socket.onerror = function(err){
+		console.log(" 에러 : " + err);
+	}
+
 }
 
 function myPage(){
