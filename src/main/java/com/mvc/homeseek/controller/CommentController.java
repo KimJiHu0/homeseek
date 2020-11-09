@@ -1,5 +1,6 @@
 package com.mvc.homeseek.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,9 @@ public class CommentController {
     @ResponseBody
     private List<CommentDto> mCommentServiceList(@RequestParam int qna_no) throws Exception{
 		logger.info("댓글 리스트");
+		CommentDto comment = new CommentDto();
+		System.out.println("★TEST : "+ (Date)comment.getComm_regdate());// 왜 null일까?
+		System.out.println("★TEST : ");
 		//여기서 날짜 포멧 변환 -> setter로 넣어줌
 		return commentBiz.commentList(qna_no);
     }
@@ -45,11 +49,14 @@ public class CommentController {
         CommentDto comment = new CommentDto();
         comment.setComm_id(member_dto.getMember_id());  
         
-        System.out.println(comment.getComm_content());
+        System.out.println("★TEST전 : "+comment.getComm_content());
         comment.setQna_no(qna_no);
         comment.setComm_content(comm_content);
-        //로그인 기능을 구현했거나 따로 댓글 작성자를 입력받는 폼이 있다면 입력 받아온 값으로 사용하면 됩니다.
-        
+        System.out.println("★TEST후 : "+comment.getComm_content());
+        //날짜를 포멧이 깨져서 ...
+        comment.setComm_regdate(comment.getComm_regdate());
+        System.out.println("★TEST댓글작성시간 : "+comment.getComm_regdate());
+
         return commentBiz.commentInsert(comment);
     }
     
