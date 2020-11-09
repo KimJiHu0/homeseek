@@ -8,10 +8,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
 </head>
 <body>
-	<footer>
-		<div class="ftrbox">
-			<pre class="foot">homeseek | <b class="onmouse">회사소개</b> | <b class="onmouse">이용약관</b> | <b class="onmouse">개인정보처리방침</b> | Copyright © & homeseek. all rights reserved</pre>
-		</div>
+	<footer class="footer">
+		<ul class="footer_box_ul">
+			<li><a href="#">homeseek</a></li>
+			<li><a href="#">회사소개</a></li>
+			<li><a href="#">이용약관</a></li>
+			<li><a href="#">개인정보처리방침</a></li>
+			<li><a href="#">Copyright © & homeseek. all rights reserved</a></li>
+		</ul>
 	</footer>
 </body>
 </html>
