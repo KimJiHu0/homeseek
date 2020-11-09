@@ -38,7 +38,7 @@ public class DonationController {
 	@RequestMapping("donateform.do")
 	public String donateForm() {
 		
-
+		
 		return "donation";
 	}
 

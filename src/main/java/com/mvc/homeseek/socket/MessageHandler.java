@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -28,8 +24,7 @@ public class MessageHandler extends TextWebSocketHandler {
 
 	// 로그인 중인 개별 유저를 담는 map을 선언해준다.
 	private Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
-	
-	
+
 	// 클라이언트가 서버로 연결 시 들어오는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -41,13 +36,13 @@ public class MessageHandler extends TextWebSocketHandler {
 
 		// userId는 맨 아래 선언되어있는 메소드인데 현재 session에 담긴(로그인한)
 		// 아이디를 가져오기 위해서 선언해주었다.
-		// String userId = UserId(session);
+		String userId = UserId(session);
 
-		//logger.info("\n 6. userId의 값은 뭐니? : " + userId);
+		// logger.info("\n 6. userId의 값은 뭐니? : " + userId);
 
-		logger.info(" \n [ " + session.getId() + " ] 연결됨 ");
+		logger.info(" \n [ " + userId + " ] 연결됨 ");
 		// 방금 로그인에 성공한 애를 담아준다.
-		userSessionMap.put(session.getId(), session);
+		userSessionMap.put(userId, session); // 8 8
 
 		for (int i = 0; i < userSessionMap.size(); i++) {
 			logger.info("\n 7. userSessionMap에 담겨있는 key값은? : " + userSessionMap.keySet());
@@ -63,7 +58,7 @@ public class MessageHandler extends TextWebSocketHandler {
 		// WebSocket Id = 8 << 이런식으로 뜸
 
 		// session.getId는 접속한 애의 아이디(임의로 부여한듯?)
-		logger.info(" \n [ messageHandler ]에서 " + session.getId() + "로부터 message 받음 : " + message);
+		logger.info(" \n [ messageHandler ]에서 " + session.getId() + "가 MESSAGE를 보냈다. : " + message);
 
 		// getPayload는 message에 붙여준다?는 느낌인 것 같다.
 		String msg = message.getPayload();
@@ -77,7 +72,7 @@ public class MessageHandler extends TextWebSocketHandler {
 				String message_reid = strs[2];
 
 				// 작성자가 로그인해있다면
-
+				// 쪽지 받는 사람 <<
 				WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
 				logger.info("boardWriterSession? : " + boardWriterSession.toString());
 				logger.info("message? : " + cmd);
@@ -85,7 +80,7 @@ public class MessageHandler extends TextWebSocketHandler {
 				if ("message".equals(cmd) && boardWriterSession != null) {
 
 					TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
+					boardWriterSession.sendMessage(tmpMsg); // 이 부분이 쪽지를 보낸 사람의 id에게 send해주는 부분?
 				}
 			}
 		}
@@ -110,23 +105,25 @@ public class MessageHandler extends TextWebSocketHandler {
 	}
 
 	// 웹소켓 id가져오기
-	/*
-	 * @SuppressWarnings("unused") private String UserId(WebSocketSession session) {
-	 * logger.info("\n 2. UserId메소드를 통해서 들어온 session의 id는? : " + session.getId());
-	 * 
-	 * Map<String, Object> httpSession = session.getAttributes();
-	 * logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 key값은 ? : " +
-	 * httpSession.keySet());
-	 * logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 value값은 ? : " +
-	 * httpSession.values()); MemberDto loginUser =
-	 * (MemberDto)httpSession.get("login");
-	 * 
-	 * MemberDto loginUser = (MemberDto) session.getAttributes();
-	 * logger.info("\n 4. loginUser이라는 MemberDto에 담겨있는 값은? : " +
-	 * loginUser.toString());
-	 * 
-	 * if(loginUser != null) { logger.info("\n 5. 현재 loginUser이 null이 아니니???");
-	 * return loginUser.getMember_id(); } else {
-	 * logger.info("\n 5. 현재 loginUser이 null이니???"); return session.getId(); } }
-	 */
+
+	@SuppressWarnings("unused")
+	private String UserId(WebSocketSession session) {
+		logger.info("\n 2. UserId메소드를 통해서 들어온 session의 id는? : " + session.getId());
+
+		Map<String, Object> httpSession = session.getAttributes();
+		logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 key값은 ? : " + httpSession.keySet());
+		logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 value값은 ? : " + httpSession.values());
+		MemberDto loginUser = (MemberDto) httpSession.get("login");
+
+		logger.info("\n 4. loginUser이라는 MemberDto에 담겨있는 값은? : " + loginUser.toString());
+
+		if (loginUser != null) {
+			logger.info("\n 5. 현재 loginUser이 null이 아니니???");
+			return loginUser.getMember_id();
+		} else {
+			logger.info("\n 5. 현재 loginUser이 null이니???");
+			return session.getId();
+		}
+	}
+
 }

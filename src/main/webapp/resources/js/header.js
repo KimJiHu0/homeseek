@@ -34,10 +34,10 @@ function chat(){
 }
 
 function connectWs(){
-
 	socket = new WebSocket('ws://localhost:8787/homeseek/message.do');
 	
 	socket.onopen = function(){
+		
 		console.log(" 정보 : 연결됌 ");
 	}
 	
@@ -55,14 +55,13 @@ function connectWs(){
 		}
 	}
 	
-	/*socket.onclose = function(){
+	socket.onclose = function(){
 		console.log(" 연결 끊김 ");
-	}*/
+	}
 	
 	socket.onerror = function(err){
 		console.log(" 에러 : " + err);
 	}
-
 }
 
 function myPage(){
