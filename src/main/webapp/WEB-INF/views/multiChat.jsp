@@ -18,17 +18,32 @@
 		MemberDto insert_dto = (MemberDto) request.getSession().getAttribute("login");
 		String name = insert_dto.getMember_name();
 	%>
-	  
-	  이름:<input type="text" id="nickname" value="<%= name%>"  readonly>
-      <input type="button" id="enterBtn" value="입장">
+	
+
+	<input type="text" id="nickname" value="<%= name%>"  readonly>
+    <input type="button" id="enterBtn" value="입장">
     <input type="button" id="exitBtn" value="나가기">
     
-    <h1>대화 영역</h1>
-    <div id="chatArea"><div id="chatMessageArea"></div></div>
+    <div id="text">
+    <div id="chatArea">
+    	<div id="chatMessageArea">
+    	</div>
+    </div>
     <br/>
     <div id="textMessage">
-    <input type="text" id="message">
-    <input type="button" id="sendBtn" value="전송">
+    
+   
     </div>
+    </div>
+ 
+    <div class="mes">
+    <div class="input-div">
+        <textarea id="message" placeholder="Press Enter for send message."></textarea>
+    </div>
+    
+    </div>
+    <footer>
+    <input type="button" id="sendBtn" value="전송">
+    </footer>
 </body>
 </html>

@@ -85,7 +85,7 @@ $(function(){
                              for each of the set of matched elements.*/
         	// .scrollTop(int) : 파라미터로 들어간 px 만큼 top에 공백을 둔 채
         	//                   스크롤바를 위치시킨다
-        $("#chatArea").scrollTop(maxScroll);
+        $('html, body').scrollTop(document.body.scrollHeight);
     }
 
     $(document).ready(function() {

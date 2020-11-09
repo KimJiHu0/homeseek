@@ -1,0 +1,83 @@
+/* 레이아웃 틀 */
+section{
+    padding : 30px 400px;
+   	width : 3000px;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+
+}
+h1{
+	width:90%;
+	margin-left : 60px;
+	padding-left : 0%;
+	padding-top : 5%;
+}
+h3 {
+    margin: 19px 0 8px;
+    font-size: 18px;
+    font-weight: 700;
+}
+#footer{
+	margin-top : -60px;
+}
+
+
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+
+#content {
+    left: 50%;
+    transform: translate;
+    width: 460px;
+}
+.btn_area {
+    margin: 0px 0 91px;
+}
+
+#submit {
+    width: 40%;
+    padding: 10px 0 10px;
+
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #08a600;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 12px;
+    margin-left:400px;
+    
+}
+#sendSms {
+    width:	3%;
+	color: black;
+    border: 1;
+    cursor: pointer;
+    background-color: white;
+    
+    
+}
+#phoneCheck {
+    width:	3%;
+	color: black;
+    border: 1;
+    cursor: pointer;
+    background-color: white;
+    margin-top : 10px;
+	margin-left: 235px;
+    
+    
+}
+#phone_check{
+    margin-top : 1px;
+    float : left;
+}
+
