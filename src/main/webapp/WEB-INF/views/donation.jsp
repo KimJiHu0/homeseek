@@ -8,12 +8,14 @@
 <!-- donate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/donate.css" type="text/css" />
 	
-<!-- donate.js -->
-<script src="resources/js/donate.js" type="text/javascript"></script>
+
 
 <!-- BootPay 결제 api	 -->
 <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.6.min.js" type="application/javascript"></script>
+
+<!-- footer 설정용 -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header.jsp include -->
@@ -26,9 +28,7 @@
 	
 	%>
 
-	<div id="top_title">
-		<h3>후원하가</h3>
-	</div>
+	
 	<hr id="top_line">
 
 	<!-- 본문 -->
@@ -39,46 +39,59 @@
 	
 		<div class="contents">
 			<div id="main_image">
-				<img alt="donate_main" src="resources/img/donate_main.jpg"
-					id="donate_image">
+				<img alt="donate_main" src="resources/img/donate_main.jpg" class="donate_image">
+				<img alt="donate_main" src="resources/img/donate_main_desk.jpg" class="donate_image">
+				<img alt="donate_main" src="resources/img/donate_main_coding.jpg" class="donate_image">
+				<img alt="donate_main" src="resources/img/donate_main_office.jpg" class="donate_image">
+				
 			</div>
 	
 			<div class="donate_div">
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's standard
-					dummy text ever since the 1500s, when an unknown printer took a
-					galley of type and scrambled it to make a type specimen book. It has
-					survived not only five centuries, but also the leap into electronic
-					typesetting, remaining essentially unchanged. It was popularised in
-					the 1960s with the release of Letraset sheets containing Lorem Ipsum
-					passages, and more recently with desktop publishing software like
-					Aldus PageMaker including versions of Lorem Ipsum</p>
+				
+				<p id="main_para">
+				<p id="main_title">Homeseek은...</p>
+				 부동산 거래시 중간단계에서 생기는 수수료를 줄이고 
+				거짓, 허위매물로 인한 피해사례를 줄이고 안전하고 투명한 거래를 지향하기 위해서 만든 
+				개인과 개인을 공인중계사 없이 이어주는 무료 서비스입니다.<br><br>
+				Homeseek 운영진들이 서비스를 계속할 수 있도록 도와주세요.
+				
+				</p>
 					<br>
 					<br>
 					<br>
 					
-				<form action="donate.do" id="donate_form">
-				
-					<label id="value1">
-					<input type="radio" id="value" name="donate_value" value="100">
-					1000원</label>
-					 
-					<label id="value3">
-					<input type="radio" id="value" name="donate_value" value="300"> 
-					3000원</label>
-					 
-					 <label id="value5">
-					<input type="radio" id="value" name="donate_value" value="500"> 
-					5000원</label> 
+			<form action="donate.do" id="donate_form">
+				<h3 id="form_title">금액을 선택해 주세요.</h3>
+			
+				<ul class="radio_ul">
+					<li class="radio_li">
+						<input type="radio" id="value1" name="donate_value" value="100">
+						<label id="value1" for="value1">₩1,000</label>
+						<div class="check"></div>
+					</li>
+	
+					<li class="radio_li">
+						<input type="radio" id="value3" name="donate_value" value="300">
+						<label id="value3" for="value3">₩3,000</label>
+						<div class="check"></div>
+					</li>
+	
+					<li class="radio_li">
+						<input type="radio" id="value5" name="donate_value" value="500">
+						<label id="value5" for="value5">₩5,000</label> 
+						<div class="check"></div>
+					</li>
+	
+					<li class="radio_li">
+						<input type="radio" id="value10" name="donate_value" value="1000">
+						<label id="value10" for="value10">₩10,000</label>
+						<div class="check"><div class="inside"></div></div>
+					</li>
 					
-					<label id="value10">
-					<input type="radio" id="value" name="donate_value" value="1000"> 
-					10000원</label>
-					
-					<input type="button" onclick="pay()" value="후원하기" id="donate_button"> 
-				</form> 
-				
-				
+				</ul>
+			</form>
+			
+			<input type="button" onclick="pay()" value="후원하기" id="donate_button">
 			</div>
 		</div>
 		
@@ -86,5 +99,14 @@
 	</section>
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
+	
 </body>
+<!-- donate.js -->
+<script src="resources/js/donate.js" type="text/javascript"></script>
 </html>
+
+
+
+
+
+

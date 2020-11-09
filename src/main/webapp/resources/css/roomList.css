@@ -1,7 +1,3 @@
-section{
-	padding-top : 100px;
-}
-
 .imgs{
 	display:flex;
 	flex-direction:row;
@@ -10,8 +6,8 @@ section{
 }
 
 .imgbox {
-	width:300px;
-	height:300px;
+	width:250px;
+	height:250px;
 	background-color: gray;
 	margin:20px;
 	position : relative;
@@ -34,11 +30,11 @@ section{
 }
 
 .content{
-	height:79.2px;
-	width:300px;
-	position : absolute;
-	top : 110.4px;
-	visibility: hidden;
+    height: 79.2px;
+    width: 250px;
+    position: absolute;
+    top: 90px;
+    visibility: hidden;
 }
 
 .room_type{

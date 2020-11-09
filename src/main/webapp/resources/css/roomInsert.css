@@ -1,13 +1,5 @@
 /* section 기본설정 */
 
-/* 안쓸예정 */
-section{
-	padding-top : 100px;
-	width: 100%;
-	max-width: 1200px;
-	height: auto;
-	
-}
 
 section #top_title {
 	width : 100%;
@@ -23,9 +15,7 @@ section #top_title {
 #main_content{
 	padding-top : 100px;
 	width: 100%;
-	max-width: 1200px;
 	height: auto;
-	margin:auto;
 }
 
 #main_content #top_title{
