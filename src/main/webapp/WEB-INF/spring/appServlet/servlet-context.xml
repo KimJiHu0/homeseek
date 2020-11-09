@@ -27,9 +27,15 @@
 	<context:component-scan base-package="com.mvc.homeseek" />
 	
 	<interceptors>
+<!-- 		<interceptor> 번역해주는 interceptor
+			<mapping path="/*"/>
+			<beans:bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<beans:property name="paramName" value="lang"/>
+			</beans:bean>
+		</interceptor> -->
 		<interceptor>
 			<mapping path="/*"/>
-			<beans:bean class="com.mvc.homeseek.common.interceptor.homeseekInterceptor"></beans:bean>
+			<beans:bean class="com.mvc.homeseek.common.interceptor.homeseekInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

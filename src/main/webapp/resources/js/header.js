@@ -1,39 +1,40 @@
 var socket;
 
 window.onload = function() {
-	
-	// 데스크탑 알림 권한 요청
-	Notification.requestPermission(function(result){
-		// 요청 거절
-		if(result === 'denied'){
-			return;
-		} else {
-			return;
-		}
-	})
-	connectWs();
-	
-	
-	if($("li").hasClass("searchbox")){/* 로그인되거나, 검색창이 나올때 크기 update되게*/
-		$(".nav").width("830px");
-		$(".nav2").width("940px");
-	}
-	
-	$('#navsearchtxt').keydown(function(e){ /*엔터누르면 검색되도록*/
-		if(e.keyCode == 13){
-			$('.navsearchform').submit();
-		}
-	});
-	    
-	
-	
+   
+   // 데스크탑 알림 권한 요청
+   Notification.requestPermission(function(result){
+      // 요청 거절
+      if(result === 'denied'){
+         return;
+      } else {
+         return;
+      }
+   })
+   connectWs();
+   
+   
+   if($("li").hasClass("searchbox")){/* 로그인되거나, 검색창이 나올때 크기 update되게*/
+      $(".nav").width("830px");
+      $(".nav2").width("940px");
+   }
+   
+   $('#navsearchtxt').keydown(function(e){ /*엔터누르면 검색되도록*/
+      if(e.keyCode == 13){
+         $('.navsearchform').submit();
+      }
+   });
+       
+   
+   
 }
 
 function chat(){
-	window.open("chat.do", "a", "width=400, height=300, left=100, top=50");
+   window.open("chat.do", "a", "width=400, height=300, left=100, top=50");
 }
 
 function connectWs(){
+
 	socket = new WebSocket('ws://localhost:8787/homeseek/message.do');
 	
 	socket.onopen = function(){
@@ -61,17 +62,18 @@ function connectWs(){
 	socket.onerror = function(err){
 		console.log(" 에러 : " + err);
 	}
+
 }
 
 function myPage(){
-	
-	open("mypagemyinfo.do", "", "width=600, height=700");
+   
+   open("mypagemyinfo.do", "", "width=600, height=700");
 }
 
 function myDona(){
-	location.href='mypagedonalist.do';
+   location.href='mypagedonalist.do';
 }
 
 function myMsg(){
-	location.href='mypagemyremsglist.do';
+   location.href='mypagemyremsglist.do';
 }
