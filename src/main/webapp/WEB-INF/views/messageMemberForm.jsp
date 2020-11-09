@@ -123,10 +123,6 @@ function sendMessage(){
 			url : "messagememberres.do",
 			success : function(info){
 				if(info.res > 0){
-					if(socket){
-						var socketMsg = "message," + info.message_senid + "," + info.message_reid;
-						socket.send(socketMsg);
-					}
 					alert("쪽지보내기가 성공적으로 완료되었습니다.");
 					self.close();
 				} else {
@@ -137,6 +133,10 @@ function sendMessage(){
 				alert("실패");
 			}
 		})
+	}
+	if(socket){
+		var socketMsg = "message," + message_senid + "," + message_reid;
+		socket.send(socketMsg);// json형태의 String으로 보내준다.
 	}
 }
 

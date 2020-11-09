@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
@@ -64,26 +66,46 @@ public class MessageHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 
 		if (StringUtils.isNotEmpty(msg)) {
-			String[] strs = msg.split(",");
-
-			if (strs != null && strs.length == 3) {
-				String cmd = strs[0];
-				String message_senid = strs[1];
-				String message_reid = strs[2];
-
-				// 작성자가 로그인해있다면
-				// 쪽지 받는 사람 <<
-				WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
-				logger.info("\n boardWriterSession? : " + boardWriterSession.toString());
-				logger.info("\n message? : " + cmd);
-
-				if ("message".equals(cmd) && boardWriterSession != null) {
-
-					TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
-					boardWriterSession.sendMessage(tmpMsg); // 이 부분이 쪽지를 보낸 사람의 id에게 send해주는 부분?
-				}
-			}
+			
+			/*
+			 * JSONParser parser = new JSONParser(); JSONObject obj = (JSONObject)
+			 * parser.parse(msg); String cmd = (String)obj.get("cmd");
+			 * logger.info("\n 여기는 cmd : " + cmd); String message_senid =
+			 * (String)obj.get("message_senid"); logger.info("\n 여기는 message_senid : " +
+			 * message_senid); String message_reid = (String)obj.get("message_reid");
+			 * logger.info("\n 여기는 message_reid : " + message_reid);
+			 * 
+			 * logger.info("\n userSessionMap에 (현재 로그인되어있는 아이디)담겨있는 애 : " +
+			 * userSessionMap.get(message_reid));
+			 * 
+			 * // 알림받을 사람 WebSocketSession messageReid = userSessionMap.get(message_reid);
+			 * 
+			 * if(messageReid != null) { TextMessage tmpMsg = new TextMessage(msg);
+			 * messageReid.sendMessage(tmpMsg); } else { logger.info("\n 이미 로그아웃 된 회원입니다.");
+			 * }
+			 */
+			
+			  String[] strs = msg.split(",");
+			  
+			  if (strs != null && strs.length == 3) {
+				  String cmd = strs[0]; String
+				  message_senid = strs[1];
+				  String message_reid = strs[2];
+			  
+			  // 작성자가 로그인해있다면 // 쪽지 받는 사람 <<
+			  WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
+			  
+			  logger.info("\n boardWriterSession? : " + boardWriterSession.toString()); 
+			  logger.info("\n message? : " + cmd);
+			  
+			  if ("message".equals(cmd) && boardWriterSession != null) {
+			  
+			  TextMessage tmpMsg = new TextMessage(
+					  message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
+			  boardWriterSession.sendMessage(tmpMsg); // 이 부분이 쪽지를 보낸 사람의 id에게 send해주는 부분? } }
 		}
+	}
+}
 	}
 
 	// 연결 해제될 때
