@@ -29,6 +29,7 @@
 				/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/aop-context.xml
 				/WEB-INF/spring/appServlet/socket-config.xml
+				/WEB-INF/spring/appServlet/translate-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

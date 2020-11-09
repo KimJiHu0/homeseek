@@ -59,7 +59,7 @@ a{
 
 ul.nav{
 	float: right;
-	width: 650px;
+	margin-right: 30px;
 	
 }
 
@@ -83,7 +83,7 @@ ul.nav li{
 
 ul.nav2{
 	float: right;
-	width: 800px;
+	margin-right: 30px;
 	
 }
 

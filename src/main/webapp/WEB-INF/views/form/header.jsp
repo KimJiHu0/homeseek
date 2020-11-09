@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.mvc.homeseek.model.dto.MemberDto"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 		MemberDto dto = (MemberDto) request.getSession().getAttribute("login");
 %>
@@ -215,22 +217,22 @@ a {
 
 
 				<!-- 엘라스틱서치로 변경시 search.do 로 변경 -->
-				<li><a class="headeratag" href="listroom.do">전체 방 조회</a></li>
+				<li><a class="headeratag" href="listroom.do"><spring:message code="h.list" text="전체 방 보기"/></a></li>
 				<%
 					if (dto == null) {
 				%>
-				<li><a class="headeratag login2" >방 올리기</a></li>
+				<li><a class="headeratag login2" ><spring:message code="h.insert" text="방 올리기"/></a></li>
 				<%
 					} else {
 				%>
-				<li><a class="headeratag" href="insertroom.do">방 올리기</a></li>
+				<li><a class="headeratag" href="insertroom.do"><spring:message code="h.insert" text="방 올리기"/></a></li>
 				<%
 					}
 				%>
 				<li><div class="dropdown">
-						<button class="dropbtn">게시판</button>
+						<button class="dropbtn"><spring:message code="h.board" text="게시판"/></button>
 						<div class="dropdown-content">
-							<a class="headeratag" href="noticelist.do">공지사항</a> <a
+							<a class="headeratag" href="noticelist.do"><spring:message code="h.notice" text="공지사항"/></a> <a
 								class="headeratag" href="qnalist.do">Q & A</a>
 						</div>
 					</div></li>
@@ -238,16 +240,18 @@ a {
 				<%
 					if (dto == null) {
 				%>
-				<li><a class="headeratag login2">채팅</a></li>
+				<li><a class="headeratag login2"><spring:message code="h.chat" text="채팅"/></a></li>
 				<%
 					} else {
 				%>
-				<li><a class="headeratag" href="javascript:chat();">채팅</a></li>
+				<li><a class="headeratag" href="javascript:chat();"><spring:message code="h.chat" text="채팅"/></a></li>
 				<%
 					}
 				%>
-				<li><a class="headeratag" href="donateform.do">후원하기</a></li>
-				<li><a class="headeratag" href="#">Kr | En</a></li>
+				<li><a class="headeratag" href="donateform.do"><spring:message code="h.donate" text="후원하기"/></a></li>
+				<li><a class="headeratag" href="?lang=en">ENG</a></li>
+				<li><a class="headeratag" href="?lang=ko">KOR</a></li>
+				<!-- <li><p class="headeratag" id="translate">Kr | En</p></li> -->
 				<%
 					if (dto == null) {
 				%>
@@ -262,11 +266,11 @@ a {
 
 				<li><div class="dropdown">
 						<button class="dropbtn">
-							<strong><%=dto.getMember_name()%>님 환영합니다</strong>
+							<strong><%=dto.getMember_name()%><spring:message code="h.welcome" text="님 환영합니다"/></strong>
 						</button>
 						<div class="dropdown-content">
-							<a class="headeratag" href="admin.do">전체 회원 관리</a> <a
-								class="headeratag" href="admindona.do">전체 후원 내역</a>
+							<a class="headeratag" href="admin.do"><spring:message code="h.admin" text="전체 회원 관리"/></a> <a
+								class="headeratag" href="admindona.do"><spring:message code="h.admindona" text="전체 후원 내원"/></a>
 						</div>
 					</div></li>
 				<li><span class="logout"> <a class="headeratag"
@@ -277,12 +281,12 @@ a {
 				%>
 				<li><div class="dropdown">
 						<button class="dropbtn">
-							<strong><%=dto.getMember_name()%>님 환영합니다</strong>
+							<strong><%=dto.getMember_name()%><spring:message code="h.welcome" text="님 환영합니다"/></strong>
 						</button>
 						<div class="dropdown-content">
-							<a class="headeratag" href="javascript:myPage();">내 정보 보기</a> <a
-								class="headeratag" href="javascript:myDona();">나의 후원 내역</a> <a
-								class="headeratag" href="javascript:myMsg();">쪽지함</a>
+							<a class="headeratag" href="javascript:myPage();"><spring:message code="h.mypage" text="내 정보 보기"/></a> 
+							<a class="headeratag" href="javascript:myDona();"><spring:message code="h.mydona" text="나의 후원 내역"/></a> 
+							<a class="headeratag" href="javascript:myMsg();"><spring:message code="h.mymsg" text="쪽지함"/></a>
 						</div>
 					</div></li>
 				<li><span class="logout"> <a class="headeratag"
@@ -337,11 +341,11 @@ a {
 					</div>
 
 					<ul class="idpwlink">
-						<li><a href="findidform.do">아이디 찾기</a></li>
+						<li><a href="findidform.do"><spring:message code="h.id" text="아이디 찾기"/></a></li>
 						<li><a> | </a></li>
-						<li><a href="findpwdform.do">비밀번호 찾기</a></li>
+						<li><a href="findpwdform.do"><spring:message code="h.pw" text="비밀번호 찾기"/></a></li>
 						<li><a> | </a></li>
-						<li><a href="registform.do">회원가입</a></li>
+						<li><a href="registform.do"><spring:message code="h.regist" text="회원가입"/></a></li>
 					</ul>
 				</div>
 			</div>
@@ -361,6 +365,16 @@ a {
 		$(".modal").css("opacity", "0");
 		$(".modal").css("z-index","-1");
 	});
+	
+/* 	
+function translate(){
+	var userLang = navigator.language || navigator.userLanguage;
+	if(userLang==ko){
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("en"));
+	}else{
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("ko"));
+	}
+} */
 </script>
 
 
