@@ -74,8 +74,8 @@ public class MessageHandler extends TextWebSocketHandler {
 				// 작성자가 로그인해있다면
 				// 쪽지 받는 사람 <<
 				WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
-				logger.info("boardWriterSession? : " + boardWriterSession.toString());
-				logger.info("message? : " + cmd);
+				logger.info("\n boardWriterSession? : " + boardWriterSession.toString());
+				logger.info("\n message? : " + cmd);
 
 				if ("message".equals(cmd) && boardWriterSession != null) {
 
