@@ -63,7 +63,7 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("noticedelete.do") ||
 				request.getRequestURI().contains("qnalist.do") ||
 				request.getRequestURI().contains("qnadetail.do") ||
-				//request.getRequestURI().contains("qnainsertform.do") ||
+				request.getRequestURI().contains("qnainsertform.do") ||
 				request.getRequestURI().contains("qnainsert.do") ||
 				request.getRequestURI().contains("qnaupdateform.do") ||
 				request.getRequestURI().contains("qnaupdate.do") ||
@@ -100,6 +100,7 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("muldeletesenmsglist.do") ||
 				request.getRequestURI().contains("deletemsg.do") ||
 				request.getRequestURI().contains("mypagesenmsgdetail.do") ||
+				request.getRequestURI().contains("insertroom.do") ||
 				request.getRequestURI().contains("mypageremsgdetail.do")) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 			
 		

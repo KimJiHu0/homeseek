@@ -98,8 +98,14 @@ dialog span {
 					</c:choose>
 				</tbody>
 				<tr>
+				<c:if test="${ empty login }">
+					<td colspan="5" align="right"><input type="button" value="로그인 후 글작성하기"
+						class ="login2" /></td>
+				</c:if>
+				<c:if test="${ not empty login }">
 					<td colspan="5" align="right"><input type="button" value="글작성"
 						onclick="location.href='qnainsertform.do'" /></td>
+				</c:if>
 				</tr>
 			</table>
 		</div>
@@ -108,6 +114,7 @@ dialog span {
 	</section>
 
 	<script>
+	
 		$("#qnaSearch")
 				.keyup(
 						function() {
@@ -277,4 +284,18 @@ dialog span {
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
 </body>
+<script type="text/javascript">
+	$(".login2").click(function() {
+		$(".modal-back").show();
+		$(".modal").css("z-index","20");
+		$(".modal").css("top", "100px");
+		$(".modal").css("opacity", "1");
+	});
+	$(".modal-back").click(function() {
+		$(this).hide();
+		$(".modal").css("top", "50px");
+		$(".modal").css("opacity", "0");
+		$(".modal").css("z-index","-1");
+	});
+</script>
 </html>

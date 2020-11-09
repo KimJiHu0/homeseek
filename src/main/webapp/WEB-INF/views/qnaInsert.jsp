@@ -49,7 +49,7 @@
 			</table>
 			
 		
-		<button type="submit" class="btn btn-default">등록</button>
+		<button type="submit" class="btn btn-default login2">등록</button>
 		<button type="reset" class="btn btn-default">초기화</button>
 		<button type="button" onclick="location.href='qnalist.do'" class="btn btn-default">취소</button>
 	</form>
@@ -60,4 +60,5 @@
 	<%@ include file="form/footer.jsp"%>
 
 </body>
+
 </html>
