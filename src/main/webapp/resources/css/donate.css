@@ -1,12 +1,5 @@
 
 /* 페이지 기본설정 */
-
-section{
-	width : 100%;
-	padding: 100px 50px 0 50px;
-	height: 700px;
-}
-
 section #top_title {
 	width : 100%;
 	max-width : 1200px;

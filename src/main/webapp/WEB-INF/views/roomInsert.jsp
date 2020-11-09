@@ -8,8 +8,9 @@
 <title>homeseek : 방 올리기</title>
 </head>
 <body>
-	<!-- header.jsp include -->
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
+<section>
+	<!-- header.jsp include -->
 	<%
 		MemberDto insert_dto = (MemberDto) request.getSession().getAttribute("login");
 		String room_id = insert_dto.getMember_id();
@@ -145,11 +146,11 @@
 		<!-- </section> -->
 	</div>
 	
-	
-</body>
+</section>	
 
 	<!-- footer.jsp -->
 	<%@ include file="form/footer.jsp"%>
+</body>
 
 
 <!-- include libraries(jQuery, bootstrap) -->
