@@ -92,7 +92,6 @@
 	</div>
 </body>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/alert.js" type="text/javascript"></script>
 
 <script type="text/javascript">

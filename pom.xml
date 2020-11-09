@@ -289,7 +289,7 @@
 	    <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-websocket</artifactId>
-            <version>4.0.4.RELEASE</version>
+            <version>5.0.2.RELEASE</version>
         </dependency>
 		
 		<!-- spring transaction : org.springframework spring-context랑 버전이 같아야함!-->

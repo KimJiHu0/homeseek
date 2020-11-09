@@ -7,9 +7,9 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
-       https://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/websocket
-       https://www.springframework.org/schema/websocket/spring-websocket.xsd">
+       http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
     <!-- 웹소켓 핸들러(프론트) 선언과 매핑 -->
     <!-- 현재 path는 echo-ws.html 을 가리키고 있다 -->
@@ -24,7 +24,7 @@
     <!-- Controller의 경로를 정확시 설정해준다 -->
     <bean id="echoHandler" class="com.mvc.homeseek.socket.EchoHandler" />
     
-    <websocket:handlers>
+    <websocket:handlers allowed-origins="*">
     	<websocket:mapping handler="MessageHandler" path="/message.do"/>
       	<websocket:handshake-interceptors>
     		<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
