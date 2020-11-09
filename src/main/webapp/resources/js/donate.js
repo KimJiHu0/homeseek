@@ -1,4 +1,74 @@
 
+/* -------------------- 이미지 슬라이드쇼 -------------------- */
+	var slideIndex = 0;
+	showSlides();
+	
+	function showSlides() {
+	  var i;
+	  var slides = document.getElementsByClassName("donate_image");
+	 
+	  //모든 DOM 요소 안보이게 하고 시작
+	  for (i = 0; i < slides.length; i++) {
+	    slides[i].style.display = "none"; 
+	  }
+	  slideIndex++;
+	  
+	  // slideIndex가 마지막 이미지에 도달했을때 첫번째로 되돌아오게함
+	  if (slideIndex > slides.length) {
+		  slideIndex = 1
+		  }    
+	
+	  slides[slideIndex-1].style.display = "block";
+      fadeOut(slides[slideIndex-1]); 	  
+	  
+	  setTimeout(showSlides, 3000); 
+	}
+
+	function fadeIn(element){
+		var op = 1;  // initial opacity
+	    var timer = setInterval(function () {
+	    	element.style.display = "block";
+	        if (op <= 0.1){
+	            clearInterval(timer);
+	            //element.style.display = "block";
+	        }
+	        element.style.opacity = op;
+	        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+	        op -= op * 0.1;
+	        	   
+	    }, 50);
+	}
+
+	function fadeOut(element){
+		 var op = 0.1;  // initial opacity
+		    //element.style.display = 'block';
+		    var timer = setInterval(function () {
+		        if (op >= 1){
+		            clearInterval(timer);
+		        }
+		        element.style.opacity = op; 
+		        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+		        op += op * 0.1;
+		    }, 50);
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------- bootpay js --------------------
 function pay() {
 	
 		var member_id = document.getElementById("member_id").value;
@@ -13,7 +83,7 @@ function pay() {
 		BootPay.request({
 			price: value,
 			application_id: "5f9fefc418e1ae002e4f4834",
-			name: value + ' 원 후원',
+			name: 'homeseek 후원',
 			pg: '',
 			method: 'card',
 			show_agree_window: 0,
@@ -84,4 +154,12 @@ function pay() {
 				console.log("끝 : "+data);
 				
 			});
+		
+		
+		
+		
 		}
+
+
+
+
