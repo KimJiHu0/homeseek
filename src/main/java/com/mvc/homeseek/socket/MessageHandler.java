@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +28,8 @@ public class MessageHandler extends TextWebSocketHandler {
 
 	// 로그인 중인 개별 유저를 담는 map을 선언해준다.
 	private Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
-
+	
+	
 	// 클라이언트가 서버로 연결 시 들어오는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -74,7 +78,7 @@ public class MessageHandler extends TextWebSocketHandler {
 
 				// 작성자가 로그인해있다면
 
-				WebSocketSession boardWriterSession = userSessionMap.get(session.getId());
+				WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
 				logger.info("boardWriterSession? : " + boardWriterSession.toString());
 				logger.info("message? : " + cmd);
 
