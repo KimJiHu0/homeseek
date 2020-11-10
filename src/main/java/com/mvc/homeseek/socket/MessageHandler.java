@@ -96,11 +96,11 @@ public class MessageHandler extends TextWebSocketHandler {
 			  
 			  if (strs != null && strs.length == 3) {
 				  String cmd = strs[0];
-				  String message_senid = strs[1];
-				  String message_reid = strs[2];
+				  String message_senid = strs[1]; // 나야
+				  String message_reid = strs[2]; // 누나야
 			  
 			  // 작성자가 로그인해있다면 // 쪽지 받는 사람
-			  WebSocketSession messageReid = userSessionMap.get(message_reid);
+			  WebSocketSession messageReid = userSessionMap.get(message_senid);
 			  
 			  logger.info("\n boardWriterSession? : " + messageReid.toString());
 			  logger.info("\n message? : " + cmd);
@@ -135,7 +135,6 @@ public class MessageHandler extends TextWebSocketHandler {
 
 	// 웹소켓 id가져오기
 
-	@SuppressWarnings("unused")
 	private String UserId(WebSocketSession session) {
 		logger.info("\n 2. UserId메소드를 통해서 들어온 session의 id는? : " + session.getId());
 
@@ -144,7 +143,6 @@ public class MessageHandler extends TextWebSocketHandler {
 		logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 value값은 ? : " + httpSession.values());
 		MemberDto loginUser = (MemberDto) httpSession.get("login");
 
-		logger.info("\n 4. loginUser이라는 MemberDto에 담겨있는 값은? : " + loginUser.toString());
 		
 		if (loginUser != null) {
 			logger.info("\n 5. 현재 loginUser이 null이 아니니???");
