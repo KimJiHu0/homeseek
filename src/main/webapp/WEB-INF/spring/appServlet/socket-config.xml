@@ -24,7 +24,7 @@
     <!-- Controller의 경로를 정확시 설정해준다 -->
     <bean id="echoHandler" class="com.mvc.homeseek.socket.EchoHandler" />
     
-    <websocket:handlers>
+    <websocket:handlers allowed-origins="*">
     	<websocket:mapping handler="MessageHandler" path="/message.do"/>
       	<!-- <websocket:handshake-interceptors>
     		<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
