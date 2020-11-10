@@ -26,9 +26,9 @@
     
     <websocket:handlers allowed-origins="*">
     	<websocket:mapping handler="MessageHandler" path="/message.do"/>
-      	<!-- <websocket:handshake-interceptors>
+      	<websocket:handshake-interceptors>
     		<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
-    	</websocket:handshake-interceptors> -->
+    	</websocket:handshake-interceptors>
     </websocket:handlers>
     <bean id="MessageHandler" class="com.mvc.homeseek.socket.MessageHandler"/>
 </beans>
