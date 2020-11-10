@@ -25,7 +25,7 @@ public class MessageHandler extends TextWebSocketHandler {
 	private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 
 	// 로그인 중인 개별 유저를 담는 map을 선언해준다.
-	private Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
+	public Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
 
 	// 클라이언트가 서버로 연결 시 들어오는 메소드
 	@Override
@@ -98,9 +98,12 @@ public class MessageHandler extends TextWebSocketHandler {
 				  String cmd = strs[0];
 				  String message_senid = strs[1]; // 나야
 				  String message_reid = strs[2]; // 누나야
+				  
+				  logger.info("\n 보내는 사람 누구니? : " + message_senid);
+				  logger.info("\n 받는 사람 누구니? : " + message_reid);
 			  
 			  // 작성자가 로그인해있다면 // 쪽지 받는 사람
-			  WebSocketSession messageReid = userSessionMap.get(message_senid);
+			  WebSocketSession messageReid = userSessionMap.get(message_reid);
 			  
 			  logger.info("\n boardWriterSession? : " + messageReid.toString());
 			  logger.info("\n message? : " + cmd);
@@ -133,7 +136,7 @@ public class MessageHandler extends TextWebSocketHandler {
 
 	}
 
-	// 웹소켓 id가져오기
+	// 현재 로그인 된 id값을 가져오기 위한 메소드
 
 	private String UserId(WebSocketSession session) {
 		logger.info("\n 2. UserId메소드를 통해서 들어온 session의 id는? : " + session.getId());
