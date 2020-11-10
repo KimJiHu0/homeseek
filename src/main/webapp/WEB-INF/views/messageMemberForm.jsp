@@ -134,13 +134,8 @@ function sendMessage(){
 			}
 		});
 		if(socket){
-			var socketMsg = {
-					"cmd" : "message",
-					"message_senid" : message_senid,
-					"message_reid" : message_reid
-			}
-			//"message," + message_senid + "," + message_reid;
-			socket.send(JSON.stringify(socketMsg));// json형태의 String으로 보내준다.
+			var socketMsg = "message," + message_senid + "," + message_reid;
+			socket.send(socketMsg); //json형태의 String으로 보내준다.
 		}
 	}
 }
