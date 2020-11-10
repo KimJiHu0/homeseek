@@ -70,7 +70,7 @@
 	<select id="countMsgByReid" parameterType="String" resultType="int">
 		SELECT COUNT(MESSAGE_NO)
 		FROM MESSAGE
-		WHERE MESSAGE_SENID = #{message_reid}
+		WHERE MESSAGE_REID = #{message_reid}
 	</select>
 	<!-- 페이징 처리 후 받은 쪽지 조회 -->
 	<select id="MsgByReid" parameterType="Map" resultType="MessageDto">
@@ -80,7 +80,7 @@
 					FROM (
 						SELECT * 
 						FROM MESSAGE 
-						WHERE MESSAGE_SENID = #{message_reid}
+						WHERE MESSAGE_REID = #{message_reid}
 						ORDER BY MESSAGE_DATE DESC 
 							) A
 				)
