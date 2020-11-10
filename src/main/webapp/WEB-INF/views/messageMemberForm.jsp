@@ -135,7 +135,7 @@ function sendMessage(){
 		});
 		if(socket){
 			var socketMsg = "message," + message_senid + "," + message_reid;
-			socket.send(socketMsg); //json형태의 String으로 보내준다.
+			socket.send(socketMsg);
 		}
 	}
 }
