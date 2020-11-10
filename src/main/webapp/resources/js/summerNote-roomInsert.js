@@ -1,10 +1,20 @@
 $(function() {
 	$('#summernote').summernote({
-		placeholder: '최대 500자 작성 가능합니다.',
+		placeholder: 
+					'방의 세부 사항을 입력해주세요. 허위내용 기재시 게시물이 무통보 삭제 될수 있습니다. ',
 		height: 300,
 		minHeight: 300,             
 		maxHeight: 300,             
 		lang: 'ko-KR',
+		toolbar: [
+			  ['style', ['style']],
+			  ['font', ['bold', 'underline', 'clear']],
+			  ['fontname', ['fontname']],
+			  ['color', ['color']],
+			  ['para', ['ul', 'ol', 'paragraph']],
+			  ['insert', ['resizedDataImage', 'picture']],
+			  ['view', [ 'codeview']],
+			],
 		callbacks: {
 			onImageUpload: function(files, editor, welEditable) {
 		 		for (var i=0; i<files.length; i++) {

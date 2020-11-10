@@ -75,7 +75,6 @@
 						<!-- 지도 출력 영역 -->
 						<div id="map_bg">
 							<div id="show_map">
-								<img id="imgIcon" alt="지도 표시전 아이콘" src="${pageContext.request.contextPath}/resources/img/mapicon.png">
 								<p id="map_notice">주소 검색을 하시면 해당 위치가 지도에 표시됩니다.</p>
 							</div>
 						</div>
@@ -154,15 +153,15 @@
 
 
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <!-- include summernote-ko-KR -->
-<script src="/resources/js/summernote-ko-KR.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/summernote-ko-KR.js"></script>
 
 <!-- summerNote.js -->
 <script src="${pageContext.request.contextPath}/resources/js/summerNote-roomInsert.js" type="text/javascript"></script>
@@ -173,7 +172,6 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script>
 
 <!-- 도로명주소API js -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/loadAddress.js" type="text/javascript"></script>
 
 <!-- page 설정 -->
