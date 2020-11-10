@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
@@ -22,10 +20,10 @@ public class MessageHandler extends TextWebSocketHandler {
 	private Logger logger = LoggerFactory.getLogger(MessageHandler.class);
 
 	// 로그인 한 전체를 담는 list를 선언해준다.
-	private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
+	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 
 	// 로그인 중인 개별 유저를 담는 map을 선언해준다.
-	public Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
+	Map<String, WebSocketSession> userSessionMap = new HashMap<String, WebSocketSession>();
 
 	// 클라이언트가 서버로 연결 시 들어오는 메소드
 	@Override
