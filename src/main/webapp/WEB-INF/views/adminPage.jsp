@@ -23,18 +23,19 @@
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 	<section>
 
-	<div id="outter">
+		<div class="maincontainer">
 		<div class="admin-menu">
 			<div class="admin-menu-title"><a class="all" href="admin.do">전체 회원</a></div>
 			<div class="admin-menu-title"><a class="normal" href="normal.do">일반 회원</a></div>
 			<div class="admin-menu-title"><a class="ban" href="ban.do">차단 회원</a></div>
 			<div class="admin-menu-title"><a class="withdrawal" href="withdrawal.do">탈퇴 회원</a></div>
+		
+		
 		</div>
 		<hr/>
-	
 
 
-	<div style="float: right;">
+	<div id="select" style="float: right;">
 		<select id="cntPerPage" name="sel" onchange="selChange(this.value);">
 			<option value="5"
 				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
@@ -46,8 +47,8 @@
 				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
 		</select>
 	</div> <!-- 옵션선택 끝 -->
-	
-	<table border="1">
+	<div id="outter">
+	<table>
 		<colgroup>
 			<col width="50"/>
 			<col width="100"/>
@@ -62,6 +63,9 @@
 			<th>활성화 여부</th>
 			<th>멤버 등급</th>
 		</tr>
+		<tr>
+			<td class="a" colspan="9">&nbsp;</td>
+		</tr>
 		<c:choose>
 			<c:when test="${empty list }">
 				<tr>
@@ -70,12 +74,15 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
+					<tr id="tr">
+						<th><a id="memberId">${dto.member_id }</a></th>
+						<th>${dto.member_name }</th>
+						<th>${dto.member_phone }</th>
+						<th>${dto.member_enabled }</th>
+						<th>${dto.member_role }</th>
+					</tr>
 					<tr>
-						<td><a id="member_id">${dto.member_id }</a></td>
-						<td>${dto.member_name }</td>
-						<td>${dto.member_phone }</td>
-						<td>${dto.member_enabled }</td>
-						<td>${dto.member_role }</td>
+						<td class="a" colspan="9"></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -85,9 +92,10 @@
 	
 		
 	</table>
-	<input type="button" style="float: right;" value="차단회원 관리 " onclick="location.href='enablemodifyform.do'" />
-	<input type="button" style="float: right;" value="신고 관리 " onclick="location.href='enableupdateform.do'" />
-	
+	<span class="buttonn">
+	<input type="button" style="float: right;" id="ban" value="차단회원 관리 " onclick="location.href='enablemodifyform.do'" />
+	<input type="button" style="float: right;" id="report" value="신고 관리 " onclick="location.href='enableupdateform.do'" />
+	</span>
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
 			<a href="admin.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
@@ -109,7 +117,10 @@
 
 	
 	
+</div>
 </div>	
 </section>
+
+	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>

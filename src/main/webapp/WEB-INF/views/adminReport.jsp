@@ -13,9 +13,9 @@
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 
 	<section>
-	<h1>전체 회원 관리</h1>
-	
-	<table border="1">
+	<h1>신고 회원 관리</h1>
+	<hr/>
+	<table>
 		<colgroup>
 			<col width="50"/>
 			<col width="100"/>
@@ -30,6 +30,9 @@
 			<th>신고 제목</th>
 			<th>신고 날짜</th>
 		</tr>
+		<tr>
+			<td class="a" colspan="9"></td>
+		</tr>
 		<c:choose>
 			<c:when test="${empty list }">
 				<tr>
@@ -38,7 +41,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
-					<tr>
+					<tr id="tr">
 						<td>${dto.report_no }</td>
 						<td>${dto.report_senid }</td>
 						<td>${dto.report_reid }</td>
@@ -46,12 +49,18 @@
 						</td>
 						<td>${dto.report_date }</td>
 					</tr>
+					<tr>
+						<td class="a" colspan="9"></td>
+					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</table>
-
+	<span class="buttonn">
+	<input type="button" style="float: right;" id="all" value="전체 회원 관리 " onclick="location.href='admin.do'" />
+	</span>
 	</section>
+	<%@ include file="./form/footer.jsp" %>
 
 </body>
 </html>

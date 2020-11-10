@@ -1,22 +1,21 @@
-/* section{
-	padding : 10% 20%; 
-} */
-
-
 table {
 		width : 85%;
 		border-spacing: 8px;
 		margin-left: auto;
     	margin-right: auto;
+    	margin-top : 80px;
 }
 .a{
 	border-bottom : 1px black solid;
+}
+#cntPerPage{
+	margin-top : 0px;
 }
 #tr{
 	margin : 30px;
 	text-align : center;
 }
-#all{
+#main{
 	width: 100px;
     padding: 5px 0 5px;
 
@@ -27,5 +26,18 @@ table {
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;
-    margin-right : 120px;
+    margin-left : 950px;
+}
+#modify{
+	width: 100px;
+    padding: 5px 0 5px;
+
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #08a600;
+    font-size: 8px;
+    font-weight: 600;
+    border-radius: 12px;
+  
 }
