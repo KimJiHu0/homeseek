@@ -16,7 +16,7 @@
 
     <!-- 웹소켓 클라이언트가 '/echo-ws' 로 접속하면 -->
 	<!-- echoHandler라는 bean으로 처리하겠다는 것 (아래 bean 선언과 연결하여..) -->
-    <websocket:handlers>
+    <websocket:handlers allowed-origins="*">
         <websocket:mapping handler="echoHandler" path="/echo.do" />
     </websocket:handlers>
 
