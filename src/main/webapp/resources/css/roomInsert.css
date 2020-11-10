@@ -166,11 +166,10 @@ button[data-name=resizedDataImage] input {
 	text-align: center;
 	border: 7px dashed #808080;
 	transition: 0.2s all;
-	
+	background-color : white;
 }
 
 #insert_div3 #show_map:hover{
-	background-color : #D3D3D3;
 	border: 7px dashed #696969;
 	transform: scale(1.02);
 }
