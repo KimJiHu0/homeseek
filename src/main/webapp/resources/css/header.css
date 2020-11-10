@@ -7,7 +7,8 @@
 }
 
 body{
-	font-family:InfinitySans-RegularA1;
+	font-family:InfinitySans-RegularA1 !important;
+	font-size : 16px !important;
 }
 
 *{
@@ -39,7 +40,7 @@ ul,li,ol{
 
 a{
 	text-decoration : none;
-	color:#6A6868;
+	color:#6A6868 !important;
 }
 
 .logo{
@@ -178,6 +179,7 @@ li:nth-last-child{
     background-position: 95% center;
     background-repeat: no-repeat;
     background-size: 15px 15px;
+    line-height: normal !important;;
     
 }
 
