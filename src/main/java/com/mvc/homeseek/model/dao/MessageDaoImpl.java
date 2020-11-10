@@ -117,4 +117,17 @@ public class MessageDaoImpl implements MessageDao {
 		}
 		return messagedto;
 	}
+
+	// 
+	@Override
+	public int countMsgByReid(String message_senid) {
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"countMsgByReid",message_senid);			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 }

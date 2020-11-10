@@ -45,4 +45,13 @@
 		FROM MESSAGE
 		WHERE MESSAGE_NO = #{message_no}
 	</select>
+	
+	<!-- 보낸 쪽지의 totalCount -->
+	<select id="countMsgByReid" parameterType="String">
+		SELECT COUNT(MESSAGE_NO)
+		FROM MESSAGE
+		WHERE MESSAGE_SENID = #{message_senid}
+	</select>
+	
+
 </mapper>
