@@ -1,3 +1,7 @@
+body{
+	font-family:InfinitySans-RegularA1;
+}
+
 #firstbox{
 	border-bottom : 3px gray solid;
 }

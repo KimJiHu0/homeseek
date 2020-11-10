@@ -1,4 +1,8 @@
 /* 상단의 아이콘  */
+
+body{
+	font-family:InfinitySans-RegularA1;
+}
 .headercontainer{
 	border-bottom : 3px gray solid;
 }
