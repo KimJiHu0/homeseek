@@ -1,6 +1,8 @@
 package com.mvc.homeseek.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -120,14 +122,51 @@ public class MessageDaoImpl implements MessageDao {
 
 	// 
 	@Override
-	public int countMsgByReid(String message_senid) {
+	public int countMsgBySenid(String message_senid) {
 		int res = 0;
 		try {
-			res = sqlSession.selectOne(NAMESPACE+"countMsgByReid",message_senid);			
+			res = sqlSession.selectOne(NAMESPACE+"countMsgBySenid",message_senid);			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
+		return res;
+	}
+	@Override
+	public List<MessageDto> MsgBySenid(Map<String,Object> map) {
+		List<MessageDto> res = new ArrayList<MessageDto>();
+		
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE+"MsgBySenid",map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int countMsgByReid(String message_reid) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"countMsgByReid",message_reid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public List<MessageDto> MsgByReid(Map<String, Object> map) {
+		List<MessageDto> res = new ArrayList<MessageDto>();
+		
+		try {
+			res = sqlSession.selectList(NAMESPACE + "MsgByReid",map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return res;
 	}
 }
