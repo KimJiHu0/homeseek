@@ -273,7 +273,7 @@ a {
 				%>
 
 
-				<li><span class="login2"> <a class="headeratag">LOGIN
+				<li><span class="login2" > <a class="headeratag">LOGIN
 							| REGIST</a>
 				</span></li>
 
