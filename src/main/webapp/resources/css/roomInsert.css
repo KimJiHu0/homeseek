@@ -45,6 +45,31 @@ section #top_title {
 }
 
 
+
+
+button[data-name=resizedDataImage]  {
+        position: relative;
+        overflow: hidden;
+    }
+
+button[data-name=resizedDataImage] input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        font-size: 200px;
+        max-width: 100%;
+        -ms-filter: 'alpha(opacity=0)';
+        direction: ltr;
+        cursor: pointer;
+    }
+
+
+
+
+
+
 /* input 구간 나눴음 */
 
 /* --------------- div1 매물이름, 매물종류 --------------- */
@@ -138,20 +163,36 @@ section #top_title {
 	height:450px;
 	margin: auto;
 	position: absolute;
-	padding: 100px 50px 50px 50px;
 	text-align: center;
+	border: 7px dashed #808080;
+	transition: 0.2s all;
 	
 }
 
+#insert_div3 #show_map:hover{
+	background-color : #D3D3D3;
+	border: 7px dashed #696969;
+	transform: scale(1.02);
+}
+
+
 #insert_div3 #show_map #imgIcon{
+	
+	width:10%;
+	height:12%;
 	margin:auto;
+	vertical-align: middle;
 }
 
 #insert_div3 #show_map #map_notice{
-	margin-top:20px;
+	margin: auto;
 	font-size: 20px;
-	color : green;	
+	color : green;
+	margin-top: 5%;
+	
 }
+
+
 
 
 /* --------------- div4 건물종류, 방 구조, 방 층수 --------------- */
