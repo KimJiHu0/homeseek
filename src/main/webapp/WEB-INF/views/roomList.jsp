@@ -93,7 +93,18 @@ function showList(cnt){
 					<c:otherwise>
 						<c:forEach items="${list }" var="list">
 							<div class="imgbox" >
+				<%
+					if (dto == null) {
+				%>
+								<a class="login2"><img src="${list.room_photo }" class="img" alt="${list.room_no } 사진"></a>
+								<%
+					} else {
+				%>				
 								<a href="detailroom.do?room_no=${list.room_no }"><img src="${list.room_photo }" class="img" alt="${list.room_no } 사진"></a>
+								
+				<%
+					}
+				%>								
 								<div class="content">
 									<div class="room_type">
 										<c:choose>
@@ -182,4 +193,19 @@ function showList(cnt){
 	
 	<%@ include file="./form/footer.jsp" %>
 </body>
+<script type="text/javascript">
+	$(".login2").click(function() {
+		$(".modal-back").show();
+		$(".modal_login").css("z-index", "20");
+		$(".modal_login").css("top", "100px");
+		$(".modal_login").css("opacity", "1");
+	});
+	$(".modal-back").click(function() {
+		$(this).hide();
+		$(".modal_login").css("top", "50px");
+		$(".modal_login").css("opacity", "0");
+		$(".modal_login").css("z-index", "-1");
+	});
+
+</script>
 </html>
