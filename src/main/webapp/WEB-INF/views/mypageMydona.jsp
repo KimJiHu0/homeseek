@@ -9,33 +9,44 @@
 <title>homeseek : 내 후원 내역</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMydona.css" type="text/css" />
-<script src="${pageContext.request.contextPath}/resources/js/mypageMydona.js" type="text/javascript"></script>
+
 </head>
+<style>
+.off-screen {
+	display: none;
+}
+
+.eval-contents {
+	
+	height: 50px;
+	text-align: center;
+}
+
+</style>
 <body>
 	
 	<%@ include file="./form/header.jsp" %>
 	
 	<section>
 	
-		<div class="maincontainer">
+		<div class="maincontainer" id="products">
 			<div class="mydona-menu">
 				<div class="mydona-menu-title">
 					<span class="mydona-menu-title-span">나의 후원 내역</span>
 				</div>
 			</div>
 			<hr/>
-			<div class="mydona-list">
+			<div class="mydona-list" >
+			
+			<form action="" id="setRows">
+				<input type="hidden" name="rowPerPage" value="5">
+			</form>
+			
 				<table>
-					<col width="80px">
-					<col width="100px"> <!-- 도네번호 -->
-					<col width="80px">
-					<col width="430px"> <!-- 후원금액 -->
-					<col width="80px">
-					<col width="300px"> <!-- 후원 날짜 -->
-					<col width="80px">
-					<tr>
-						<th colspan="9">&nbsp;</th>
-					</tr>
+					<col width="180px"> <!-- 도네번호 -->
+					<col width="510px"> <!-- 후원금액 -->
+					<col width="380px"> <!-- 후원 날짜 -->
+
 					<c:choose>
 						<c:when test="${empty donalist }">
 							<tr>
@@ -44,36 +55,30 @@
 						</c:when>
 						<c:otherwise>
 						<tr>
-							<th></th>
+							
 							<th>후원번호</th>
-							<th></th>
+							
 							<th>후원금액</th>
-							<th></th>
+							
 							<th>후원날짜</th>
-							<th></th>
+							
 						</tr>
 						<tr>
-							<td class="a" colspan="7">&nbsp;</td>
+							<th colspan="3">&nbsp;</th>
 						</tr>
+					
 							<c:forEach items="${donalist }" var="donalist">
-								<tr>
-									<td colspan="7"></td>
+								
+								<tr class="eval-contents">
+									
+									<td>${donalist.dona_no }</td>
+									
+									<td><fmt:formatNumber value="${donalist.dona_bill }" pattern="#,###"/>원</td>
+									
+									<td><fmt:formatDate value="${donalist.dona_date }" pattern="yyyy-MM-dd"/></td>
+									
 								</tr>
-								<tr>
-									<th></th>
-									<th>${donalist.dona_no }</th>
-									<th></th>
-									<th><fmt:formatNumber value="${donalist.dona_bill }" pattern="#,###"/>원</th>
-									<th></th>
-									<th><fmt:formatDate value="${donalist.dona_date }" pattern="yyyy-MM-dd"/></th>
-									<th></th>
-								</tr>
-								<tr>
-									<td colspan="7"></td>
-								</tr>
-								<tr>
-									<td class="a" colspan="7"></td>
-								</tr>
+
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
@@ -86,4 +91,5 @@
 	<%@ include file="./form/footer.jsp" %>
 
 </body>
+<script src="${pageContext.request.contextPath}/resources/js/paging.js"	type="text/javascript"></script>
 </html>
