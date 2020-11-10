@@ -156,12 +156,15 @@ public class MessageController {
 
 	// 내가 받은 메세지 조회
 	@RequestMapping("mypagemyremsglist.do")
-	public String mypageremsglist(HttpSession session, Model model) {
+	public String mypageremsglist(HttpSession session, Model model,
+				@RequestParam(value="nowPage", required=false)String nowPage,
+				@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		List<MessageDto> remsglist = null;
 
 		MemberDto dto = (MemberDto) session.getAttribute("login");
 
 		String message_reid = dto.getMember_id();
+		int total = messagebiz.countMsgByReid(message_reid);
 
 		remsglist = messagebiz.selectMyReMsgList(message_reid);
 

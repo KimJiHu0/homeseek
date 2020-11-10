@@ -25,4 +25,7 @@ public interface MessageDao {
 	
 	// 받은 쪽지 상세보기
 	public MessageDto selectMyMsgDetail(int message_no);
+	
+	// 보낸 쪽지함의 totalCount
+	public int countMsgByReid(String message_senid); 
 }

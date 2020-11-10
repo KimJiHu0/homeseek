@@ -17,7 +17,10 @@ public interface MessageBiz {
 
 	// 보낸 쪽지함 list
 	public List<MessageDto> selectMySenMsgList(String message_senid);
-
+	
+	// 보낸 쪽지함의 totalCount
+	public int countMsgByReid(String message_senid); 
+	
 	// 받은 쪽지함 list
 	public List<MessageDto> selectMyReMsgList(String message_reid);
 

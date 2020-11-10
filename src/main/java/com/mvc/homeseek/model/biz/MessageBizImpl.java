@@ -43,4 +43,9 @@ public class MessageBizImpl implements MessageBiz {
 	public MessageDto selectMyMsgDetail(int message_no) {
 		return messagedao.selectMyMsgDetail(message_no);
 	}
+
+	@Override
+	public int countMsgByReid(String message_senid) {
+		return messagedao.countMsgByReid(message_senid);
+	}
 }
