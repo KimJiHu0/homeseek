@@ -1,6 +1,7 @@
 package com.mvc.homeseek.model.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mvc.homeseek.model.dto.MessageDto;
 
@@ -19,7 +20,15 @@ public interface MessageBiz {
 	public List<MessageDto> selectMySenMsgList(String message_senid);
 	
 	// 보낸 쪽지함의 totalCount
-	public int countMsgByReid(String message_senid); 
+	public int countMsgBySenid(String message_senid); 
+	
+	//보낸 쪽지함의 리스트
+	public List<MessageDto> MsgBySenid(Map<String, Object> map);
+	// 보낸 쪽지함의 totalCount
+	public int countMsgByReid(String message_reid); 
+	
+	//보낸 쪽지함의 리스트
+	public List<MessageDto> MsgByReid(Map<String, Object> map);
 	
 	// 받은 쪽지함 list
 	public List<MessageDto> selectMyReMsgList(String message_reid);

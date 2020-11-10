@@ -47,11 +47,44 @@
 	</select>
 	
 	<!-- 보낸 쪽지의 totalCount -->
-	<select id="countMsgByReid" parameterType="String">
+	<select id="countMsgBySenid" parameterType="String" resultType="int">
 		SELECT COUNT(MESSAGE_NO)
 		FROM MESSAGE
 		WHERE MESSAGE_SENID = #{message_senid}
 	</select>
-	
+	<!-- 페이징 처리 후 보낸 쪽지 조회 -->
+	<select id="MsgBySenid" parameterType="Map" resultType="MessageDto">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM MESSAGE 
+						WHERE MESSAGE_SENID = #{message_senid}
+						ORDER BY MESSAGE_DATE DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{paging.start} AND #{paging.end}
+	</select>
+		<!-- 받은 쪽지의 totalCount -->
+	<select id="countMsgByReid" parameterType="String" resultType="int">
+		SELECT COUNT(MESSAGE_NO)
+		FROM MESSAGE
+		WHERE MESSAGE_SENID = #{message_reid}
+	</select>
+	<!-- 페이징 처리 후 받은 쪽지 조회 -->
+	<select id="MsgByReid" parameterType="Map" resultType="MessageDto">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM MESSAGE 
+						WHERE MESSAGE_SENID = #{message_reid}
+						ORDER BY MESSAGE_DATE DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{paging.start} AND #{paging.end}
+	</select>
 
 </mapper>

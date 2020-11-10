@@ -1,6 +1,7 @@
 package com.mvc.homeseek.model.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,23 @@ public class MessageBizImpl implements MessageBiz {
 	}
 
 	@Override
-	public int countMsgByReid(String message_senid) {
-		return messagedao.countMsgByReid(message_senid);
+	public int countMsgBySenid(String message_senid) {
+		return messagedao.countMsgBySenid(message_senid);
+	}
+	
+	@Override
+	public List<MessageDto> MsgBySenid(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return messagedao.MsgBySenid(map);
+	}
+	@Override
+	public int countMsgByReid(String message_reid) {
+		// TODO Auto-generated method stub
+		return messagedao.countMsgByReid(message_reid);
+	}
+	@Override
+	public List<MessageDto> MsgByReid(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return messagedao.MsgByReid(map);
 	}
 }

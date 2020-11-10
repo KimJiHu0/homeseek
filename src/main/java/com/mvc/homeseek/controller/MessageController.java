@@ -21,6 +21,7 @@ import com.mvc.homeseek.model.biz.MemberBiz;
 import com.mvc.homeseek.model.biz.MessageBiz;
 import com.mvc.homeseek.model.dto.MemberDto;
 import com.mvc.homeseek.model.dto.MessageDto;
+import com.mvc.homseek.paging.Paging;
 
 @Controller
 public class MessageController {
@@ -138,7 +139,7 @@ public class MessageController {
 	}
 
 	// 내가 보낸 메세지 조회
-	@RequestMapping("mypagemysenmsglist.do")
+	/*@RequestMapping("mypagemysenmsglist.do")
 	public String mypagesenmsglist(HttpSession session, Model model) {
 
 		List<MessageDto> senmsglist = null;
@@ -152,9 +153,59 @@ public class MessageController {
 		model.addAttribute("senmsglist", senmsglist);
 
 		return "mypageMySenmsg";
+	}*/
+	//보낸 쪽지 조회
+	@RequestMapping("/mypagemysenmsglist.do")
+	public String SenList(HttpSession session,Paging page, Model model
+				, @RequestParam(value="nowPage", required=false)String nowPage
+				, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			MemberDto dto = (MemberDto) session.getAttribute("login");
+			map.put("message_senid", dto.getMember_id());
+			
+			
+			int total = messagebiz.countMsgBySenid(dto.getMember_id());
+			if (nowPage == null && cntPerPage == null) {
+				nowPage = "1";
+				cntPerPage = "5";
+			} else if (nowPage == null) {
+				nowPage = "1";
+			} else if (cntPerPage == null) { 
+				cntPerPage = "5";
+			}
+			page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			map.put("paging", page);
+			model.addAttribute("paging", page);
+			model.addAttribute("senmsglist", messagebiz.MsgBySenid(map));
+			return "mypageMySenmsg";
+	}
+	//받은 쪽지 조회
+	@RequestMapping("/mypagemyremsglist.do")
+	public String ReList(HttpSession session,Paging page, Model model
+				, @RequestParam(value="nowPage", required=false)String nowPage
+				, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			MemberDto dto = (MemberDto) session.getAttribute("login");
+			map.put("message_reid", dto.getMember_id());
+			
+			
+			int total = messagebiz.countMsgByReid(dto.getMember_id());
+			if (nowPage == null && cntPerPage == null) {
+				nowPage = "1";
+				cntPerPage = "5";
+			} else if (nowPage == null) {
+				nowPage = "1";
+			} else if (cntPerPage == null) { 
+				cntPerPage = "5";
+			}
+			page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			map.put("paging", page);
+			model.addAttribute("paging", page);
+			model.addAttribute("remsglist", messagebiz.MsgByReid(map));
+			return "mypageMyRemsg";
 	}
 
-	// 내가 받은 메세지 조회
+	/*내가 받은 메세지 조회
 	@RequestMapping("mypagemyremsglist.do")
 	public String mypageremsglist(HttpSession session, Model model,
 				@RequestParam(value="nowPage", required=false)String nowPage,
@@ -171,7 +222,7 @@ public class MessageController {
 		model.addAttribute("remsglist", remsglist);
 
 		return "mypageMyRemsg";
-	}
+	}*/
 
 	// 받은 메세지 상세보기
 	@RequestMapping("mypageremsgdetail.do")
