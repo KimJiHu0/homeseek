@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
@@ -36,13 +38,13 @@ public class MessageHandler extends TextWebSocketHandler {
 
 		// userId는 맨 아래 선언되어있는 메소드인데 현재 session에 담긴(로그인한)
 		// 아이디를 가져오기 위해서 선언해주었다.
-		String userId = UserId(session);
+		//String userId = UserId(session);
 
 		// logger.info("\n 6. userId의 값은 뭐니? : " + userId);
 
-		logger.info(" \n [ " + userId + " ] 연결됨 ");
+		logger.info(" \n [ " + session.getId() + " ] 연결됨 ");
 		// 방금 로그인에 성공한 애를 담아준다.
-		userSessionMap.put(userId, session); // 8 8
+		userSessionMap.put(session.getId(), session); // 8 8
 
 		for (int i = 0; i < userSessionMap.size(); i++) {
 			logger.info("\n 7. userSessionMap에 담겨있는 key값은? : " + userSessionMap.keySet());
@@ -64,25 +66,51 @@ public class MessageHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 
 		if (StringUtils.isNotEmpty(msg)) {
-			String[] strs = msg.split(",");
+			
+			logger.info("\n 여기에 들어온 msg는 뭐야? : " + msg);
+			
+			/*JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(msg);
+			String cmd = (String) obj.get("cmd");
+			logger.info("\n 여기는 cmd : " + cmd);
+			String message_senid = (String) obj.get("message_senid");
+			logger.info("\n 여기는 message_senid : " + message_senid);
+			String message_reid = (String) obj.get("message_reid");
+			logger.info("\n 여기는 message_reid : " + message_reid);*/
 
-			if (strs != null && strs.length == 3) {
-				String cmd = strs[0];
-				String message_senid = strs[1];
-				String message_reid = strs[2];
+			logger.info("\n userSessionMap에 (현재 로그인되어있는 아이디)담겨있는 애 : " + userSessionMap.keySet());
+			logger.info("\n userSessionMap에 (현재 로그인되어있는 아이디)담겨있는 애 : " + userSessionMap.values());
 
-				// 작성자가 로그인해있다면
-				// 쪽지 받는 사람 <<
-				WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
-				logger.info("\n boardWriterSession? : " + boardWriterSession.toString());
-				logger.info("\n message? : " + cmd);
+			//알림받을 사람
+			WebSocketSession messageReid = userSessionMap.get(session.getId());
+			/*
+			if (messageReid != null && "message".equals(cmd)) {
+				TextMessage tmpMsg = new TextMessage(message_senid + "님이 쪽지를 보냈습니다.");
+				messageReid.sendMessage(tmpMsg);
+			} else {
+				logger.info("\n 이미 로그아웃 된 회원입니다.");
+			}*/
 
-				if ("message".equals(cmd) && boardWriterSession != null) {
-
-					TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다.");
-					boardWriterSession.sendMessage(tmpMsg); // 이 부분이 쪽지를 보낸 사람의 id에게 send해주는 부분?
-				}
-			}
+			
+			  String[] strs = msg.split(",");
+			  
+			  if (strs != null && strs.length == 3) {
+				  String cmd = strs[0];
+				  String message_senid = strs[1];
+				  String message_reid = strs[2];
+			  
+			  // 작성자가 로그인해있다면 // 쪽지 받는 사람 << WebSocketSession boardWriterSession = userSessionMap.get(message_reid);
+			  
+			  logger.info("\n boardWriterSession? : " + messageReid.toString());
+			  logger.info("\n message? : " + cmd);
+			  
+			  if ("message".equals(cmd) && messageReid != null) {
+			  
+			  TextMessage tmpMsg = new TextMessage( 
+					  message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다."); 
+			  messageReid.sendMessage(tmpMsg); // 이 부분이 쪽지를 보낸사람의 id에게 send해주는 부분?
+			  }
+			}			 
 		}
 	}
 
@@ -106,24 +134,24 @@ public class MessageHandler extends TextWebSocketHandler {
 
 	// 웹소켓 id가져오기
 
-	@SuppressWarnings("unused")
-	private String UserId(WebSocketSession session) {
-		logger.info("\n 2. UserId메소드를 통해서 들어온 session의 id는? : " + session.getId());
+	//@SuppressWarnings("unused")
+	//private String UserId(WebSocketSession session) {
+	//	logger.info("\n 2. UserId메소드를 통해서 들어온 session의 id는? : " + session.getId());
 
-		Map<String, Object> httpSession = session.getAttributes();
-		logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 key값은 ? : " + httpSession.keySet());
-		logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 value값은 ? : " + httpSession.values());
-		MemberDto loginUser = (MemberDto) httpSession.get("login");
+	//	Map<String, Object> httpSession = session.getAttributes();
+	//	logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 key값은 ? : " + httpSession.keySet());
+	//	logger.info("\n 3. session에 담겨있는 getAttribute를 통해 가져온 Map의 value값은 ? : " + httpSession.values());
+	//	MemberDto loginUser = (MemberDto) httpSession.get("login");
 
-		logger.info("\n 4. loginUser이라는 MemberDto에 담겨있는 값은? : " + loginUser.toString());
+	//	logger.info("\n 4. loginUser이라는 MemberDto에 담겨있는 값은? : " + loginUser.toString());
 
-		if (loginUser != null) {
-			logger.info("\n 5. 현재 loginUser이 null이 아니니???");
-			return loginUser.getMember_id();
-		} else {
-			logger.info("\n 5. 현재 loginUser이 null이니???");
-			return session.getId();
-		}
-	}
+	//	if (loginUser != null) {
+	//		logger.info("\n 5. 현재 loginUser이 null이 아니니???");
+	//		return loginUser.getMember_id();
+	//	} else {
+	//		logger.info("\n 5. 현재 loginUser이 null이니???");
+	//		return session.getId();
+	//	}
+	//}
 
 }

@@ -15,7 +15,7 @@
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.6.min.js" type="application/javascript"></script>
 
 <!-- footer 설정용 -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
 </head>
 <body>
 	<!-- header.jsp include -->
@@ -56,51 +56,50 @@
 				Homeseek 운영진들이 서비스를 계속할 수 있도록 도와주세요.
 				
 				</p>
-					<br>
-					<br>
-					<br>
+
+				<div class="choosebox">
+					<form action="donate.do" id="donate_form">
+						<h3 id="form_title">금액을 선택해 주세요.</h3>
 					
-			<form action="donate.do" id="donate_form">
-				<h3 id="form_title">금액을 선택해 주세요.</h3>
+						<ul class="radio_ul">
+							<li class="radio_li">
+								<input type="radio" id="value1" name="donate_value" value="100">
+								<label id="value1" for="value1">₩1,000</label>
+								<div class="check"></div>
+							</li>
 			
-				<ul class="radio_ul">
-					<li class="radio_li">
-						<input type="radio" id="value1" name="donate_value" value="100">
-						<label id="value1" for="value1">₩1,000</label>
-						<div class="check"></div>
-					</li>
-	
-					<li class="radio_li">
-						<input type="radio" id="value3" name="donate_value" value="300">
-						<label id="value3" for="value3">₩3,000</label>
-						<div class="check"></div>
-					</li>
-	
-					<li class="radio_li">
-						<input type="radio" id="value5" name="donate_value" value="500">
-						<label id="value5" for="value5">₩5,000</label> 
-						<div class="check"></div>
-					</li>
-	
-					<li class="radio_li">
-						<input type="radio" id="value10" name="donate_value" value="1000">
-						<label id="value10" for="value10">₩10,000</label>
-						<div class="check"><div class="inside"></div></div>
-					</li>
+							<li class="radio_li">
+								<input type="radio" id="value3" name="donate_value" value="300">
+								<label id="value3" for="value3">₩3,000</label>
+								<div class="check"></div>
+							</li>
+			
+							<li class="radio_li">
+								<input type="radio" id="value5" name="donate_value" value="500">
+								<label id="value5" for="value5">₩5,000</label> 
+								<div class="check"></div>
+							</li>
+			
+							<li class="radio_li">
+								<input type="radio" id="value10" name="donate_value" value="1000">
+								<label id="value10" for="value10">₩10,000</label>
+								<div class="check"><div class="inside"></div></div>
+							</li>
+							
+						</ul>
+					</form>
 					
-				</ul>
-			</form>
-			
-			<input type="button" onclick="pay()" value="후원하기" id="donate_button">
+					<input type="button" onclick="pay()" value="후원하기" id="donate_button">
+				</div>
 			</div>
 		</div>
 		
 		
 	</section>
 	<!-- footer.jsp -->
-	<%@ include file="form/footer.jsp"%>
 	
 </body>
+	<%@ include file="form/footer.jsp"%>
 <!-- donate.js -->
 <script src="resources/js/donate.js" type="text/javascript"></script>
 </html>

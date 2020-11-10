@@ -1,12 +1,17 @@
 
 /* 페이지 기본설정 */
-section #top_title {
+
+section{
+	height: 600px;
+}
+
+/* section #top_title {
 	width : 100%;
 	max-width : 1200px;
 	height: auto;
 	margin: 0 auto;
 	border: 1px solid;
-}
+} */
 
 .contents {
 	width : 100%;
@@ -17,12 +22,6 @@ section #top_title {
 	position: relative;
 	padding: 20px;
 }
-
-h3 {
-	color: #AAAAAA;
-	margin-bottom:20px;
-}
-
 /* section 설정 */
 
 .contents *donate_button{
@@ -68,19 +67,13 @@ h3 {
 
 /* donate form 부분 */
 
-#donate_form{
-	margin-left : 50%;
-}
 
 .donate_div{
 	width : 45%;
 	max-width : 540px;
 	margin: 0;
-	float:right;
-}
-
-.ftrbox{
-	clear: both;
+	float: right;
+	font-size: 14px;
 }
 
 /* ----------- Radio button ------------- */
@@ -217,19 +210,18 @@ hover 밑줄 효과
 
 #donate_button{
 	display : block;
-	float: right;
 	margin-top: 20px;
 	width : 50%;
 	height: 35px;
 	background-color: #B0C4DE;
 	font-weight: 900;
-	font-size: 1.5rem;
 	color:white;
 	border:0;
 	border-radius: 5px;
 	transition: 0.3s all; 
 	box-shadow: 0 5px 15px #B0C4DE;
 	outline:none;
+	font-size: 20px;
 }
 
 #donate_button:hover {
@@ -245,10 +237,14 @@ hover 밑줄 효과
 	transform: scale(1.1);
 }
 
+.choosebox{
+	margin-left: 120px;
+	margin-top: 20px;
+}
 
-
-
-
-
+#form_title{
+	font-size: 20px;
+    margin-left: 15px;
+}
 
 
