@@ -8,8 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminPage.css">
-<script src="${pageContext.request.contextPath}/resources/js/adminPage.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyPage.css">
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
@@ -23,6 +22,7 @@
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 	<section>
 	<h1>차단 회원 관리</h1>
+	<hr/>
 	<div id="outter">
 		
 	
@@ -41,7 +41,7 @@
 		</select>
 	</div> <!-- 옵션선택 끝 -->
 	
-	<table border="1">
+	<table>
 		<colgroup>
 			<col width="50"/>
 			<col width="100"/>
@@ -56,6 +56,9 @@
 			<th>활성화 여부</th>
 			<th>멤버 등급</th>
 		</tr>
+		<tr>
+			<td class="a" colspan="9"></td>
+		</tr>
 		<c:choose>
 			<c:when test="${empty list }">
 				<tr>
@@ -64,12 +67,15 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
-					<tr>
-						<td><a id="member_id">${dto.member_id }</a></td>
+					<tr id="tr">
+						<td>${dto.member_id }</td>
 						<td>${dto.member_name }</td>
 						<td>${dto.member_phone }</td>
-						<td>${dto.member_enabled }<input type="button" value="일반회원 수정" onclick="location.href='enable.do?member_id=${dto.member_id}'" /></td>
+						<td><input type="button" id="modify" value="일반회원 수정" onclick="location.href='enable.do?member_id=${dto.member_id}'" /></td>
 						<td>${dto.member_role }</td>
+					</tr>
+					<tr>
+						<td class="a" colspan="9"></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -79,8 +85,10 @@
 	
 		
 	</table>
-	<input type="button" style="float: right;" value="차단회원 관리 " onclick="location.href='enablemodifyform.do'" />
-	<input type="button" style="float: right;" value="신고 관리 " onclick="location.href='enableupdateform.do'" />
+	<span class="buttonn">
+			<input type="button" id="main" onclick="location.href='admin.do'/>'" value="전체 회원 관리">
+	</span>
+
 	
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
@@ -105,5 +113,6 @@
 	
 </div>	
 </section>
+	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>

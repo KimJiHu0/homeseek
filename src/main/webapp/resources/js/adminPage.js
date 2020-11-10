@@ -7,13 +7,13 @@ function normal(){
 	     },
 	     success:function(data){	//data : checkSignup에서 넘겨준 결과값
 	            if($.trim(data)=="YES"){
-	               if($('#member_id').val()!=''){ 
+	               if($('#memberId').val()!=''){ 
 	            	   $("#id_check").text("사용가능한 아이디입니다");
 	            	   $("#id_check").css("color", "blue");
 	        
 	               }
 	           	}else{
-	               if($('#member_id').val()!=''){
+	               if($('#memberId').val()!=''){
 	            	   $("#id_check").text("사용중인 아이디입니다");
 	            	   $("#id_check").css("color", "red");
 	            	   $("#reg_submit").attr("disabled", true);

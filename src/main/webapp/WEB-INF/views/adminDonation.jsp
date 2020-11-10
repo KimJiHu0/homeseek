@@ -19,12 +19,10 @@
 
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 	
-	<h2>게시판</h2>
-
-	<div id="outter">
-	
 
 	<section>
+	<h1>전체 후원 관리</h1>
+	<hr/>
 	<div style="float: right;">
 		<select id="cntPerPage" name="sel" onchange="selChange()">
 			<option value="5"
@@ -37,9 +35,9 @@
 				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
 		</select>
 	</div> <!-- 옵션선택 끝 -->
-	<h1>전체 후원 관리</h1>
 	
-	<table border="1">
+	<div id="outter">
+	<table>
 		<colgroup>
 			<col width="50"/>
 			<col width="100"/>
@@ -51,6 +49,9 @@
 			<th>후원 아이디</th>
 			<th>후원 금액</th>
 			<th>후원 날짜</th>
+		</tr>
+		<tr>
+			<td class="a" colspan="9">&nbsp;</td>
 		</tr>
 		<c:choose>
 			<c:when test="${empty list }">
@@ -66,6 +67,9 @@
 						<td>${dto.dona_bill }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm"
 							value="${dto.dona_date}" /></td>
+					</tr>
+					<tr>
+						<td class="a" colspan="9">&nbsp;</td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -95,9 +99,9 @@
 			<a href="admindona.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 		</c:if>
 	</div>
-
+	</div>
 	</section>
+	<%@ include file="./form/footer.jsp" %>
 	
-</div>	
 </body>
 </html>
