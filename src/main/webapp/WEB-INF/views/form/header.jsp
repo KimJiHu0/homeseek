@@ -2,12 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.mvc.homeseek.model.dto.MemberDto"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-		MemberDto dto = (MemberDto) request.getSession().getAttribute("login");
+	MemberDto dto = (MemberDto) request.getSession().getAttribute("login");
 %>
-<% response.setHeader("Pragma", "no-cache"); response.setHeader("Cache-Control", "no-cache"); response.setHeader("Cache-Control", "no-store"); response.setDateHeader("Expires", 0L); %>
+<%
+	response.setHeader("Pragma", "no-cache");
+response.setHeader("Cache-Control", "no-cache");
+response.setHeader("Cache-Control", "no-store");
+response.setDateHeader("Expires", 0L);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +20,10 @@
 <title>HOMESEEK</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/section.css">
 
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
@@ -96,7 +103,7 @@ a {
 	font-style: italic;
 }
 
-#member_id {
+.memberid1 {
 	position: absolute;
 	width: 300px;
 	height: 54px;
@@ -105,7 +112,7 @@ a {
 	background: #C4C4C4;
 }
 
-#member_pw {
+.memberpw1 {
 	position: absolute;
 	width: 300px;
 	height: 54px;
@@ -135,7 +142,7 @@ a {
 }
 
 /* 모달 */
-.modal {
+.modal_login {
 	width: 500px;
 	height: 500px;
 	position: fixed;
@@ -160,7 +167,7 @@ a {
 }
 </style>
 <body>
-	
+
 	<header>
 		<c:choose>
 			<c:when test="${pageContext.request.requestURI eq '/'}">
@@ -182,16 +189,16 @@ a {
 		</div>
 
 		<%
-		if (dto == null) {
+			if (dto == null) {
 		%>
 		<ul class="nav">
-		<%
-		} else {
-		%>
-		<ul class="nav2">
-		<%
-		}	
-		%>
+			<%
+				} else {
+			%>
+			<ul class="nav2">
+				<%
+					}
+				%>
 				<c:choose>
 					<c:when test="${pageContext.request.requestURI eq '/'}">
 
@@ -217,38 +224,47 @@ a {
 
 
 				<!-- 엘라스틱서치로 변경시 search.do 로 변경 -->
-				<li><a class="headeratag" href="listroom.do"><spring:message code="h.list" text="전체 방 보기"/></a></li>
+				<li><a class="headeratag" href="listroom.do"><spring:message
+							code="h.list" text="전체 방 보기" /></a></li>
 				<%
 					if (dto == null) {
 				%>
-				<li><a class="headeratag login2" ><spring:message code="h.insert" text="방 올리기"/></a></li>
+				<li><a class="headeratag login2"><spring:message
+							code="h.insert" text="방 올리기" /></a></li>
 				<%
 					} else {
 				%>
-				<li><a class="headeratag" href="insertroom.do"><spring:message code="h.insert" text="방 올리기"/></a></li>
+				<li><a class="headeratag" href="insertroom.do"><spring:message
+							code="h.insert" text="방 올리기" /></a></li>
 				<%
 					}
 				%>
 				<li><div class="dropdown">
-						<button class="dropbtn"><spring:message code="h.board" text="게시판"/></button>
+						<button class="dropbtn">
+							<spring:message code="h.board" text="게시판" />
+						</button>
 						<div class="dropdown-content">
-							<a class="headeratag" href="noticelist.do"><spring:message code="h.notice" text="공지사항"/></a> <a
-								class="headeratag" href="qnalist.do">Q & A</a>
+							<a class="headeratag" href="noticelist.do"><spring:message
+									code="h.notice" text="공지사항" /></a> <a class="headeratag"
+								href="qnalist.do">Q & A</a>
 						</div>
 					</div></li>
 
 				<%
 					if (dto == null) {
 				%>
-				<li><a class="headeratag login2"><spring:message code="h.chat" text="채팅"/></a></li>
+				<li><a class="headeratag login2"><spring:message
+							code="h.chat" text="채팅" /></a></li>
 				<%
 					} else {
 				%>
-				<li><a class="headeratag" href="javascript:chat();"><spring:message code="h.chat" text="채팅"/></a></li>
+				<li><a class="headeratag" href="javascript:chat();"><spring:message
+							code="h.chat" text="채팅" /></a></li>
 				<%
 					}
 				%>
-				<li><a class="headeratag" href="donateform.do"><spring:message code="h.donate" text="후원하기"/></a></li>
+				<li><a class="headeratag" href="donateform.do"><spring:message
+							code="h.donate" text="후원하기" /></a></li>
 				<li><a class="headeratag" href="?lang=en">ENG</a></li>
 				<li><a class="headeratag" href="?lang=ko">KOR</a></li>
 				<!-- <li><p class="headeratag" id="translate">Kr | En</p></li> -->
@@ -257,7 +273,8 @@ a {
 				%>
 
 
-				<li><span class="login2"> <a class="headeratag">LOGIN | REGIST</a>
+				<li><span class="login2"> <a class="headeratag">LOGIN
+							| REGIST</a>
 				</span></li>
 
 				<%
@@ -266,11 +283,14 @@ a {
 
 				<li><div class="dropdown">
 						<button class="dropbtn">
-							<strong><%=dto.getMember_name()%><spring:message code="h.welcome" text="님 환영합니다"/></strong>
+							<strong><%=dto.getMember_name()%><spring:message
+									code="h.welcome" text="님 환영합니다" /></strong>
 						</button>
 						<div class="dropdown-content">
-							<a class="headeratag" href="admin.do"><spring:message code="h.admin" text="전체 회원 관리"/></a> <a
-								class="headeratag" href="admindona.do"><spring:message code="h.admindona" text="전체 후원 내원"/></a>
+							<a class="headeratag" href="admin.do"><spring:message
+									code="h.admin" text="전체 회원 관리" /></a> <a class="headeratag"
+								href="admindona.do"><spring:message code="h.admindona"
+									text="전체 후원 내원" /></a>
 						</div>
 					</div></li>
 				<li><span class="logout"> <a class="headeratag"
@@ -281,12 +301,16 @@ a {
 				%>
 				<li><div class="dropdown">
 						<button class="dropbtn">
-							<strong><%=dto.getMember_name()%><spring:message code="h.welcome" text="님 환영합니다"/></strong>
+							<strong><%=dto.getMember_name()%><spring:message
+									code="h.welcome" text="님 환영합니다" /></strong>
 						</button>
 						<div class="dropdown-content">
-							<a class="headeratag" href="javascript:myPage();"><spring:message code="h.mypage" text="내 정보 보기"/></a> 
-							<a class="headeratag" href="javascript:myDona();"><spring:message code="h.mydona" text="나의 후원 내역"/></a> 
-							<a class="headeratag" href="javascript:myMsg();"><spring:message code="h.mymsg" text="쪽지함"/></a>
+							<a class="headeratag" href="javascript:myPage();"><spring:message
+									code="h.mypage" text="내 정보 보기" /></a> <a class="headeratag"
+								href="javascript:myDona();"><spring:message code="h.mydona"
+									text="나의 후원 내역" /></a> <a class="headeratag"
+								href="javascript:myMsg();"><spring:message code="h.mymsg"
+									text="쪽지함" /></a>
 						</div>
 					</div></li>
 				<li><span class="logout"> <a class="headeratag"
@@ -297,10 +321,10 @@ a {
 				%>
 
 			</ul>
-			
-</div>
+
+			</div>
 			<div class="modal-back"></div>
-			<div class="modal">
+			<div class="modal_login">
 				<div class="modal_close">
 					<a href="main.do">close</a>
 				</div>
@@ -313,10 +337,12 @@ a {
 
 					<table>
 						<tr>
-							<td><input type="text" placeholder="I D" id="member_id" /></td>
+							<td><input type="text" placeholder="I D" id="member_id"
+								class="memberid1" /></td>
 						</tr>
 						<tr>
-							<td><input type="password" placeholder="P W" id="member_pw" /></td>
+							<td><input type="password" placeholder="P W" id="member_pw"
+								class="memberpw1" /></td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="button" value="login"
@@ -330,22 +356,31 @@ a {
 					<div class="snslogin">
 						<a id="naver_url"
 							href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QAAvdWTo1o2T1xyFFbev&redirect_uri=http%3A%2F%2Flocalhost%3A8787%2Fhomeseek%2Fnavercallback.do&scope=profile">
-							<img width="150" src="${pageContext.request.contextPath}/resources/img/naver-login.png"
-							alt="Naver Login" /></a> 
-						<a href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=http%3A%2F%2Flocalhost%3A8787%2Fhomeseek%2Fgooglecallback.do">
-							<img width="150" src="${pageContext.request.contextPath}/resources/img/google-login.png"
-							alt="Google Login" /></a> 
-						<a href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=http://localhost:8787/homeseek/kakaocallback.do&response_type=code">
-							<img width="150" src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png"
-							alt="Kakao Login" /></a>
+							<img width="150"
+							src="${pageContext.request.contextPath}/resources/img/naver-login.png"
+							alt="Naver Login" />
+						</a> <a
+							href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=http%3A%2F%2Flocalhost%3A8787%2Fhomeseek%2Fgooglecallback.do">
+							<img width="150"
+							src="${pageContext.request.contextPath}/resources/img/google-login.png"
+							alt="Google Login" />
+						</a> <a
+							href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=http://localhost:8787/homeseek/kakaocallback.do&response_type=code">
+							<img width="150"
+							src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png"
+							alt="Kakao Login" />
+						</a>
 					</div>
 
 					<ul class="idpwlink">
-						<li><a href="findidform.do"><spring:message code="h.id" text="아이디 찾기"/></a></li>
+						<li><a href="findidform.do"><spring:message code="h.id"
+									text="아이디 찾기" /></a></li>
 						<li><a> | </a></li>
-						<li><a href="findpwdform.do"><spring:message code="h.pw" text="비밀번호 찾기"/></a></li>
+						<li><a href="findpwdform.do"><spring:message code="h.pw"
+									text="비밀번호 찾기" /></a></li>
 						<li><a> | </a></li>
-						<li><a href="registform.do"><spring:message code="h.regist" text="회원가입"/></a></li>
+						<li><a href="registform.do"><spring:message
+									code="h.regist" text="회원가입" /></a></li>
 					</ul>
 				</div>
 			</div>
@@ -355,26 +390,26 @@ a {
 <script type="text/javascript">
 	$(".login2").click(function() {
 		$(".modal-back").show();
-		$(".modal").css("z-index","20");
-		$(".modal").css("top", "100px");
-		$(".modal").css("opacity", "1");
+		$(".modal_login").css("z-index", "20");
+		$(".modal_login").css("top", "100px");
+		$(".modal_login").css("opacity", "1");
 	});
 	$(".modal-back").click(function() {
 		$(this).hide();
-		$(".modal").css("top", "50px");
-		$(".modal").css("opacity", "0");
-		$(".modal").css("z-index","-1");
+		$(".modal_login").css("top", "50px");
+		$(".modal_login").css("opacity", "0");
+		$(".modal_login").css("z-index", "-1");
 	});
-	
-/* 	
-function translate(){
-	var userLang = navigator.language || navigator.userLanguage;
-	if(userLang==ko){
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("en"));
-	}else{
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("ko"));
-	}
-} */
+
+	/* 	
+	 function translate(){
+	 var userLang = navigator.language || navigator.userLanguage;
+	 if(userLang==ko){
+	 FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("en"));
+	 }else{
+	 FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("ko"));
+	 }
+	 } */
 </script>
 
 
