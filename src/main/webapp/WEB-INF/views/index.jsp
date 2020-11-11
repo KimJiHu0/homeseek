@@ -28,7 +28,7 @@ response.setHeader("Expires", "0"); // Proxies.
 		<div class="test">
 			<!-- 메인페이지에서 작성할 부분 여기에 작성 -->
 			<div class="mainText">
-				H O O M <span>S E E</span> K
+				H O M E <span>S E E</span> K
 			</div>
 			
 			<div class="mainSearch">
