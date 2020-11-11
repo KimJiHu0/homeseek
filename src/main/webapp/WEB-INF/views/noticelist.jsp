@@ -28,12 +28,61 @@
 .eval-contents {
 	cursor: pointer;
 }
+
+
+#qnaSearch_bar, h1{
+	width:70%; 
+	margin-left:15%; 
+	margin-right:15%;
+}
+
+
+#nav.paging{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* 
 .header ul.nav2{
 	width:940px;
 }
 .header ul.nav{
 	width:800px;
 }
+
+ */
+table.table_notice{
+	/* width:70%; */ 
+	margin-left:15%; 
+	margin-right:15%;
+	/* display:flex; */
+    justify-content:center;
+    align-items:center;
+	
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #7EAB7D;
+	border-bottom: 1px solid #7EAB7D;
+	border-left: 3px solid #7EAB7D;
+	margin: 20px 10px;
+}
+table.table_notice th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+}
+table.table_notice td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+}
+table.table_notice .even{
+	background: #7EAB7D;
+}
+
 </style>
 <body>
 	<section>
@@ -41,18 +90,17 @@
 
 			<h1>N O T I C E 리 스 트</h1>
 
-			<div>
-				<a> 검 색 :</a> <input id="noticeSearch" type="search" value=""
-					placeholder="Notice검색해주세여" />
+			<div id="qnaSearch_bar">
+				<a> 검 색 : <input id="noticeSearch" type="search" value="" placeholder="Notice검색해주세여" /></a>
 			</div>
 
 			<form action="" id="setRows">
-				<input type="hidden" name="rowPerPage" value="5">
+				<input type="hidden" name="rowPerPage" value="10">
 			</form>
 
-			<table border="1">
+			<table border="1" class="table_notice">
 				<thead>
-					<tr>
+					<tr class="even">
 						<th style="width: 50px;">번호</th>
 						<th style="width: 100px;">작성자</th>
 						<th style="width: 500px;">제목</th>
@@ -82,22 +130,22 @@
 						</c:otherwise>
 					</c:choose>
 				</tbody>
-				<tr>
+				
 					<%
 						if (dto != null) {
 							if(dto.getMember_role() == 'A'){
 					%>
-					<td colspan="5" align="right"><input type="button" value="글작성"
-						onclick="location.href='noticeinsertform.do'" /></td>
+					<tr class="even">
+						<td colspan="5" align="right"><input type="button" value="글작성" onclick="location.href='noticeinsertform.do'" /></td>
+					</tr>	
 					<%}
 						}else{
 					%>
-					<td></td>	
+					
 					<%
 						}
 					%>
 
-				</tr>
 			</table>
 		</div>
 	</section>
