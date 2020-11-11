@@ -9,9 +9,9 @@
 %>
 <%
 	response.setHeader("Pragma", "no-cache");
-response.setHeader("Cache-Control", "no-cache");
-response.setHeader("Cache-Control", "no-store");
-response.setDateHeader("Expires", 0L);
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Cache-Control", "no-store");
+	response.setDateHeader("Expires", 0L);
 %>
 <!DOCTYPE html>
 <html>
@@ -132,8 +132,8 @@ a {
 
 .idpwlink {
 	position: absolute;
-	top: 400px;
-	left: 70px;
+	top: 410px;
+	left: 110px;
 }
 
 .idpwlink li {
@@ -141,7 +141,7 @@ a {
 	margin-right: 5px;
 }
 
-/* 모달 */
+/* 로그인모달 */
 .modal_login {
 	width: 500px;
 	height: 500px;
@@ -355,18 +355,19 @@ a {
 
 					<div class="snslogin">
 						<a id="naver_url"
-							href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QAAvdWTo1o2T1xyFFbev&redirect_uri=http%3A%2F%2Flocalhost%3A8787%2Fhomeseek%2Fnavercallback.do&scope=profile">
-							<img width="150"
+							href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QAAvdWTo1o2T1xyFFbev&redirect_uri=https%3A%2F%2Fhomeseek.ml%2Fhomeseek%2Fnavercallback.do&scope=profile
+							">
+							<img width="150" height="37"
 							src="${pageContext.request.contextPath}/resources/img/naver-login.png"
 							alt="Naver Login" />
 						</a> <a
-							href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=http%3A%2F%2Flocalhost%3A8787%2Fhomeseek%2Fgooglecallback.do">
-							<img width="150"
-							src="${pageContext.request.contextPath}/resources/img/google-login.png"
+							href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=http%3A%2F%2Fhomeseek.ml%2Fhomeseek%2Fgooglecallback.do">
+							<img width="150" height="38"
+							src="${pageContext.request.contextPath}/resources/img/google-login.jpg"
 							alt="Google Login" />
 						</a> <a
-							href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=http://localhost:8787/homeseek/kakaocallback.do&response_type=code">
-							<img width="150"
+							href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=http://homeseek.ml/homeseek/kakaocallback.do&response_type=code">
+							<img width="150" height="38"
 							src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png"
 							alt="Kakao Login" />
 						</a>
@@ -388,18 +389,22 @@ a {
 </body>
 
 <script type="text/javascript">
+
+
 	$(".login2").click(function() {
 		$(".modal-back").show();
 		$(".modal_login").css("z-index", "20");
 		$(".modal_login").css("top", "100px");
 		$(".modal_login").css("opacity", "1");
 	});
+	
 	$(".modal-back").click(function() {
 		$(this).hide();
 		$(".modal_login").css("top", "50px");
 		$(".modal_login").css("opacity", "0");
 		$(".modal_login").css("z-index", "-1");
 	});
+	
 
 	/* 	
 	 function translate(){
@@ -411,6 +416,4 @@ a {
 	 }
 	 } */
 </script>
-
-
 </html>

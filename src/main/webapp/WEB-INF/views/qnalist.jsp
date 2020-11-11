@@ -27,12 +27,37 @@
 .eval-contents {
 	cursor: pointer;
 }
+
+.table_qna{
+	width:70%; 
+	margin-left:15%; 
+	margin-right:15%;
+	/* display:flex; */
+    justify-content:center;
+    align-items:center;
+}
+#qnaSearch_bar, h1{
+	width:70%; 
+	margin-left:15%; 
+	margin-right:15%;
+}
+
+
+#nav.paging{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* 
 .header ul.nav2{
 	width:940px;
 }
 .header ul.nav{
 	width:800px;
 }
+
+ */
 dialog {
 	border: 2px solid black;
 	background: red;
@@ -47,25 +72,19 @@ dialog span {
 <body>
 	<!-- header.jsp -->
 	<section>
-		<div id="products">
+		<div  id="products">
 
+			<form action="" id="setRows">
+				<input type="hidden" name="rowPerPage" value="10">
+			</form>
+			
 			<h1>Q N A 리 스 트</h1>
 			
-			<div>
-				<a> 검 색  :</a>
-				<input id="qnaSearch" type="search" value="" placeholder="QNA검색해주세여" />
+			<div id="qnaSearch_bar">
+				<a> 검 색  : <input id="qnaSearch" type="search" value="" placeholder="QNA검색해주세여" /></a>
 			</div>
 
-<!-- 			<div class="panel-heading">
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New QNA</button>
-			</div>
- -->
-			<form action="" id="setRows">
-				<input type="hidden" name="rowPerPage" value="5">
-			</form>
-
-			<table border="1">
+			<table border="1" class="table_qna">
 				<thead>
 					<tr>
 						<th style="width: 50px;">번호</th>

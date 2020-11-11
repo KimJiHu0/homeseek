@@ -60,14 +60,14 @@ public class MemberController {
 	private final static String id = "2dc56fd515158890d47575ddc651d7e8";
 	private final static String url = "http://homeseek.ml/homeseek/kakaocallback.do";
 
-	//loginform.do없앰
+	// loginform.do없앰
+
 	@RequestMapping("loginform.do")
 	public String loginForm() {
 		logger.info("login.do");
-		
+
 		return "callme";
 	}
-
 
 	@ResponseBody
 	@RequestMapping(value = "/ajaxlogin.do", method = RequestMethod.POST)
@@ -114,51 +114,52 @@ public class MemberController {
 
 				check = "success";
 			}
-		}	
-      Map<String, String> map = new HashMap<String, String>();
-      map.put("check", check);
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("check", check);
 
-      return map;
+		return map;
 
-   }
+	}
 
 	@RequestMapping(value = "/navercallback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String naverCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session, HttpServletRequest request) throws Exception {
+	public String naverCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session,
+			HttpServletRequest request) throws Exception {
 
-      logger.info("snsLoginCallback: service= naver ");
-      SnsValue sns = null;
-      sns = naverSns;
+		logger.info("snsLoginCallback: service= naver ");
+		SnsValue sns = null;
+		sns = naverSns;
 
-      // 1. code를 이용해서 access_token 받기
-      // 2. access_token을 이용해서 사용자 profile 정보 가져오기
-      SNSLogin snsLogin = new SNSLogin(sns);
-      MemberDto snsUser = snsLogin.getUserProfile(code);
-      System.out.println("Profile>>" + snsUser);
+		// 1. code를 이용해서 access_token 받기
+		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
+		SNSLogin snsLogin = new SNSLogin(sns);
+		MemberDto snsUser = snsLogin.getUserProfile(code);
+		System.out.println("Profile>>" + snsUser);
 
-      System.out.println("확인용!!!!" + snsUser.getMember_naverid());
-      // 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 추가해야함 !!! 그래야 select해볼수있음!)
-      MemberDto usertest = memberBiz.getBySns(snsUser);
+		System.out.println("확인용!!!!" + snsUser.getMember_naverid());
+		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 추가해야함 !!! 그래야 select해볼수있음!)
+		MemberDto usertest = memberBiz.getBySns(snsUser);
 
-      System.out.println(snsUser.getMember_id());
+		System.out.println(snsUser.getMember_id());
 
-      if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
+		if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
 
-         System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
-         model.addAttribute("naveremail", snsUser.getMember_id());
-         model.addAttribute("googleemail", snsUser.getMember_id());
-         model.addAttribute("nickname", snsUser.getMember_name());
+			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+			model.addAttribute("naveremail", snsUser.getMember_id());
+			model.addAttribute("googleemail", snsUser.getMember_id());
+			model.addAttribute("nickname", snsUser.getMember_name());
 
-         return "regist";
+			return "regist";
 
-      } else { // 존재시, 세션주고 로그인 시켜줌 -> main페이지
+		} else { // 존재시, 세션주고 로그인 시켜줌 -> main페이지
 
-         model.addAttribute("result", "기존에 가입한 회원 . 로그인시켜도됨 ");
+			model.addAttribute("result", "기존에 가입한 회원 . 로그인시켜도됨 ");
 
-         session.setAttribute("login", usertest);
+			session.setAttribute("login", usertest);
 
-         return "redirect:/main.do";
-      }
-   }
+			return "redirect:/main.do";
+		}
+	}
 
 	@RequestMapping(value = "/googlecallback.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session,
