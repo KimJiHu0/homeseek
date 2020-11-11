@@ -28,16 +28,17 @@
 }
 
 .myroom-list{
-	width : 80%;
-	padding-top : 50px;
-	padding-bottom : 50px;
-	padding-left : 10%;
-	margin-left : 5%;
+	height :  590px;
 }
 
-.a{
-	border-bottom : 1px black solid;
+.muldelebtn{
+	border : none;
+	color : white;
+	background-color : 	#7EAB7D;
+	height : 30px;
+	border-radius: 10px 10px 10px 10px;
 }
+
 #nav.paging{
     display:flex;
     justify-content:center;
