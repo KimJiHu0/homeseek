@@ -9,7 +9,7 @@
 <title>homeseek : 보낸 쪽지함</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMySenmsg.css" type="text/css" />
-<script src="${pageContext.request.contextPath}/resources/js/mypageMySenmsg.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/mypageMySenmsg.js" type="text/javascript"></script> 
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
@@ -46,34 +46,30 @@
 					<table>
 						<!-- 쪽지번호, 받는사람, 제목, 날짜 -->
 						<col width="80px">
-						<col width="100px">
-						<col width="80px">
-						<col width="300px">
-						<col width="80px">
-						<col width="250px">
-						<col width="80px">
-						<col width="100px">
-						<col width="80px">
+						<col width="180px"> <!-- 쪽지 번호 -->
+						<col width="380px"> <!-- 쪽지 보낸 사람 -->
+						<col width="330px"> <!-- 제목 -->
+						<col width="180px"> <!-- 날짜 -->
 						<tr>
-							<th colspan="9">&nbsp;</th>
+							<th colspan="5">&nbsp;</th>
 						</tr>
 						<c:choose>
 							<c:when test="${empty senmsglist }">
 								<tr>
-									<th colspan="9">현재 회원님께서 보낸 쪽지가 없습니다.</th>
+									<th colspan="5">현재 회원님께서 보낸 쪽지가 없습니다.</th>
 								</tr>
 							</c:when>
 							<c:otherwise>
 								<tr>
 									<th><input type="checkbox" class="all_check" name="all_check" onclick="allChk(this.checked)"/></th>
 									<th>쪽지번호</th>
-									<td></td>
+									
 									<th>쪽지제목</th>
-									<td></td>
+									
 									<th>쪽지받은아이디</th>
-									<td></td>
+								
 									<th>쪽지작성날짜</th>
-									<td></td>
+									
 								</tr>
 								<tr>
 									<td class="a" colspan="9">&nbsp;</td>
@@ -82,13 +78,13 @@
 									<tr>
 										<th><input type="checkbox" name="chkbox" class="chkbox" value="${senmsglist.message_no }"/></th>
 										<th>${senmsglist.message_no }</th>
-										<td></td>
+										
 										<th><a class="senmsgtitle" href="javascript:goSenMsgDetail(${senmsglist.message_no })">${senmsglist.message_title }</a></th>
-										<td></td>
+									
 										<th>${senmsglist.message_reid }</th>
-										<td></td>
+									
 										<th><fmt:formatDate value="${senmsglist.message_date }" pattern="yyyy-MM-dd"/></th>
-										<td></td>
+									
 									</tr>
 									<tr>
 										<td class="a" colspan="9"></td>
@@ -102,7 +98,7 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td colspan="9" align="right">
+									<td colspan="5" align="right">
 										<input type="button" class="muldelebtn" value="삭제하기"/>
 									</td>
 								</tr>

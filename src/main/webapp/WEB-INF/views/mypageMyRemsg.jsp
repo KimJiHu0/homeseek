@@ -11,7 +11,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageMyremsg.css" type="text/css" />
 <script src="${pageContext.request.contextPath}/resources/js/mypageMyremsg.js" type="text/javascript"></script>
 <script>
+	window.onload  = function(){
+		if($("#cntPerPage option:selected").val() == "5"){
+			$('.myremsg-list').css('height','500px');
+			
+		}
+	}
 	function selChange() {
+		
 		var sel = document.getElementById('cntPerPage').value;
 		location.href="mypagemyremsglist.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
@@ -42,6 +49,7 @@
 				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
 		</select>
 		</div>
+			
 			<div class="myremsg-list">
 				<form action = "" method = "post" class="checkremsglist">
 					<table>
@@ -100,6 +108,8 @@
 					</table>
 				</form>
 			</div>
+			
+			
 			<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
 			<a href="mypagemyremsglist.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
@@ -120,8 +130,8 @@
 	</div>
 		</div>
 	</section>
-	
+	<footer class="footer">
 	<%@ include file="./form/footer.jsp" %>
-
+	</footer>
 </body>
 </html>
