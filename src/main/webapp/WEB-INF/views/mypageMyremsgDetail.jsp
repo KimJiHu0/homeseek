@@ -62,8 +62,8 @@
 			</tr>
 			<tr>
 				<td align="right" colspan="4">
-					<input type="button" value="답장" onclick="javascript:goSendMessage('${messagedto.message_senid}')"/>
-					<input type="button" value="삭제" onclick="javascript:goDelMessage(${messagedto.message_no})"/>
+					<input type="button" class="msgbtn" value="답장" onclick="javascript:goSendMessage('${messagedto.message_senid}')"/>
+					<input type="button" class="msgbtn" value="삭제" onclick="javascript:goDelMessage(${messagedto.message_no})"/>
 				</td>
 			</tr>
 		</table>

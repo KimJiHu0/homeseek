@@ -54,6 +54,14 @@ body{
 	text-align : center;
 }
 
+.msgbtn{
+	border : none;
+	height : 30px;
+	background-color : #7EAB7D;
+	color : white;
+	border-radius: 10px 10px 10px 10px;
+}
+
 /* 중간중간에 선을 넣기 위한 css */
 .a{
 	border-bottom : 1px gray solid;
