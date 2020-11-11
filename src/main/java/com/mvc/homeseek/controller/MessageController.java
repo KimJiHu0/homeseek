@@ -82,6 +82,10 @@ public class MessageController {
 		MemberDto dto = (MemberDto) session.getAttribute("login");
 
 		String message_senid = dto.getMember_id();
+		
+		for(int i = 0; i < message_nos.length; i++) {
+			logger.info("\n Controller에 들어온 message_no들의 값 : " + message_nos[i]);
+		}
 
 		int res = 0;
 
@@ -98,15 +102,18 @@ public class MessageController {
 	@RequestMapping("muldeletesenmsglist.do")
 	@ResponseBody
 	public int muldeleteSenMsgList(@RequestParam(value = "message_no[]") int[] message_nos, HttpSession session) {
+		
+		logger.info("\n ------------------보낸쪽지함에서 다중삭제하면 들어오는 컨트롤러--------------------");
 
 		MemberDto dto = (MemberDto) session.getAttribute("login");
 
 		String message_senid = dto.getMember_id();
-
+		
 		int res = 0;
 
 		if (message_senid != null) {
 			for (int message_no : message_nos) {
+				logger.info("\n message_no의 값들을 뽑아보자!! : " + message_no);
 				messagebiz.muldelMySenMsgList(message_no);
 			}
 			res = 1;
@@ -138,30 +145,17 @@ public class MessageController {
 		return res;
 	}
 
-	// 내가 보낸 메세지 조회
-	/*@RequestMapping("mypagemysenmsglist.do")
-	public String mypagesenmsglist(HttpSession session, Model model) {
-
-		List<MessageDto> senmsglist = null;
-		MemberDto dto = (MemberDto) session.getAttribute("login");
-
-		// 메세지 보낸사람 = 내아이디
-		String message_senid = dto.getMember_id();
-
-		senmsglist = messagebiz.selectMySenMsgList(message_senid);
-
-		model.addAttribute("senmsglist", senmsglist);
-
-		return "mypageMySenmsg";
-	}*/
 	//보낸 쪽지 조회
 	@RequestMapping("/mypagemysenmsglist.do")
 	public String SenList(HttpSession session,Paging page, Model model
 				, @RequestParam(value="nowPage", required=false)String nowPage
 				, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
 			Map<String, Object> map = new HashMap<String, Object>();
 			MemberDto dto = (MemberDto) session.getAttribute("login");
 			map.put("message_senid", dto.getMember_id());
+			
+			logger.info("\n 그래여 보낸 쪽지 조회할 때에 dto.getMember_id는 ? : " + dto.getMember_id());
 			
 			
 			int total = messagebiz.countMsgBySenid(dto.getMember_id());
@@ -204,25 +198,6 @@ public class MessageController {
 			model.addAttribute("remsglist", messagebiz.MsgByReid(map));
 			return "mypageMyRemsg";
 	}
-
-	/*내가 받은 메세지 조회
-	@RequestMapping("mypagemyremsglist.do")
-	public String mypageremsglist(HttpSession session, Model model,
-				@RequestParam(value="nowPage", required=false)String nowPage,
-				@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
-		List<MessageDto> remsglist = null;
-
-		MemberDto dto = (MemberDto) session.getAttribute("login");
-
-		String message_reid = dto.getMember_id();
-		int total = messagebiz.countMsgByReid(message_reid);
-
-		remsglist = messagebiz.selectMyReMsgList(message_reid);
-
-		model.addAttribute("remsglist", remsglist);
-
-		return "mypageMyRemsg";
-	}*/
 
 	// 받은 메세지 상세보기
 	@RequestMapping("mypageremsgdetail.do")
