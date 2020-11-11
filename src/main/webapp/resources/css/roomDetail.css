@@ -251,9 +251,11 @@ a>img {
 
 .roombtn{
 	width : 100px;
+	height : 30px;
 	background-color : #7EAB7D;
 	color : white;
 	cursor : pointer;
+	border : none;
 	border-radius : 10px 10px 10px 10px;
 }
 
