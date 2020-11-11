@@ -20,7 +20,7 @@ body{
 	margin-top : 0px;
 }
 #iconcolor{
-	color : green;
+	color : #7EAB7D;
 }
 .iconbox{
 	width : 100%;
@@ -48,6 +48,7 @@ body{
 	text-align : center;
 	font-size : 11pt;
 }
+
 .report_tr{
 	border-bottom : 2px black solid;
 }
@@ -58,6 +59,9 @@ body{
 }
 
 .reportbtn{
+	background-color : #7EAB7D;
+	color : white;
+	border-radius : 10px 10px 10px 10px;
 	border : none;
 	text-align : center;
 	width : 360px;

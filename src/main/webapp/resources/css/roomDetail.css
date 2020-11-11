@@ -1,3 +1,7 @@
+body{
+	overflow-x:hidden;
+}
+
 /* 첫번째 container css */
 #firstcontainer{
 	display : flex;
@@ -133,7 +137,7 @@ a>img {
 }
 
 #noticeinfo span > b{
-	color : green;
+	color : #7EAB7D;
 	font-weight : bold;
 }
 /*------------------공지사항 css 끝--------------------*/
@@ -190,7 +194,7 @@ a>img {
 	padding-top : 3%;
 	font-size : 13pt;
 	border-top : 2px black solid;
-	color : green;
+	color : #7EAB7D;
 }
 
 /* 방정보 내용 안에서 하나의 내용 */
@@ -222,7 +226,7 @@ a>img {
 	font-size : 13pt;
 	padding-top : 3%;
 	border-top : 2px black solid;
-	color : green;
+	color : #7EAB7D;
 }
 
 /* 매물 상세정보의 내용 */
@@ -242,14 +246,15 @@ a>img {
 
 /* 버튼 위치 css */
 .submitbtn{
-	margin-left : 40%;
+	margin-left : 50%;
 }
 
 .roombtn{
 	width : 100px;
-	height : 70px;
-	background-color : white;
+	background-color : #7EAB7D;
+	color : white;
 	cursor : pointer;
+	border-radius : 10px 10px 10px 10px;
 }
 
 
