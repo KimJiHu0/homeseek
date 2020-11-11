@@ -58,6 +58,9 @@ body{
 }
 
 .messagebtn{
+	background-color : #7EAB7D;
+	color : white;
+	border-radius : 10px 10px 10px 10px;
 	border : none;
 	text-align : center;
 	width : 360px;

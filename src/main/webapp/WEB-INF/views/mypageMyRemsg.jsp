@@ -46,53 +46,41 @@
 				<form action = "" method = "post" class="checkremsglist">
 					<table>
 						<!-- 쪽지번호, 보낸사람, 제목, 날짜 -->
-						<col width="80px">
-						<col width="100px"> <!-- 쪽지 번호 -->
-						<col width="80px">
-						<col width="300px"> <!-- 쪽지 보낸 사람 -->
-						<col width="80px">
-						<col width="250px"> <!-- 제목 -->
-						<col width="80px">
-						<col width="100px"> <!-- 날짜 -->
-						<col width="80px">
+						<col width="80px">	<!-- 버튼 -->
+						<col width="180px"> <!-- 쪽지 번호 -->
+						<col width="380px"> <!-- 쪽지 보낸 사람 -->
+						<col width="330px"> <!-- 제목 -->
+						<col width="180px"> <!-- 날짜 -->
 						<tr>
-							<th colspan="9">&nbsp;</th>
+							<th colspan="5">&nbsp;</th>
 						</tr>
 						<c:choose>
 							<c:when test="${empty remsglist }">
 								<tr>
-									<th colspan="9">현재 회원님께서 받은 쪽지가 없습니다.</th>
+									<th colspan="5">현재 회원님께서 받은 쪽지가 없습니다.</th>
 								</tr>
 							</c:when>
 							<c:otherwise>
 								<tr>
 									<th><input type="checkbox" class="all_check" name="all_check" onclick="allChk(this.checked)"/></th>
 									<th>쪽지번호</th>
-									<td></td>
 									<th>쪽지제목</th>
-									<td></td>
 									<th>쪽지보낸아이디</th>
-									<td></td>
 									<th>쪽지작성날짜</th>
-									<td></td>
 								</tr>
 								<tr>
-									<td class="a" colspan="9">&nbsp;</td>
+									<td class="a" colspan="5">&nbsp;</td>
 								</tr>
 								<c:forEach items="${remsglist }" var="remsglist">
 									<tr>
 										<th><input type="checkbox" name="chkbox" class="chkbox" value="${remsglist.message_no }"/></th>
 										<th>${remsglist.message_no }</th>
-										<td></td>
 										<th><a class="senmsgtitle" href="javascript:goReMsgDetail(${remsglist.message_no });">${remsglist.message_title }</a></th>
-										<td></td>
 										<th>${remsglist.message_senid }</th>
-										<td></td>
 										<th><fmt:formatDate value="${remsglist.message_date }" pattern="yyyy-MM-dd"/></th>
-										<td></td>
 									</tr>
 									<tr>
-										<td class="a" colspan="9"></td>
+										<td class="a" colspan="5"></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>							
@@ -103,7 +91,7 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td colspan="9" align="right">
+									<td colspan="5" align="right">
 										<input type="button" class="muldelebtn" value="삭제하기"/>
 									</td>
 								</tr>

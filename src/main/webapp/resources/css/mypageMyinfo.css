@@ -19,7 +19,7 @@ body{
 	padding-top : 15px;
 }
 #iconcolor{
-	color : green;
+	color : #7EAB7D;
 }
 .iconbox{
 	width : 100%;
@@ -58,7 +58,7 @@ body{
 	margin-right : 30px;
 	font-size : 14pt;
 	font-weight : bold;
-	color : green;
+	color : #7EAB7D;
 	text-align : center;
 	border-bottom : 1px gray solid;
 }
@@ -99,6 +99,12 @@ body{
 }
 
 .dropoutbtn{
+	background-color : #7EAB7D;
+	color : white;
+	border-radius : 10px 10px 10px 10px;
+	border : none;
 	width : 30%;
+	height : 30px;
 	margin-left : 65%;
+	cursor : pointer;
 }
