@@ -38,3 +38,16 @@
 .a{
 	border-bottom : 1px black solid;
 }
+#nav.paging{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#nav.paging > a{
+    color: var(--color-light-grey);
+    margin:8px;
+}
+#nav.paging > a.active{
+    color: green;
+    margin:8px;
+}
