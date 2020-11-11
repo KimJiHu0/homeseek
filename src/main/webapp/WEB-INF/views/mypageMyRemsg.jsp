@@ -41,6 +41,7 @@
 			<option value="20"
 				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
 		</select>
+		</div>
 			<div class="myremsg-list">
 				<form action = "" method = "post" class="checkremsglist">
 					<table>
@@ -130,7 +131,6 @@
 		</c:if>
 	</div>
 		</div>
-	
 	</section>
 	
 	<%@ include file="./form/footer.jsp" %>
