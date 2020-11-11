@@ -58,7 +58,7 @@ public class MemberController {
 	private KakaoAPI kakao;
 
 	private final static String id = "2dc56fd515158890d47575ddc651d7e8";
-	private final static String url = "http://homeseek.ml/homeseek/kakaocallback.do";
+	private final static String url = "http://homeseek.ml/kakaocallback.do";
 
 	// loginform.do없앰
 

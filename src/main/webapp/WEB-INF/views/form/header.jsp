@@ -355,18 +355,18 @@ a {
 
 					<div class="snslogin">
 						<a id="naver_url"
-							href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QAAvdWTo1o2T1xyFFbev&redirect_uri=https%3A%2F%2Fhomeseek.ml%2Fhomeseek%2Fnavercallback.do&scope=profile
+							href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QAAvdWTo1o2T1xyFFbev&redirect_uri=https%3A%2F%2Fhomeseek.ml%2Fnavercallback.do&scope=profile
 							">
 							<img width="150" height="37"
 							src="${pageContext.request.contextPath}/resources/img/naver-login.png"
 							alt="Naver Login" />
 						</a> <a
-							href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=http%3A%2F%2Fhomeseek.ml%2Fhomeseek%2Fgooglecallback.do">
+							href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=http%3A%2F%2Fhomeseek.ml%2Fgooglecallback.do">
 							<img width="150" height="38"
 							src="${pageContext.request.contextPath}/resources/img/google-login.jpg"
 							alt="Google Login" />
 						</a> <a
-							href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=http://homeseek.ml/homeseek/kakaocallback.do&response_type=code">
+							href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=http://homeseek.ml/kakaocallback.do&response_type=code">
 							<img width="150" height="38"
 							src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png"
 							alt="Kakao Login" />
