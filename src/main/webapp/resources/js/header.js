@@ -33,7 +33,7 @@ function chat(){
 }
 
 function connectWs(){
-	socket = new WebSocket('wss://homeseek.ml/homeseek/message.do');
+	socket = new WebSocket('wss://homeseek.ml/message.do');
 	
 	socket.onopen = function(){
 		
