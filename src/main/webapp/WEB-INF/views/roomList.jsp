@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>homeseek : 전체 매물 보기</title>
 <%@ include file="./form/header.jsp" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomList.css" type="text/css" />
 
