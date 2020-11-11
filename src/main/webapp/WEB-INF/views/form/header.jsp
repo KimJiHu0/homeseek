@@ -366,7 +366,7 @@ a {
 							src="${pageContext.request.contextPath}/resources/img/google-login.jpg"
 							alt="Google Login" />
 						</a> <a
-							href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=http://homeseek.ml/kakaocallback.do&response_type=code">
+							href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=https://homeseek.ml/kakaocallback.do&response_type=code">
 							<img width="150" height="38"
 							src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png"
 							alt="Kakao Login" />
@@ -390,20 +390,23 @@ a {
 
 <script type="text/javascript">
 
-
+ 
 	$(".login2").click(function() {
 		$(".modal-back").show();
 		$(".modal_login").css("z-index", "20");
 		$(".modal_login").css("top", "100px");
 		$(".modal_login").css("opacity", "1");
 	});
-	
+
+	 
 	$(".modal-back").click(function() {
 		$(this).hide();
 		$(".modal_login").css("top", "50px");
 		$(".modal_login").css("opacity", "0");
 		$(".modal_login").css("z-index", "-1");
 	});
+	
+
 	
 
 	/* 	
