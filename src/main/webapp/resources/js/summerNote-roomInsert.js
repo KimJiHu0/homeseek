@@ -43,6 +43,7 @@ $("#summernote_img").summernote({
 //--------------------------------------------------------------------------------------------------------
 
 var totalPhoto = "";
+var newList = "";
 var photo = $('#insert_photo');
 var photoList = $('#list_area');
 
@@ -61,7 +62,9 @@ function sendFile(file) {
 		success : function(img) {
 				
 				var img_db = 'resources/' + img;
-				totalPhoto += img_db + ',';
+				totalPhoto += img_db;
+				
+				newList += img + '\n'; 
 				
 				//파일 이름만 자르기
 				console.log("img : " + img);
@@ -76,24 +79,15 @@ function sendFile(file) {
 					console.log("["+i+"]"+ " 번째파일 : " + photoArr[i]);
 				}
 				
+				
+				photoList.val(newList);
+				
 				$('#summernote_img').summernote('editor.insertImage', img_db);
 				console.log("이미지 처리중");
-				
-				//-------------------------------
-				
-				//console.log("업로드한 사진의총 리스트" + totalPhoto);
-				//파일이 하나하나 처리가 안되고 있어서 파일 A,B 를 보내면 
-				// 업로드한 파일 : A
-				// 업로드한 파일 : A,B
-				// 업로드한 파일 : A,B,C .... 
-				// 식으로 찍히는중
 				photo.val(totalPhoto);
-				photoList.val(totalPhoto);
-				
 				
 			}
 			
 	});
 		
 }
-

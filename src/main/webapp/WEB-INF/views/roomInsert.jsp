@@ -169,10 +169,10 @@
 <!-- 카카오맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script>
 <!-- 카카오맵 services 라이브러리 불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script><%-- 
 
 <!-- 도로명주소API js -->
-<script src="${pageContext.request.contextPath}/resources/js/loadAddress.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/roadAddress.js" type="text/javascript"></script> --%>
 
 <!-- page 설정 -->
 
