@@ -1,6 +1,7 @@
 .gosenmsglist{
 	color : #7EAB7D;
 }
+
 .goremsglist{
 	color : black;
 }
@@ -17,7 +18,7 @@
 	height : 80px;
 	margin-left : 25%;
 	font-size : 25pt;
-	color : #7EAB7D;
+	color : green;
 }
 
 .mysenmsg-menu-title{
@@ -27,12 +28,27 @@
 	padding-top : 2%;
 }
 
-.mysenmsg-list{
-	width : 80%;
-	padding-top : 50px;
-	padding-bottom : 50px;
-	padding-left : 10%;
-	margin-left : 5%;
+table tr th{
+	text-overflow: ellipsis;
+	white-space : nowrap;
+}
+table {
+		width : 100%;
+		border-spacing: 10px;
+		margin-left: auto;
+    	margin-right: auto;
+}
+.muldelebtn{
+	width: 100px;
+	height : 30px;
+    padding: 5px 0 5px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #7EAB7D;
+    font-size: 8px;
+    font-weight: 600;
+    border-radius: 12px;
 }
 
 .a{

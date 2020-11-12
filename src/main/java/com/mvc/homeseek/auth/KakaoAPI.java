@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -38,7 +37,7 @@ public class KakaoAPI {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=2dc56fd515158890d47575ddc651d7e8");
-            sb.append("&redirect_uri=http://homeseek.ml/kakaocallback.do");
+            sb.append("&redirect_uri=https://homeseek.ml/kakaocallback.do");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
@@ -107,7 +106,7 @@ public class KakaoAPI {
             
             JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-            
+            //이메일 json형식 파악하기
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
            

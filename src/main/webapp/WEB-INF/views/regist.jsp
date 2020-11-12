@@ -40,7 +40,7 @@
 	
 	<hr/>
 		<section>
-	
+			<div id = "outter">
 			<div id="content"> 
 			<h3>
 			<label for="member_id">아이디</label>
@@ -61,7 +61,7 @@
 				} else {
 			%>
 			<span class="box int_id">
-			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text" readonly/>
+			<input type="text" name="member_i td" id="member_id"> @ <input name="email" id="email" type="text" readonly/>
 			<select name="select_email" id="select_email"> 
 				  <option value="" selected>이메일 선택</option> 
 				  <option value="naver.com">naver.com</option> 
@@ -137,14 +137,15 @@
 					</span>
 					<div class="check_font" id="pCheck"></div>
 			</div>
+			</div>
 			</section>	
 			<div class="btn_area">			
 					<button class="btn btn-success" type="submit" id="submit">회원가입</button>
 			</div>
 		
 	</form>
-	<div id="footer">
+
 	<%@ include file="./form/footer.jsp" %>
-	</div>
+	
 </body>
 </html>

@@ -1,6 +1,6 @@
 table {
-		width : 80%;
-		border-spacing: 20px;
+		width : 100%;
+		border-spacing: 10px;
 		margin-left: auto;
     	margin-right: auto;
     	margin-top:10px;
@@ -16,12 +16,12 @@ table {
     border: 0;
     cursor: pointer;
     color: #fff;
-    background-color: #08a600;
+    background-color: #7EAB7D;
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;
     float : right;
-    margin-right : 250px;
+    margin-right : 50px;
     margin-top : 15px;
 }
 #cancel{
@@ -31,7 +31,7 @@ table {
     border: 0;
     cursor: pointer;
     color: #fff;
-    background-color: #08a600;
+    background-color: #7EAB7D;
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;

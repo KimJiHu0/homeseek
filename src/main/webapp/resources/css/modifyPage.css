@@ -1,15 +1,14 @@
 table {
-		width : 85%;
+		width : 100%;
 		border-spacing: 8px;
 		margin-left: auto;
     	margin-right: auto;
-    	margin-top : 80px;
 }
 .a{
 	border-bottom : 1px black solid;
 }
 #cntPerPage{
-	margin-top : 0px;
+	margin-right : 1100px;
 }
 #tr{
 	margin : 30px;
@@ -22,11 +21,11 @@ table {
     border: 0;
     cursor: pointer;
     color: #fff;
-    background-color: #08a600;
+    background-color: #7EAB7D;
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;
-    margin-left : 950px;
+    margin-left : 1100px;
 }
 #modify{
 	width: 100px;
@@ -35,9 +34,10 @@ table {
     border: 0;
     cursor: pointer;
     color: #fff;
-    background-color: #08a600;
+    background-color: #7EAB7D;
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;
+    
   
 }
