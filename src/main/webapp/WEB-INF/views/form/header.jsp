@@ -17,6 +17,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 구글 로그인 api -->
+<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 <title>HOMESEEK</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -337,11 +341,11 @@ a {
 
 					<table>
 						<tr>
-							<td><input type="text" placeholder="I D" id="member_id"
+							<td><input type="text" placeholder="I D" id="member_id_modal"
 								class="memberid1" /></td>
 						</tr>
 						<tr>
-							<td><input type="password" placeholder="P W" id="member_pw"
+							<td><input type="password" placeholder="P W" id="member_pw_modal"
 								class="memberpw1" /></td>
 						</tr>
 						<tr>
@@ -361,7 +365,7 @@ a {
 							src="${pageContext.request.contextPath}/resources/img/naver-login.png"
 							alt="Naver Login" />
 						</a> <a
-							href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=http%3A%2F%2Fhomeseek.ml%2Fgooglecallback.do">
+							href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=https%3A%2F%2Fhomeseek.ml%2Fgooglecallback.do">
 							<img width="150" height="38"
 							src="${pageContext.request.contextPath}/resources/img/google-login.jpg"
 							alt="Google Login" />
@@ -372,6 +376,9 @@ a {
 							alt="Kakao Login" />
 						</a>
 					</div>
+					
+					<!-- 구글로그인 링크 -->
+					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
 					<ul class="idpwlink">
 						<li><a href="findidform.do"><spring:message code="h.id"
@@ -419,4 +426,20 @@ a {
 	 }
 	 } */
 </script>
+<script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
 </html>

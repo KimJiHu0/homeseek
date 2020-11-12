@@ -1,6 +1,6 @@
 function loginPrc(){
-   var member_id= $("#member_id").val().trim();
-   var member_pw= $("#member_pw").val().trim();
+   var member_id= $("#member_id_modal").val().trim();
+   var member_pw= $("#member_pw_modal").val().trim();
    var loginVal = {
          "member_id" : member_id,
          "member_pw" : member_pw
