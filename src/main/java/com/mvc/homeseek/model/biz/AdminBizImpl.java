@@ -22,9 +22,9 @@ public class AdminBizImpl implements AdminBiz {
 		return adminDao.allMember(vo);
 	}
 	@Override
-	public List<ReportDto> allReport() {
+	public List<ReportDto> allReport(Paging vo) {
 		// TODO Auto-generated method stub
-		return adminDao.allReport();
+		return adminDao.allReport(vo);
 	}
 	
 	@Override
@@ -98,6 +98,11 @@ public class AdminBizImpl implements AdminBiz {
 	public int enableModify(String member_id) {
 		// TODO Auto-generated method stub
 		return adminDao.enableModify(member_id);
+	}
+	@Override
+	public int countUpdate() {
+		// TODO Auto-generated method stub
+		return adminDao.countUpdate();
 	}
 
 }

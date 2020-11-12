@@ -9,13 +9,13 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminPage.css">
-<script src="${pageContext.request.contextPath}/resources/js/adminPage.js" type="text/javascript"></script>
 <script>
+	
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
 		location.href="admin.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
-
+	
 </script>
 </head>
 <body>
@@ -29,8 +29,6 @@
 			<div class="admin-menu-title"><a class="normal" href="normal.do">일반 회원</a></div>
 			<div class="admin-menu-title"><a class="ban" href="ban.do">차단 회원</a></div>
 			<div class="admin-menu-title"><a class="withdrawal" href="withdrawal.do">탈퇴 회원</a></div>
-		
-		
 		</div>
 		<hr/>
 

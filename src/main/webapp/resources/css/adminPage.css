@@ -1,4 +1,6 @@
-
+.dd{
+	color : #7EAB7D;
+}
 .maincontainer{
 	display : flex;
 	flex-direction : column;
@@ -10,21 +12,17 @@
 	height : 80px;
 	margin-left : -5%;
 	font-size : 20pt;
-	color : green;
+	
 }
 #select{
-	margin-top : 100px;
-	position: absolute;
-    top: 100px;  /* 위치정렬 */
-    left: 1200px;  /* 위치정렬 */
-    padding: .8em .5em;  /* select의 여백 크기 만큼 */
+
 
 
 }
 
 
 table {
-		width : 90%;
+		width : 100%;
 		border-spacing: 10px;
 		margin-left: auto;
     	margin-right: auto;
@@ -50,7 +48,7 @@ h2 {
     border: 0;
     cursor: pointer;
     color: #fff;
-    background-color: #08a600;
+    background-color: #7EAB7D;
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;
@@ -63,7 +61,7 @@ h2 {
     border: 0;
     cursor: pointer;
     color: #fff;
-    background-color: #08a600;
+    background-color: #7EAB7D;
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;
@@ -73,11 +71,7 @@ h2 {
 }
 
 #outter {
-	width : 80%;
-	padding-top : 50px;
-	padding-bottom : 50px;
-	padding-left : 10%;
-	margin-left : 5%;
+	
 }
 .a{
 	border-bottom : 1px black solid;

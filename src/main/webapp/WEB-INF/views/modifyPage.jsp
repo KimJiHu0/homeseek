@@ -86,7 +86,7 @@
 		
 	</table>
 	<span class="buttonn">
-			<input type="button" id="main" onclick="location.href='admin.do'/>'" value="전체 회원 관리">
+			<input type="button" id="main" onclick="location.href='admin.do'" value="전체 회원 관리">
 	</span>
 
 	
