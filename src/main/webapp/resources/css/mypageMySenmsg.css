@@ -28,9 +28,6 @@
 	padding-top : 2%;
 }
 
-.mysenmsg-list{
-	
-}
 table tr th{
 	text-overflow: ellipsis;
 	white-space : nowrap;
@@ -43,8 +40,8 @@ table {
 }
 .muldelebtn{
 	width: 100px;
+	height : 30px;
     padding: 5px 0 5px;
-
     border: 0;
     cursor: pointer;
     color: #fff;

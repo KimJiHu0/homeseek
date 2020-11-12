@@ -28,13 +28,10 @@
 	padding-top : 2%;
 }
 
-.myremsg-list{
-	
-}
 .muldelebtn{
 	width: 100px;
+	height : 30px;
     padding: 5px 0 5px;
-
     border: 0;
     cursor: pointer;
     color: #fff;
