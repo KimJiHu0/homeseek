@@ -119,11 +119,23 @@ public class AdminController {
 		}
 
 		@RequestMapping("/enableupdateform.do")
-		public String reportList(Model model) {
-			
-			model.addAttribute("list", adminBiz.allReport());
-			
-			return "adminReport";
+		public String UpdateList(Paging page, Model model
+					, @RequestParam(value="nowPage", required=false)String nowPage
+					, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+				
+				int total = adminBiz.countUpdate();
+				if (nowPage == null && cntPerPage == null) {
+					nowPage = "1";
+					cntPerPage = "5";
+				} else if (nowPage == null) {
+					nowPage = "1";
+				} else if (cntPerPage == null) { 
+					cntPerPage = "5";
+				}
+				page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+				model.addAttribute("paging", page);
+				model.addAttribute("list", adminBiz.allReport(page));
+				return "adminReport";
 		}
 		@RequestMapping("/enablemodifyform.do")
 		public String ModifyList(Paging page, Model model

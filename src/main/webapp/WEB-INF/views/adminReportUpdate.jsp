@@ -8,10 +8,6 @@
 <title>Insert title here</title>
 <script src="resources/js/adminReportUpdate.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminReportUpdate.css">
-
-
-
-
 </head>
 <body>
 
@@ -25,8 +21,10 @@
 	<form action="acceptreport.do" method="post" name="success">
 	 <input type="hidden" id="report_reid" name="report_reid" value="${dto.report_reid }">
 	 <input type="hidden" id="report_no" name="report_no" value="${dto.report_no }">
-		
+	 
 
+		
+	
 		<table>
 			<tr>
 				<th>신고번호</th>
@@ -67,7 +65,9 @@
 		
 		
 
-		</table>	
+		</table>
+		
+		
 		<span class="buttonn">
 			<button id="accept" onclick="accept();">신고 승인</button>
 			<input type="button" id="cancel" onclick="location.href='rejectreport.do?report_no=<c:out value="${dto.report_no }"/>'" value="신고 반려">

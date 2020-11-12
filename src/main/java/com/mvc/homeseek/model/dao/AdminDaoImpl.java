@@ -37,11 +37,11 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public List<ReportDto> allReport() {
+	public List<ReportDto> allReport(Paging vo) {
 		List<ReportDto> res = new ArrayList<ReportDto>();
 		
 		try {
-			res = sqlSession.selectList(NAMESPACE + "allReport");
+			res = sqlSession.selectList(NAMESPACE + "allReport",vo);
 		} catch (Exception e) {
 			logger.info("allMember error");
 			e.printStackTrace();
@@ -214,6 +214,18 @@ public class AdminDaoImpl implements AdminDao {
 		
 		try {
 			res = sqlSession.update(NAMESPACE+"enableModify",member_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public int countUpdate() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"countUpdate");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

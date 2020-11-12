@@ -13,7 +13,7 @@ public interface AdminDao {
 		//관리자 페이지 전체 회원 조회
 		public List<MemberDto> allMember(Paging vo);
 		//신고 리스트 조회
-		public List<ReportDto> allReport();
+		public List<ReportDto> allReport(Paging vo);
 		//신고 승인 여부
 		public ReportDto reportRes(int report_no);
 		//총 게시글 수
@@ -42,5 +42,7 @@ public interface AdminDao {
 		public List<MemberDto> WithdrawalMember(Paging vo);
 		//활성화 여부 수정
 		public int enableModify(String member_id);
+		//신고 회원 수 
+		public int countUpdate();
 		
 }

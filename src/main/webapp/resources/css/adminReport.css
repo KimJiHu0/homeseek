@@ -2,10 +2,11 @@
 	padding : 10% 20%; 
 } */
 
-
+#cntPerPage{
+	margin-right: 1100px;
+}
 table {
-		width : 85%;
-		border-spacing: 8px;
+		width : 100%;
 		margin-left: auto;
     	margin-right: auto;
 }
@@ -23,9 +24,9 @@ table {
     border: 0;
     cursor: pointer;
     color: #fff;
-    background-color: #08a600;
+    background-color: #7EAB7D;
     font-size: 8px;
     font-weight: 600;
     border-radius: 12px;
-    margin-right : 120px;
+    margin-right : 10px;
 }

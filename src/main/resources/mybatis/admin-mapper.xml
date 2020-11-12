@@ -7,8 +7,21 @@
 		ORDER BY MEMBER_ENABLED
 	</select> -->
 	
-	<select id="allReport" parameterType="ReportDto" resultType="ReportDto">
-		SELECT REPORT_NO, REPORT_SENID, REPORT_REID, REPORT_TITLE, REPORT_CONTENT, REPORT_DATE
+	<select id="allReport"  resultType="ReportDto">
+			SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+						SELECT * 
+						FROM REPORT 
+						ORDER BY REPORT_DATE DESC 
+							) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<!-- 총 신고 회원 수 출력 -->
+	<select id="countUpdate" resultType="int">
+		SELECT COUNT(*) 
 		FROM REPORT
 	</select>
 	<select id="reportRes" parameterType="int" resultType="ReportDto">
