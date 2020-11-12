@@ -61,7 +61,7 @@
 						
 					
 						<label for="insert_ext" id="ext_label">매물면적</label>
-							<input type="text" name="room_extent" placeholder="단위 : 제곱미터" id="insert_ext">
+							<input type="text" name="room_extent" placeholder=" 단위 : 제곱미터" id="insert_ext">
 					
 					</div>
 					
@@ -102,7 +102,7 @@
 						
 					
 						<label for="insert_floor" id="floor_label">방 층수</label>
-						<input type="text" name="room_floor" id="insert_floor" value="${room_floor }"  placeholder="숫자만 입력해주세요.">
+						<input type="text" name="room_floor" id="insert_floor" value="${room_floor }"  placeholder=" 숫자만 입력가능 ">
 					</div>	
 					
 					<div id="insert_div5">
@@ -114,7 +114,6 @@
 						<input type="date" name="room_avdate" id="insert_avdate">
 						<br>
 						
-						<!-- <label for="summernote" id="div5_label">상세설명</label> -->
 						<h4 id="summernote_title">상세설명</h4>
 						
 						<div id="insert_detail">
@@ -127,8 +126,8 @@
 						</div>
 						
 						<h4>이미지 미리보기</h4>
-						<div id="insert_imglist">
-							<textarea rows="5" cols="60" id="summernote_img" readonly="readonly"></textarea>
+						<div id="insert_imglist" >
+							<textarea rows="5" cols="60" id="summernote_img" ></textarea>
 						</div>
 						
 						
@@ -180,6 +179,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/roomInsert.css" type="text/css" />
 <!-- roomInsert.js -->
 <script src="resources/js/roomInsert.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function(){
+    $("img").addClass("img-responsive");
+    $("img").css("max-width", "100%");
+});
+</script>
 
 </html>
 

@@ -35,7 +35,7 @@ section #top_title {
 	padding-right: 50px;
 	padding-left: 50px;
 	background-color:#dcdcdc;
-	border-radius: 10px;
+	border-radius: 15px;
 	
 }
 
@@ -66,10 +66,6 @@ button[data-name=resizedDataImage] input {
     }
 
 
-
-
-
-
 /* input 구간 나눴음 */
 
 /* --------------- div1 매물이름, 매물종류 --------------- */
@@ -83,19 +79,22 @@ button[data-name=resizedDataImage] input {
 
 
 #insert_div1 label{
-	width: 10%;
-	max-width:75px;
+	width: 15%;
+	max-width:112.5px;
 	padding-left:10px;
 }
 
 #insert_div1 input{
+	
 	width: 15%;
 	max-width:150px;
+	margin-left: 5px;
 }
 
 #insert_div1 select{
 	width: 15%;
 	max-width:150px;
+	margin-left: 5px;
 }
 
 
@@ -109,14 +108,15 @@ button[data-name=resizedDataImage] input {
 }
 
 #insert_div2 label{
-	width: 10%;
-	max-width:75px;
+	width: 15%;
+	max-width:112.5px;
 	padding-left:10px;
 }
 
 #insert_div2 input{
 	width: 15%;
 	max-width:150px;
+	margin-left: 5px;
 }
 
 /* --------------- div3 주소(kakao map) --------------- */
@@ -130,9 +130,8 @@ button[data-name=resizedDataImage] input {
 }
 
 #insert_div3 label{
-	width: 10%;
-	padding-left:10px;
-	max-width:75px;
+	width: 15%;
+	max-width:112.5px;
 	padding-left:10px;
 }
 
@@ -188,7 +187,7 @@ button[data-name=resizedDataImage] input {
 	font-size: 20px;
 	color : green;
 	margin-top: 5%;
-	
+	font-weight: bolder;
 }
 
 
@@ -204,33 +203,35 @@ button[data-name=resizedDataImage] input {
 }
 
 #insert_div4 label{
-	width: 10%;
-	max-width:75px;
+	width: 15%;
+	max-width:112.5px;
 	padding-left:10px;
 }
 
 #insert_div4 input{
 	width: 15%;
 	max-width:150px;
+	margin-left: 5px;
 }
 
 #insert_div4 select{
 	width: 15%;
 	max-width:150px;
+	margin-left: 5px;
 }
 
 /* --------------- div5 준공날짜, 입주가능일 --------------- */
 #insert_div5{
 	height: 1000px;
-	padding-top: 5px;
+	padding: 5px;
 	margin: 0 auto;
 	/* border-bottom: 1px solid; */
 	display: block;
 }
 
 #insert_div5 #div5_label{
-	width: 10%;
-	max-width:75px;
+	width: 15%;
+	max-width:112.5px;
 	padding-left:10px;
 	
 }
@@ -241,21 +242,29 @@ button[data-name=resizedDataImage] input {
 	max-width:150px;
 }
 
+#insert_div5 input{
+	width: 15%;
+	max-width:150px;
+	margin-left: 5px;
+}
+
+
 #insert_div5 #insert_cpdate{
 	width: 15%;
 	max-width:150px;
+	margin-left: 5px;
 }
 
 #insert_div5 #insert_avdate{
 	width: 15%;
 	max-width:150px;
+	margin-left: 5px;
 }
 
-/* #insert_div5 select{
-	width: 15%;
-	max-width:150px;
+#insert_div5 h4 {
+	padding-left: 10px;
 }
- */
+
 #insert_div5 #insert_list {
 	width : 100%;
 	max-width : 1200px;
@@ -271,17 +280,8 @@ button[data-name=resizedDataImage] input {
 	height : 220px;
 	padding: 10px;
 	
-}
-
-/* #insert_div5 #insert_imglist #thumb_area {
-	height:100px;
-	width:100%;
-	max-width: 920px;
-	background-color: white;
-	border: 2px solid black;
 	
-} */
-
+}
 
 #insert_div5 #insert_list{
 	
@@ -290,8 +290,8 @@ button[data-name=resizedDataImage] input {
 }
 
 #insert_div5 .div5_label{
-	width: 10%;
-	max-width:75px;
+	width: 15%;
+	max-width:112.5px;
 	padding-left:10px;
 }
 
@@ -310,9 +310,6 @@ button[data-name=resizedDataImage] input {
 
 
 /* --------------- control --------------- */
-
-
-
 
  #insert_div5 .control {
 	margin-top: 30px;
