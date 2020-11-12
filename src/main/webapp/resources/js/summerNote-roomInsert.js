@@ -82,7 +82,13 @@ function sendFile(file) {
 				
 				photoList.val(newList);
 				
-				$('#summernote_img').summernote('editor.insertImage', img_db);
+				$('#summernote_img').summernote('editor.insertImage',img_db, function ($image){
+					$image.css('width', 200);
+					$image.css('height', 160);
+  					$image.attr('data-filename', 'retriever');
+				});
+				
+				
 				console.log("이미지 처리중");
 				photo.val(totalPhoto);
 				

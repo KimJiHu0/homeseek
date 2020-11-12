@@ -71,6 +71,7 @@ section{
 .donate_div{
 	width : 45%;
 	max-width : 540px;
+	height: 500px;
 	margin: 0;
 	float: right;
 	font-size: 14px;
@@ -126,7 +127,7 @@ section{
 .radio_ul .radio_li .check{
   display: block;
   position: absolute;
-  border: 3px solid #C6D1D7;
+  border: 5px solid #C6D1D7;
   border-radius: 100%;
   height: 20px;
   width: 20px;
@@ -140,7 +141,7 @@ section{
 
 /* hover 했을때 바깥쪽 원 색변화 */
 .radio_ul .radio_li:hover .check {
-  border: 3px solid #34b63d;
+  border: 5px solid #34b63d;
 }
 
 /* check 후 안쪽 원 */
@@ -149,10 +150,10 @@ section{
   position: absolute;
   content: '';
   border-radius: 100%;
-  height: 8px;
-  width: 8px;
-  top: 3px;
-  left: 3px;
+  height: 12px;
+  width: 12px;
+  top: 4px;
+  left: 4px;
   margin: auto;
   transition: background 0.25s linear;
   -webkit-transition: background 0.25s linear;
@@ -162,7 +163,7 @@ section{
 
 /* 체크된 후 바깥 원 */
 input[type=radio]:checked ~ .check {
-  border: 3px solid #5B7484;
+  border: 5px solid #5B7484;
 }
 
 /* 체크된 후 안쪽 원 */
@@ -210,7 +211,7 @@ hover 밑줄 효과
 
 #donate_button{
 	display : block;
-	margin-top: 20px;
+	margin-top: 50px;
 	width : 50%;
 	height: 35px;
 	background-color: #B0C4DE;
@@ -240,6 +241,7 @@ hover 밑줄 효과
 .choosebox{
 	margin-left: 120px;
 	margin-top: 20px;
+	height : 400px;
 }
 
 #form_title{
