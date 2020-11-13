@@ -57,7 +57,7 @@ public class AdminController {
 		page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", page);
 		model.addAttribute("list", adminBiz.NormalMember(page));
-		return "adminPage";
+		return "normalUser";
 	}
 	@GetMapping("/ban.do")
 	public String banList(Paging page, Model model
@@ -76,7 +76,7 @@ public class AdminController {
 		page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", page);
 		model.addAttribute("list", adminBiz.BanMember(page));
-		return "adminPage";
+		return "banUser";
 	}
 	@GetMapping("/withdrawal.do")
 	public String withdrawalList(Paging page, Model model
@@ -95,7 +95,7 @@ public class AdminController {
 		page = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", page);
 		model.addAttribute("list", adminBiz.WithdrawalMember(page));
-		return "adminPage";
+		return "withdrawalUser";
 	}
 	
 	@GetMapping("/admindona.do")
