@@ -1,0 +1,97 @@
+#main{
+		width: 100px;
+    padding: 5px 0 5px;
+
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #7EAB7D;
+    font-size: 8px;
+    font-weight: 600;
+    border-radius: 12px;
+}
+body {
+	width : 100%;
+    height: 100%;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+
+}
+
+section{
+	margin-left:700px;
+}
+#footer{
+	margin-top : 100px;
+}
+#outter{
+	margin-left : 350px;
+	width : 100%;
+	
+}
+#sendSms {
+    width: 10%;
+	color: black;
+    border: 1;
+    cursor: pointer;
+    background-color: white;
+    
+    
+}
+#phoneCheck {
+    width:	10%;
+	color: black;
+    border: 1;
+    cursor: pointer;
+    background-color: white;
+    margin-top : 10px;
+	margin-left: 230px;
+    
+    
+}
+h3 {
+    margin: 19px 0 8px;
+    font-size: 18px;
+    font-weight: 700;
+}
+h1{
+	width:100%;
+	margin-left : 50px;
+	padding-left : 0%;
+	padding-top : 5%;
+}
+#submit {
+    width: 30%;
+    padding: 10px 0 10px;
+
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #7EAB7D;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top:70px;
+    
+}
+#login{
+		width: 100px;
+    padding: 5px 0 5px;
+
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #7EAB7D;
+    font-size: 8px;
+    font-weight: 600;
+    border-radius: 12px;
+}
+#phone_check{
+	width : 220px;
+    margin-top : 1px;
+    float : left;
+}
+#selectId{
+	padding-top : 20px;
+}
