@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="resources/js/adminReportUpdate.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminReportUpdate.css">
 </head>

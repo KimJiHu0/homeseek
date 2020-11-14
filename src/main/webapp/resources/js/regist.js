@@ -23,6 +23,7 @@ $(function(){
 					} 
 			}); 
 		});
+
 	
 	$('#member_id').blur(function(){
    	 if (idJ.test($('#member_id').val())) {
@@ -296,6 +297,8 @@ $(function(){
     		alert("휴대폰 인증을 진행해주세요");
     		 $('#member_phone').focus();
     		 return false;
+    	}else{
+    		alert("회원가입 완료!");
     	}
     })
     

@@ -261,6 +261,7 @@ public class MemberController {
 
 		if (memberBiz.insert(dto) > 0) {
 			return "redirect:/main.do";
+
 		}
 
 		return "redirect:registform.do";
