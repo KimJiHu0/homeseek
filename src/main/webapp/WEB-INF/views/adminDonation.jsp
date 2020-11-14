@@ -19,10 +19,13 @@
 
 	<%@ include file="/WEB-INF/views/form/header.jsp" %>
 	
+	
 
 	<section>
+	
 	<h1>전체 후원 관리</h1>
 	<hr/>
+	
 	<div style="float: right;">
 		<select id="cntPerPage" name="sel" onchange="selChange()">
 			<option value="5"
@@ -61,7 +64,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
-					<tr>
+					<tr id="tr">
 						<td>${dto.dona_no }</td>
 						<td>${dto.dona_id }</td>
 						<td>${dto.dona_bill }</td>
