@@ -1,1 +1,17 @@
 @charset "UTF-8";
+
+#notice_label {
+	margin-right : 30px;
+}
+
+
+#insert_noticetitle {
+	width : 80%;
+	max-width : 500px;
+}
+
+#insert_content {
+	margin-top : 30px;
+}
+
+

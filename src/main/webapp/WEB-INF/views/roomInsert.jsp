@@ -117,7 +117,7 @@
 						<h4 id="summernote_title">상세설명</h4>
 						
 						<div id="insert_detail">
-							<textarea rows="10" cols="60" id="summernote" name="room_detail"></textarea>
+							<textarea rows="10" cols="60" id="summernote" name="room_detail" ></textarea>
 						</div>
 						
 						<h4>업로드된 파일</h4>
