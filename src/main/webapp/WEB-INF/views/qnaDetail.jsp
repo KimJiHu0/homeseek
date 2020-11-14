@@ -95,6 +95,7 @@
         <form name="commentInsertForm">
             <div class="input-group">
                <input type="hidden" name="qna_no" value="${dto.qna_no}"/>
+               <input type="hidden" name="comm_regdate" value="comm_regdate"/>
                <input type="text" class="form-control" id="comm_content" name="comm_content" placeholder="내용을 입력하세요.">
                <span class="input-group-btn">
                     <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>

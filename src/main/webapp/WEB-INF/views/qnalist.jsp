@@ -28,14 +28,6 @@
 	cursor: pointer;
 }
 
-.table_qna{
-	width:70%; 
-	margin-left:15%; 
-	margin-right:15%;
-	/* display:flex; */
-    justify-content:center;
-    align-items:center;
-}
 #qnaSearch_bar, h1{
 	width:70%; 
 	margin-left:15%; 
@@ -49,6 +41,14 @@
     align-items:center;
 }
 
+#nav.paging > a{
+    color: var(--color-light-grey);
+    margin:8px;
+}
+#nav.paging > a.active{
+    color: green;
+    margin:8px;
+}
 /* 
 .header ul.nav2{
 	width:940px;
@@ -68,6 +68,84 @@ dialog span {
 	display: block;
 	cursor: pointer;
 }
+
+table.table_qna{
+	/* width:70%; */ 
+	margin-left:15%; 
+	margin-right:15%;
+	/* display:flex; */
+    justify-content:center;
+    align-items:center;
+	
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #7EAB7D;
+	border-bottom: 3px solid #7EAB7D;
+	border-left: 3px solid #7EAB7D;
+	border-right: 3px solid #7EAB7D;
+	margin: 20px 10px;
+}
+table.table_qna th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+}
+table.table_qna td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+}
+table.table_qna .even{
+	background: #7EAB7D;
+}
+
+/*=======Button============= */
+td > input.btn_1{
+  border:1px solid transparent; 
+   -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+  transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+}
+
+td > input.btn_1::before {
+  content: '';
+  position: absolute;
+  left: 0px;
+  bottom:0px;
+  z-index:-1;
+  width: 0%;
+  height:1px;
+  background: #6098FF;
+  box-shadow: inset 0px 0px 0px #6098FF;
+  display: block;
+  -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+  transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
+}
+
+td > input.btn_1:hover::before {
+  width:100%;
+}
+
+td > input.btn_1::after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  top:0px;
+  z-index:-1;
+  width: 0%;
+  height:1px;
+  background: #6098FF;
+  -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+  transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
+}
+td > input.btn_1:hover::after {
+  width:100%;
+}
+td >input.btn_1:hover{
+  border-left:1px solid #6098FF;
+  border-right:1px solid #6098FF;
+}
 </style>
 <body>
 	<!-- header.jsp -->
@@ -86,7 +164,7 @@ dialog span {
 
 			<table border="1" class="table_qna">
 				<thead>
-					<tr>
+					<tr class="even">
 						<th style="width: 50px;">번호</th>
 						<th style="width: 100px;">작성자</th>
 						<th style="width: 500px;">제목</th>
@@ -119,10 +197,10 @@ dialog span {
 				<tr>
 				<c:if test="${ empty login }">
 					<td colspan="5" align="right"><input type="button" value="로그인 후 글작성하기"
-						class ="login2" /></td>
+						class ="login2 btn_1" /></td>
 				</c:if>
 				<c:if test="${ not empty login }">
-					<td colspan="5" align="right"><input type="button" value="글작성"
+					<td colspan="5" align="right"><input type="button" value="글작성" class ="btn_1" 
 						onclick="location.href='qnainsertform.do'" /></td>
 				</c:if>
 				</tr>

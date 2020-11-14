@@ -43,6 +43,15 @@
     align-items:center;
 }
 
+#nav.paging > a{
+    color: var(--color-light-grey);
+    margin:8px;
+}
+#nav.paging > a.active{
+    color: green;
+    margin:8px;
+}
+
 /* 
 .header ul.nav2{
 	width:940px;
@@ -64,8 +73,9 @@ table.table_notice{
 	text-align: left;
 	line-height: 1.5;
 	border-top: 1px solid #7EAB7D;
-	border-bottom: 1px solid #7EAB7D;
+	border-bottom: 3px solid #7EAB7D;
 	border-left: 3px solid #7EAB7D;
+	border-right: 3px solid #7EAB7D;
 	margin: 20px 10px;
 }
 table.table_notice th {
