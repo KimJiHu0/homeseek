@@ -6,9 +6,13 @@
 <meta charset="UTF-8">
 <title>비밀번호찾기</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/findPwd.css">
 <script src="resources/js/findPwd.js" type="text/javascript"></script>
 </head>
 <body>	
+	<%@ include file="/WEB-INF/views/form/header.jsp" %>
+	<h1>비밀번호 찾기</h1>
+	<hr/>
 <!-- 
 				<form>활용 팁!!
 				
@@ -19,19 +23,27 @@
 $('#form_value').attr("action", "/homeseek/selectpw.do");
 
  -->
+ 		<section>
+ 		<div id="outter">
 		<form  method="post" action="selectpw.do" >
 			<div>
+			<h3>
 				<label for="member_id">아이디</label>
+			</h3>
 				<input type="text" name="pwd_id" id="pwd_id">
 			</div>
 			
 			<div>
+			<h3>
 				<label for="id_name">이름</label>
+			</h3>	
 				<input type="text" name="pwd_name" id="pwd_name" size="30" placeholder="NAME"/>
 			</div>
 			
 			<div>
+			<h3>
 				<label for="id_phone">Phone</label>
+			</h3>	
 					<input type="text" name="pwd_phone" id="pwd_phone" size="30" placeholder="01012345555"/>
 					<!--  <button onclick="sendSms();">휴대폰 인증</button>-->
 					<input type="button" name = "sendSms" id="sendSms" value="인증번호 발송">
@@ -45,9 +57,11 @@ $('#form_value').attr("action", "/homeseek/selectpw.do");
 					<div class="check_font" id="idCheck"></div>
 			</div>		
 					
-			<div>	<!-- 새 비밀번호 입력 -->
+			<div>	
+			<h3><!-- 새 비밀번호 입력 -->
 					<label for="pwd_new" id="new_pwd">새 비밀번호</label>
-					<input type="text" name="pwd_new" id="pwd_new" placeholder="2조화이팅"/>
+			</h3>	
+					<input type="password" name="pwd_new" id="pwd_new" placeholder="2조화이팅"/>
 					<div class="check_font" id="pwCheck"></div>
 			</div>
 				
@@ -61,5 +75,10 @@ $('#form_value').attr("action", "/homeseek/selectpw.do");
 			</div>
 			
 		</form>
+		</div>
+		</section>
+			<div id="footer">
+			<%@ include file="./form/footer.jsp" %>
+			</div>
 </body>
 </html>
