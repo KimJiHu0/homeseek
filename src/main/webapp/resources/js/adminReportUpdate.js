@@ -1,10 +1,10 @@
 	function accept() {
-		if (confirm("신고를 승인하시겠습니까??") == true){    //확인
-			document.success.submit();
-
-		}else{   //취소
-			return false;
-		}
+		alert("신고가 승인되었습니다.");
 	}
+	$(function(){
+	 $("#cancel").on ("click", function(){
+		 alert("신고가 반려되었습니다.");
+	    })
+	})
 
 
