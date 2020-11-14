@@ -61,7 +61,7 @@
 				} else {
 			%>
 			<span class="box int_id">
-			<input type="text" name="member_i td" id="member_id"> @ <input name="email" id="email" type="text" readonly/>
+			<input type="text" name="member_id" id="member_id"> @ <input name="email" id="email" type="text" readonly/>
 			<select name="select_email" id="select_email"> 
 				  <option value="" selected>이메일 선택</option> 
 				  <option value="naver.com">naver.com</option> 

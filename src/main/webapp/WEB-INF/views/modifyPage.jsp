@@ -14,6 +14,11 @@
 		var sel = document.getElementById('cntPerPage').value;
 		location.href="admin.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
+	$(function(){
+	 $("#modify").on ("click", function(){
+		 alert("차단이 해제되었습니다.");
+	    })
+	})
 
 </script>
 </head>
