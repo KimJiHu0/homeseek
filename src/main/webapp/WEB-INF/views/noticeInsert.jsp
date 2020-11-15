@@ -22,16 +22,16 @@
 
 		<h1>N O T I C E 등 록</h1>
 
-		<form action="noticeinsert.do" method="post">
+		<form action="noticeinsert.do" method="post" id="notice_form">
 
-			<label for="insert_notice" id="title_label">제목</label> 
+			<h3>제목</h3>
 			<input id="insert_noticetitle" name='notice_title' placeholder="제목을 입력해주세요.">
 			
 			<br>
 			
 			<div id="insert_content">
 				<h3>업로드된 파일</h3>
-				<textarea id="photo_list"></textarea>
+				<textarea id="photo_list" readonly="readonly"></textarea>
 				
 				<h3>공지사항 내용</h3>
 				<textarea rows="10" cols="60" id="summernote" name="notice_content"></textarea>
@@ -40,8 +40,7 @@
 
 			<button type="submit" class="btn btn-default">등록</button>
 			<button type="reset" class="btn btn-default">초기화</button>
-			<button type="button" onclick="location.href='noticelist.do'"
-				class="btn btn-default">취소</button>
+			<button type="button" onclick="location.href='noticelist.do'" class="btn btn-default">취소</button>
 		</form>
 
 	</section>
