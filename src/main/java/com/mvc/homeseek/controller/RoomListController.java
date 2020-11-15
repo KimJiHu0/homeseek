@@ -68,7 +68,7 @@ public class RoomListController {
 		String search_addr;
 		
 		if(word==null) {
-			search_addr ="https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com/homeseek/_search?&pretty&size=100";
+			search_addr ="https://search-homeseek-el7f4oyyavqa3vi5cx63opdygm.us-east-2.es.amazonaws.com:443/homeseek/_search?&pretty&size=100";
 		}else {
 			try {
 				search = URLEncoder.encode(word,"UTF-8");
@@ -132,7 +132,7 @@ public class RoomListController {
 		
 		
 		if(word=="") {
-			search_addr ="https://search-homeseek-el7f4oyyavqa3vi5cx63opdygm.us-east-2.es.amazonaws.com/homeseek/_search?&pretty&size=100";
+			search_addr ="https://search-homeseek-el7f4oyyavqa3vi5cx63opdygm.us-east-2.es.amazonaws.com:443/homeseek/_search?&pretty&size=100";
 
 		}else {
 			try {
