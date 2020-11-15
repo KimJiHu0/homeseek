@@ -3,11 +3,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek : 매물 상세보기</title>
+<title>homeseek : <spring:message code="roomDetail" text="매물 상세보기"/></title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
@@ -46,16 +47,16 @@
 			<div class="d3DetailBox">
 				<div id="userinfodetail">
 					<div id="userinfotitle">
-						<span id="leftb">사용자 / 매물 정보</span>
+						<span id="leftb"><spring:message code="roomdetail.userInfo" text="사용자 / 매물정보"/></span>
 						<%
 							int wishcheck = (int) request.getAttribute("wishcheck");
 							if(wishcheck > 0){
 						 %>
-							<span id="rightb" class="wish">찜하기♥</span>
+							<span id="rightb" class="wish"><spring:message code="roomdetail.wish1" text="찜하기♥"/></span>
 						<%
 							} else {
 						%>
-							<span id="rightb" class="wish">찜하기♡</span>
+							<span id="rightb" class="wish"><spring:message code="roomdetail.wish2" text="찜하기♡"/></span>
 						<%
 							}
 						%>
@@ -67,58 +68,58 @@
 					if (room.getRoom_type().equals("3")) {
 					%>
 					<div class="roominfocontent">
-						<span class="leftb">매물 종류</span> <span class="rightb">매매</span>
+						<span class="leftb"><spring:message code="roomdetail.roomkind" text="매물 종류"/></span> <span class="rightb"><spring:message code="roomdetail.sale" text="매매"/></span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">매매가</span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roomdetail.price" text="매매가"/></span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<%
 						// 그게 아니라 전세일 경우에는 ROOM_PRICE와 젠세가로 ROOM_DEPOSIT를 보여준다.
 					} else if (room.getRoom_type().equals("2")) {
 					%>
 					<div class="roominfocontent">
-						<span class="leftb">매물</span> <span class="rightb">전세</span>
+						<span class="leftb"><spring:message code="roomdetail.room" text="매물"/></span> <span class="rightb"><spring:message code="roominsert.roomtype2" text="전세"/></span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">전세가 </span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roomdetail.leaseprice" text="전세가"/></span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<%
 						// 월세,4,5일 경우에는 둘 다 보여준다.
 					} else if (room.getRoom_type().equals("1")) {
 					%>
 					<div class="roominfocontent">
-						<span class="leftb">매물</span> <span class="rightb">월세</span>
+						<span class="leftb"><spring:message code="roomdetail.room" text="매물"/></span> <span class="rightb"><spring:message code="roominsert.roomtype1" text="월세"/></span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">보증금</span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roominsert.deposit" text="보증금"/></span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">월세가</span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roomdetail.monthlyPrice" text="월세가"/></span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<%
 						// 반전세인 경우(월세인데 보증금을 더 내고 월세를 줄인다.)
 					} else if (room.getRoom_type().equals("4")) {
 					%>
 					<div class="roominfocontent">
-						<span class="leftb">매물</span> <span class="rightb">반전세</span>
+						<span class="leftb"><spring:message code="roomdetail.room" text="매물"/></span> <span class="rightb">반전세</span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">보증금</span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roominsert.deposit" text="보증금"/></span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">월세가</span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roomdetail.monthlyPrice" text="월세가"/></span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<%
 						} else {
 					%>
 					<div class="roominfocontent">
-						<span class="leftb">매물</span> <span class="rightb">단기임대</span>
+						<span class="leftb"><spring:message code="roomdetail.room" text="매물"/></span> <span class="rightb"><spring:message code="roominsert.roomtype5" text="단기임대"/></span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">보증금 : </span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roominsert.deposit" text="보증금"/> : </span> <span class="rightb"><fmt:formatNumber value="${room.room_deposit }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<div class="roominfocontent">
-						<span class="leftb">월세가 : </span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/>만원</span>
+						<span class="leftb"><spring:message code="roomdetail.monthlyPrice" text="월세가"/> : </span> <span class="rightb"><fmt:formatNumber value="${room.room_price }" pattern="#,###"/><spring:message code="roomdetail.won" text="만원"/></span>
 					</div>
 					<%
 						}
@@ -129,8 +130,8 @@
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb"><a href="javascript:reportUser()"
-							id="reportbtn">신고</a></span><span class="rightb"><a
-							href="javascript:messageUser()" id="messagebtn">쪽지</a></span>
+							id="reportbtn"><spring:message code="roomdetail.report" text="신고"/></a></span><span class="rightb"><a
+							href="javascript:messageUser()" id="messagebtn"><spring:message code="roomdetail.msg" text="쪽지"/></a></span>
 					</div>
 					<div class="userinfocontent">
 						<span class="leftb">Phone </span><span class="rightb">${member.member_phone }</span>
@@ -141,13 +142,13 @@
 				</div>
 				<div class="noD3Content"></div>
 				<div class="d3Content" >
-					<p class="pieinfo">&lt;매매가 및 전세금&gt;</p>
+					<p class="pieinfo">&lt;<spring:message code="roomdetail.saleOrLease" text="매매가 및 전세금"/>&gt;</p>
 					<div id="piechart1" ></div>
 					<div id="pieresult1"></div>
 					
 					<c:choose>
 						<c:when test="${room.room_type != 3 }">
-							<p class="pieinfo">&lt;월세&gt;</p>
+							<p class="pieinfo">&lt;<spring:message code="roominsert.roomtype1" text="월세"/>&gt;</p>
 							<div id="piechart2"></div>
 							<div id="pieresult2"></div>						
 						</c:when>
@@ -161,8 +162,7 @@
 		<!-- second container -->
 
 		<div id="noticeinfo">
-			<span class="leftroom"> 안전한 거래를 위해 필요한 서류를 <b>꼭</b> 참고해주세요. <a href="noticelist.do"> [ 공지사항
-					바로가기 ]</a>
+			<span class="leftroom"> <spring:message code="roomdetail.notice1" text="안전한 거래를 위해 필요한 서류를 <b>꼭</b> 참고해주세요."/> <a href="noticelist.do"><spring:message code="roomdetail.notice2" text="[ 공지사항 바로가기 ]" /></a>
 			</span>
 		</div>
 		
@@ -230,7 +230,7 @@
 		<div id="thirdcontainer">
 			<!-- 방 정보 제목을 담을 div -->
 			<div class="roominfo-title">
-				<h2>매물정보</h2>
+				<h2><spring:message code="roomdetail.roomInfo" text="매물 정보"/></h2>
 			</div>
 			<!-- 방 정보 내용들을 담을 div -->
 			<div class="roominfo-content">
@@ -238,7 +238,7 @@
 				<div class="roominfo-detail">
 					<!-- 컬럼div -->
 					<div class="roominfo-detail-title">
-						매물 이름
+						<spring:message code="roomdetail.roomname" text="매물 이름"/>
 					</div>
 					<!-- 해당 컬럼의 값 div -->
 					<div class="roominfo-detail-content">
@@ -248,7 +248,7 @@
 				
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						매물 면적(㎡)
+						<spring:message code="roomdetail.roomextent" text="매물 면적(㎡)"/>
 					</div>
 					<div class="roominfo-detail-content">
 						<fmt:formatNumber value="${room.room_extent }" pattern="#,###"/>㎡
@@ -256,7 +256,7 @@
 				</div>
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						매물 주소
+						<spring:message code="roomdetail.roomaddr" text="매물 주소"/>
 					</div>
 					<div class="roominfo-detail-content">
 						${room.room_addr }
@@ -264,29 +264,29 @@
 				</div>
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						건물 종류
+						<spring:message code="roomdetail.roomkind" text="건물 종류"/>
 					</div>
 					<div class="roominfo-detail-content">
 						<%
 							if (room.getRoom_kind().equals("1")) {
 						%>
-							아파트
+							<spring:message code="roomdetail.roomkind1" text="아파트"/>
 						<%
 							} else if (room.getRoom_kind().equals("2")) {
 						%>
-							빌라
+							<spring:message code="roominsert.roomkind2" text="빌라"/>
 						<%
 							} else if (room.getRoom_kind().equals("3")) {
 						%>
-							주택
+							<spring:message code="roominsert.roomkind3" text="주택"/>
 						<%
 							} else if (room.getRoom_kind().equals("4")) {
 						%>
-							오피스텔
+							<spring:message code="roominsert.roomkind4" text="오피스텔"/>
 						<%
 							} else {
 						%>
-							상가사무실
+							<spring:message code="roominsert.roomkind5" text="상가사무실"/>
 						<%
 							}
 						%>
@@ -294,21 +294,21 @@
 				</div>
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						매물 구조
+						<spring:message code="roomdetail.strc" text="매물 구조"/>
 					</div>
 					<div class="roominfo-detail-content">
 						<%
 							if (room.getRoom_structure().equals("1")) {
 						%>
-							방 1개
+							<spring:message code="roominsert.roomstrc1" text="방 1개"/>
 						<%
 							} else if (room.getRoom_structure().equals("2")) {
 						%>
-							방 2개
+							<spring:message code="roominsert.roomstrc2" text="방 2개"/>
 						<%
 							} else {
 						%>
-							방 3개 이상
+							<spring:message code="roominsert.roomstrc3" text="방 3개 이상"/>
 						<%
 							}
 						%>
@@ -316,15 +316,15 @@
 				</div>
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						매물 층수
+						<spring:message code="roomdetail.roomfloor" text="매물 층수"/>
 					</div>
 					<div class="roominfo-detail-content">
-						${room.room_floor }층
+						${room.room_floor }<spring:message code="roomdetail.floor" text="층"/>
 					</div>
 				</div>
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						매물 등록 날짜
+						<spring:message code="roomdetail.regdate" text="매물 등록 날짜"/>
 					</div>
 					<div class="roominfo-detail-content">
 						${room.room_regdate }
@@ -332,7 +332,7 @@
 				</div>
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						매물 준공 날짜
+						<spring:message code="roomdetail.cpdate" text="매물 준공 날짜"/>
 					</div>
 					<div class="roominfo-detail-content">
 						${room.room_cpdate }
@@ -340,7 +340,7 @@
 				</div>
 				<div class="roominfo-detail">
 					<div class="roominfo-detail-title">
-						입주 가능일
+						<spring:message code="roomdetail.avdate" text="입주 가능일"/>
 					</div>
 					<div class="roominfo-detail-content">
 						${room.room_avdate }
@@ -349,7 +349,7 @@
 			</div>
 				<div class="roominfo-content-detailcontent">
 					<div class="roominfo-content-detailcontent-title">
-						상세정보
+						<spring:message code="roomdetail.detail" text="상세정보"/>
 					</div>
 				</div>
 		</div>
@@ -371,9 +371,9 @@
 				%>
 				<div class="roominfosubmit">
 					<div class="submitbtn">
-						<input type="button" value="수정"
+						<input type="button" value="<spring:message code='roomdetail.update' text='수정'/>"
 							onclick="location.href='updateroom.do?room_no=${room.room_no}'" class="roombtn"/>
-						<input type="button" value="삭제"
+						<input type="button" value="<spring:message code='roomdetail.delete' text='삭제'/>"
 							onclick="location.href='deleteroom.do?room_no=${room.room_no}'" class="roombtn"/>
 					</div>
 				</div>
