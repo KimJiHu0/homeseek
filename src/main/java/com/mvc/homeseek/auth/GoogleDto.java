@@ -32,7 +32,7 @@ public class GoogleDto {
 	
     private final static String CLIENT_ID = "511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com";
     private final static String CLIENT_SECRET = "BGVqvPv7tIU9mnBq9i7Dp-I1";
-    private final static String REDIRECT_URI = "http://localhost:8787/homeseek/googlecallback.do";
+    private final static String REDIRECT_URI = "https://homeseek.ml/googlecallback.do";
     private final static String PROTECTED_RESOURCE_URL = "https://www.googleapis.com/oauth2/v3/userinfo";
     private final static String SCOPE = "openid profile email";
     private final static String SESSION_STATE = "oauth_state_g";
