@@ -30,7 +30,10 @@
 			<br>
 			
 			<div id="insert_content">
-				<textarea rows="6" cols="30" id="photo_list"></textarea>
+				<h3>업로드된 파일</h3>
+				<textarea id="photo_list"></textarea>
+				
+				<h3>공지사항 내용</h3>
 				<textarea rows="10" cols="60" id="summernote" name="notice_content"></textarea>
 			</div>
 
