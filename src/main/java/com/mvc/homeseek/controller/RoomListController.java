@@ -75,7 +75,7 @@ public class RoomListController {
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			search_addr = "https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com:443/homeseek/_search?q="+search+"&pretty&size=100";
+			search_addr = "https://search-homeseek-el7f4oyyavqa3vi5cx63opdygm.us-east-2.es.amazonaws.com:443/homeseek/_search?q="+search+"&pretty&size=100";
 		}
 		
 		
@@ -132,7 +132,7 @@ public class RoomListController {
 		
 		
 		if(word=="") {
-			search_addr ="https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com/homeseek/_search?&pretty&size=100";
+			search_addr ="https://search-homeseek-el7f4oyyavqa3vi5cx63opdygm.us-east-2.es.amazonaws.com/homeseek/_search?&pretty&size=100";
 
 		}else {
 			try {
@@ -140,7 +140,7 @@ public class RoomListController {
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			search_addr = "https://search-homeseek-es-smlx75zlzgyasydsa5426gynbi.us-east-2.es.amazonaws.com:443/homeseek/_search?q="+search+"&pretty&size=100";
+			search_addr = "https://search-homeseek-el7f4oyyavqa3vi5cx63opdygm.us-east-2.es.amazonaws.com:443/homeseek/_search?q="+search+"&pretty&size=100";
 
 		}
 		
