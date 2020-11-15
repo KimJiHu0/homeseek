@@ -43,6 +43,7 @@ $("#summernote_img").summernote({
 //--------------------------------------------------------------------------------------------------------
 
 var totalPhoto = "";
+var ListForRead = "";
 var newList = "";
 var photo = $('#insert_photo');
 var photoList = $('#list_area');
@@ -57,12 +58,14 @@ function sendFile(file) {
 		url:'summer_image.do',
 		cache :false,
 		contentType : false,
-		enctype : 'multipart/form-data',
+		enctype : 'multipart/form-data', 	
 		processData : false,
 		success : function(img) {
 				
 				var img_db = 'resources/' + img;
 				totalPhoto += img_db;
+				
+				ListForRead += img_db +',';
 				
 				newList += img + '\n'; 
 				
@@ -90,7 +93,8 @@ function sendFile(file) {
 				
 				
 				console.log("이미지 처리중");
-				photo.val(totalPhoto);
+				
+				photo.val(ListForRead);
 				
 			}
 			

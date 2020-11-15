@@ -4,14 +4,27 @@
 	margin-right : 30px;
 }
 
+/* -------------------- main title -------------------- */
 
 #insert_noticetitle {
 	width : 80%;
 	max-width : 500px;
 }
 
+/* -------------------- main content -------------------- */
+
 #insert_content {
-	margin-top : 30px;
+	width : 100%;
+	max-width : 1200px;
+	margin : 15px 0 15px 0;
+}
+
+#insert_content #photo_list{
+	
+	width : 100%;
+	max-width : 1200px;
+	margin : 15px 0 15px 0;
+	resize : none;
 }
 
 
