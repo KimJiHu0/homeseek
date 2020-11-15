@@ -19,14 +19,15 @@ public class SNSLogin {
 	private OAuth20Service oauthService;
 	private SnsValue sns;
 	
-	//
+	
 	public SNSLogin(SnsValue sns) {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		this.oauthService = new ServiceBuilder(sns.getClientId())
 				.apiSecret(sns.getClientSecret())
 				//콜백 주소
 				.callback(sns.getRedirectUrl())
 				//.scope()가 없어서 대체 / 어떤정보를 갖고올지 미리 정함(우리갖은 경우엔 '이름','이메일').
-				.scope("profile")
+				.defaultScope("profile")
 				//sns OOapi20인스턴스 만들어주세요~~ 하는거.
 				.build(sns.getApi20Instance());
 
@@ -35,7 +36,9 @@ public class SNSLogin {
 	
 	//
 	public String getNaverAuthURL() {
+		System.out.println("#@#@#@#@#@#@#@#@#@##@"+this.oauthService.getAuthorizationUrl());
 		return this.oauthService.getAuthorizationUrl();
+		
 	}
 
 	//callback관련 내용.....
