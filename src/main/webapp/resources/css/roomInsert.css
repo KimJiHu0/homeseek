@@ -9,6 +9,18 @@ section #top_title {
 }
 
 
+a{
+	text-decoration : none !important;
+	color:#6A6868;
+}
+
+.dropbtn{
+	font-weight: normal !important;
+}
+
+a:hover{
+	color : #6A6868;
+}
 
 
 /* section -> main_content로대체되었다. */
@@ -25,7 +37,9 @@ section #top_title {
 	margin: 0 auto;
 }
 
-
+h4{
+	color:white;
+}
 
 .form_div {
 	width: 100%;
@@ -34,7 +48,7 @@ section #top_title {
 	margin : 0 auto;
 	padding-right: 50px;
 	padding-left: 50px;
-	background-color:#dcdcdc;
+	background-color:#7EAB7D;
 	border-radius: 15px;
 	
 }
@@ -82,6 +96,7 @@ button[data-name=resizedDataImage] input {
 	width: 15%;
 	max-width:112.5px;
 	padding-left:10px;
+	color:white;
 }
 
 #insert_div1 input{
@@ -111,12 +126,17 @@ button[data-name=resizedDataImage] input {
 	width: 15%;
 	max-width:112.5px;
 	padding-left:10px;
+	color:white;
 }
 
 #insert_div2 input{
 	width: 15%;
 	max-width:150px;
 	margin-left: 5px;
+}
+
+#addr_notice{
+	color:white;
 }
 
 /* --------------- div3 주소(kakao map) --------------- */
@@ -133,6 +153,7 @@ button[data-name=resizedDataImage] input {
 	width: 15%;
 	max-width:112.5px;
 	padding-left:10px;
+	color:white;
 }
 
 #insert_div3 #room_addr{
@@ -153,6 +174,7 @@ button[data-name=resizedDataImage] input {
 	position: relative;
 	z-index: 2;
 	background-color:white;
+	border-radius: 5px;
 }
 
 
@@ -163,14 +185,16 @@ button[data-name=resizedDataImage] input {
 	margin: auto;
 	position: absolute;
 	text-align: center;
-	border: 7px dashed #808080;
+	border: 7px dashed gray;
 	transition: 0.2s all;
 	background-color : white;
+	border-radius: 5px;
 }
 
 #insert_div3 #show_map:hover{
-	border: 7px dashed #696969;
-	transform: scale(1.02);
+	border: 7px dashed #C0C0C0;
+	background: #DCDCDC;
+	
 }
 
 
@@ -185,7 +209,7 @@ button[data-name=resizedDataImage] input {
 #insert_div3 #show_map #map_notice{
 	margin: auto;
 	font-size: 20px;
-	color : green;
+	color : #7EAB7D;
 	margin-top: 5%;
 	font-weight: bolder;
 }
@@ -206,6 +230,7 @@ button[data-name=resizedDataImage] input {
 	width: 15%;
 	max-width:112.5px;
 	padding-left:10px;
+	color:white;
 }
 
 #insert_div4 input{
@@ -233,20 +258,16 @@ button[data-name=resizedDataImage] input {
 	width: 15%;
 	max-width:112.5px;
 	padding-left:10px;
-	
+	color:white;
 }
 
 #insert_div5 #detail_label{
 	font-size : 20px;
 	width: 20%;
 	max-width:150px;
+	color:white;
 }
 
-#insert_div5 input{
-	width: 15%;
-	max-width:150px;
-	margin-left: 5px;
-}
 
 
 #insert_div5 #insert_cpdate{
@@ -268,18 +289,19 @@ button[data-name=resizedDataImage] input {
 #insert_div5 #insert_list {
 	width : 100%;
 	max-width : 1200px;
-	background-color: #b4b4b4;
+	background-color: #C0C0C0;
 	height : 120px;
 	margin-bottom:20px;
+	border-radius: 5px;
 }
 
 #insert_div5 #insert_imglist{
 	width : 100%;
 	max-width : 1200px;
-	background-color: #b4b4b4;
+	background-color: #C0C0C0;
 	height : 220px;
 	padding: 10px;
-	
+	border-radius: 5px;
 	
 }
 
@@ -293,6 +315,7 @@ button[data-name=resizedDataImage] input {
 	width: 15%;
 	max-width:112.5px;
 	padding-left:10px;
+	color:white;
 }
 
 #insert_list #list_area{
@@ -318,11 +341,34 @@ button[data-name=resizedDataImage] input {
 .control #submit_button{
 	width : 10%;
 	max-width : 100px;
+	border:0;
+	outline:0;
+	background-color: #C0C0C0;
+	color:white;
+	transition: 0.3s all;
+	border-radius: 5px;
 }
+
+.control #submit_button:hover{
+	transform: scale(1.05);
+	opacity:0.7;
+}
+
 
 .control #cancel_button{
 	width : 10%;
 	max-width : 100px;
+	border:0;
+	outline:0;
+	background-color: #C0C0C0;
+	color:white;
+	transition: 0.3s all;
+	border-radius: 5px; 
+}
+
+.control #cancel_button:hover{
+	transform: scale(1.05);
+	opacity:0.7;
 }
 
 
