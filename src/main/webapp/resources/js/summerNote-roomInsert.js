@@ -1,7 +1,6 @@
 $(function() {
 	$('#summernote').summernote({
-		placeholder: 
-					'방의 세부 사항을 입력해주세요. 허위내용 기재시 게시물이 무통보 삭제 될수 있습니다. ',
+		placeholder: '<spring:message code="roominsert.detailplaceholder" text="방의 세부 사항을 입력해주세요. 허위내용 기재시 게시물이 무통보 삭제 될수 있습니다."/>',
 		height: 300,
 		minHeight: 300,             
 		maxHeight: 300,             

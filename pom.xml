@@ -306,6 +306,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- google api dependency -->
+      <dependency>
+         <groupId>com.google.api-client</groupId>
+         <artifactId>google-api-client</artifactId>
+         <version>1.30.10</version>
+      </dependency>
 	</dependencies>
 	<build>
 		<plugins>
