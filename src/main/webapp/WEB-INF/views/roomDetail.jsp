@@ -169,8 +169,7 @@
 
 		<div id="roommap"></div>
 		<!-- kakaoMap을 쓰기위한 스크립트 -->
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">
 			//-------------------------지도쓰기-----------------------//
 			// roommap이라는 div를 container이라는 변수에 담아주기. [실제로 map이 담길 div]
@@ -225,10 +224,6 @@
 					map.setCenter(coords);
 				}
 			});
-
-			$(function() {
-				$("#mapcontent").parent().parent().attr('border-radius', '20px');
-			})
 		</script>
 
 		<!-- third container -->

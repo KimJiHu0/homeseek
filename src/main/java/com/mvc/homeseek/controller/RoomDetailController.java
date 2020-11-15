@@ -174,6 +174,7 @@ public class RoomDetailController {
 		Random r = new Random();
         int random = r.nextInt(100000000); 
 		
+        // 사용자들이 동시에 사진을 올렸을 때에 구분하기 위해 Calendar객체 생성
 		Calendar c = Calendar.getInstance();
 		int year = c.get(Calendar.YEAR);
 		int month = c.get(Calendar.MONTH) + 1;

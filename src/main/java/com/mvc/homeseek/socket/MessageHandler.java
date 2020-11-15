@@ -53,6 +53,7 @@ public class MessageHandler extends TextWebSocketHandler {
 
 
 		// getPayload는 message에 붙여준다?는 느낌인 것 같다.
+		// 쪽지보내기를 했을 때에 socket.send()를 통해 이 메소드로 보내준다.
 		String msg = message.getPayload();
 
 		if (StringUtils.isNotEmpty(msg)) {
@@ -67,13 +68,10 @@ public class MessageHandler extends TextWebSocketHandler {
 			  // 작성자가 로그인해있다면 // 쪽지 받는 사람
 			  WebSocketSession messageReid = userSessionMap.get(message_reid);
 			  
-			  logger.info("\n boardWriterSession? : " + messageReid.toString());
-			  logger.info("\n message? : " + cmd);
-			  
 			  if ("message".equals(cmd) && messageReid != null) {
 			  
 			  TextMessage tmpMsg = new TextMessage(message_senid + "님이 " + message_reid + "님에게 쪽지를 보냈습니다."); 
-			  messageReid.sendMessage(tmpMsg); // 이 부분이 쪽지를 보낸사람의 id에게 send해주는 부분?
+			  messageReid.sendMessage(tmpMsg); // 이 부분이 쪽지를 보낸사람의 id에게 send해주는 부분
 			  }
 			}			 
 		}

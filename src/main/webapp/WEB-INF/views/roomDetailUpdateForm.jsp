@@ -393,38 +393,45 @@
 	
 
 // --------------------------------------썸머노트----------------------------------------------
-	$(document)
-			.ready(
-					function() {
-						//$('#summernote').val("${board_data.BOARD_CONTENT}");
-						$('.summernote')
-								.summernote(
-										{
-											placeholder : '최대 2048자까지 입력할 수 있습니다.</br>' + 
-											  '허위사실 기재 혹은 욕설은 관리자에 의해 제재를 당할 수 있습니다.',
-											minHeight : 370,
-											maxHeight : 370,
-											focus : true,
-											lang : 'ko-KR',
-											fontSizes : [ '8', '9', '10', '11',
-													'12', '14', '16', '18',
-													'20', '22', '24', '28',
-													'30', '36', '50', '72' ],
-											callbacks : {
-												onImageUpload : function(files,
-														editor, welEditable) {
-													for (var i = files.length - 1; i >= 0; i--) {
-														sendFile(files[i], this);
-														cnt = 0;
-													}
-												}
-											}
-										});
-					});
+	$(document).ready(function() {
+		//$('#summernote').val("${board_data.BOARD_CONTENT}");
+		$('.summernote')
+				.summernote({
+					// SummerNote의 placeholder 지정
+					placeholder : '최대 2048자까지 입력할 수 있습니다.</br>' + 
+					  '허위사실 기재 혹은 욕설은 관리자에 의해 제재를 당할 수 있습니다.',
+					// SummerNote의 최소 height 지정
+					minHeight : 370,
+					// SummerNote의 최대 height 지정
+					maxHeight : 370,
+					// 포커스 지정
+					focus : true,
+					// 한국어 지정
+					lang : 'ko-KR',
+					// 폰트의 크기 지정
+					fontSizes : [ '8', '9', '10', '11',
+							'12', '14', '16', '18',
+							'20', '22', '24', '28',
+							'30', '36', '50', '72' ],
+					// FileUpload
+					callbacks : {
+						// 파일 업로드가 들어오면
+						onImageUpload : function(files, editor, welEditable) {
+							// 들어온 파일만큼 for문을 돌아주며
+							for (var i = files.length - 1; i >= 0; i--) {
+								// sendFile 함수 실행
+								sendFile(files[i], this);
+								cnt = 0;
+							}
+						}
+					}
+				});
+			});
 
 	var cnt;
 
 	function sendFile(file, editor) {
+		// 이미지와 이미지 경로가 들어가는 모든 부분을 remove
 		$(".room-image").remove();
 		$(".room_image").remove();
 		$(".room_photo").remove();
@@ -443,9 +450,6 @@
 					enctype : 'multipart/form-data',
 					processData : false,
 					success : function(img_name) { 
-						//alert(cnt);
-						//alert(img_name); // 여기 잘 넘어옴
-						//$(".roomimg").attr("src", img_name);
 
 						// image라는 변수에다가 img태그를 만들고 src를 준다.
 						var image = $("<img>").attr("src", img_name); //img_name : resources/rgusqls@naver.com/homeseekimg.jsp
@@ -454,12 +458,6 @@
 						image.addClass('room_image ' + cnt);
 						// 올리는 모든 사진들을 hide해준다.
 						image.css("display", "none");
-						// <img class="room_image" src="resources/rgusqls@naver.com/사진.jpg">
-						//var image = $("<img>").attr("src", img_name);
-
-						// 이미지태그가 content가 박히는 명령어
-						//$('.summernote').summernote('insertNode', image[0]);
-						// update-image-detail에 image를 append
 
 						$('.update-image-detail').append(image[0]);
 						// 대신 첫번쨰에 있는 사진만 show
