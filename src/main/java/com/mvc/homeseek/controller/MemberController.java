@@ -60,7 +60,7 @@ public class MemberController {
 
 	@Autowired
 	private KakaoAPI kakao;
-	
+
 	@Autowired
 	private GoogleDto GoogleDto;
 
@@ -80,23 +80,25 @@ public class MemberController {
 
 		return "callme";
 	}
-	
+
 	@RequestMapping("snsinfo.do")
 	@ResponseBody
 	public Map<String, String> snsinfo(HttpSession session) {
 
 		Map<String, String> map = new HashMap<String, String>();
+		// 카카오 로그인 URL받기
+		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + id + "&redirect_uri=" + url
+				+ "&response_type=code";
+		map.put("kakao_url", kakaoUrl);
+		System.out.println(kakaoUrl);
+		
+		
 		// 네이버 로그인 URL받기
 		SNSLogin snsLogin = new SNSLogin(naverSns);
 		String naverUrl = snsLogin.getNaverAuthURL();
 		map.put("naver_url", naverUrl);
 		System.out.println(naverUrl);
 
-		// 카카오 로그인 URL받기
-		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + id + "&redirect_uri=" + url
-				+ "&response_type=code";
-		map.put("kakao_url", kakaoUrl);
-		System.out.println(kakaoUrl);
 
 		// 구글 로그인 URL받기
 		String googleAuthUrl = GoogleDto.getAuthorizationUrl(session);
@@ -237,7 +239,6 @@ public class MemberController {
 		System.out.println("email : " + googledto.getMember_id());
 		System.out.println("name : " + googledto.getMember_name());
 
-		
 		if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
 
 			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
