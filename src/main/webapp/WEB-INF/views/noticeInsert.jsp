@@ -28,10 +28,9 @@
 			<input id="insert_noticetitle" name='notice_title' placeholder="제목을 입력해주세요.">
 			
 			<br>
-			<label for="insert_image" id="image_label">이미지</label>
-			<input type="file" multiple="multiple">
 			
 			<div id="insert_content">
+				<textarea rows="6" cols="30" id="photo_list"></textarea>
 				<textarea rows="10" cols="60" id="summernote" name="notice_content"></textarea>
 			</div>
 
