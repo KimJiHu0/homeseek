@@ -28,26 +28,26 @@
 	cursor: pointer;
 }
 
-#qnaSearch_bar, h1{
-	width:70%; 
-	margin-left:15%; 
-	margin-right:15%;
+#qnaSearch_bar, h1 {
+	width: 70%;
+	margin-left: 15%;
+	margin-right: 15%;
 }
 
-
-#nav.paging{
-    display:flex;
-    justify-content:center;
-    align-items:center;
+#nav.paging {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#nav.paging > a{
-    color: var(--color-light-grey);
-    margin:8px;
+#nav.paging>a {
+	color: var(- -color-light-grey);
+	margin: 8px;
 }
-#nav.paging > a.active{
-    color: green;
-    margin:8px;
+
+#nav.paging>a.active {
+	color: green;
+	margin: 8px;
 }
 /* 
 .header ul.nav2{
@@ -69,14 +69,13 @@ dialog span {
 	cursor: pointer;
 }
 
-table.table_qna{
-	/* width:70%; */ 
-	margin-left:15%; 
-	margin-right:15%;
+table.table_qna {
+	/* width:70%; */
+	margin-left: 15%;
+	margin-right: 15%;
 	/* display:flex; */
-    justify-content:center;
-    align-items:center;
-	
+	justify-content: center;
+	align-items: center;
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 1.5;
@@ -86,80 +85,86 @@ table.table_qna{
 	border-right: 3px solid #7EAB7D;
 	margin: 20px 10px;
 }
+
 table.table_qna th {
 	width: 150px;
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
 }
+
 table.table_qna td {
 	width: 350px;
 	padding: 10px;
 	vertical-align: top;
 }
-table.table_qna .even{
+
+table.table_qna .even {
 	background: #7EAB7D;
 }
 
 /*=======Button============= */
-td > input.btn_1{
-  border:1px solid transparent; 
-   -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-  transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+td>input.btn_1 {
+	border: 1px solid transparent;
+	-webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+	transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
 }
 
-td > input.btn_1::before {
-  content: '';
-  position: absolute;
-  left: 0px;
-  bottom:0px;
-  z-index:-1;
-  width: 0%;
-  height:1px;
-  background: #6098FF;
-  box-shadow: inset 0px 0px 0px #6098FF;
-  display: block;
-  -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-  transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
+td>input.btn_1::before {
+	content: '';
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	z-index: -1;
+	width: 0%;
+	height: 1px;
+	background: #6098FF;
+	box-shadow: inset 0px 0px 0px #6098FF;
+	display: block;
+	-webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+	transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
 }
 
-td > input.btn_1:hover::before {
-  width:100%;
+td>input.btn_1:hover::before {
+	width: 100%;
 }
 
-td > input.btn_1::after {
-  content: '';
-  position: absolute;
-  right: 0px;
-  top:0px;
-  z-index:-1;
-  width: 0%;
-  height:1px;
-  background: #6098FF;
-  -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-  transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
+td>input.btn_1::after {
+	content: '';
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: -1;
+	width: 0%;
+	height: 1px;
+	background: #6098FF;
+	-webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+	transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
 }
-td > input.btn_1:hover::after {
-  width:100%;
+
+td>input.btn_1:hover::after {
+	width: 100%;
 }
-td >input.btn_1:hover{
-  border-left:1px solid #6098FF;
-  border-right:1px solid #6098FF;
+
+td>input.btn_1:hover {
+	border-left: 1px solid #6098FF;
+	border-right: 1px solid #6098FF;
 }
 </style>
 <body>
 	<!-- header.jsp -->
 	<section>
-		<div  id="products">
+		<div id="products">
 
 			<form action="" id="setRows">
 				<input type="hidden" name="rowPerPage" value="10">
 			</form>
-			
+
 			<h1>Q N A 리 스 트</h1>
-			
+
 			<div id="qnaSearch_bar">
-				<a> 검 색  : <input id="qnaSearch" type="search" value="" placeholder="QNA검색해주세여" /></a>
+				<a> 검 색 : <input id="qnaSearch" type="search" value=""
+					placeholder="QNA검색해주세여" /></a>
 			</div>
 
 			<table border="1" class="table_qna">
@@ -186,32 +191,38 @@ td >input.btn_1:hover{
 									<td>${dto.qna_no}</td>
 									<td>${dto.qna_id }</td>
 									<td>${dto.qna_title }</td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${dto.qna_regdate}" /></td>
-									<td>${dto.qna_secretflag}</td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.qna_regdate}" /></td>
+									<c:choose>
+										<c:when test="${dto.qna_secretflag eq 'Y'.charAt(0) }">
+											<td>비밀글</td>
+										</c:when>
+										<c:otherwise>
+											<td>공개글</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 				</tbody>
 				<tr>
-				<c:if test="${ empty login }">
-					<td colspan="5" align="right"><input type="button" value="로그인 후 글작성하기"
-						class ="login2 btn_1" /></td>
-				</c:if>
-				<c:if test="${ not empty login }">
-					<td colspan="5" align="right"><input type="button" value="글작성" class ="btn_1" 
-						onclick="location.href='qnainsertform.do'" /></td>
-				</c:if>
+					<c:if test="${ empty login }">
+						<td colspan="5" align="right"><input type="button"
+							value="로그인 후 글작성하기" class="login2 btn_1" /></td>
+					</c:if>
+					<c:if test="${ not empty login }">
+						<td colspan="5" align="right"><input type="button"
+							value="글작성" class="btn_1"
+							onclick="location.href='qnainsertform.do'" /></td>
+					</c:if>
 				</tr>
 			</table>
 		</div>
-		
+
 
 	</section>
 
 	<script>
-	
 		$("#qnaSearch")
 				.keyup(
 						function() {
@@ -350,7 +361,8 @@ td >input.btn_1:hover{
 				html += "<form action='' id='setRows'><input type='hidden' name='rowPerPage' value='10'></form>"
 				for ( var i in data) {
 					var list = data[i];
-					html += `<tr class='eval-contents' onclick="location.href='qnadetail.do?qna_no=` + list.qna_no + `'">`;
+					html += `<tr class='eval-contents' onclick="location.href='qnadetail.do?qna_no=`
+							+ list.qna_no + `'">`;
 					html += "<td>" + list.qna_no + "</td>";
 					html += "<td>" + list.qna_id + "</td>";
 					html += "<td>" + list.qna_title + "</td>";
@@ -367,7 +379,7 @@ td >input.btn_1:hover{
 
 		}
 	</script>
-<!-- 	<script type="text/javascript">
+	<!-- 	<script type="text/javascript">
 		$(document).ready(function() {
 
 			$("#regBtn").on("click", function() {
@@ -384,7 +396,7 @@ td >input.btn_1:hover{
 <script type="text/javascript">
 	$(".login2").click(function() {
 		$(".modal-back").show();
-		$(".modal").css("z-index","20");
+		$(".modal").css("z-index", "20");
 		$(".modal").css("top", "100px");
 		$(".modal").css("opacity", "1");
 	});
@@ -392,7 +404,7 @@ td >input.btn_1:hover{
 		$(this).hide();
 		$(".modal").css("top", "50px");
 		$(".modal").css("opacity", "0");
-		$(".modal").css("z-index","-1");
+		$(".modal").css("z-index", "-1");
 	});
 </script>
 </html>
