@@ -225,7 +225,7 @@ a {
 
 
             <!-- 엘라스틱서치로 변경시 search.do 로 변경 -->
-            <li><a class="headeratag" href="listroom.do"><spring:message
+            <li><a class="headeratag" href="search.do"><spring:message
                      code="h.list" text="전체 방 보기" /></a></li>
             <%
                if (dto == null) {
