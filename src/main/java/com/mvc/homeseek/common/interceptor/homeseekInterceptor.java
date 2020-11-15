@@ -102,6 +102,7 @@ public class homeseekInterceptor implements HandlerInterceptor {
 				request.getRequestURI().contains("mypagesenmsgdetail.do") ||
 				request.getRequestURI().contains("insertroom.do") ||
 				request.getRequestURI().contains("detailroom.do") ||
+				request.getRequestURI().contains("snsinfo.do") ||
 				request.getRequestURI().contains("mypageremsgdetail.do") ) {//이 조건들일때만 컨트롤러로 넘어갈 수 있게 만든 것이다.
 			
 		

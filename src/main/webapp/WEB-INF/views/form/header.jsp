@@ -17,11 +17,6 @@ response.setDateHeader("Expires", 0L);
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- 구글 로그인 api -->
-<meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id"
-   content="511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <title>HOMESEEK</title>
 <script type="text/javascript"
    src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -35,6 +30,7 @@ response.setDateHeader("Expires", 0L);
 <script src="resources/js/login.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/js/header.js"
    type="text/javascript"></script>
+
 </head>
 <style>
 @charset "UTF-8";
@@ -220,7 +216,7 @@ a {
                         <!--  엘라스틱 시현시 search.do 로 변경 -->
                         <form action="listroom.do" class="navsearchform">
                            <input type="text" id="navsearchtxt" name="word"
-                              value="${word }" placeholder="<spring:message code='h.searchplaceholder' text='지역,지하철명,아이디'/>"/>
+                              value="${word }" placeholder="<spring:message code='h.searchplaceholder' text='지역,지하철명,아이디'/>">
                         </form>
                      </div>
                   </li>
@@ -278,8 +274,8 @@ a {
             %>
 
 
-            <li><span class="login2"> <a class="headeratag">LOGIN
-                     | REGIST</a>
+            <li><span class="login2"> <a onclick="getSnsUrl();"
+                  class="headeratag">LOGIN | REGIST</a>
             </span></li>
 
             <%
@@ -328,73 +324,187 @@ a {
          </ul>
 
          </div>
-         <div class="modal-back"></div>
-         <div class="modal_login">
-            <div class="modal_close">
-               <a href="main.do">close</a>
-            </div>
-            <div>
-
-               <div class="loginlogo">
-                  <a href="#">HOME<span>SEE</span>K
-                  </a>
-               </div>
-
-               <table>
-                  <tr>
-                     <td><input type="text" placeholder="I D"
-                        id="member_id_modal" class="memberid1" /></td>
-                  </tr>
-                  <tr>
-                     <td><input type="password" placeholder="P W"
-                        id="member_pw_modal" class="memberpw1" /></td>
-                  </tr>
-                  <tr>
-                     <td colspan="2"><input type="button" value="login"
-                        id="loginbtn" onclick="loginPrc();" /></td>
-                  </tr>
-                  <tr>
-                     <td colspan="2" align="center" id="loginchk"></td>
-                  </tr>
-               </table>
-
-               <div class="snslogin">
-                  <a id="naver_url"
-                     href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QAAvdWTo1o2T1xyFFbev&redirect_uri=https%3A%2F%2Fhomeseek.ml%2Fnavercallback.do&scope=profile
-                     ">
-                     <img width="150" height="37"
-                     src="${pageContext.request.contextPath}/resources/img/naver-login.png"
-                     alt="Naver Login" />
-                  </a> <a
-                     href="https://accounts.google.com/o/oauth2/auth?client_id=511979566115-7kh42le5dh3pmhfvgehvjrak74k4r251.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&redirect_uri=https%3A%2F%2Fhomeseek.ml%2Fgooglecallback.do">
-                     <img width="150" height="38"
-                     src="${pageContext.request.contextPath}/resources/img/google-login.jpg"
-                     alt="Google Login" />
-                  </a> <a
-                     href="https://kauth.kakao.com/oauth/authorize?client_id=2dc56fd515158890d47575ddc651d7e8&redirect_uri=https://homeseek.ml/kakaocallback.do&response_type=code">
-                     <img width="150" height="38"
-                     src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png"
-                     alt="Kakao Login" />
-                  </a>
-               </div>
-
-               <!-- 구글로그인 링크 -->
-               <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-
-               <ul class="idpwlink">
-                  <li><a href="findidform.do"><spring:message code="h.id"
-                           text="아이디 찾기" /></a></li>
-                  <li><a> | </a></li>
-                  <li><a href="findpwdform.do"><spring:message code="h.pw"
-                           text="비밀번호 찾기" /></a></li>
-                  <li><a> | </a></li>
-                  <li><a href="registform.do"><spring:message
-                           code="h.regist" text="회원가입" /></a></li>
-               </ul>
-            </div>
-         </div>
+         <div class="modal-back" onclick="closeModal();"></div>
+         <div class="modal_login"></div>
    </header>
 </body>
+<script>
+   let naver_url;
+   let google_url;
+   let kakao_url;
+   function getSnsUrl() {
+      $.ajax({
+         type : "post",
+         url : "snsinfo.do",
+         contentType : "application/json",
+         dataType : "json",
+         success : function(msg) {
+            //console.log(msg.naver_url);
+            naver_url = msg.naver_url;
+            google_url = msg.google_url;
+            kakao_url = msg.kakao_url;
+
+            clickLogin();
+         }
+      });
+   }
+   function clickLogin() {
+
+      //console.log(naver_url);
+      //console.log(google_url);
+      //console.log(kakao_url);
+
+      let modal_login = document.getElementsByClassName("modal_login")[0];
+      modal_login.innerHTML = "";
+
+      let modal_close = document.createElement("div");
+      modal_close.setAttribute("class", "modal_close");
+      let a_close = document.createElement("a");
+      //모달클로즈
+      a_close.setAttribute("href","main.do");
+      a_close.setAttribute("onclick","closeModal();");
+      a_close.textContent = "close";
+      modal_close.appendChild(a_close);
+      modal_login.appendChild(modal_close);
+
+      let modal = document.createElement("div");
+
+      let loginlogo = document.createElement("div");
+      loginlogo.setAttribute("class", "loginlogo");
+      let a_home = document.createElement("a");
+      a_home.setAttribute("href", "#");
+      a_home.innerHTML = "HOME<span>SEE</span>K";
+      loginlogo.appendChild(a_home);
+      modal.appendChild(loginlogo);
+
+      let table = document.createElement("table");
+      let tr1 = document.createElement("tr");
+      let td1 = document.createElement("td");
+      let input_id = document.createElement("input");
+      input_id.setAttribute("type", "text");
+      input_id.setAttribute("placeholder", "I D");
+      input_id.setAttribute("id", "member_id_modal");
+      input_id.setAttribute("class", "memberid1");
+      td1.appendChild(input_id);
+      tr1.appendChild(td1);
+      let tr2 = document.createElement("tr");
+      let td2 = document.createElement("td");
+      let input_pw = document.createElement("input");
+      input_pw.setAttribute("type", "password");
+      input_pw.setAttribute("placeholder", "P W");
+      input_pw.setAttribute("id", "member_pw_modal");
+      input_pw.setAttribute("class", "memberpw1");
+      td2.appendChild(input_pw);
+      tr2.appendChild(td2);
+      let tr3 = document.createElement("tr");
+      let td3 = document.createElement("td");
+      td3.setAttribute("colspan", "2");
+      let input_loginbtn = document.createElement("input");
+      input_loginbtn.setAttribute("type", "button");
+      input_loginbtn.setAttribute("value", "login");
+      input_loginbtn.setAttribute("id", "loginbtn");
+      input_loginbtn.setAttribute("onclick", "loginPrc();");
+      td3.appendChild(input_loginbtn);
+      tr3.appendChild(td3);
+
+      let tr4 = document.createElement("tr");
+      let td4 = document.createElement("td");
+      td4.setAttribute("colspan", "2");
+      td4.setAttribute("align", "center");
+      td4.setAttribute("id", "loginchk");
+      tr4.appendChild(td4);
+
+      table.appendChild(tr1);
+      table.appendChild(tr2);
+      table.appendChild(tr3);
+      table.appendChild(tr4);
+      modal.appendChild(table);
+
+      let snslogin = document.createElement("div");
+      snslogin.setAttribute("class", "snslogin");
+
+      let a1 = document.createElement("a");
+      a1.setAttribute("id", "naver_url");
+      a1.setAttribute("href", naver_url);
+      let img1 = document.createElement("img");
+      img1.setAttribute("width", "150");
+      img1.setAttribute("height", "37");
+      img1
+            .setAttribute("src",
+                  "${pageContext.request.contextPath}/resources/img/naver-login.png");
+      img1.setAttribute("alt", "Naver Login");
+      a1.appendChild(img1);
+
+      let a2 = document.createElement("a");
+      a2.setAttribute("id", "google_url");
+      a2.setAttribute("href", google_url);
+      let img2 = document.createElement("img");
+      img2.setAttribute("width", "150");
+      img2.setAttribute("height", "38");
+      img2
+            .setAttribute("src",
+                  "${pageContext.request.contextPath}/resources/img/google-login.jpg");
+      img2.setAttribute("alt", "Google Login");
+      a2.appendChild(img2);
+
+      let a3 = document.createElement("a");
+      a3.setAttribute("id", "kakao_url");
+      a3.setAttribute("href", kakao_url);
+      let img3 = document.createElement("img");
+      img3.setAttribute("width", "150");
+      img3.setAttribute("height", "38");
+      img3
+            .setAttribute(
+                  "src",
+                  "${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png");
+      img3.setAttribute("alt", "Kakao Login");
+      a3.appendChild(img3);
+
+      snslogin.appendChild(a1);
+      snslogin.appendChild(a2);
+      snslogin.appendChild(a3);
+      modal.appendChild(snslogin);
+
+      let idpwlink = document.createElement("ul");
+      idpwlink.setAttribute("class", "idpwlink");
+
+      let li1 = document.createElement("li");
+      let lia1 = document.createElement("a");
+      lia1.setAttribute("href", "findidform.do");
+      lia1.textContent = "아이디 찾기";
+      li1.appendChild(lia1);
+      idpwlink.appendChild(li1);
+      let li2 = document.createElement("li");
+      let lia2 = document.createElement("a");
+      lia2.textContent = "|";
+      li2.appendChild(lia2);
+      idpwlink.appendChild(li2);
+      let li3 = document.createElement("li");
+      let lia3 = document.createElement("a");
+      lia3.setAttribute("href", "findpwdform.do");
+      lia3.textContent = "비밀번호 찾기";
+      li3.appendChild(lia3);
+      idpwlink.appendChild(li3);
+      let li4 = document.createElement("li");
+      let lia4 = document.createElement("a");
+      lia4.textContent = "|";
+      li4.appendChild(lia4);
+      idpwlink.appendChild(li4);
+      let li5 = document.createElement("li");
+      let lia5 = document.createElement("a");
+      lia5.setAttribute("href", "registform.do");
+      lia5.textContent = "회원가입";
+      li5.appendChild(lia5);
+      idpwlink.appendChild(li5);
+      modal.appendChild(idpwlink);
+      modal_login.appendChild(modal);
+
+   }
+   function closeModal(){
+       let modal_login = document.getElementsByClassName("modal_login")[0];
+       modal_login.innerHTML = "";
+   }
+</script>
 
 <script type="text/javascript">
    $(".login2").click(function() {
@@ -420,53 +530,5 @@ a {
     FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("ko"));
     }
     } */
-</script>
-<script>
-   //1.구글로그인 페이지 javascript
-   function onSignIn(googleUser) {
-      var googlecallback = document.googlecallback;
-   
-      // 구글 회원의 'profile' data :
-      var profile = googleUser.getBasicProfile();
-      console.log("ID: " + profile.getId()); // Don't send this directly to your server! 왜?
-      console.log('Full Name: ' + profile.getName());
-      console.log('Given Name: ' + profile.getGivenName());
-      console.log('Family Name: ' + profile.getFamilyName());
-      console.log("Image URL: " + profile.getImageUrl());
-      console.log("Email: " + profile.getEmail());
-      // 이 id_token 은 나의 벡엔드 주소에 보낼 필요가있다 :
-      var id_token = googleUser.getAuthResponse().id_token;
-      console.log("ID Token: " + id_token);
-      
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://homeseek.ml/googlecallback.do');
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onload = function() {
-        console.log('Signed in as: ' + xhr.responseText);
-      };
-      xhr.send('idtoken=' + id_token);
-      
-   }
-   
-   //2.구글로그인 id_token 벡엔드 인증 javascript
-   //백엔드 인증을 하는 방법으로는 두가지가 있는데,첫 번째인 Using a Google API Client Library (구글 라이브러리 사용) 방법을 사용함.
-   /* function attachSignin(element) {
-      auth2.attachClickHandler(element, {}, function(googleUser) {
-         var id_token = googleUser.getAuthResponse().id_token;
-
-         var xhr = new XMLHttpRequest();
-         //벡엔드 주소 넣기
-         xhr.open('POST', 'https://homeseek.ml/googlecallback.do');
-         xhr.setRequestHeader('Content-Type',
-               'application/x-www-form-urlencoded');
-         xhr.onload = function() {
-            console.log('Signed in as: ' + xhr.responseText);
-         };
-         xhr.send('idtoken=' + id_token);
-
-      }, function(error) {
-         console.log(JSON.stringify(error, undefined, 2));
-      });
-   } */
 </script>
 </html>

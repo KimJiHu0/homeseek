@@ -1,8 +1,10 @@
 package com.mvc.homeseek.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.GrantType;
-import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.mvc.homeseek.auth.GoogleDto;
 import com.mvc.homeseek.auth.KakaoAPI;
 import com.mvc.homeseek.auth.SNSLogin;
 import com.mvc.homeseek.auth.SnsValue;
@@ -56,6 +60,14 @@ public class MemberController {
 
 	@Autowired
 	private KakaoAPI kakao;
+	
+	@Autowired
+	private GoogleDto GoogleDto;
+
+	@Autowired
+	private void setGoogleDto(GoogleDto GoogleDto) {
+		this.GoogleDto = GoogleDto;
+	}
 
 	private final static String id = "2dc56fd515158890d47575ddc651d7e8";
 	private final static String url = "https://homeseek.ml/kakaocallback.do";
@@ -67,6 +79,32 @@ public class MemberController {
 		logger.info("login.do");
 
 		return "callme";
+	}
+	
+	@RequestMapping("snsinfo.do")
+	@ResponseBody
+	public Map<String, String> snsinfo(HttpSession session) {
+
+		Map<String, String> map = new HashMap<String, String>();
+		// 네이버 로그인 URL받기
+		SNSLogin snsLogin = new SNSLogin(naverSns);
+		String naverUrl = snsLogin.getNaverAuthURL();
+		map.put("naver_url", naverUrl);
+		System.out.println(naverUrl);
+
+		// 카카오 로그인 URL받기
+		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + id + "&redirect_uri=" + url
+				+ "&response_type=code";
+		map.put("kakao_url", kakaoUrl);
+		System.out.println(kakaoUrl);
+
+		// 구글 로그인 URL받기
+		String googleAuthUrl = GoogleDto.getAuthorizationUrl(session);
+		map.put("google_url", googleAuthUrl);
+		System.out.println(googleAuthUrl);
+
+		return map;
+
 	}
 
 	@ResponseBody
@@ -146,7 +184,6 @@ public class MemberController {
 
 			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 			model.addAttribute("naveremail", snsUser.getMember_id());
-			model.addAttribute("googleemail", snsUser.getMember_id());
 			model.addAttribute("nickname", snsUser.getMember_name());
 
 			return "regist";
@@ -161,32 +198,51 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping(value = "/googlecallback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String googleCallback(Model model, MemberDto dto, @RequestParam String code, HttpSession session,
-			HttpServletRequest request) throws Exception {
+	/* sns 로그인 - GOOGLE */
+	@RequestMapping(value = "/googlecallback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googlecallback(@RequestParam String code, @RequestParam String state, Model model,
+			HttpSession session) throws IOException, InterruptedException, ExecutionException {
+		logger.info(">> [CONTROLLER-USERINFO] GOOGLE callback");
 
-		logger.info("snsLoginCallback: service= google");
-		SnsValue sns = null;
-		sns = googleSns;
+		String userId = null;
 
-		// 1. code를 이용해서 access_token 받기
-		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
-		SNSLogin snsLogin = new SNSLogin(sns);
-		MemberDto snsUser = snsLogin.getUserProfile(code);
-		System.out.println("Profile>>" + snsUser);
+		OAuth2AccessToken oauthToken = GoogleDto.getAccessToken(session, code, state);
+		String apiResult = GoogleDto.getUserProfile(oauthToken);
 
-		System.out.println("확인용!!!!" + snsUser.getMember_naverid());
-		// 3. DB 해당유저가 존재하는지 체크 (googleid, naverid 추가해야함 !!! 그래야 select해볼수있음!)
-		MemberDto usertest = memberBiz.getBySns(snsUser);
+		JsonObject object = JsonParser.parseString(apiResult).getAsJsonObject();
+		System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+		System.out.println(object);
+		System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 
-		System.out.println(snsUser.getMember_id());
+		MemberDto googledto = new MemberDto();
 
+		userId = object.get("sub").toString();
+		String name = object.get("name").toString();
+		String email = object.get("email").toString();
+
+		System.out.println("//////////////////  구글 파싱 값    ////////////////////////");
+		System.out.println("userId : " + userId);
+		System.out.println("email : " + email);
+		System.out.println("name : " + name);
+
+		googledto.setMember_googleid(userId);
+		// googledto.setMember_id(object.get("sub").toString().split("\"")[1]);
+		googledto.setMember_id(email);
+		googledto.setMember_name(name);
+		MemberDto usertest = memberBiz.getBySns(googledto);
+
+//      콘솔 값 출력
+		System.out.println("//////////////////  MemberDto snsUser 게터 값 확인    ////////////////////////");
+		System.out.println("userId : " + googledto.getMember_googleid());
+		System.out.println("email : " + googledto.getMember_id());
+		System.out.println("name : " + googledto.getMember_name());
+
+		
 		if (usertest == null) { // 존재하지 않을시, 회원가입 시켜야됨 -> 가입페이지로
 
 			System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
-			model.addAttribute("naveremail", snsUser.getMember_id());
-			model.addAttribute("googleemail", snsUser.getMember_id());
-			model.addAttribute("nickname", snsUser.getMember_name());
+			model.addAttribute("googleemail", googledto.getMember_id());
+			model.addAttribute("nickname", googledto.getMember_name());
 
 			return "regist";
 
@@ -198,6 +254,7 @@ public class MemberController {
 
 			return "redirect:/main.do";
 		}
+
 	}
 
 	@RequestMapping(value = "/kakaocallback.do", method = { RequestMethod.GET, RequestMethod.POST })
