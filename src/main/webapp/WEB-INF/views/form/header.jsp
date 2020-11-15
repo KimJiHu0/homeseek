@@ -214,7 +214,7 @@ a {
                   <li class="searchbox">
                      <div class="search">
                         <!--  엘라스틱 시현시 search.do 로 변경 -->
-                        <form action="listroom.do" class="navsearchform">
+                        <form action="search.do" class="navsearchform">
                            <input type="text" id="navsearchtxt" name="word"
                               value="${word }" placeholder="<spring:message code='h.searchplaceholder' text='지역,지하철명,아이디'/>">
                         </form>

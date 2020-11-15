@@ -24,12 +24,12 @@ var cnt = 1;
 var word = $('#navsearchtxt').val();
 console.log("word : " +word);
 /* 엘라스틱서치 할 때 스크롤 페이징 진행 */
-/* window.onscroll = function(e) {
+ window.onscroll = function(e) {
     if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		showList(cnt);
 		cnt++;
     }
-}; */
+}; 
 
 
 function numberWithCommas(x) {
@@ -43,7 +43,7 @@ function showList(cnt){
 		contentType : "application/json",
 		success : function(resMap){
 			if(resMap.msg==true){
-				alert("마지막 리스트 입니다.");
+				/* alert("마지막 리스트 입니다."); */
 				return false;
 			}else{
 				var list = resMap.roomlist;
@@ -137,7 +137,7 @@ function showList(cnt){
 			
 		</div>
 
- 		
+<%--  엘라스틱 실행시 스크롤 페이징으로 진행하여 이부분은 주석처리.
  <!-- **************** 페이징 ************  -->
 		
 		<!-- 첫 페이지로 이동 -->
@@ -188,7 +188,7 @@ function showList(cnt){
 		<a href="listroom.do?page=${requestScope.pageBean.totalPage}">마지막 페이지</a>
 			
 		</p>
-		 
+--%> 
 	</section>
 	
 	<%@ include file="./form/footer.jsp" %>

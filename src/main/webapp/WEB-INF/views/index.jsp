@@ -32,7 +32,7 @@ response.setHeader("Expires", "0"); // Proxies.
 			</div>
 			
 			<div class="mainSearch">
-			<form action="listroom.do" class="searchform"> <!-- 엘라스틱서치로 변경시 search.do 로 변경 -->
+			<form action="search.do" class="searchform"> <!-- 엘라스틱서치로 변경시 search.do 로 변경 -->
 				<input type="text" class="searchtxt" name="word" placeholder="지역명, 대학교명, 지하철 명을 입력해주세요">
 			</form>
 			</div> 
