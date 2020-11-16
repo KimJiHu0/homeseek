@@ -21,41 +21,42 @@ import com.mvc.homeseek.model.dto.MemberDto;
 
 @Controller
 public class CommentController {
-	
-	private Logger logger = LoggerFactory.getLogger(CommentController.class);
-	
-	@Autowired
-	private CommentBiz commentBiz;
+   
+   private Logger logger = LoggerFactory.getLogger(CommentController.class);
+   
+   @Autowired
+   private CommentBiz commentBiz;
 
-	
-	@RequestMapping("commentlist.do") //댓글 리스트
+   
+   @RequestMapping("commentlist.do") //댓글 리스트
     @ResponseBody
     private List<CommentDto> mCommentServiceList(@RequestParam int qna_no) throws Exception{
-		logger.info("댓글 리스트");
-		CommentDto comment = new CommentDto();
-		System.out.println("★TEST : "+ (Date)comment.getComm_regdate());// 왜 null일까?
-		System.out.println("★TEST : ");
-		//여기서 날짜 포멧 변환 -> setter로 넣어줌
-		return commentBiz.commentList(qna_no);
+      logger.info("댓글 리스트");
+      CommentDto comment = new CommentDto();
+      System.out.println("★TEST : "+ (Date)comment.getComm_regdate());// 왜 null일까?
+      System.out.println("★TEST : ");
+      //여기서 날짜 포멧 변환 -> setter로 넣어줌
+      return commentBiz.commentList(qna_no);
     }
     
     @RequestMapping("commentinsert.do") //댓글 작성 
     @ResponseBody
     private int mCommentServiceInsert(@RequestParam int qna_no, @RequestParam String comm_content, HttpSession session) throws Exception{
-    	logger.info("댓글 작성 ");
-    	
-    	MemberDto member_dto = (MemberDto) session.getAttribute("login");
-    	
+       logger.info("댓글 작성 ");
+       
+       MemberDto member_dto = (MemberDto) session.getAttribute("login");
+       
         CommentDto comment = new CommentDto();
+        
+  
         comment.setComm_id(member_dto.getMember_id());  
         
-        System.out.println("★TEST전 : "+comment.getComm_content());
+        System.out.println("★TEST전 getComm_content: "+comment.getComm_content());
         comment.setQna_no(qna_no);
         comment.setComm_content(comm_content);
-        System.out.println("★TEST후 : "+comment.getComm_content());
-        //날짜를 포멧이 깨져서 ...
-        comment.setComm_regdate(comment.getComm_regdate());
-        System.out.println("★TEST댓글작성시간 : "+comment.getComm_regdate());
+        System.out.println("★TEST후 getComm_content: "+comment.getComm_content());
+     
+       
 
         return commentBiz.commentInsert(comment);
     }
@@ -63,8 +64,8 @@ public class CommentController {
     @RequestMapping("commentupdate.do") //댓글 수정  
     @ResponseBody
     private int mCommentServiceUpdateProc(@RequestParam int comm_no, @RequestParam String comm_content, Model model) throws Exception{
-    	logger.info("댓글 수정  ");
-    	
+       logger.info("댓글 수정  ");
+       
         CommentDto comment = new CommentDto();
         comment.setComm_no(comm_no);
         comment.setComm_content(comm_content);
@@ -78,8 +79,8 @@ public class CommentController {
     @RequestMapping("commentdelete.do") //댓글 삭제  
     @ResponseBody
     private int mCommentServiceDelete(@RequestParam int comm_no) throws Exception{
-    	logger.info("댓글 삭제  ");
-    	
+       logger.info("댓글 삭제  ");
+       
         return commentBiz.commentDelete(comm_no);
     }
 
