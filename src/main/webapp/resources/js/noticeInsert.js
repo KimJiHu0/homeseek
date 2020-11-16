@@ -35,6 +35,7 @@ var totalPhoto = "";
 var newList = "";
 var photoList = $('#photo_list');
 
+
 function sendFile(file) {
 	var imgname;
 	var form_data = new FormData();
