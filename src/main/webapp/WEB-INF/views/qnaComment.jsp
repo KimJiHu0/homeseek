@@ -22,7 +22,7 @@ function commentList(){
            
             $.each(data, function(key, comment){ //체크............................
                 a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                a += '<div class="commentInfo'+comment.comm_no+'">'+' ID : '+comment.comm_id+'\tTIME : '+comment.comm_regdate+'\t';
+                a += '<div class="commentInfo'+comment.comm_no+'">'+' ID : '+comment.comm_id+'-------';
                 a += '<a onclick="commentUpdate('+comment.comm_no+',\''+comment.comm_content+'\');">   수정 </a>';
                 a += '<a onclick="commentDelete('+comment.comm_no+');">  삭제 </a> </div>';
                 a += '<div class="commentContent'+comment.comm_no+'"> <p> 내용 : '+comment.comm_content +'</p>';
@@ -42,6 +42,8 @@ function commentInsert(insertData){
         data : insertData,
         success : function(data){
             if(data == 1) {
+               
+               console.log(data);
                 commentList(); //댓글 작성 후 댓글 목록 reload
                 $('[name=comm_content]').val('');
             }

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek : Q&A 글 보기</title>
+<title>homeseek : Q&A 상세 글보기</title>
 <script type="text/javascript"
    src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
@@ -93,7 +93,7 @@
     <!--                     추가                         -->
     <!--  댓글  -->
     <div class="container">
-        <label for="content">comment</label>
+        <label for="content">------------c o m m e n t------------</label>
         <form name="commentInsertForm">
             <div class="input-group">
                <input type="hidden" name="qna_no" value="${dto.qna_no}"/>
