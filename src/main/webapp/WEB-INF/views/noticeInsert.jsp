@@ -34,7 +34,7 @@
             <textarea id="photo_list" readonly="readonly"></textarea>
             
             <h3>공지사항 내용</h3>
-            <textarea rows="10" cols="60" id="summernote" name="notice_content"></textarea>
+            <textarea rows="10" cols="60" name="notice_content" id="notice_content"></textarea>
          </div>
 
 

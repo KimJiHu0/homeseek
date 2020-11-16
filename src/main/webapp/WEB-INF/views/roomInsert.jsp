@@ -171,9 +171,9 @@
 <script src="${pageContext.request.contextPath}/resources/js/summerNote-roomInsert.js" type="text/javascript"></script>
 
 <!-- 카카오맵 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=779d2f1909ccd4bdeba048acad826b6f&libraries=services"></script>
 <!-- 카카오맵 services 라이브러리 불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7f1fa385bb585b9a8e3d5219e5bf533&libraries=services"></script><%-- 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=779d2f1909ccd4bdeba048acad826b6f&libraries=services"></script><%-- 
 
 <!-- 도로명주소API js -->
 <script src="${pageContext.request.contextPath}/resources/js/roadAddress.js" type="text/javascript"></script> --%>

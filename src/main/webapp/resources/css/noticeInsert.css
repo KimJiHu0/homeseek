@@ -1,38 +1,38 @@
 @charset "UTF-8";
 
 #notice_label {
-   margin-right : 30px;
+	margin-right : 30px;
 }
 
 
 /* 기본설정 */
 
 #notice_form{
-   width: 100%;
-   max-width : 1300px;
-   padding:100px;
-   margin : 0 auto;
-   background-color:#7EAB7D;
-   border-radius: 15px;
+	width: 100%;
+	max-width : 1300px;
+	padding:100px;
+	margin : 0 auto;
+	background-color:#7EAB7D;
+	border-radius: 15px;
 }
 
 
 
 a{
-   text-decoration : none !important;
-   color:#6A6868 !important;
+	text-decoration : none !important;
+	color:#6A6868 !important;
 }
 
 .dropbtn{
-   font-weight: normal !important;
+	font-weight: normal !important;
 }
 
 a:hover{
-   color : #6A6868 !important;
+	color : #6A6868 !important;
 }
 
 h3{
-   color:white !important;
+	color:white !important;
 }
 
 
@@ -40,47 +40,54 @@ h3{
 /* -------------------- main title -------------------- */
 
 #insert_noticetitle {
-   width : 100%;
-   height : 50px;
-   max-width : 1300px;
+	width : 100%;
+	height : 50px;
+	max-width : 1300px;
 }
 
 /* -------------------- main content -------------------- */
 
 #insert_content {
-   width : 100%;
-   max-width : 1300px;
-   margin : 15px 0 15px 0;
+	width : 100%;
+	max-width : 1300px;
+	margin : 15px 0 15px 0;
 }
 
 #insert_content #photo_list{
-   
-   width : 100%;
-   height : 100px;
-   max-width : 1200px;
-   margin : 15px 0 15px 0;
-   resize : none;
+	
+	width : 100%;
+	height : 100px;
+	max-width : 1200px;
+	margin : 15px 0 15px 0;
+	resize : none;
 }
 
+#insert_content #notice_content{
+	width : 100%;
+	max-width : 1200px;
+	resize : none;
+}
 
 
 
 /* button 설정 */
 
 notice_button{
-   
-   border:0;
-   outline:0;
-   background-color: #7EAB7D ;
-   color:white;
-   transition: 0.3s all;
+	
+	border:0;
+	outline:0;
+	background-color: #7EAB7D ;
+	color:white;
+	transition: 0.3s all;
 }
 
 
 notice_button:hover{
-   transform: scale(1.05);
-   opacity:0.7;
+	transform: scale(1.05);
+	opacity:0.7;
 }
+
+
 
 
 
