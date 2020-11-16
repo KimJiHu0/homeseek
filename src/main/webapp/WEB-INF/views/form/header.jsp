@@ -140,6 +140,10 @@ a {
 .idpwlink li {
    display: inline-block;
    margin-right: 5px;
+}   
+   
+.login2{
+   cursor: pointer;
 }
 
 /* 로그인모달 */
@@ -153,8 +157,7 @@ a {
    z-index: -1;
    border-radius: 30px;
    transition: 0.6s;
-   background: rgb(255,255,177);
-   background: radial-gradient(circle, rgba(255,255,177,1) 0%, rgba(255,255,235,0.8690826672465861) 100%);
+   background-color: white;
 }
 
 .modal-back {

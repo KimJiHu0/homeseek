@@ -7,118 +7,118 @@
 }
 
 body{
-	font-family:InfinitySans-RegularA1 !important;
-	font-size : 16px !important;
+   font-family:InfinitySans-RegularA1 !important;
+   font-size : 16px !important;
 }
 
 *{
-	margin:0;
-	padding:0;
+   margin:0;
+   padding:0;
 }
 ul,li,ol{
-	list-style: none;
+   list-style: none;
 }
 
 .header{
-	position : fixed;
-	margin-right : 35px;
-	width : 100%;
-	line-height: 50px;
-	z-index : 9999;
-	background-color : white !important;
+   position : fixed;
+   margin-right : 35px;
+   width : 100%;
+   line-height: 50px;
+   z-index : 9999;
+   background-color : white !important;
 }
 
 .mainheader{
-	position : fixed;
-	margin-left : 35px;
-	margin-right : 35px;
-	width : 100%;
-	line-height: 50px;
-	z-index : 9999;
-	
+   position : fixed;
+   margin-left : 35px;
+   margin-right : 35px;
+   width : 100%;
+   line-height: 50px;
+   z-index : 9999;
+   
 }
 
 a{
-	text-decoration : none;
-	color:#6A6868;
+   text-decoration : none;
+   color:#6A6868;
 }
 
 .logo{
-	width: 10%;
-	float : left;
-	padding-left : 35px;
+   width: 10%;
+   float : left;
+   padding-left : 35px;
 }
 
 .logo > a{
-	color:black;
-	font-style: italic;
+   color:black;
+   font-style: italic;
 }
 .logo > a > span{
-	color: #7EAB7D;
-	font-style : italic;
+   color: #7EAB7D;
+   font-style : italic;
 }
 
 ul.nav{
-	float: right;
-	margin-right: 30px;
-	
+   float: right;
+   margin-right: 30px;
+   
 }
 
 .nav > a{
-	color:#6A6868;
-	margin-left : 10px;
+   color:#6A6868;
+   margin-left : 10px;
 }
 
 .nav > a:hover{
-	font-weight:bold;
+   font-weight:bold;
 }
 
 
 
 ul.nav li{
-	float : left;
-	/*width : 100px;*/
-	text-align: center;
-	margin-right: 20px;
+   float : left;
+   /*width : 100px;*/
+   text-align: center;
+   margin-right: 20px;
 }
 
 ul.nav2{
-	float: right;
-	margin-right: 30px;
-	
+   float: right;
+   margin-right: 30px;
+   
 }
 
 .nav2 > a{
-	color:#6A6868;
-	margin-left : 10px;
+   color:#6A6868;
+   margin-left : 10px;
 }
 
 .nav2 > a:hover{
-	font-weight:bold;
+   font-weight:bold;
 }
 
 
 
 ul.nav2 li{
-	float : left;
-	/*width : 100px;*/
-	text-align: center;
-	margin-right: 20px;
+   float : left;
+   /*width : 100px;*/
+   text-align: center;
+   margin-right: 20px;
 }
 
 li:nth-last-child{
-	margin-right: 0px;
+   margin-right: 0px;
 }
 
 .login > a{
-	color:black;
-	/* margin-left : 10px; */
-	font-style : italic;
-	font-size: 14px;
+   color:black;
+   /* margin-left : 10px; */
+   font-style : italic;
+   font-size: 14px;
 }
 
 .login > a:hover{
-	font-weight:bold;
+   font-weight:bold;
 }
 
 /* Dropdown 버튼 */
@@ -185,8 +185,8 @@ li:nth-last-child{
 
 /* 검색창에 focus 됐을때 */
 #navsearchtxt:focus{
-	outline: 0;
-	border-bottom: 1px solid;
+   outline: 0;
+   border-bottom: 1px solid;
     padding: 4px;
     
 }
