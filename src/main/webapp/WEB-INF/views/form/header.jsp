@@ -151,9 +151,10 @@ a {
    left: calc(50% - 250px);
    opacity: 0;
    z-index: -1;
-   background-color: white;
    border-radius: 30px;
    transition: 0.6s;
+   background: rgb(255,255,177);
+   background: radial-gradient(circle, rgba(255,255,177,1) 0%, rgba(255,255,235,0.8690826672465861) 100%);
 }
 
 .modal-back {
@@ -230,7 +231,7 @@ a {
             <%
                if (dto == null) {
             %>
-            <li><a class="headeratag login2"><spring:message
+            <li><a class="headeratag login2" onclick="getSnsUrl();"><spring:message
                      code="h.insert" text="방 올리기" /></a></li>
             <%
                } else {
@@ -254,7 +255,7 @@ a {
             <%
                if (dto == null) {
             %>
-            <li><a class="headeratag login2"><spring:message
+            <li><a class="headeratag login2" onclick="getSnsUrl();"><spring:message
                      code="h.chat" text="채팅" /></a></li>
             <%
                } else {
@@ -264,8 +265,7 @@ a {
             <%
                }
             %>
-            
-             <%
+            <%
                if (dto == null) {
             %>
             <li><a class="headeratag login2" onclick="getSnsUrl();"><spring:message
@@ -278,12 +278,9 @@ a {
             <%
                }
             %>
-            
-            
             <li><a class="headeratag" href="?lang=en">ENG</a></li>
             <li><a class="headeratag" href="?lang=ko">KOR</a></li>
             <!-- <li><p class="headeratag" id="translate">Kr | En</p></li> -->
-            
             <%
                if (dto == null) {
             %>
