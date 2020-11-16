@@ -11,7 +11,7 @@
 
 
 <!-- BootPay 결제 api	 -->
-<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.6.min.js" type="application/javascript"></script>
 
 <!-- footer 설정용 -->
@@ -63,19 +63,19 @@
 					
 						<ul class="radio_ul">
 							<li class="radio_li">
-								<input type="radio" id="value1" name="donate_value" value="100">
+								<input type="radio" id="value1" name="donate_value" value="1000">
 								<label id="value1" for="value1">₩1,000</label>
 								<div class="check"></div>
 							</li>
 			
 							<li class="radio_li">
-								<input type="radio" id="value3" name="donate_value" value="300">
+								<input type="radio" id="value3" name="donate_value" value="3000">
 								<label id="value3" for="value3">₩3,000</label>
 								<div class="check"></div>
 							</li>
 			
 							<li class="radio_li">
-								<input type="radio" id="value5" name="donate_value" value="500">
+								<input type="radio" id="value5" name="donate_value" value="5000">
 								<label id="value5" for="value5">₩5,000</label> 
 								<div class="check"></div>
 							</li>
