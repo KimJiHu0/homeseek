@@ -82,10 +82,59 @@
 							<div id="show_map">
 								<p id="map_notice"><spring:message code="roominsert.mapnotice" text="주소 검색을 하시면 해당 위치가 지도에 표시됩니다."/></p>
 							</div>
-						</div>
-						
-						
+						</div>	
 					</div>
+<!-- 카카오맵 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6f2a4b2da3be8e7e22cff8692d2d202&libraries=services,clusterer,drawing"></script>
+
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=779d2f1909ccd4bdeba048acad826b6f&libraries=services"></script> -->
+<script type="text/javascript">
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn , detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
+	// 2017년 2월 제공항목이 추가되었습니다. 원하시는 항목을 추가하여 사용하시면 됩니다.
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	document.getElementById("room_addr").value = roadFullAddr;  
+	
+	
+	var mapContainer = document.getElementById('show_map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+var user_addr = document.getElementById("room_addr").value;
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch(user_addr, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content :'<div style="width:150px;text-align:center;padding:6px 0;">매물 위치</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+}
+</script>
 					
 					<div id="insert_div4">
 						<label for="insert_kind" id="kind_label"><spring:message code="roominsert.roomkind" text="건물 종류"/></label>
@@ -158,7 +207,6 @@
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -170,13 +218,17 @@
 <!-- summerNote.js -->
 <script src="${pageContext.request.contextPath}/resources/js/summerNote-roomInsert.js" type="text/javascript"></script>
 
-<!-- 카카오맵 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=779d2f1909ccd4bdeba048acad826b6f&libraries=services"></script>
-<!-- 카카오맵 services 라이브러리 불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=779d2f1909ccd4bdeba048acad826b6f&libraries=services"></script><%-- 
 
+
+<!-- 카카오맵 services 라이브러리 불러오기 -->
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=779d2f1909ccd4bdeba048acad826b6f&libraries=services"></script> -->
+
+
+
+<%-- 
 <!-- 도로명주소API js -->
-<script src="${pageContext.request.contextPath}/resources/js/roadAddress.js" type="text/javascript"></script> --%>
+<script src="${pageContext.request.contextPath}/resources/js/roadAddress.js" type="text/javascript"></script> 
+--%>
 
 <!-- page 설정 -->
 
