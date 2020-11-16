@@ -59,7 +59,7 @@
 		<c:choose>
 			<c:when test="${empty list }">
 				<tr>
-					<th colspan="4">----------------후원 내역 없음------------</th>
+					<th colspan="4">후원 내역 없음</th>
 				</tr>
 			</c:when>
 			<c:otherwise>
