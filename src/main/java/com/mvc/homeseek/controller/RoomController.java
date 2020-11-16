@@ -63,7 +63,7 @@ public class RoomController {
 
 		if (res > 0) {
 			redirect.addFlashAttribute("msg", "매물등록을 성공했습니다.");
-			return "redirect:/listroom.do";
+			return "redirect:/search.do.do";
 		} else {	
 			redirect.addFlashAttribute("msg", "매물등록을 실패했습니다.");
 			return "redirect:/insertroom.do";
@@ -93,7 +93,7 @@ public class RoomController {
 
 		if (res > 0) {
 			redirect.addFlashAttribute("msg", "매물등록을 성공했습니다.");
-			return "redirect:/listroom.do";
+			return "redirect:/search.do.do";
 		} else {
 			redirect.addFlashAttribute("msg", "매물등록을 실패했습니다.");
 			return "redirect:/insertroom.do";
