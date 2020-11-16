@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek : 공지사항</title>
+<title>N O T I C E</title>
 <!-- header.jsp -->
 <%@ include file="form/header.jsp"%>
 
@@ -27,7 +27,7 @@
          <h1> < 공   지   사   항  ></h1>
 
          <div id="qnaSearch_bar"  class="search_wrap">
-            <a> 검 색 : <input width="300px" id="noticeSearch" class="notice_search" type="search" value="" placeholder=" 내 용 을 검 색 해 주 세 요" /></a>
+            <a> 검 색 : <input width="300px" id="noticeSearch" class="notice_search" type="search" value="" placeholder="  제 목 을 검 색 해 주 세 요" /></a>
          </div>
 
          <form action="" id="setRows">

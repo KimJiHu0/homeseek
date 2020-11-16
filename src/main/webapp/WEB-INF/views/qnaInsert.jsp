@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek : Q&A 등록</title>
+<title>QNA 등록</title>
 <script type="text/javascript"
    src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
@@ -27,21 +27,21 @@
          
             <tr>
                <th>제목</th>
-               <td><input class="form-control" name='qna_title'></td>
+               <td><input class="form-control" name='qna_title' style="width:100%; border: 0;"></td>
             </tr>
             <tr id="content_style">
                <th>내용</th>
-               <td><textarea class="form-control" rows="3" name='qna_content'></textarea></td>
+               <td><textarea class="form-control" name='qna_content' rows="30" style="width:800px; border: 0;" ></textarea></td>
             </tr>
             <tr>
                <th>글 비밀번호</th>
-               <td><input class="form-control"  name='qna_pwd'></td>
+               <td><input type="password" class="form-control"  name='qna_pwd'  style="width:100%; border: 0;"></td>
             </tr>
             <tr>
             <th>비밀글 여부</th>
             <td>
-               <label><input class="notice_button" type="radio" name="qna_secretflag" value="Y"> YES</label>
-                  <label><input class="notice_button" type="radio" name="qna_secretflag" value="N" checked> NO</label>
+               <label><input type="radio" name="qna_secretflag" value="Y"> YES</label>
+                  <label><input type="radio" name="qna_secretflag" value="N" checked> NO</label>
                <input type="hidden" name="qna_secretflag" value="${dto.qna_secretflag }"> 
                </td>
          </tr>
