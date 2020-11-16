@@ -60,7 +60,7 @@
 			</tr>
 			<tr>
 				<th>신고 내용</th>
-				<td><textarea cols=50 rows=10 readonly>${dto.report_content }</textarea></td>
+				<td><div>${dto.report_content }</div></td>
 			</tr>
 			
 		
