@@ -29,11 +29,11 @@
             <input type="hidden" name="rowPerPage" value="10">
          </form>
 
-         <h1> < Q N A 리 스 트  > </h1>
+         <h1> < Q  N  A > </h1>
 
          <div id="qnaSearch_bar" class="search_wrap">
             <a> 검 색 : <input width="300px" id="qnaSearch" class="notice_search"  type="search" value=""
-               placeholder="QNA검색해주세여" /></a>
+               placeholder="내 용 을 검 색 해 주 세 요" /></a>
          </div>
 
          <table border="1" class="table_notice">
@@ -77,14 +77,14 @@
             <tr>
                <c:if test="${ empty login }">
                   <td colspan="5" align="right">
-                     <div class="btn_wrap">
+                     <div align="right" class="btn_wrap">
                         <input width="300px" class="notice_search login2" type="button" value="로그인 후 글작성" onclick="getSnsUrl();" />
                      </div>   
                   </td>
                </c:if>
                <c:if test="${ not empty login }">
                   <td colspan="5" align="right">
-                     <div class="btn_wrap">
+                     <div align="right" class="btn_wrap">
                         <input class="notice_button" type="button" value="글작성" class="btn_1" onclick="location.href='qnainsertform.do'" />
                      </div>   
                   </td>

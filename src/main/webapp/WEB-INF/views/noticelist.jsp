@@ -24,10 +24,10 @@
    <section>
       <div id="products">
 
-         <h1> < N O T I C E  리 스 트  ></h1>
+         <h1> < 공   지   사   항  ></h1>
 
          <div id="qnaSearch_bar"  class="search_wrap">
-            <a> 검 색 : <input width="300px" id="noticeSearch" class="notice_search" type="search" value="" placeholder="Notice검색해주세여" /></a>
+            <a> 검 색 : <input width="300px" id="noticeSearch" class="notice_search" type="search" value="" placeholder=" 내 용 을 검 색 해 주 세 요" /></a>
          </div>
 
          <form action="" id="setRows">
@@ -73,7 +73,7 @@
                %>
                <tr class="even">
                   <td colspan="5" align="right">
-                     <div class="btn_wrap">
+                     <div align="right" class="btn_wrap">
                         <input class="notice_button" type="button" value="글작성" onclick="location.href='noticeinsertform.do'" />
                      </div>
                   </td>
