@@ -1,5 +1,57 @@
 @charset "UTF-8";
 
+/* -------------------- reply text -------------------- */
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+
+}
+
+.form__field:focus {
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight:700;    
+  }
+
+}
+/* demo */
+body {
+  font-family: 'Poppins', sans-serif; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background-color:#222222;
+}
 
 /* -------------------- button -------------------- */
 .btn_wrap {
@@ -18,7 +70,7 @@
    letter-spacing: 2.5px;
    font-weight: 500;
    color: #000;
-   background-color: #fff;
+   background-color: #f0fee7;
    border: none;
    border-radius: 45px;
    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -50,6 +102,7 @@ table.table_notice_type02 {
    border-right: 0;
    border-bottom: 0;
    margin: 20px 10px;
+   width:1200px;
 }
 
 table.table_notice_type02 th {
@@ -67,7 +120,7 @@ table.table_notice_type02 th {
 }
 
 table.table_notice_type02 td {
-   width: 350px;
+   width: 700px;
    padding: 10px;
    vertical-align: top;
    border-right: 1px solid #ccc;
@@ -95,9 +148,13 @@ h1 {
 /* -------------------- reply -------------------- */
 #notice_form{
    width: 100%;
-   max-width : 1300px;
+   max-width : 1000px;
    padding:100px;
    margin : 0 auto;
    background-color:#7EAB7D;
    border-radius: 15px;
+}
+
+.commentArea{
+   border-bottom:1px solid #ffffff;
 }

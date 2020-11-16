@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>homeseek : Q&A 상세 글보기</title>
+<title>Qna 상세 글보기</title>
 <script type="text/javascript"
    src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
@@ -79,6 +79,7 @@
          </tr>
 
       </table>
+      
 
       <div class="btn_wrap">
           <button class="notice_button" onclick="location.href='qnaupdateform.do?qna_no=<c:out value="${dto.qna_no}"/>'">Update</button>
@@ -89,19 +90,28 @@
       <div class="btn_wrap">
            <button class="notice_button" onclick="location.href='qnalist.do'">List</button>
       </div>
+   
     
     <!--                     추가                         -->
     <!--  댓글  -->
     <div class="container">
-        <label for="content">------------c o m m e n t------------</label>
+        <label for="content"></label>
         <form name="commentInsertForm">
             <div class="input-group">
                <input type="hidden" name="qna_no" value="${dto.qna_no}"/>
                <input type="hidden" name="comm_regdate" value="comm_regdate"/>
-               <input type="text" class="form-control" id="comm_content" name="comm_content" placeholder="내용을 입력하세요.">
-               <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
-               </span>
+               
+               
+               <!-- <input type="text" class="form-control" id="comm_content" name="comm_content" placeholder="내용을 입력하세요."> -->
+               
+               <div class="form__group field form-control">
+                 <input type="text" class="form__field" placeholder="___________________________" name="comm_content" id='comm_content' required />
+                   <label for="name" class="form__label">R e p l y</label>
+            </div>
+
+               <div class="input-group-btn">
+                    <button class="btn btn-default notice_button" type="button" name="commentInsertBtn">댓 글 등 록</button>
+               </div>
               </div>
         </form>
     </div>

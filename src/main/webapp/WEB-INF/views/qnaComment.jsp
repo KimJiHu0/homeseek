@@ -21,8 +21,8 @@ function commentList(){
             var a =''; 
            
             $.each(data, function(key, comment){ //체크............................
-                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                a += '<div class="commentInfo'+comment.comm_no+'">'+' ID : '+comment.comm_id+'-------';
+                a += '<div class="commentArea" style=" margin-bottom: 15px;">';
+                a += '<div class="commentInfo'+comment.comm_no+'">'+' ID : '+comment.comm_id;
                 a += '<a onclick="commentUpdate('+comment.comm_no+',\''+comment.comm_content+'\');">   수정 </a>';
                 a += '<a onclick="commentDelete('+comment.comm_no+');">  삭제 </a> </div>';
                 a += '<div class="commentContent'+comment.comm_no+'"> <p> 내용 : '+comment.comm_content +'</p>';
