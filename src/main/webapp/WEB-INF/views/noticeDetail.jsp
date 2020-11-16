@@ -51,9 +51,12 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><input type="hidden" name="notice_content"
-					value="${dto.notice_content }"> <c:out
-						value="${dto.notice_content}" /></td>
+				<td>
+					<input type="hidden" name="notice_content" value="${dto.notice_content }">
+					 <div>
+					 	<c:out value="${dto.notice_content}" />
+					 </div>
+				</td>
 			</tr>
 
 		</table>
