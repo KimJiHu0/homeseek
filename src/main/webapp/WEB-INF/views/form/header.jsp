@@ -264,11 +264,26 @@ a {
             <%
                }
             %>
-            <li><a class="headeratag" href="donateform.do"><spring:message
+            
+             <%
+               if (dto == null) {
+            %>
+            <li><a class="headeratag login2" onclick="getSnsUrl();"><spring:message
                      code="h.donate" text="후원하기" /></a></li>
+            <%
+               } else {
+            %>
+            <li><a class="headeratag" href="donateform.do"><spring:message
+                     code="h.donate" text="후원하기" /></a></li>         
+            <%
+               }
+            %>
+            
+            
             <li><a class="headeratag" href="?lang=en">ENG</a></li>
             <li><a class="headeratag" href="?lang=ko">KOR</a></li>
             <!-- <li><p class="headeratag" id="translate">Kr | En</p></li> -->
+            
             <%
                if (dto == null) {
             %>
